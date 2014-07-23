@@ -105,28 +105,28 @@ get_header();
 			<div class="section_frontPage socialBox_frontPage">
 				<ul class="sbfp_icons">
 					<li>
-						<a href="https://www.youtube.com/user/ChristmasBarrel">
-							<img src="http://rightstuff.us/Barrel2014/wp-content/uploads/2014/07/youtube.jpg" class="smSquare">
+						<a target="_blank" class="youtube" href="https://www.youtube.com/user/ChristmasBarrel">
+							<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/youtube.jpg" alt="YouTube" />
 						</a>
 					</li>
 					<li>
-						<a href="https://www.facebook.com/ChristmasBarrel">
-							<img src="http://rightstuff.us/Barrel2014/wp-content/uploads/2014/07/facebook.jpg" class="smSquare">
+						<a target="_blank" class="facebook" href="https://www.facebook.com/ChristmasBarrel">
+							<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/facebook.jpg" alt="Facebook" />
 						</a>
 					</li>
 					<li>
-						<a href="https://plus.google.com/u/0/b/110359901439331284129/110359901439331284129/videos/p/pub?pageId=110359901439331284129">
-							<img src="http://rightstuff.us/Barrel2014/wp-content/uploads/2014/07/google_plus.jpg" class="smSquare">
+						<a target="_blank" class="google-plus" href="https://plus.google.com/u/0/b/110359901439331284129/110359901439331284129/videos/p/pub?pageId=110359901439331284129">
+							<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/google_plus.jpg" alt="Google+" />
 						</a>
 					</li>
 					<li>
-						<a href="https://twitter.com/ChristmasBarrel">
-							<img src="http://rightstuff.us/Barrel2014/wp-content/uploads/2014/07/twitter.jpg" class="smSquare">
+						<a target="_blank" class="twitter" href="https://twitter.com/ChristmasBarrel">
+							<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/twitter.jpg" alt="Twitter" />
 						</a>
 					</li>
 					<li>
-						<a href="https://www.facebook.com/ChristmasBarrel">
-							<img src="http://rightstuff.us/Barrel2014/wp-content/uploads/2014/07/facebook.jpg" class="smSquare">
+						<a target="_blank" class="pinterest" href="https://www.pinterest.com/ChristmasBarrel">
+							<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/pinterest.png" alt="Pinterest" />
 						</a>
 					</li>
 				</ul>

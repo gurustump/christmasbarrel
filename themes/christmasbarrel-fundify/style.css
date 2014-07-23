@@ -262,7 +262,9 @@ body.home .vid-nav {
 	color: #04937f; padding: 0 0 0 15px;
 }
 
-
+#header .container:after {
+	content:".";visibility:hidden;height:0;display:block;clear:both;
+}
 .days-til {
 	font-family:jenna_sue;
 	font-size:22px;
@@ -284,8 +286,13 @@ body.home .vid-nav {
 }
 
 .header_logo {
-	padding-left: 28px;
+	padding-left:28px;
 	border: 0px;
+	text-indent:-9999px;
+	background:url(img/Logoweb2014.jpg) no-repeat 28px 0;
+	width:317px;
+	height:100px;
+	float:left;
 }
 
 /* Static Header */
