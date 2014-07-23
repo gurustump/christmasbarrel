@@ -288,11 +288,6 @@ body.home .vid-nav {
 .header_logo {
 	padding-left:28px;
 	border: 0px;
-	text-indent:-9999px;
-	background:url(img/Logoweb2014.jpg) no-repeat 28px 0;
-	width:317px;
-	height:100px;
-	float:left;
 }
 
 /* Static Header */
@@ -329,6 +324,10 @@ body.home .vid-nav {
 
 .campaign-sec-title span {
 	color:#04937f;
+}
+
+#footer {
+	background-image:url(img/bg_footer.jpg);
 }
 
 html body div#wpadminbar {

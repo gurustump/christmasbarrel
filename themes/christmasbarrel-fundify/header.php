@@ -61,7 +61,9 @@
 				<span class="count"><?php echo $days; ?></span>	
 				<span class="label">Days 'til Christmas</span>
 			</h2>
-			<a class="header_logo" href="<?php echo get_bloginfo('url') . '/' ?>">A Christmas Barrel</a>
+			<a href="<?php echo get_bloginfo('url') . '/' ?>">
+				<img class="header_logo" src="<?php echo get_stylesheet_directory_uri(); ?>/img/Logoweb2014.jpg" alt="A Christmas Barrel" />
+			</a>
 
 
 
