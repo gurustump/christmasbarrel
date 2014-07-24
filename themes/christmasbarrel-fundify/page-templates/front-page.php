@@ -131,7 +131,7 @@ get_header();
 					</li>
 				</ul>
 				<div class="sbfp_text">
-					Queen Elizabeth visited the set of @GameOfThrones today. When she left, she became the 1st royal to ever get out of "Game of Thrones" alive.
+					Subscribe, like, or follow now to get notified of the videos in December. You can always unsubscribe if you stop believing in Santa before then.
 				</div>
 
 			</div>
