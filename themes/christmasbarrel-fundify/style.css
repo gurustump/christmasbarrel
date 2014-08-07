@@ -334,6 +334,41 @@ body.home .vid-nav {
 	color:#04937f;
 }
 
+/* campaign lists from shortcode */
+.campaign-list {
+	margin:0 -18px 0 0;
+	padding:0 4px;
+}
+.campaign-list .item {
+	font-family: 'Lato', sans-serif;
+	width: 233px;
+	background: #fff;
+	float: left;
+	padding: 0 0 7px;
+	margin: 0 18px 18px 0;
+	box-shadow: rgba(0, 0, 0, .20) 0 0 5px;
+	overflow: hidden;
+}
+.campaign-list .item img {
+	display: block;
+	min-width: 100%;
+	max-width: 100%;
+	height: auto;
+}
+.campaign-list h3 {
+	font-size: 15px;
+	font-weight: 700;
+	color: #515151;
+	margin: 17px 17px 10px;
+	letter-spacing: 1px;
+	padding:0;
+}
+.campaign-list p {
+	font-size: 14px;
+	line-height: 20px;
+	margin: 0 17px;
+}
+
 #footer {
 	background-image:url(img/bg_footer.jpg);
 }

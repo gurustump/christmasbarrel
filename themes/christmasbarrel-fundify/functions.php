@@ -59,4 +59,25 @@ function customPostVideoThumbnail($postID,$size) {
 	}
 }
 
+// shortcodes
+function list_campaigns_func($atts) {
+	if ( fundify_is_crowdfunding()  ) {
+		$campaigns = new ATCF_Campaign_Query( array(
+			'paged' => ( get_query_var( 'page' ) ? get_query_var( 'page' ) : 1 )
+		) );
+		if ( $campaigns->have_posts() ) {
+			ob_start();
+				echo '<div class="campaign-list">';
+				while ( $campaigns->have_posts() ) : $campaigns->the_post(); 
+					get_template_part( 'content', 'campaign' );
+				endwhile;
+				echo '</div>';
+			return ob_get_clean();
+		}
+	} else {
+		return false;
+	}
+}
+add_shortcode('list_campaigns', 'list_campaigns_func');
+
 include 'includes/meta-box.php';
