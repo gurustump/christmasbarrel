@@ -44,7 +44,7 @@ function customPostVideoThumbnail($postID,$size) {
 		$thisThumbnail .= '" class="post-thumbnail-container" href="';
 		$thisThumbnail .= get_permalink($postID);
 		$thisThumbnail .= '">';
-		$thisThumbnail .= get_the_post_thumbnail($postID, $size);
+		$thisThumbnail .=  is_ssl() ? str_replace('http://','https://', get_the_post_thumbnail($postID, $size)) : get_the_post_thumbnail($postID, $size);
 		$thisThumbnail .= '<span class="title">';
 		$thisThumbnail .= $truncatedTitle;
 		$thisThumbnail .= '</span></a>';
