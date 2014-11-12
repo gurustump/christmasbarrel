@@ -454,6 +454,8 @@ $('head').append(fscf_css);
 			 'silent_ignore' => '',
 			 'silent_rename' => '',
 			 'silent_add' => '',
+             'silent_conditional_field' => '',
+             'silent_conditional_value' => '',
 			 'silent_email_off' => 'false',
 			 'export_ignore' => '',
 			 'export_rename' => '',
@@ -466,6 +468,7 @@ $('head').append(fscf_css);
 			 'attach_size' =>   '1mb',
 			 'textarea_html_allow' => 'false',
 			 'enable_areyousure' => 'false',
+             'enable_submit_oneclick' => 'true',
 			 'auto_respond_enable' => 'false',
 			 'auto_respond_html' => 'false',
 			 'auto_respond_from_name' => get_option('blogname'),
@@ -482,6 +485,7 @@ $('head').append(fscf_css);
 			 'auto_fill_enable' => 'true',
              'form_attributes' => '',
              'submit_attributes' => '',
+             'success_page_html' => '',
 			 'title_border' => __( 'Contact Form', 'si-contact-form' ),
 			 'title_dept' => '',
 			 'title_select' => '',
@@ -496,6 +500,7 @@ $('head').append(fscf_css);
 			 'title_mess' => '',
 			 'title_capt' => '',
 			 'title_submit' => '',
+             'title_submitting' => '',
 			 'title_reset' => '',
 			 'title_areyousure' => '',
 			 'text_message_sent' => '',
@@ -705,19 +710,21 @@ $('head').append(fscf_css);
 	   if (preg_match("/[\\000-\\037]/",$email)) {
 		  return false;
 	   }
-	   // regular expression used to perform the email syntax check
+       // There's no perfect regular expression to validate email addresses!
 	   // http://fightingforalostcause.net/misc/2006/compare-email-regex.php
-	   //$pattern = "/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|asia|cat|jobs|tel|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i";
-	   //$pattern = "/^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+)(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/i";
-	   $pattern = "/^[-_a-z0-9\'+*$^&%=~!?{}]++(?:\.[-_a-z0-9\'+*$^&%=~!?{}]+)*+@(?:(?![-.])[-a-z0-9.]+(?<![-.])\.[a-z]{2,6}|\d{1,3}(?:\.\d{1,3}){3})(?::\d++)?$/iD";
+	   $pattern = "/^[-_a-z0-9\'+*$^&%=~!?{}]++(?:\.[-_a-z0-9\'+*$^&%=~!?{}]+)*+@(?:(?![-.])[-a-z0-9.]+(?<![-.])\.[a-z]{2,12}|\d{1,3}(?:\.\d{1,3}){3})(?::\d++)?$/iD";
+       // 09/17/2014 above is updated for new generic top-level domains (gTLDs) released in 2014 and beyond up to 12 characters like .training
+       // (note: does not do IPv6, does not support Internationalized Domain Names, sorry)
+
 	   if(!preg_match($pattern, $email)){
-		  return false;
+	   	  return false;
 	   }
+
 	   // Make sure the domain exists with a DNS check (if enabled in options)
 	   // MX records are not mandatory for email delivery, this is why this function also checks A and CNAME records.
 	   // if the checkdnsrr function does not exist (skip this extra check, the syntax check will have to do)
 	   // checkdnsrr available in Linux: PHP 4.3.0 and higher & Windows: PHP 5.3.0 and higher
-	   if (self::$form_options['email_check_dns'] == 'true') {
+	   if (!empty(FSCF_Process::$form_options['email_check_dns']) && FSCF_Process::$form_options['email_check_dns'] == 'true') {
 		  if( function_exists('checkdnsrr') ) {
 			 list($user,$domain) = explode('@',$email);
 			 if(!checkdnsrr($domain.'.', 'MX') &&
@@ -858,7 +865,7 @@ $('head').append(fscf_css);
 
 		$regex = "((https?|ftp)\:\/\/)?"; // Scheme
 		$regex .= "([a-zA-Z0-9+!*(),;?&=\$_.-]+(\:[a-zA-Z0-9+!*(),;?&=\$_.-]+)?@)?"; // User and Pass
-		$regex .= "([a-zA-Z0-9-.]*)\.([a-zA-Z]{2,6})"; // Host or IP
+		$regex .= "([a-zA-Z0-9-.]*)\.([a-zA-Z]{2,12})"; // Host or IP
 		$regex .= "(\:[0-9]{2,5})?"; // Port
 		$regex .= "(\/#\!)?"; // Path hash bang  (twitter) (mike challis added)
 		$regex .= "(\/([a-zA-Z0-9+\$_-]\.?)+)*\/?"; // Path

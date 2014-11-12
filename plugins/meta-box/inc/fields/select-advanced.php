@@ -5,7 +5,7 @@ defined( 'ABSPATH' ) || exit;
 // Make sure "select" field is loaded
 require_once RWMB_FIELDS_DIR . 'select.php';
 
-if ( !class_exists( 'RWMB_Select_Advanced_Field' ) )
+if ( ! class_exists( 'RWMB_Select_Advanced_Field' ) )
 {
 	class RWMB_Select_Advanced_Field extends RWMB_Select_Field
 	{
@@ -26,8 +26,8 @@ if ( !class_exists( 'RWMB_Select_Advanced_Field' ) )
 		/**
 		 * Get field HTML
 		 *
-		 * @param mixed  $meta
-		 * @param array  $field
+		 * @param mixed $meta
+		 * @param array $field
 		 *
 		 * @return string
 		 */

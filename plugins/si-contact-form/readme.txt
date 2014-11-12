@@ -1,10 +1,10 @@
 === Fast Secure Contact Form ===
 Contributors: Mike Challis
 Author URI: http://www.642weather.com/weather/scripts.php
-Donate link: http://www.FastSecureContactForm.com/donate
+Donate link: https://www.FastSecureContactForm.com/donate
 Tags: Akismet, captcha, contact, contact form, form, mail, email, spam, multilingual, wpmu
 Requires at least: 3.4.2
-Tested up to: 3.9.1
+Tested up to: 4.0
 Stable tag: trunk
 
 An easy and powerful form builder that lets your visitors send you email. Blocks all automated spammers. No templates to mess with.
@@ -12,6 +12,8 @@ An easy and powerful form builder that lets your visitors send you email. Blocks
 == Description ==
 
 Easily create and add forms to WordPress. Fields are easy to add, remove, and re-order. The contact form will let the user send emails to a site's admin, and also send a meeting request to talk over phone or video.
+
+[youtube https://www.youtube.com/watch?v=HM7MXUSGh50]
 
 Features: easy form edit, multiple forms, confirmation emails, no templates to mess with, and an option to redirect visitors to any URL after the message is sent. Includes CAPTCHA and Akismet support to block spammers. Spam is no longer a problem. You can add extra fields of any type: text, textarea, checkbox, checkbox-multiple, radio, select, select-multiple, attachment, date, time, hidden, password, and fieldset.
 
@@ -21,7 +23,7 @@ Features: easy form edit, multiple forms, confirmation emails, no templates to m
 
 = Help Keep This Plugin Free =
 
-If you find this plugin useful to you, please consider [__making a small donation__](http://www.fastsecurecontactform.com/donate) to help contribute to my time invested and to further development. Thanks for your kind support! - [__Mike Challis__](http://profiles.wordpress.org/users/MikeChallis/)
+If you find this plugin useful to you, please consider [__making a donation__](https://www.fastsecurecontactform.com/donate) to help contribute to my time invested and to further development. Thanks for your kind support! - [__Mike Challis__](http://profiles.wordpress.org/users/MikeChallis/)
 
 
 Features:
@@ -105,19 +107,41 @@ Requirements/Restrictions:
 
 1. Install automatically through the `Plugins`, `Add New` menu in WordPress, or upload the `si-contact-form` folder to the `/wp-content/plugins/` directory. 
 
-2. Activate the plugin through the `Plugins` menu in WordPress. Look for the Settings link to configure the Options. 
+2. Activate the plugin through the `Plugins` menu in WordPress. On the Admin screen use the Plugins side menu to select FS Contact Form to configure the forms.  
 
-3. Add the shortcode `[si-contact-form form='1']` in a Page, Post, or Text Widget. Here is how: Log into your blog admin dashboard. Click `Pages`, click `Add New`, add a title to your page, enter the shortcode `[si-contact-form form='1']` in the page, uncheck `Allow Comments`, click `Publish`. 
+3. You must add this shortcode `[si-contact-form form='1']` in a Page, Post, or Text Widget. You can find this shortcode on the Basic Settings tab of any form. Here is how to add the shortcode: Log into your blog admin dashboard. Click `Pages`, click `Add New`, add a title to your page, enter the shortcode `[si-contact-form form='1']` in the page. Uncheck `Allow Comments`, then click `Publish`. 
 
 4. Test an email from your form.
 
 5. Updates are automatic. Click on "Upgrade Automatically" if prompted from the admin menu. If you ever have to manually upgrade, simply deactivate, uninstall, and repeat the installation steps with the new version.
 
+= For best mail delivery results, be sure to properly configure the email settings on the Basic Settings tab: =
+
+Read the following instructions and watch the YouTube video below:
+
+Set the "Return-path address" setting to a real email address on the SAME domain as your web site. This step really is ALWAYS necessary so mail is properly identified as originating from your server. For best results the "Email To" and the "Return-path address" should ALWAYS be separate REAL email addresses on the SAME DOMAIN as your web site (don't skip this important step!).
+
+Some people will like to set the "Email To" to a gmail.com, outlook.com, or some other webmail address (if that is what you want, go ahead and try it), but the "Return-path address" should ALWAYS be set to a real email addresses on the SAME DOMAIN as your web site. If you try a webmail address and your mail is not sending, try changing the "Email to" address to a REAL email addresses on the SAME DOMAIN as your web site. You can still deliver it to your webmail address by forwarding the email from a setting in your hosting control panel, or [configuring your webmail to fetch a mail account](https://support.google.com/mail/answer/21289?hl=en).
+
+Next step, check this setting box:
+Enable when web host requires "Mail From" strictly tied to site (don't skip this important step!).
+
+Click "Save Changes", then test your form's mail delivery by sending a message from the form on your page. When testing your form on your page, do not fill out the email field with the same email address as the "Email To" or "Return-path address". Use a different email address because some server's security settings do not allow email to send from/to the same address.
+
+If you have other forms in use, be sure to repeat these settings for each form.
+
+Now your email is properly configured for best delivery. Your form Email should now be DMARC compliant for users who submit your form with yahoo, aol, comcast, or any other provider who now requires DMARC compliance.
+
+The email you receive will appear to be from your site email address, but because the email header "Reply-to" is set as the form user's email address. You should be able to just hit reply and send email back to the real sender. Also you should see the sender's email address in the message content. So it is still possible to send mail to that address if the "Reply-to" is somehow ignored by your email program.
+
+
+[youtube https://www.youtube.com/watch?v=HM7MXUSGh50]
 
 = I just installed this and do not get any email from it, what could be wrong? =
 
+Follow the instructions above, but if you still need help...
 
-[See FAQ page: How to troubleshoot mail delivery](http://www.fastsecurecontactform.com/email-does-not-send)
+[See the FAQ page: How to troubleshoot mail delivery](http://www.fastsecurecontactform.com/email-does-not-send)
 
 
 == Screenshots ==
@@ -214,7 +238,7 @@ The following translations are included in the download zip file:
 * Portuguese Brazil (pt_BR) - Translated by [Rui Alao]
 * Romanian (ro_RO) - Translated by [Anunturi Jibo](http://www.jibo.ro)
 * Russian (ru_RU) - Translated by [Iflexion](http://www.iflexion.com/)
-* Spanish (es_ES) - Translated by [Valentin Yonte Rodriguez](http://www.activosenred.com/)
+* Spanish (es_ES) - Translated by [Manuel](http://www.mbrsolution.com/)
 * Swedish (sv_SE) - Translated by [Daniel Persson](http://walktheline.boplatsen.se/)
 * Traditional Chinese, Taiwan (zh_TW) - Translated by [Cjh]
 * Turkish (tr_TR) - Translated by [Tolga](http://www.tapcalap.com/)
@@ -245,6 +269,45 @@ You can enable or disable this option in the "Scheduling" tab of your contact fo
 If you have additional questions visit [vCita Support Page](http://support.vcita.com)
 
 == Changelog ==
+
+= 4.0.30 =
+- (23 Sep 2014) - Translated Spanish 100% (es_ES) - Translated by [Manuel](http://www.mbrsolution.com/)
+
+= 4.0.29 =
+- (18 Sep 2014) - Fix the validate email function is updated for new generic top-level domains (gTLDs) released in 2014 and beyond. Allows up to 12 characters like .training, .photography, .company, etc. 
+- Fix so honeypot field slug will never conflict with custom post types.
+- Add new feature for Default field properties: For the Default setting of a date field type, you can enter any date in the configured format. Or to show today's date as default, just put the word today in brackets. example: [today].
+
+= 4.0.28 =
+- (13 Sep 2014) - Fix error 'Invalid argument supplied for foreach' when add new form.
+- Increase z-index for the calendar pop up.
+- Updated Turkish language file.
+
+= 4.0.27 =
+- (09 Sep 2014) - Fix 'After form additional HTML' was not printing on form.
+- Fix to check for conflicting post types and show a warning. None of the field slugs can be the same as a post type rewrite_slug or you will get "page not found" when posting the form with that field filled in. In this new version, if you have this conflict there will be a warning on the form and on the form edit page. Warning: one of your field tags conflicts with the post type redirect tag "tag name". To automatically correct this, click the "Save Changes" button on the form edit page. Also the form editor will not let a conflict happen while editing, but a conflict can still happen if you add custom post types. So if you add any custom post types, be sure to check your forms for any warning messages.
+
+= 4.0.26 =
+- (24 Aug 2014) - Added a new setting on the Advanced tab "Enable to prevent double click on submit button." It is enabled by default.
+This setting disables the Submit button after click, to prevent double click on the button. Also prevents going back and submitting the form again. Note: this setting is ignored if the "Are you sure?" popup for the submit button is enabled, or when you have filled in the Submit button input attributes setting with a "onclick" attribute.
+- Fixed tags were sometimes showing in confirmation email.
+- Fixed Success page additional HTML shows outside of fieldset box.
+- Updated fscf-placeholders.min.js to version 3.0.2.
+- Updated Turkish language file
+
+= 4.0.25 =
+- (11 Aug 2014) - Fix 'Add New Field' button not working on German translation. last fix was not working.
+
+= 4.0.24 =
+- (10 Aug 2014) - Fix 'Add New Field' button not working on German translation.
+- Added Silent Conditional Field and value settings for the silent send feature on the Advanced tab. Use this optional setting to conditionally disable silent sending unless this field tag and value are selected and submitted. Example usage: Your form has a checkbox to "signup for our newsletter" with the tag "signup-newsletter". You do a silent send to MailChimp to sign up people to the newsletter but you want to disable the silent send if the checkbox is left unchecked. For this example you will set the Silent Conditional Field to "signup-newsletter" and the Silent Conditional Value to "selected", this will only match the field tag and value when the checkbox is selected on the form.
+
+= 4.0.23 =
+- (05 Aug 2014) - Added "Success page additional HTML" setting to the Advanced tab. This is printed on the success page after the message sent text. Useful for tracking a conversion with Google Analytics. Put the Google Code for Conversion Page here. HTML is allowed.
+- Fixed email DNS check setting was ignored.
+
+= 4.0.22 =
+- (29 Jul 2014) - Fixed support links
 
 = 4.0.21 =
 - (21 Jun 2014) - Fixed broken "Disable email sending" for data export.

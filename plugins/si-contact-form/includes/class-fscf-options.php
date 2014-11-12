@@ -15,6 +15,7 @@ class FSCF_Options {
 	static $av_fld_arr, $av_fld_subj_arr;		// list of avail field tags
 	static $autoresp_ok, $new_field_added, $new_field_key;
 	static $ads, $ads_used;	// array of ads, list of ads used
+    static $post_types_slugs = array('post','page','attachment','revision');
 
 	static function get_form_num() {
 		// Set the number of the current form
@@ -354,7 +355,7 @@ class FSCF_Options {
 <a href="http://wordpress.org/support/plugin/si-contact-form" target="_blank"><?php _e('Support Forum', 'si-contact-form'); ?></a> |
 <a href="http://www.fastsecurecontactform.com/support" target="_blank"><?php _e('Support Ticket', 'si-contact-form'); ?></a> |
 <a href="http://wordpress.org/support/view/plugin-reviews/si-contact-form?rate=5#postform" target="_blank"><?php _e('Rate This', 'si-contact-form'); ?></a> |
-<a href="http://www.fastsecurecontactform.com/donate" target="_blank"><?php _e('Donate', 'si-contact-form'); ?></a>
+<a href="https://www.fastsecurecontactform.com/donate" target="_blank"><?php _e('Donate', 'si-contact-form'); ?></a>
 </p>
 
 <?php
@@ -521,7 +522,7 @@ class FSCF_Options {
 		. '" onclick="toggleVisibility(\'si_contact_mike_challis_tip\')"><br />' .  __('More from Mike Challis', 'si-contact-form') .'</a>
 	<br /> <br />
 	</div>
-	<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5KKKX5BK5HHW2">
+	<a href="https://www.fastsecurecontactform.com/donate">
 	<img src="' . FSCF_URL . 'includes/btn_donate_LG.gif" width="92" height="26"/></a>
 	<br /><br /></div>';
 
@@ -858,13 +859,13 @@ class FSCF_Options {
 			'select-multiple',
 			'radio'
 		);
-		
+
 		// Display the field options ?>
 		<div class="clear"></div>
 		<fieldset class="fscf_settings_group fscf_field_settings">
         <div>
         <?php if( empty(self::$new_field_added) ) { ?>
-        <div class="fscf_right" style="padding:7px;"><input type="button" class="button-primary" name="new_field" value="Add New Field" onclick="fscf_add_field('<?php _e('Add Field', 'si-contact-form'); ?>');" /></div>
+        <div class="fscf_right" style="padding:7px;"><input type="button" class="button-primary" name="new_field" value="<?php esc_attr_e('Add New Field', 'si-contact-form'); ?>" onclick="fscf_add_field('<?php esc_attr_e('Add Field', 'si-contact-form'); ?>');" /></div>
         <?php  } ?>
         <p class="submit">
 		<input id="submit2" class="button-primary" type="submit" value="<?php esc_attr_e('Save Changes', 'si-contact-form'); ?>" onclick="document.pressed=this.value" name="submit" />
@@ -936,7 +937,8 @@ class FSCF_Options {
 			<?php echo __('The field Tag is used to identify the field for email settings, shortcodes, and query variables.  Field tags must be unique.  If you leave the Tag entry blank, one will be generated for you based on the field name.  If you change a field name, you might want to change the tag to match.  Or just delete the tag, and a new one will be generated for you.', 'si-contact-form'); ?></p>
 
 			<p><strong><?php echo __('Default:', 'si-contact-form'); ?></strong><br />
-            <?php echo __('Use to pre-fill a value for the field. For select and radio fields, enter the number of the option to pre-select (1 = first item, etc.).  For select-multiple and checkbox-multiple, enter the list item number(s) to pre-select separated by commas.  For a checkbox, enter "1" to pre-check the box.', 'si-contact-form'); ?></p>
+            <?php echo __('Use to pre-fill a value for the field. For select and radio fields, enter the number of the option to pre-select (1 = first item, etc.).  For select-multiple and checkbox-multiple, enter the list item number(s) to pre-select separated by commas.  For a checkbox, enter "1" to pre-check the box.', 'si-contact-form'); ?>
+            <?php echo ' '; echo __('For a date field, you can enter any date in the configured format. Or to show today\'s date as default, just put the word today in brackets. example: [today].', 'si-contact-form'); ?></p>
 
             <p><strong><?php echo __('Default as placeholder:', 'si-contact-form'); ?></strong><br />
 			<?php echo __('Check this setting if you want the default text to be a placeholder inside the form field. The placeholder is a short hint that is displayed in the input field before the user enters a value. Works with the following input types only: name, email, subject, message, text, textarea, url, and password. This setting is sometimes used along with the "Hide label" setting.', 'si-contact-form'); ?>
@@ -990,7 +992,25 @@ class FSCF_Options {
 		<div class="clear"></div>
 
 		<?php
-           // fill in any missing defaults
+
+        // none of the field slugs can be the same as a post type rewrite_slug
+        // or you will get "page not found" when posting the form with that field filled in
+        self::get_post_types_slugs();
+        $slug_list = array();
+        foreach ( self::$form_options['fields'] as $key => $field ) {
+          $slug_list[] = $field['slug'];
+        }
+        $bad_slug_list = array();
+        foreach (self::$post_types_slugs as $key => $slug) {
+            if ( in_array( strtolower( $slug ), $slug_list ) ) {
+              echo '<div id="message" class="error">';
+			  echo sprintf( __( 'Warning: one of your field tags conflicts with the post type redirect tag "%s". To automatically correct this, click the <b>Save Changes</b> button.', 'si-contact-form' ), $slug );
+			  echo "</div>\n";
+              $bad_slug_list[] = $slug;
+            }
+        }
+
+         // fill in any missing defaults
         $field_opt_defaults = array(
           'hide_label'	 => 'false',
           'placeholder'	 => 'false',
@@ -1052,6 +1072,11 @@ class FSCF_Options {
 				echo '<div class="fsc-notice">' . self::$new_field_added . '</div>' . "\n";
                 self::$new_field_key = $key+1;
 			}
+            if ( in_array( strtolower( $field['slug'] ), $bad_slug_list ) ) {
+              echo '<div class="fsc-error">' . sprintf( __( 'Warning: one of your field tags conflicts with the post type redirect tag "%s". To automatically correct this, click the <b>Save Changes</b> button.', 'si-contact-form' ), $field['slug'] )  . '</div>' . "\n";
+            }
+
+
             // warn if placeholder is missing the Default text
 			if ( $field['placeholder'] == 'true' && $field['default'] == '' ) {
                if (!$placeholder_error) {
@@ -1196,7 +1221,7 @@ class FSCF_Options {
 			} ?>
 
 		   <label for="<?php echo 'fs_contact_field'. +$key+1 .'_slug' ?>"><?php echo __('Tag', 'si-contact-form'); ?>:</label>
-		   <input name="<?php echo $field_opt_name.'[slug]' ?>" id="<?php echo 'fs_contact_field'. +$key+1 .'_slug' ?>" type="text" 
+		   <input name="<?php echo $field_opt_name.'[slug]' ?>" id="<?php echo 'fs_contact_field'. +$key+1 .'_slug' ?>" type="text"
 				  value="<?php echo esc_attr($field['slug']); ?>" <?php
 				  if ( $field['standard'] != '0' ) echo ' readonly'; ?> size="45" />	
 		   
@@ -1298,7 +1323,7 @@ class FSCF_Options {
 		?>
         <div>
         <?php if( empty(self::$new_field_added) ) { ?>
-		<div class="fscf_right" style="padding:7px;"><input type="button" class="button-primary" name="new_field" value="Add New Field" onclick="fscf_add_field('Add Field')" /></div>
+		<div class="fscf_right" style="padding:7px;"><input type="button" class="button-primary" name="new_field" value="<?php esc_attr_e('Add New Field', 'si-contact-form'); ?>" onclick="fscf_add_field('<?php esc_attr_e('Add Field', 'si-contact-form'); ?>');" /></div>
         <?php  } ?>
         <p class="submit">
 		<input id="submit2" class="button-primary" type="submit" value="<?php esc_attr_e('Save Changes', 'si-contact-form'); ?>" onclick="document.pressed=this.value" name="submit" />
@@ -1945,6 +1970,7 @@ if( self::$form_options['external_style'] == 'true' ) {
          <label for="<?php echo self::$form_option_name;?>[title_mess]"><?php _e('Message:', 'si-contact-form'); ?></label><input name="<?php echo self::$form_option_name;?>[title_mess]" id="si_contact_title_mess" type="text" value="<?php echo esc_attr(self::$form_options['title_mess']);  ?>" size="50" /><br />
          <label for="<?php echo self::$form_option_name;?>[title_capt]"><?php _e('CAPTCHA Code:', 'si-contact-form'); ?></label><input name="<?php echo self::$form_option_name;?>[title_capt]" id="si_contact_title_capt" type="text" value="<?php echo esc_attr(self::$form_options['title_capt']);  ?>" size="50" /><br />
          <label for="<?php echo self::$form_option_name;?>[title_submit]"><?php _e('Submit', 'si-contact-form'); ?></label><input name="<?php echo self::$form_option_name;?>[title_submit]" id="si_contact_title_submit" type="text" value="<?php echo esc_attr(self::$form_options['title_submit']);  ?>" size="50" /><br />
+         <label for="<?php echo self::$form_option_name;?>[title_submitting]"><?php _e('Submitting...', 'si-contact-form'); ?></label><input name="<?php echo self::$form_option_name;?>[title_submitting]" id="si_contact_title_submitting" type="text" value="<?php echo esc_attr(self::$form_options['title_submitting']);  ?>" size="50" /><br />
          <label for="<?php echo self::$form_option_name;?>[title_reset]"><?php _e('Reset', 'si-contact-form'); ?></label><input name="<?php echo self::$form_option_name;?>[title_reset]" id="si_contact_title_reset" type="text" value="<?php echo esc_attr(self::$form_options['title_reset']);  ?>" size="50" /><br />
          <label for="<?php echo self::$form_option_name;?>[title_areyousure]"><?php _e('Are you sure?', 'si-contact-form'); ?></label><input name="<?php echo self::$form_option_name;?>[title_areyousure]" id="si_contact_title_areyousure" type="text" value="<?php echo esc_attr(self::$form_options['title_areyousure']);  ?>" size="50" /><br />
          <label for="<?php echo self::$form_option_name;?>[text_message_sent]"><?php _e('Your message has been sent, thank you.', 'si-contact-form'); ?></label><input name="<?php echo self::$form_option_name;?>[text_message_sent]" id="si_contact_text_message_sent" type="text" value="<?php echo esc_attr(self::$form_options['text_message_sent']);  ?>" size="50" /><br />
@@ -2487,16 +2513,36 @@ if( self::$form_options['external_style'] == 'true' ) {
 		</div>
 		<br />
 
+
+		<input name="<?php echo self::$form_option_name; ?>[enable_submit_oneclick]" id="fs_contact_enable_submit_oneclick" type="checkbox" <?php if ( self::$form_options['enable_submit_oneclick'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
+		<label for="fs_contact_enable_submit_oneclick"><?php _e( 'Enable to prevent double click on submit button.', 'si-contact-form' ); ?></label>
+		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_enable_submit_oneclick_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
+		<div class="fscf_tip" id="si_contact_enable_submit_oneclick_tip">
+		<?php _e( 'This setting disables the Submit button after click, to prevent double click on button. Also prevents going back and submit the form again.', 'si-contact-form' );
+        echo ' ';
+        _e( 'Note: this setting is ignored if the "Are you sure?" popup for the submit button is enabled, or when you have filled in the Submit button input attributes setting with a "onclick" attribute.', 'si-contact-form' );
+        ?>
+		</div>
+		<br />
+
 		<input name="<?php echo self::$form_option_name; ?>[enable_credit_link]" id="fs_contact_enable_credit_link" type="checkbox" <?php if ( self::$form_options['enable_credit_link'] == 'true' ) echo ' checked="checked" '; ?> value="true" />
 		<label for="fs_contact_enable_credit_link"><?php _e( 'Enable plugin credit link:', 'si-contact-form' ) ?></label> <?php echo __( 'Powered by', 'si-contact-form' ) . ' <a href="http://wordpress.org/extend/plugins/si-contact-form/" target="_new">' . __( 'Fast Secure Contact Form', 'si-contact-form' ); ?></a>
         <br />
 
         <div><br />
-        <label for="fs_contact_after_form_note"><?php _e('After form message', 'si-contact-form'); ?>:</label><br />
+        <label for="fs_contact_after_form_note"><?php _e('After form additional HTML', 'si-contact-form'); ?>:</label><br />
         <textarea rows="3" cols="40" name="<?php echo self::$form_option_name;?>[after_form_note]" id="fs_contact_after_form_note"><?php echo esc_textarea(self::$form_options['after_form_note']); ?></textarea>
         <a style="cursor:pointer;" title="<?php esc_attr_e('Click for Help!', 'si-contact-form'); ?>" onclick="toggleVisibility('si_contact_after_form_note_tip');"><?php _e('help', 'si-contact-form'); ?></a>
         </div><div class="fscf_tip" id="si_contact_after_form_note_tip">
         <?php _e('This is printed after the form. HTML is allowed.', 'si-contact-form');?>
+        </div>
+
+        <div><br />
+        <label for="fs_contact_success_page_html"><?php _e('Success page additional HTML', 'si-contact-form'); ?>:</label><br />
+        <textarea rows="3" cols="40" name="<?php echo self::$form_option_name;?>[success_page_html]" id="fs_contact_success_page_html"><?php echo esc_textarea(self::$form_options['success_page_html']); ?></textarea>
+        <a style="cursor:pointer;" title="<?php esc_attr_e('Click for Help!', 'si-contact-form'); ?>" onclick="toggleVisibility('si_contact_success_page_html_tip');"><?php _e('help', 'si-contact-form'); ?></a>
+        </div><div class="fscf_tip" id="si_contact_success_page_html_tip">
+        <?php _e('This is printed on the success page after the message sent text. Useful for tracking a conversion with Google Analytics. Put the Google Code for Conversion Page here. HTML is allowed.', 'si-contact-form');?>
         </div>
 
 		</fieldset>
@@ -2626,6 +2672,35 @@ if( self::$form_options['external_style'] == 'true' ) {
 		  <br />
 		 </td></tr>
 		 </table>
+
+       	<label for="<?php echo self::$form_option_name; ?>[silent_conditional_field]"><?php _e( 'Silent Conditional Field (optional)', 'si-contact-form' ); ?>:</label>
+		<input name="<?php echo self::$form_option_name; ?>[silent_conditional_field]" id="si_contact_silent_conditional_field" type="text" value="<?php echo self::$form_options['silent_conditional_field']; ?>" size="50" />
+		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_silent_conditional_field_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
+		<div class="fscf_tip" id="si_contact_silent_conditional_field_tip">
+		<?php _e( 'Use this optional setting to conditionally disable silent sending unless this field tag and value are selected and submitted.', 'si-contact-form' ); ?><br />
+		<?php _e( 'Example usage: Your form has a checkbox to "signup for our newsletter" with the tag "signup-newsletter". You do a silent send to MailChimp to sign up people to the newsletter but you want to disable the silent send if the checkbox is left unchecked.', 'si-contact-form' ); ?><br />
+        <?php _e( 'For this example you will set the Silent Conditional Field to "signup-newsletter" and the Silent Conditional Value to "selected", this will match the field tag and value when the checkbox is selected on the form.', 'si-contact-form' ); ?><br />
+        <?php _e( 'Available fields on this form:', 'si-contact-form' ); ?>
+		<span style="margin: 2px 0" dir="ltr"><br /><br />
+		<?php
+		// show available fields
+		foreach ( self::$av_fld_arr as $i )
+			echo "$i<br />";
+		?>
+		</span>
+		</div>
+		<br />
+
+       	<label for="<?php echo self::$form_option_name; ?>[silent_conditional_value]"><?php _e( 'Silent Conditional Value (optional)', 'si-contact-form' ); ?>:</label>
+		<input name="<?php echo self::$form_option_name; ?>[silent_conditional_value]" id="si_contact_silent_conditional_value" type="text" value="<?php echo self::$form_options['silent_conditional_value']; ?>" size="50" />
+		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_silent_conditional_value_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
+		<div class="fscf_tip" id="si_contact_silent_conditional_value_tip">
+		<?php _e( 'Use this optional setting to conditionally disable silent sending unless this field tag and value are selected and submitted.', 'si-contact-form' ); ?><br />
+		<?php _e( 'Example usage: Your form has a checkbox to "signup for our newsletter" with the tag signup-newsletter. You do a silent send to MailChimp to sign up people to the newsletter but you want to disable the silent send if the checkbox is left unchecked.', 'si-contact-form' ); ?><br />
+        <?php _e( 'For this example you will set the Silent Conditional Field to "signup-newsletter" and the Silent Conditional Value to "selected", this will match the field tag and value when the checkbox is selected on the form.', 'si-contact-form' ); ?><br />
+        <?php _e( 'For checkbox field types use "selected" for this setting, for other field types put the value that shows up in the email when this field is selected.', 'si-contact-form' ); ?><br />
+		</div>
+		<br />
 			 
 		<?php
 		if ( self::$form_options['silent_email_off'] == 'true' && (self::$form_options['silent_send'] == 'off' || self::$form_options['silent_url'] == '') ) {
@@ -3511,7 +3586,7 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
 			 'captcha_small','email_hide_empty', 'email_keep_attachments','print_form_enable',
 			 'captcha_perm', 'honeypot_enable', 'redirect_enable', 'redirect_query', 'redirect_email_off',
 			 'silent_email_off', 'export_email_off', 'ex_fields_after_msg', 'email_inline_label',
-			 'textarea_html_allow', 'enable_areyousure', 'auto_respond_enable', 'auto_respond_html',
+			 'textarea_html_allow', 'enable_areyousure', 'enable_submit_oneclick', 'auto_respond_enable', 'auto_respond_html',
 			 'req_field_indicator_enable', 'req_field_label_enable', 'border_enable', 'anchor_enable',
 			 'aria_required', 'auto_fill_enable', 'enable_reset', 'enable_credit_link'
 		);
@@ -3524,7 +3599,7 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
 		}
 
 		// Sanitize settings fields
-		$html_fields = array( 'welcome', 'after_form_note', 'req_field_indicator', 'text_message_sent' );
+		$html_fields = array( 'welcome', 'after_form_note', 'req_field_indicator', 'text_message_sent', 'success_page_html' );
 		if ( 'true' == $text['auto_respond_html'] ) $html_fields[] = 'auto_respond_message';
 		foreach ( $text as $key => $value ) {
 			if ( is_string($value) ) {
@@ -3546,6 +3621,22 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
 			'select-multiple',
 			'radio'
 		);
+
+        // none of the field slugs can be the same as a post type rewrite_slug
+        // or you will get "page not found" when posting the form with that field filled in
+        self::get_post_types_slugs();
+        $slug_list = array();
+        if( isset(self::$form_options) && (!empty(self::$form_options['fields']))  ) {
+           foreach ( self::$form_options['fields'] as $key => $field ) {
+             $slug_list[] = $field['slug'];
+           }
+        }
+        $bad_slugs = array();
+        foreach (self::$post_types_slugs as $key => $slug) {
+            if ( in_array( strtolower( $slug ), $slug_list ) )
+               $bad_slugs[] = $slug;
+        }
+
 		foreach ( $text['fields'] as $key => $field ) {
 			if ( isset( $field['delete'] ) && "true" == $field['delete'] ) {
 				// Delete the field
@@ -3579,6 +3670,10 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
 
 				// Sanitize the slug
 				$slug_changed = false;
+                if ( !empty($field['slug']) && in_array( strtolower( $field['slug'] ), $bad_slugs ) )
+                  $slug_changed = true;
+
+
 				if ( empty($field['slug']) ) {
 					// no slug, so make one from the label
 					// the sanitize title function encodes UTF-8 characters, so we need to undo that
@@ -3629,7 +3724,7 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
 
 			// If date type field, check format of default (if any)
 			if ( 'date' == $field['type'] && '' != $field['default'] ) {
-				if ( !FSCF_Process::validate_date( $field['default'], self::$current_form ) ) {
+				if ($field['default'] != '[today]' && !FSCF_Process::validate_date( $field['default'], self::$current_form ) ) {
 					$cal_date_array = array(
 						'mm/dd/yyyy' => esc_html( __( 'mm/dd/yyyy', 'si-contact-form' ) ),
 						'dd/mm/yyyy' => esc_html( __( 'dd/mm/yyyy', 'si-contact-form' ) ),
@@ -3669,11 +3764,30 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
 		return( $text );
 	}	// end function validate($text);
 
+
+    static function get_post_types_slugs() {
+
+      // check for custom post types, returns the global static self::$post_types_slugs
+      // none of the field slugs can be the same as a post type rewrite_slug
+      // or you will get "page not found" when posting the form with that field filled in
+
+      $pt_args = array('public' => true,'_builtin' => false);
+      $post_types = get_post_types( $pt_args, 'objects' );
+
+      if ( $post_types ) {
+         foreach ( $post_types as $post_type ) {
+              self::$post_types_slugs[] = ( isset( $post_type->rewrite_slug ) ) ? $post_type->rewrite_slug : $post_type->name;
+         }
+      }
+   }
+
 	static function check_slug($slug, $slug_list) {
 		// Checks the slug, and adds a number if necessary to make it unique
 		//   $slug -- the slug to be checked
 		//   $slug_list -- a list of existing slugs
 		// Returns the new slug
+
+        $slug_list  = array_merge( self::$post_types_slugs, $slug_list );
 
 		// Duplicates have a two digit number appended to the end to make them unique
 		// XXX do I neeed any messages about changing the slug?
@@ -3708,7 +3822,7 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
 
 	static function set_fld_array() {
 		// Set up the list of available tags for email
-			
+
 		self::get_options();
 
 		self::$av_fld_arr  = array();  // used to show available field tags this form
@@ -3740,7 +3854,7 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
 					   }
 					}
 					break;
-				
+
 				case FSCF_EMAIL_FIELD :
 					// email
 					self::$autoresp_ok = 1; // used in autoresp settings below
@@ -3750,14 +3864,14 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
 					   self::$autoresp_ok = 0;
 					}
 					break;
-				
+
 				case FSCF_SUBJECT_FIELD :
 					break;
 
 				case FSCF_MESSAGE_FIELD :
 					$msg_key = $key;	// this is used below
 					break;
-				
+
 				default :
 					// This is an added field
 

@@ -15,6 +15,16 @@ jQuery(document).ready(function ($) {
 		},
 		clone_repeatable : function(row) {
 
+			// Retrieve the highest current key
+			var key = highest = 1;
+			row.parent().find( 'tr.edd_repeatable_row' ).each(function() {
+				var current = $(this).data( 'key' );
+				if( parseInt( current ) > highest ) {
+					highest = current;
+				}
+			});
+			key = highest += 1;
+
 			clone = row.clone();
 
 			/** manually update any select box values */
@@ -22,17 +32,20 @@ jQuery(document).ready(function ($) {
 				$( this ).val( row.find( 'select[name="' + $( this ).attr( 'name' ) + '"]' ).val() );
 			});
 
-			var count  = row.parent().find( 'tr' ).length - 1;
-
 			clone.removeClass( 'edd_add_blank' );
 
+			clone.data( 'key', key );
 			clone.find( 'td input, td select' ).val( '' );
 			clone.find( 'input, select' ).each(function() {
-				var name 	= $( this ).attr( 'name' );
+				var name = $( this ).attr( 'name' );
 
-				name = name.replace( /\[(\d+)\]/, '[' + parseInt( count ) + ']');
+				name = name.replace( /\[(\d+)\]/, '[' + parseInt( key ) + ']');
 
 				$( this ).attr( 'name', name ).attr( 'id', name );
+			});
+
+			clone.find( 'span.edd_price_id' ).each(function() {
+				$( this ).text( parseInt( key ) );
 			});
 
 			return clone;
@@ -49,25 +62,19 @@ jQuery(document).ready(function ($) {
 		},
 
 		move : function() {
-			/*
-			* Disabled until we can work out a way to solve the issues raised here: https://github.com/easydigitaldownloads/Easy-Digital-Downloads/issues/1066
-			if( ! $('.edd_repeatable_table').length )
-				return;
 
 			$(".edd_repeatable_table tbody").sortable({
 				handle: '.edd_draghandle', items: '.edd_repeatable_row', opacity: 0.6, cursor: 'move', axis: 'y', update: function() {
 					var count  = 0;
 					$(this).find( 'tr' ).each(function() {
-						$(this).find( 'input, select' ).each(function() {
-							var name   = $( this ).attr( 'name' );
-							name       = name.replace( /\[(\d+)\]/, '[' + count + ']');
-							$( this ).attr( 'name', name ).attr( 'id', name );
+						$(this).find( 'input.edd_repeatable_index' ).each(function() {
+							$( this ).val( count );
 						});
 						count++;
 					});
 				}
 			});
-			*/
+			
 		},
 
 		remove : function() {
@@ -553,15 +560,16 @@ jQuery(document).ready(function ($) {
 					download_id : $this.data('download-id'),
 					price_id    : $this.data('price-id')
 				};
-				
+
 				$.ajax({
 					type: "POST",
 					data: postData,
 					url: ajaxurl,
 					success: function (link) {
-						
-						alert( edd_vars.copy_download_link_text + "\n\n" + link );
-
+						$( "#edd-download-link" ).dialog({
+							width: 400
+						}).html( '<textarea rows="10" cols="40" id="edd-download-link-textarea">' + link + '</textarea>' );
+						$( "#edd-download-link-textarea" ).focus().select();
 						return false;
 					}
 				}).fail(function (data) {

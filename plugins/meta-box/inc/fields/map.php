@@ -2,7 +2,7 @@
 // Prevent loading this file directly
 defined( 'ABSPATH' ) || exit;
 
-if ( !class_exists( 'RWMB_Map_Field' ) )
+if ( ! class_exists( 'RWMB_Map_Field' ) )
 {
 	class RWMB_Map_Field extends RWMB_Field
 	{
@@ -20,8 +20,8 @@ if ( !class_exists( 'RWMB_Map_Field' ) )
 		/**
 		 * Get field HTML
 		 *
-		 * @param mixed  $meta
-		 * @param array  $field
+		 * @param mixed $meta
+		 * @param array $field
 		 *
 		 * @return string
 		 */
@@ -45,7 +45,7 @@ if ( !class_exists( 'RWMB_Map_Field' ) )
 				$html .= sprintf(
 					'<button class="button rwmb-map-goto-address-button" value="%s">%s</button>',
 					is_array( $address ) ? implode( ',', $address ) : $address,
-					__( 'Find Address', 'rwmb' )
+					__( 'Find Address', 'meta-box' )
 				);
 			}
 

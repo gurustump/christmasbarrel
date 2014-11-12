@@ -2,7 +2,7 @@
 // Prevent loading this file directly
 defined( 'ABSPATH' ) || exit;
 
-if ( !class_exists( 'RWMB_Fieldset_Text_Field' ) )
+if ( ! class_exists( 'RWMB_Fieldset_Text_Field' ) )
 {
 	class RWMB_Fieldset_Text_Field extends RWMB_Field
 	{
@@ -19,18 +19,18 @@ if ( !class_exists( 'RWMB_Fieldset_Text_Field' ) )
 			if ( count( $meta ) == 1 && trim( $meta[0] ) == '' )
 				$meta = '';
 
-			$html = array();
+			$html   = array();
 			$before = '<fieldset><legend>' . $field['desc'] . '</legend>';
-			$after = '</fieldset>';
+			$after  = '</fieldset>';
 
 			$tpl = '<label>%s <input type="text" class="rwmb-fieldset-text" name="%s[%s][%d]" placeholder="%s" value="%s" /></label>';
 
-			for ( $n = 0; $n < $field['rows']; $n++ )
+			for ( $n = 0; $n < $field['rows']; $n ++ )
 			{
 				foreach ( $field['options'] as $k => $v )
 				{
 					$fid = $field['id'];
-					if ( is_array( $meta ) && !empty( $meta ) )
+					if ( is_array( $meta ) && ! empty( $meta ) )
 						$html[] = sprintf( $tpl, $k, $fid, $v, $n, $k, $meta[$v][$n] );
 					else
 						$html[] = sprintf( $tpl, $k, $fid, $v, $n, $k, '' );
@@ -39,6 +39,7 @@ if ( !class_exists( 'RWMB_Fieldset_Text_Field' ) )
 			}
 
 			$out = $before . implode( ' ', $html ) . $after;
+
 			return $out;
 		}
 
@@ -55,7 +56,7 @@ if ( !class_exists( 'RWMB_Fieldset_Text_Field' ) )
 		{
 			$meta = get_post_meta( $post_id, $field['id'] );
 
-			if ( is_array( $meta ) && !empty( $meta ) )
+			if ( is_array( $meta ) && ! empty( $meta ) )
 				$meta = $meta[0];
 
 			return $meta;

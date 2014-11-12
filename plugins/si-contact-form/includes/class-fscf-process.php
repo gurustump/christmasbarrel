@@ -22,9 +22,10 @@ class FSCF_Process {
 	static $email_header = array();		// Fields for the email header
 	static $email_set_wp = array();   // used in mail send function
 	static $email_fields;  // this holds the fields to display in sending an email
+    static $av_tags_arr, $av_tags_subj_arr;		// list of avail field tags
 	static $text_type_fields = array(
 		'text', 
-		'textarea', 
+		'textarea',
 		'email', 
 		'password',
 		'url'
@@ -1495,10 +1496,19 @@ class FSCF_Process {
 					$msg = str_replace( '[' . $key . ']', $data, $msg );
 				}
 			}
-            //XXX empty tags are not removed
-			// Remove field tags unmatched in posted data
 
 			$subj = str_replace( '[form_label]', $posted_form_name, $subj );
+
+			// Remove all empty field tags unmatched in posted data (for the fields not required)
+           	self::set_tags_array();
+            foreach ( self::$av_tags_arr as $i ) {
+              $msg = str_replace( '[' . $i . "]\r\n", '', $msg );
+			  $msg = str_replace( '[' . $i . ']', '', $msg );
+		    }
+
+            foreach ( self::$av_tags_subj_arr as $i ) {
+			  $subj = str_replace( '[' . $i . ']', '', $subj );
+		    }
 
 			// wordwrap email message
 			$msg = wordwrap( $msg, 70, self::$php_eol );
@@ -1552,9 +1562,18 @@ class FSCF_Process {
 				@wp_mail( self::$email_fields['from_email'], $subj, $msg, $header );
 			}
 		}  // end if confirmation email (autoresponder)
-		
+
+       // added optional condition for silent send
+       $silent_ok = 1;
+       if ( !empty(self::$form_options['silent_conditional_field']) && !empty(self::$form_options['silent_conditional_value']) ) {
+           if ( isset(self::$email_fields[self::$form_options['silent_conditional_field']]) && self::$email_fields[self::$form_options['silent_conditional_field']] == self::$form_options['silent_conditional_value'] )
+             $silent_ok = 1;
+           else
+             $silent_ok = 0;
+       }
+
 		// Silent sending?
-		if ( self::$form_options['silent_send'] == 'get' && !empty(self::$form_options['silent_url']) ) {
+		if ( self::$form_options['silent_send'] == 'get' && !empty(self::$form_options['silent_url']) && $silent_ok ) {
 			// build query string
 			$query_string = self::export_convert( self::$email_fields, self::$form_options['silent_rename'], self::$form_options['silent_ignore'], self::$form_options['silent_add'], 'query' );
             echo $query_string;
@@ -1568,7 +1587,7 @@ class FSCF_Process {
 			//echo $silent_result;
 		}
 
-		if ( self::$form_options['silent_send'] == 'post' && !empty(self::$form_options['silent_url']) ) {
+		if ( self::$form_options['silent_send'] == 'post' && !empty(self::$form_options['silent_url']) && $silent_ok ) {
 			// build post_array
 			$post_array = self::export_convert( self::$email_fields, self::$form_options['silent_rename'], self::$form_options['silent_ignore'], self::$form_options['silent_add'], 'array' );
 			$silent_result = wp_remote_post( self::$form_options['silent_url'], array( 'body'		 => $post_array, 'timeout'	 => 20, 'sslverify'	 => false ) );
@@ -1777,6 +1796,82 @@ class FSCF_Process {
 		else
 			return $label;
 	}
+
+
+   	static function set_tags_array() {
+		// Set up the list of available tags for email
+
+		self::$av_tags_arr  = array();  // used to show available field tags this form
+		self::$av_tags_subj_arr  = array();  // used to show available field tags for this form subject
+
+		// Fields
+		foreach ( self::$form_options['fields'] as $key => $field ) {
+			switch ($field['standard']) {
+				case FSCF_NAME_FIELD :
+					if ($field['disable'] == 'false') {
+					   switch (self::$form_options['name_format']) {
+						  case 'name':
+							 self::$av_tags_arr[] = 'from_name';
+						  break;
+						  case 'first_last':
+							 self::$av_tags_arr[] = 'first_name';
+							 self::$av_tags_arr[] = 'last_name';
+						  break;
+						  case 'first_middle_i_last':
+							 self::$av_tags_arr[] = 'first_name';
+							 self::$av_tags_arr[] = 'middle_initial';
+							 self::$av_tags_arr[] = 'last_name';
+						  break;
+						  case 'first_middle_last':
+							 self::$av_tags_arr[] = 'first_name';
+							 self::$av_tags_arr[] = 'middle_name';
+							 self::$av_tags_arr[] = 'last_name';
+						  break;
+					   }
+					}
+					break;
+
+				case FSCF_EMAIL_FIELD :
+					// email
+					if ($field['disable'] == 'false')
+						self::$av_tags_arr[] = 'from_email';
+					break;
+
+				case FSCF_SUBJECT_FIELD :
+					break;
+
+				case FSCF_MESSAGE_FIELD :
+					$msg_key = $key;	// this is used below
+					break;
+
+				default :
+					// This is an added field
+
+					if ( $field['type'] != 'fieldset-close' && $field['standard'] < 1) {
+						if ( $field['type'] == 'fieldset' ) {
+						} else if ( $field['type'] == 'attachment' && self::$form_options['php_mailer_enable'] == 'wordpress') {
+							self::$av_tags_arr[] = $field['slug'];
+						} else { // text, textarea, date, password, email, url, hidden, time, select, select-multiple, radio, checkbox, checkbox-multiple
+							self::$av_tags_arr[] = $field['slug'];
+						}
+					}
+			}	// end switch
+		}	// end foreach
+
+		self::$av_tags_subj_arr = self::$av_tags_arr;
+		self::$av_tags_arr[] = 'subject';
+		if (self::$form_options['fields'][$msg_key]['disable'] == 'false')
+		   self::$av_tags_arr[] = 'message';
+
+		self::$av_tags_arr[] = 'full_message';
+		if ( function_exists('akismet_verify_key') && self::$form_options['akismet_disable'] == 'false' )
+		   self::$av_tags_arr[] = 'akismet';
+
+		self::$av_tags_arr[] = 'date_time';
+        self::$av_tags_arr[] = 'ip_address';
+		self::$av_tags_subj_arr[] = 'form_label';
+
+	}	// function set_tags_array()
 
 }  // end class FSCF_Process
 

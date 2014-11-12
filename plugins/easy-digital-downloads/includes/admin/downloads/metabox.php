@@ -179,11 +179,14 @@ add_filter( 'edd_metabox_save_edd_price', 'edd_sanitize_price_save' );
  */
 function edd_sanitize_variable_prices_save( $prices ) {
 
-	global $post;
-
 	foreach( $prices as $id => $price ) {
 
-		if( empty( $price['amount'] ) ) {
+		if( empty( $price['amount'] ) && empty( $price['name'] ) ) {
+
+			unset( $prices[ $id ] );
+			continue;
+
+		} elseif( empty( $price['amount'] ) ) {
 
 			$price['amount'] = 0;
 
@@ -193,8 +196,7 @@ function edd_sanitize_variable_prices_save( $prices ) {
 
 	}
 
-	// Make sure all prices are rekeyed starting at 0
-	return array_values( $prices );
+	return $prices;
 }
 add_filter( 'edd_metabox_save_edd_variable_prices', 'edd_sanitize_variable_prices_save' );
 
@@ -405,11 +407,10 @@ function edd_render_price_field( $post_id ) {
 			<table class="widefat edd_repeatable_table" width="100%" cellpadding="0" cellspacing="0">
 				<thead>
 					<tr>
-						<!--drag handle column. Disabled until we can work out a way to solve the issues raised here: https://github.com/easydigitaldownloads/Easy-Digital-Downloads/issues/1066
 						<th style="width: 20px"></th>
-						-->
 						<th><?php _e( 'Option Name', 'edd' ); ?></th>
 						<th style="width: 100px"><?php _e( 'Price', 'edd' ); ?></th>
+						<th style="width: 15px"><?php _e( 'ID', 'edd' ); ?></th>
 						<?php do_action( 'edd_download_price_table_head', $post_id ); ?>
 						<th style="width: 2%"></th>
 					</tr>
@@ -417,21 +418,22 @@ function edd_render_price_field( $post_id ) {
 				<tbody>
 					<?php
 						if ( ! empty( $prices ) ) :
-							foreach ( $prices as $key => $value ) :
-								$name   = isset( $value['name'] ) ? $value['name'] : '';
-								$amount = isset( $value['amount'] ) ? $value['amount'] : '';
 
+							foreach ( $prices as $key => $value ) :
+								$name   = isset( $value['name'] )   ? $value['name']   : '';
+								$amount = isset( $value['amount'] ) ? $value['amount'] : '';
+								$index  = isset( $value['index'] )  ? $value['index']  : $key;
 								$args = apply_filters( 'edd_price_row_args', compact( 'name', 'amount' ), $value );
-					?>
-						<tr class="edd_variable_prices_wrapper edd_repeatable_row">
-							<?php do_action( 'edd_render_price_row', $key, $args, $post_id ); ?>
-						</tr>
-					<?php
+								?>
+								<tr class="edd_variable_prices_wrapper edd_repeatable_row" data-key="<?php echo esc_attr( $key ); ?>">
+									<?php do_action( 'edd_render_price_row', $key, $args, $post_id, $index ); ?>
+								</tr>
+							<?php
 							endforeach;
 						else :
 					?>
 						<tr class="edd_variable_prices_wrapper edd_repeatable_row">
-							<?php do_action( 'edd_render_price_row', 0, array(), $post_id ); ?>
+							<?php do_action( 'edd_render_price_row', 1, array(), $post_id, 1 ); ?>
 						</tr>
 					<?php endif; ?>
 
@@ -460,7 +462,7 @@ add_action( 'edd_meta_box_price_fields', 'edd_render_price_field', 10 );
  * @param array $args
  * @param       $post_id
  */
-function edd_render_price_row( $key, $args = array(), $post_id ) {
+function edd_render_price_row( $key, $args = array(), $post_id, $index ) {
 	global $edd_options;
 
 	$defaults = array(
@@ -469,19 +471,16 @@ function edd_render_price_row( $key, $args = array(), $post_id ) {
 	);
 
 	$args = wp_parse_args( $args, $defaults );
-	extract( $args, EXTR_SKIP );
+
 ?>
-	<!--
-	Disabled until we can work out a way to solve the issues raised here: https://github.com/easydigitaldownloads/Easy-Digital-Downloads/issues/1066
 	<td>
 		<span class="edd_draghandle"></span>
+		<input type="hidden" name="edd_variable_prices[<?php echo $key; ?>][index]" class="edd_repeatable_index" value="<?php echo $index; ?>"/>
 	</td>
-	-->
-
 	<td>
 		<?php echo EDD()->html->text( array(
 			'name'  => 'edd_variable_prices[' . $key . '][name]',
-			'value' => esc_attr( $name ),
+			'value' => esc_attr( $args['name'] ),
 			'placeholder' => __( 'Option Name', 'edd' ),
 			'class' => 'edd_variable_prices_name large-text'
 		) ); ?>
@@ -491,7 +490,7 @@ function edd_render_price_row( $key, $args = array(), $post_id ) {
 		<?php
 			$price_args = array(
 				'name'  => 'edd_variable_prices[' . $key . '][amount]',
-				'value' => $amount,
+				'value' => $args['amount'],
 				'placeholder' => '9.99',
 				'class' => 'edd-price-field'
 			);
@@ -506,6 +505,10 @@ function edd_render_price_row( $key, $args = array(), $post_id ) {
 		<?php endif; ?>
 	</td>
 
+	<td>
+		<span class="edd_price_id"><?php echo $key; ?></span>
+	</td>
+
 	<?php do_action( 'edd_download_price_table_row', $post_id, $key, $args ); ?>
 
 	<td>
@@ -513,7 +516,7 @@ function edd_render_price_row( $key, $args = array(), $post_id ) {
 	</td>
 <?php
 }
-add_action( 'edd_render_price_row', 'edd_render_price_row', 10, 3 );
+add_action( 'edd_render_price_row', 'edd_render_price_row', 10, 4 );
 
 /**
  * Product type options
@@ -639,7 +642,7 @@ function edd_render_files_field( $post_id = 0 ) {
 
 							$args = apply_filters( 'edd_file_row_args', compact( 'name', 'file', 'condition', 'attachment_id' ), $value );
 				?>
-						<tr class="edd_repeatable_upload_wrapper edd_repeatable_row">
+						<tr class="edd_repeatable_upload_wrapper edd_repeatable_row" data-key="<?php echo esc_attr( $key ); ?>">
 							<?php do_action( 'edd_render_file_row', $key, $args, $post_id ); ?>
 						</tr>
 				<?php
