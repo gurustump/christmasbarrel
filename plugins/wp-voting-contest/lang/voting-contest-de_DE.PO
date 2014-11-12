@@ -1,0 +1,1242 @@
+# WPML is a WordPress plugin that can turn any WordPress site into a full featured multilingual content management system.
+# http://wpml.org
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"X-Generator: Poedit 1.6.7\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en\n"
+
+msgid "Contenstant Fields have been successfully deleted."
+msgstr "Teilnehmer Felder wurden erfolgreich gelöscht."
+
+msgid "Registration Fields have been successfully deleted."
+msgstr "Registrierungs-Feld(er) wurde(n) erfolgreich gelöscht."
+
+msgid "Click to toggle"
+msgstr "Klicken sie hier zum Umschalten."
+
+msgid "Edit Contestant Custom Fields"
+msgstr "Teilnehmerfelder bearbeiten"
+
+msgid "Field Name"
+msgstr "Feldname"
+
+msgid "Custom Field name"
+msgstr "Benutzerdefinierte Feldnamen"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Type of the Custom Field"
+msgstr "Art des benutzerdefinierten Feldes"
+
+msgid "Values"
+msgstr "Werte"
+
+msgid "A comma seperated list of values. Eg. black, blue, red"
+msgstr ""
+"Eine durch Kommata getrennte Liste von Werten - z.B. schwarz, blau, rot"
+
+msgid "Required"
+msgstr "erforderlich"
+
+msgid "Mark this question as required (Mandatory)."
+msgstr "Markieren Sie diese Frage nach Bedarf (Obligatorisch)."
+
+msgid "Show in contestant form"
+msgstr "Teilnehmer Formular anzeigen"
+
+msgid ""
+"YES: Shows custom field in contestant form.  NO: Shows custom field in admin "
+"only"
+msgstr ""
+"JA: Zeigt benutzerdefiniertes Feld im Teilnehmeren-Forular. NEIN: Zeigt "
+"benutzerdefinierte Feld in der Administrationsansicht"
+
+msgid "Show in Contest description page"
+msgstr "Auf der Seite der Contestbeschreibung anzeigen"
+
+msgid "YES: Shows custom field details in Contestant description page."
+msgstr ""
+"JA: Zeigt benutzerdefiniertes Feld auf der Detailseite des Teilnehmeren."
+
+msgid "Required Text"
+msgstr "Erforderlicher Text"
+
+msgid "Text to display if field is empty. (Validation Error Message)"
+msgstr ""
+"Text, der angezeigt wird, wenn das Feld leer ist. (Validierung Fehlermeldung)"
+
+msgid "Order/Sequence"
+msgstr "Bestellen / Sequenz"
+
+msgid ""
+"Order the view of the field by numeric values Ex:(Entering 1- will show "
+"first, 2- will be shown second.. etc)"
+msgstr ""
+"Ordnen der Ansicht nach numerischen Werten: (Eingabe von 1 - wird als erstes "
+"gezeigt, 2 - als zweites etc...)"
+
+msgid "Update Field"
+msgstr "Feld aktualisieren"
+
+msgid "Nothing found!"
+msgstr "Nichts gefunden!"
+
+msgid "Edit Registration Fields"
+msgstr "Registrierungsfelder bearbeiten"
+
+msgid "Mark this question as required. (Mandatory)"
+msgstr "Markieren Sie diese Frage als erforderlich. (Obligatorisch)"
+
+msgid "Show in Registration form"
+msgstr "Im Anmeldeformular anzeigen"
+
+msgid "YES: Shows custom field in Registration form. "
+msgstr "JA: Zeigt benutzerdefiniertes Feld im Anmeldeformular. "
+
+msgid "The Custom Field "
+msgstr "Das benutzerdefinierte Feld"
+
+msgid "has been added."
+msgstr "wurde hinzugefügt."
+
+msgid "was not saved."
+msgstr "wurde nicht gespeichert."
+
+msgid "Please enter the title for custom field."
+msgstr "Bitte geben Sie den Titel für das benutzerdefinierte Feld ein."
+
+msgid "The Registration Field"
+msgstr "Das Registrierungs-Feld"
+
+msgid " has been added."
+msgstr " wurde hinzugefügt."
+
+msgid "  was not saved. "
+msgstr "  wurde nicht gespeichert. "
+
+msgid "Please enter the title for custom field. "
+msgstr "Bitte geben sie den Titel für das benutzerdefinierte Feld ein. "
+
+msgid "Add New Contestant Custom Fields"
+msgstr "Neues benutzerdefiniertes Feld zum Teilnehmeren-Formular hinzufügen"
+
+msgid "Add fields using the form below."
+msgstr "Felder mit unteren Formular hinzufügen."
+
+msgid "Add Custom Fields"
+msgstr "Benutzerdefinierte Felder hinzufügen"
+
+msgid "Add New Registration Fields"
+msgstr "Neues Feld zur Registrierung hinzufügen"
+
+msgid "Add registration fields using the form below."
+msgstr "Felder zur Registrierung mit dem unteren Formular hinzufügen."
+
+msgid "This field is required"
+msgstr "Dieses Feld wird benötigt"
+
+msgid "Move Contestants"
+msgstr "Teilnehmer verschieben"
+
+msgid "Move Contestants from this Category: "
+msgstr "Teilnehmer aus dieser Kategorie verschieben:"
+
+msgid "List of Contestants in Category"
+msgstr "Liste der Teilnehmer in der Kategorie"
+
+msgid "To Category "
+msgstr "Zur Kategorie "
+
+msgid "Advanced Excerpt Options"
+msgstr "Erweiterte Optionen Zusammenfassung"
+
+msgid "Excerpt"
+msgstr "Zusammenfassung"
+
+msgid "Options saved."
+msgstr "Einstellungen gespeichert."
+
+msgid "Contest Excerpt Options"
+msgstr "Contest Einstellungen Zusammenfassung"
+
+msgid "Excerpt Length:"
+msgstr "Länge bis zur Auslassung:"
+
+msgid "Use words?"
+msgstr "Verwenden Sie Wörter?"
+
+msgid "Ellipsis:"
+msgstr "Ellipse:"
+
+msgid "Will substitute the part of the post that is omitted in the excerpt."
+msgstr "Wird den Teil der ausgelassen wird ersetzen."
+
+msgid "Finish:"
+msgstr "Ende:"
+
+msgid "Word"
+msgstr "Wort"
+
+msgid "Sentence"
+msgstr "Satz"
+
+msgid ""
+"Prevents cutting a word or sentence at the end of an excerpt. This option "
+"can result in (slightly) longer excerpts."
+msgstr ""
+"Verhindert das abschneiden eines Wortes oder Satzes am Ende einer "
+"Auslassung. Diese Option kann zu (etwas) mehr Text führen."
+
+msgid "&lsquo;Read-more&rsquo; Text:"
+msgstr "&lsquo;weiterlesen&rsquo; Text:"
+
+msgid "Add link to excerpt"
+msgstr "Link zur Zusammenfassung hinzufügen"
+
+msgid "No Custom Excerpts:"
+msgstr "Keine Benutzerdefinierte Zusammenfassung:"
+
+msgid "Generate excerpts even if a post has a custom excerpt attached."
+msgstr ""
+"Zusammenfassung generieren, auch wenn ein Beitrag eine benutzerdefinierte "
+"Zusammenfassung hat."
+
+msgid "Strip Shortcodes:"
+msgstr "Shortcodes entfernen:"
+
+msgid "Remove shortcodes from the excerpt. <em>(recommended)</em>"
+msgstr "Shortcodes aus der Zusammenfassung entfernen. <em> (empfohlen) </ em>"
+
+msgid "Keep Markup:"
+msgstr "Markup halten:"
+
+msgid "Don't remove any markup"
+msgstr "Markup nicht entfernen"
+
+msgid "Save Changes"
+msgstr "Änderungen speichern"
+
+msgid "Category:"
+msgstr "Kategorie:"
+
+msgid "Votes."
+msgstr "Stimmen."
+
+msgid "Voted"
+msgstr "gewählt"
+
+msgid "Vote Now"
+msgstr "Jetzt abstimmen"
+
+msgid "Previous Post"
+msgstr "Vorheriger Beitrag"
+
+msgid "Next Post"
+msgstr "nächsten Beitrag"
+
+msgid "Additional Information"
+msgstr "zusätzliche Informationen"
+
+msgid "Add New Field"
+msgstr "Neues Feld hinzufügen"
+
+msgid "Manage Contestant Custom Fields"
+msgstr "Benutzerdefinierte Felder verwalten (Teilnehmer)"
+
+msgid "This function is not available."
+msgstr "Diese Funktion ist nicht verfügbar."
+
+msgid "Show in Form"
+msgstr "Im Formular anzeigen"
+
+msgid "Show in Description"
+msgstr "in der Beschreibung anzeigen"
+
+msgid "Order Sequence"
+msgstr "Reihenfolge"
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "Check All"
+msgstr "Alle aktivieren"
+
+msgid "Delete Field"
+msgstr "Feld löschen"
+
+msgid "Live Search Filter"
+msgstr "Live Search Filter"
+
+msgid "No Records Found!"
+msgstr "Kein Eintrag vorhanden!"
+
+msgid "Manage Registration Custom Fields"
+msgstr "Benutzerdefinierte Felder verwalten (Registrierung)"
+
+msgid "Import Contestants"
+msgstr "Teilnehmer importieren"
+
+msgid "Note: New Category can be created in this page"
+msgstr "Hinweis: Auf dieser Seite kann eine neue Kategorie angelegt werden."
+
+msgid "Add Category"
+msgstr "Kategorie hinzufügen"
+
+msgid "Select the Category"
+msgstr "Wählen Sie die Kategorie"
+
+msgid "Steps to Import Contestants"
+msgstr "Schritte zum Import von Teilnehmern"
+
+msgid "Prepare your Contestants CSV file in the format given below."
+msgstr "Die CSV-Datei muss dem unten angegebenen Format entsprechen."
+
+msgid "Choose Category."
+msgstr "Wählen sie eine Kategorie."
+
+msgid "Upload the CSV file using the form and click upload"
+msgstr "Laden Sie die CSV-Datei über das Formular und klicken Sie auf Upload"
+
+msgid "Sample file Data"
+msgstr "Beispieldatei Daten"
+
+msgid "\"contest_title\",\"contest_content\",\"featured_image_url\""
+msgstr "\"contest_title\",\"contest_content\",\"featured_image_url\""
+
+msgid ""
+"\"pagetitle1\",\"pagecontent\",\"http://i0.kym-cdn.com/entries/icons/"
+"original/000/007/263/photo_cat2.jpg\""
+msgstr ""
+"\"pagetitle1\",\"pagecontent\",\"http://i0.kym-cdn.com/entries/icons/"
+"original/000/007/263/photo_cat2.jpg\""
+
+msgid "\"pagetitle2\",\"pagecontent\",\"\""
+msgstr "\"pagetitle2\",\"pagecontent\",\"\""
+
+msgid "."
+msgstr "."
+
+msgid "<u>Required Fields</u>: contest_title"
+msgstr "<u> Pflichtfelder </u>: contest_title"
+
+msgid "<b>Note:</b> column values should be seperated by comma."
+msgstr "<b> Hinweis: </b> Spaltenwerte sollten durch Komma getrennt werden."
+
+msgid ""
+"First line of the CSV file should be <b>\"contest_title\",\"contest_content"
+"\",\"featured_image_url\""
+msgstr ""
+"Erste Zeile der CSV-Datei: <b>\"contest_title\",\"contest_content\","
+"\"featured_image_url\""
+
+msgid "By Default <b>votes</b> will be 0"
+msgstr "Standardwert der <b>Stimmen</b> ist 0"
+
+msgid "By Default <b>Expiration Date</b> will be 0"
+msgstr "Standardwert des <b>Enddatums </b> ist 0"
+
+msgid "Choose a Category for the Contestants"
+msgstr "Wählen Sie eine Kategorie für die Teilnehmer"
+
+msgid "Choose a file from your computer"
+msgstr "Wählen Sie eine Datei von Ihrem Computer"
+
+msgid "Upload file and import"
+msgstr "Dateien hochladen und importieren"
+
+msgid "Export Contestant Details"
+msgstr "Detailansicht des Teilnehmeren exportieren"
+
+msgid "Please select the contest you want to export."
+msgstr "Bitte wählen Sie die Wahlen, die Sie exportieren möchten."
+
+msgid "Select the Contest"
+msgstr "Wählen Sie den Contest"
+
+msgid "Export"
+msgstr "Exportieren"
+
+msgid "Select All"
+msgstr "Alle Auswählen"
+
+msgid "Contestants"
+msgstr "Teilnehmer"
+
+msgid "Contest"
+msgstr "Wettbewerb"
+
+msgid "Contests"
+msgstr "Wettbewerbe"
+
+msgid "Add Contestant"
+msgstr "Teilnehmer hinzufügen"
+
+msgid "Add New Contestant"
+msgstr "Neuer Teilnehmer"
+
+msgid "Edit Contestant"
+msgstr "Teilnehmer Bearbeiten "
+
+msgid "New Contestant"
+msgstr "Neuer Teilnehmer"
+
+msgid "View Contestant"
+msgstr "Ansicht Teilnehmer"
+
+msgid "Search Contestant"
+msgstr "Suche nach Teilnehmer"
+
+msgid "No Contestants Found"
+msgstr "Keine Teilnehmeren gefunden"
+
+msgid "No Contestants Found in Trash"
+msgstr "Keine Teilnehmer Gefunden im Papierkorb"
+
+msgid "Contest Category"
+msgstr "Contest Kategorie"
+
+msgid "Overview"
+msgstr "Übersicht"
+
+msgid "Move Contestant"
+msgstr "Teilnehmer verschieben"
+
+msgid "Import Contestant"
+msgstr "Import Teilnehmer"
+
+msgid "Export Contestants"
+msgstr "Export Teilnehmeren"
+
+msgid "Export Contestant"
+msgstr "Export Teilnehmer"
+
+msgid "Clear Voting Entries"
+msgstr "bisherige Stimmen löschen"
+
+msgid "Contestant fields"
+msgstr "Teilnehmer Felder"
+
+msgid "Registration fields"
+msgstr "Registrierung Felder"
+
+msgid "Voting Logs"
+msgstr "Wahl-Protokolle"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Uncategorized"
+msgstr "Nicht kategorisiert"
+
+msgid "Add Contestants"
+msgstr "Teilnehmer hinzufügen"
+
+msgid "Vote Log"
+msgstr "Bewerten Anmelden\t"
+
+msgid "Contestant Form Builder"
+msgstr "Teilnehmer Formular Editor"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Voter"
+msgstr "Wähler"
+
+msgid "Vote Date"
+msgstr "Wahl Datum"
+
+msgid "Plugin License Options"
+msgstr "Plugin Lizenz-Optionen"
+
+msgid "License Key"
+msgstr "Lizenzschlüssel"
+
+msgid "Enter your license key"
+msgstr "Geben Sie Ihren Lizenzschlüssel ein"
+
+msgid "Activate License"
+msgstr "Lizenz aktivieren"
+
+msgid "active"
+msgstr "aktiv"
+
+msgid "Votes For this Contestant"
+msgstr "Stimmen für diesen Teilnehmer"
+
+msgid "Custom Fields"
+msgstr "Benutzerdefinierte Felder"
+
+msgid "Votes"
+msgstr "Stimmen"
+
+msgid "Select the Expiration Date  "
+msgstr "Wählen Sie das Ablaufdatum  "
+
+msgid "No Expiry"
+msgstr "Kein Ablaufdatum"
+
+msgid "for no expiration"
+msgstr "ohne Ablaufdatum"
+
+msgid "(Note: To specify the Orderby of the Contestant Listing)"
+msgstr "(Hinweis: Um die Reihenfolge der Teilnehmer anzugeben)"
+
+msgid "(Note: To specify the Order of the Contestant Listing)"
+msgstr "(Hinweis: Um die Reihenfolge der Teilnehmer anzugeben)"
+
+msgid ""
+"(Note: To specify the Number of Contestants displayed per page in the "
+"Contest Listing)"
+msgstr ""
+"(Hinweis: Um die Anzahl der Teilnehmer, die auf einer Seite in der "
+"Wahlansicht angezeigt werden festzulegen)"
+
+msgid ""
+"(Note: To specify whether the thumbnail want to get displayed in the Contest "
+"Listing)"
+msgstr ""
+"(Hinweis: Um festzulegen ob ein Vorschaubild in der Wahlansicht angezeigt "
+"werden soll)"
+
+msgid "(Note: To specify the Height of the Thumbnail in the Contest Listing)"
+msgstr ""
+"(Hinweis: Um die Größe der Miniaturansicht im Contest Listing anzugeben)"
+
+msgid "(Note: To specify the Width of the Thumbnail in the Contest Listing)"
+msgstr ""
+"(Hinweis: Um die Breite der Miniaturansicht im Contest Listing anzugeben)"
+
+msgid "(Note: To specify the Title of the Contest Listing)"
+msgstr "(Hinweis: Um die Titel im Contest Listing anzugeben)"
+
+msgid ""
+"(Note: To specify Whether the Terms want to get displayed in the Contest "
+"Listing)"
+msgstr ""
+"(Hinweis: Um festzulegen, ob die Teilnahmebedingungen im Contest-Listing "
+"angezeigt werden sollen)"
+
+msgid ""
+"(Note: To exclude the specified Contests in the Contest Listing, ids "
+"separated by comma)"
+msgstr ""
+"(Hinweis: Um die angegebene Gewinnspiele in der Contest Listing "
+"auszuschließen, IDs durch Komma getrennt)"
+
+msgid ""
+"(Note: The contestants will be displayed without pagination if it is set to "
+"0)"
+msgstr ""
+"(Anmerkung: Die Teilnehmer werden ohne Seitenumbrüche angezeigt, wenn der "
+"Wert 0 eingestellt ist)"
+
+msgid ""
+"(Note: To specify Whether the non-loggedin Users able to cast the vote or "
+"not.)"
+msgstr ""
+"(Hinweis: Um festzulegen, ob die nicht angemeldeten Benutzer an der Wahl "
+"teilnehmen können.)"
+
+msgid ""
+"(Note: To specify Whether the Start or End timer should be displayed or Not.)"
+msgstr ""
+"(Anmerkung: Um festzulegen, ob die Start- oder Endtimer angezeigt werden "
+"sollen oder nicht.)"
+
+msgid ""
+"(Note: To specify Whether the Add Contestant form should be displayed or "
+"Not.)"
+msgstr ""
+"(Hinweis: Um festzulegen, ob das Teilnehmer hinzufügen Formular angezeigt "
+"werden soll oder nicht.)"
+
+msgid ""
+"(Note: The contestants will be displayed both in grid and list by default. "
+"you can specify the grid/list using this shortcode)"
+msgstr ""
+"(Anmerkung: Die Teilnehmeren werden sowohl im Grid als auch im List Modus "
+"angezeigt. Sie können die Anzeige durch das Nutzen dieses Shortcodes "
+"einschränken.)"
+
+msgid ""
+"(Note: you can use the attributes available for show contestant shortcode.)"
+msgstr ""
+"(Hinweis: Sie können die verfügbaren Eigenschaften für den Zeige Teilnehmer "
+"Shortcode verwenden.)"
+
+msgid ""
+"(Note: To specify the Category of the post for which the Start timer get "
+"displayed.)"
+msgstr ""
+"(Hinweis: Festlegen, für welche Beitragskategorie der Start-Timer angezeigt "
+"werden soll.)"
+
+msgid "(Note: To specify Whether the Contestants get displayed or not.)"
+msgstr ""
+"(Anmerkung: Festlegen, ob die Teilnehmer angezeigt werden sollen oder nicht.)"
+
+msgid ""
+"(Note: To specify the Category of the post for which the End timer get "
+"displayed.)"
+msgstr ""
+"(Hinweis: Festlegen, für welche Beitragskategorie der Endtimer angezeigt "
+"werden soll.)"
+
+msgid ""
+"(Note: To specify the Category of the post for which the contestants to be "
+"added.)"
+msgstr ""
+"(Hinweis: Festlegen, für welche Beitragskategorie der Teilnehmer hinzugefügt "
+"werden soll.)"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Online Documentation"
+msgstr "Online-Dokumentation"
+
+msgid "Example of all shortcode usage:"
+msgstr "Beispiel zur Nutzung des Shortcodes:"
+
+msgid "Attributes that can be passed to this shortcode are as follows:"
+msgstr ""
+"Eigenschaften, die durch den Shortcode übergeben werden können sind folgende:"
+
+msgid "Multiple Contestants In Single Page"
+msgstr "Mehrere Teilnehmer auf einer Seite"
+
+msgid ""
+"Create a page and use showcontestant shortcode multiple times. It will list "
+"multiple contestants in a single page."
+msgstr ""
+"Erstellen Sie eine Seite und benutzen sie den showcontestant Shortcode "
+"mehrfach. Es werden mehrere Teilnehmer auf einer Seite angezeigt."
+
+msgid ""
+"Select the Start and End Date to delete the votes polled between the dates."
+msgstr ""
+"Wählen Sie das Start-und Enddatum, um die Stimmen, welche in dem "
+"betreffenden Zeitraum abgegeben wurden zulöschen."
+
+msgid "Select the Start Date"
+msgstr "Wählen Sie das Startdatum"
+
+msgid "Select the End Date"
+msgstr "Wählen Sie das Enddatum"
+
+msgid "Contestants not Available"
+msgstr "Teilnehmer nicht verfügbar"
+
+msgid "Voting Restricted For Multiple Contestant"
+msgstr "Nur ein Teilnehmer kann gewählt werden"
+
+msgid "Multiple Votes Not Allowed For Same Contestant"
+msgstr "Für einen Teilnehmer kann nur einmal gestimmt werden"
+
+msgid "Already Voted"
+msgstr "Bereits abgestimmt!"
+
+msgid "Voted Successfully "
+msgstr "Erfolgreich abgestimmt"
+
+msgid "The username already exists"
+msgstr "Der Benutzername ist bereits vorhanden"
+
+msgid "Please enter an username"
+msgstr "Bitte geben Sie einen Usernamen ein"
+
+msgid "Please enter a password"
+msgstr "Bitte Passwort eingeben "
+
+msgid "Passwords do not match"
+msgstr "Passwörter stimmen nicht überein"
+
+msgid "Please enter a valid EMAIL address"
+msgstr "Bitte geben Sie eine gültige E-Mail-Adresse ein"
+
+msgid "This email address has already been used"
+msgstr "Diese E-Mail-Adresse wird bereits verwendet"
+
+msgid "Please enter an email address"
+msgstr "Bitte geben Sie eine E-Mail-Adresse ein"
+
+msgid "Your account has been created."
+msgstr "Ihr Konto wurde erstellt."
+
+msgid "No contestants to display."
+msgstr "Keine Teilnehmer."
+
+msgid "Enter the contestant title"
+msgstr "Titel des Teilnehmers eintragen"
+
+msgid "Timer Not Available"
+msgstr "Timer nicht verfügbar"
+
+msgid "Total votes for the Contest"
+msgstr "Insgesamt für den Contest abgegebene Stimmen"
+
+msgid "Submit Entry"
+msgstr "Beitrag abschicken"
+
+msgid "Error:"
+msgstr "Fehler:"
+
+msgid "You Already Submitted "
+msgstr "Sie haben bereits einen Beitrag eingereicht "
+
+msgid "Entries."
+msgstr "Einträge."
+
+msgid " Problem in Saving. Please try it later."
+msgstr ""
+"Beim Speichern ist ein Problem aufgetreten. Bitte versuchen sie es später "
+"noch einmal."
+
+msgid " Contestants Successfully Added. Waiting for Admin Approval."
+msgstr ""
+" Teilnehmer erfolgreich hinzugefüht. Warte auf Bestätigung durch "
+"Administrator."
+
+msgid "Image  "
+msgstr "Bild  "
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Must be a Problem in Displaying Form."
+msgstr "Ein Problem bei der Anzeige des Formulars liegt vor."
+
+msgid "Voting Starts In:"
+msgstr "Wahl beginnt in:"
+
+msgid "weeks"
+msgstr "Wochen"
+
+msgid "days"
+msgstr "Tage"
+
+msgid "hours"
+msgstr "Stunden"
+
+msgid "minutes"
+msgstr "Minuten"
+
+msgid "seconds"
+msgstr "Sekunden"
+
+msgid "No Upcoming Contest"
+msgstr "In nächster Zeit findet kein Wettbewerb statt."
+
+msgid "Contest already Started."
+msgstr "Der Wettbewerb hat bereits begonnen."
+
+msgid "Contest Ends In:"
+msgstr "Wettbewerb endet in:"
+
+msgid "Contest Ended"
+msgstr "Wettbewerb endete"
+
+msgid "YOU MUST BE REGISTERED AND LOGGED TO CONTINUE"
+msgstr "Sie müssen registriert und eingeloggt sein um fortzufahren"
+
+msgid "CREATE ACCOUNT"
+msgstr "ACCOUNT ANLEGEN"
+
+msgid "Username"
+msgstr "Benutzername"
+
+msgid "Password"
+msgstr "Passwort"
+
+msgid " Remember Me"
+msgstr " Anmeldedaten speichern"
+
+msgid "LOG IN"
+msgstr "ANMELDEN"
+
+msgid "FORGOT YOUR PASSWORD?"
+msgstr "PASSWORT VERGESSEN?"
+
+msgid "Email Address"
+msgstr "E-Mail Adresse"
+
+msgid "Your email"
+msgstr "Ihre E-Mail Adresse"
+
+msgid "Your password"
+msgstr "Ihr Passwort"
+
+msgid "Confirm Password"
+msgstr "Passwort bestätigen"
+
+msgid "Verify password"
+msgstr "Passwort bestätigen"
+
+msgid "Select"
+msgstr "Auswählen"
+
+msgid "CREATE MY ACCOUNT"
+msgstr "MEINEN ZUGANG ANLEGEN"
+
+msgid "ALREADY HAVE AN ACCOUNT?"
+msgstr "Haben sie bereits ein Konto?"
+
+msgid "FORGOT YOUR DETAILS?"
+msgstr "Zugangsdaten vergessen?"
+
+msgid "Username or E-mail"
+msgstr "Benutzername oder E-Mail Adresse"
+
+msgid "SEND MY DETAILS!"
+msgstr "Zugangsdaten schicken!"
+
+msgid "AAH, WAIT, I REMEMBER NOW!"
+msgstr "AAH, warte, jetzt erinnere ich mich!"
+
+msgid "Custom Registration Fields"
+msgstr "Benutzerdefinierte Registrierung Felder"
+
+msgid "Video Contest: "
+msgstr "Video-Wettbewerb: "
+
+msgid ""
+"Image Field will not be shown in Front end Add Contestant (Submit Entries)."
+msgstr ""
+"Bildfeld wird nicht im Frontend und beim Hinzufügen von Teilnehmern "
+"angezeigt)."
+
+msgid "Display Image: "
+msgstr "Vorschaubild: "
+
+msgid "Display Featured Image in Contestant Listing."
+msgstr "Ausgewähltes Bild in der Teilnehmerliste anzeigen."
+
+msgid "Hide Vote Count: "
+msgstr "Stimmzählung ausblenden:"
+
+msgid "Hide Vote Count in Contestant Listing and Description Page."
+msgstr "Stimmzählung in der Teilnehmerliste und den Detailseiten ausblenden."
+
+msgid "Display Categories: "
+msgstr "Kategorien anzeigen: "
+
+msgid "Displays Categories in Contestant Listing."
+msgstr "Kategorien der Teilnehmer anzeigen."
+
+msgid "Show Total Vote Count: "
+msgstr "Zeige Gesamtstimmenzahl: "
+
+msgid "Displays Total Vote Count Of Category Below Contest Timer."
+msgstr "Zeigt Gesamtstimmenanzahl der Kategorie unter dem Contest Timer."
+
+msgid "Select Start Time: "
+msgstr "Wählen Sie die Startzeit: "
+
+msgid "Select End Time: "
+msgstr "Wählen sie die Endzeit: "
+
+msgid "Activation Count: "
+msgstr "Activation Count:"
+
+msgid "Number of Contestants to be reached to make it Active."
+msgstr "Anzahl der Teilnehmer, die zur Aktvierung erreicht werden müssen."
+
+msgid "Middle Button on Custom Post Navigation: "
+msgstr "Mittleren Button auf der benutzerdefinierten Navigationsseite: "
+
+msgid "Enter the URL of your main contest page (sets the :: button URL)"
+msgstr "Enter the URL of your main contest page (sets the :: button URL)"
+
+msgid "Show Contestant Description : "
+msgstr "Zeige die Teilnehmerbeschreibung: "
+
+msgid ""
+"Select options to show contestant descriptions in the Corresponding view"
+msgstr ""
+"Wählen sie die Optionen um die Teilnehmerbeschreibung in der "
+"korrespondierenden ansicht zu zeigen"
+
+msgid "Settings Updated"
+msgstr "Einstellungen ktualisiert"
+
+msgid "Contest Settings"
+msgstr "Contest Einstellungen"
+
+msgid "Shortcode Contest Image"
+msgstr "Shortcode Contest Bild"
+
+msgid "Contestants Page Image"
+msgstr "Teilnehmer Seite Bild"
+
+msgid "Admin Notification"
+msgstr "Admin Benachrichtigung"
+
+msgid "Admin notify on contestant entry submission."
+msgstr "Admin bei Einsendung eines Beitrages benachrichtigen."
+
+msgid "Email From Name"
+msgstr "E-Mail von (Name)"
+
+msgid "Admin notification From name. Ex:YourName &lt;name@domain.com&gt;"
+msgstr "Admin notification From name. Ex:YourName &lt;name@domain.com&gt;"
+
+msgid ""
+"Note: Make sure that you entered \"Email From Name\" in the format <br/"
+">YourName &lt;name@domain.com&gt;. Mail id is needed as in example <br/"
+">Otherwise the mail may not be sent.\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t   "
+msgstr ""
+"Hinweis: Stellen Sie sicher, dass Sie \"Email eingegeben Von Name\" im "
+"Format <br/>YourName &lt;name@domain.com&gt;. E-Mail-ID wird wie in Beispiel "
+"<br/>Ansonsten kann die Mail nicht gesendet werden.\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t   "
+
+msgid "Notification E-Mail Id"
+msgstr "Benachrichtigungs-E-Mail-ID"
+
+msgid "Admin notification E-mail Id"
+msgstr "Admin Anmeldung E-Mail-Id"
+
+msgid ""
+"Note: If no Email Id is set. Mail will be sent to admin email (Settings-"
+">General\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t   )"
+msgstr ""
+"Hinweis: If no Email Id is set. Mail will be sent to admin email "
+"(Einstellungen->Allgemein\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t   )"
+
+msgid "Display Title"
+msgstr "Titel anzeigen"
+
+msgid "Title."
+msgstr "Titel."
+
+msgid "Order by"
+msgstr "sortieren nach"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Modified"
+msgstr "Geändert"
+
+msgid "Menu Order"
+msgstr "Menü ordnen"
+
+msgid "Parent"
+msgstr "Übergeordnet"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Asc"
+msgstr "aufsteigend"
+
+msgid "Desc"
+msgstr "absteigend"
+
+msgid "Disable Sidebar"
+msgstr "Sidebar deaktivieren"
+
+msgid "Disable Sidebar In Contestant Description Page."
+msgstr "Sidebar in der Teinehmerbeschreibungsseite deaktivieren"
+
+msgid "Disable Read More Button"
+msgstr "Deaktivieren Weiterlesen Knopf"
+
+msgid "Disable Read More Button In Contestant Page."
+msgstr "Weiterlesen-Button auf der Teilnehmerseite deaktivieren"
+
+msgid "Votes Timer Text color"
+msgstr "Stimmen Timer Textfarbe"
+
+msgid "Votes Timer Background color"
+msgstr "Stimmen Timer Hintergrundfarbe"
+
+msgid "Voting Permission"
+msgstr "Wahlberechtigung"
+
+msgid "Must be logged in to Vote."
+msgstr "Um wählen zu können muss man eingeloggt sein."
+
+msgid "Must be logged in to submit entries."
+msgstr "Um Beiträge einzurechen muss man eingeloggt sein."
+
+msgid "Entry Limit Per User"
+msgstr "Beitrags-Limit pro Nutzer"
+
+msgid ""
+"Limit the number of entries a single contestant may submit. Leave blank for "
+"unlimited entries per contestant."
+msgstr ""
+"Beschränken Sie die Anzahl der Beiträge ein einzelner Teilnehmer einreichen "
+"kann . Leer lassen heisst unbegrenzte Beiträge pro Teilnehmer."
+
+msgid "Title Truncation grid view"
+msgstr "Titel Abschneiden in der Gitteransicht"
+
+msgid "Limit the title characters show on contestant listing (grid view)"
+msgstr "Anzahl der Zeichen des Titels(Gitteransicht) limitieren "
+
+msgid "Title Truncation list view"
+msgstr "Titel Abschneiden in der Listenansicht"
+
+msgid "Limit the title characters show on contestant listing (List view)"
+msgstr "Anzahl der Zeichen des Titels (Listenansicht) beschränken"
+
+msgid "Voting Frequency"
+msgstr "Mehrmals wählen?"
+
+msgid "No Limit"
+msgstr "kein Limit"
+
+msgid "Once every 12 Hours"
+msgstr "Einmal alle 12 Stunden"
+
+msgid "Once every 24 Hours"
+msgstr "Einmal alle 24 Stunden"
+
+msgid "Once per Calendar Day"
+msgstr "Einmal pro Kalendertag"
+
+msgid "Once per Category"
+msgstr "Einmal pro Kategorie"
+
+msgid "Allows to change the Voting Frequency."
+msgstr "Allows to change the Voting Frequency."
+
+msgid "User Can Vote For:"
+msgstr "Benutzer können stimmen für:"
+
+msgid "Select for Single Contestant<br />Unselect for All Contestants"
+msgstr "Auswählen für Einzelnen Teilnehmer <br /> abwählen für alle Teilnehmer"
+
+msgid "To Be Started Description"
+msgstr "To Be Started Description"
+
+msgid "Start time Description."
+msgstr "Startzeit Beschreibung."
+
+msgid "Closed Description"
+msgstr "Geschlossen Beschreibung"
+
+msgid "Closed Description."
+msgstr "Geschlossen Beschreibung."
+
+msgid "Entries Closed Description"
+msgstr "Beitragsschluss Beschreibung"
+
+msgid "Entries Closed Description."
+msgstr "Beitragsschluss Beschreibung."
+
+msgid "Deactivation Settings"
+msgstr "Deaktivierung der Einstellungen"
+
+msgid "Data will get retained after Deactivation."
+msgstr "Die Daten werden nach der Deaktivierung behalten"
+
+msgid "Facebook Share"
+msgstr "Facebook-Schaltfläche"
+
+msgid "Enable Facebook Sharing."
+msgstr "Aktivieren Facebook Freigabe."
+
+msgid "Suggested Image Size is max 105px width - max 36px height."
+msgstr "Empfohlene Bildgröße beträgt max 105px Breite - max 36px Höhe."
+
+msgid "Upload image to change the default facebook image."
+msgstr "Bild hochladen, um das Standard Facebook Bild zu ändern."
+
+msgid "Use default Facebook image."
+msgstr "Standard Facebook Bild verwenden."
+
+msgid "Twitter Share"
+msgstr "Twitter-Schaltfläche"
+
+msgid "Enable Twitter Sharing."
+msgstr "Aktivieren Twitter Freigabe."
+
+msgid "Upload image to change the default tweet image."
+msgstr "Bild hochladen, um das Standard tweet Bild zu ändern."
+
+msgid "Use default Twitter image."
+msgstr "Standard Twitter Bild verwenden."
+
+msgid "Jquery"
+msgstr "Jquery"
+
+msgid "Disable Jquery from Loading."
+msgstr "Deaktivieren Laden von jQuery."
+
+msgid "Jquery Cookie"
+msgstr "Jquery Cookie"
+
+msgid "Disable Jquery Cookie from Loading."
+msgstr "Laden von jQuery Cookie deaktivieren."
+
+msgid "FancyBox"
+msgstr "FancyBox"
+
+msgid "Disable FancyBox from Loading."
+msgstr "Laden von FancyBox deaktivieren."
+
+msgid "Pretty Photo"
+msgstr "Pretty Photo"
+
+msgid "Disable Pretty Photo from Loading."
+msgstr "Laden von Pretty Photo deaktivieren"
+
+msgid "Jquery Validate"
+msgstr "Jquery Validieren"
+
+msgid "Disable Validate jquery plugin from Loading."
+msgstr "Laden von Validate jQuery-Plugin deaktivieren."
+
+msgid "Update"
+msgstr "Aktualisierung"
+
+msgid "Contest PageNavi Settings"
+msgstr "Contest PageNavi Einstellungen"
+
+msgid "Contest PageNavi"
+msgstr "Contest PageNavi"
+
+msgid "Text For Number Of Pages"
+msgstr "Text für die Seitenanzahl"
+
+msgid "The current page number."
+msgstr "Die aktuelle Seite."
+
+msgid "The total number of pages."
+msgstr "Die Gesamtzahl der Seiten."
+
+msgid "Text For Current Page"
+msgstr "Text für die aktuelle Seite"
+
+msgid "The page number."
+msgstr "Die Seitenzahl."
+
+msgid "Text For Page"
+msgstr "Text für die Seite"
+
+msgid "Text For First Page"
+msgstr "Text für die erste Seite"
+
+msgid "Text For Last Page"
+msgstr "Text für die letzte Seite"
+
+msgid "Text For Previous Page"
+msgstr "Text für die vorherige Seite"
+
+msgid "Text For Next Page"
+msgstr "Text für die Nächste Seite"
+
+msgid "Text For Previous ..."
+msgstr "Text für Vorherige ..."
+
+msgid "Text For Next ..."
+msgstr "Text für Nächste ..."
+
+msgid "Page Navigation Text"
+msgstr "Seitennavigation Text"
+
+msgid "Leaving a field blank will hide that part of the navigation."
+msgstr ""
+"Um die eine bestimmte Seitennavigation zu verstecken das Feld leer lassen."
+
+msgid "Use pagenavi-css.css"
+msgstr "Verwende pagenavi-css.css"
+
+msgid "Page Navigation Style"
+msgstr "Seitennavigations-Stil"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "Drop-down List"
+msgstr "Dropdown-Liste"
+
+msgid "Always Show Page Navigation"
+msgstr "Seitennavigation immer anzeigen"
+
+msgid "Show navigation even if there's only one page."
+msgstr "Navigation zeigen, auch wenn es nur eine Seite gibt."
+
+msgid "Number Of Pages To Show"
+msgstr "Anzahl der zu zeigenden Seiten"
+
+msgid "Number Of Larger Page Numbers To Show"
+msgstr "Anzahl der größeren Seitenzahlen die angezeigt werden"
+
+msgid ""
+"Larger page numbers are in addition to the normal page numbers. They are "
+"useful when there are many pages of posts."
+msgstr ""
+"Größere Seitenzahlen sind zusätzlich zu den normalen Seitenzahlen. Sie sind "
+"nützlich, wenn es viele Beitragsseiten gibt."
+
+msgid ""
+"For example, WP-PageNavi will display: Pages 1, 2, 3, 4, 5, 10, 20, 30, 40, "
+"50."
+msgstr ""
+"Zum Beispiel wird WP-PageNavi anzeigen: Seiten 1, 2, 3, 4, 5, 10, 20, 30, "
+"40, 50. "
+
+msgid "Enter 0 to disable."
+msgstr "Geben Sie 0 ein, um die Funktion zu deaktivieren."
+
+msgid "Show Larger Page Numbers In Multiples Of"
+msgstr "Zeigen Größere Seitenzahlen in Vielfachen von"
+
+msgid "For example, if mutiple is 5, it will show: 5, 10, 15, 20, 25"
+msgstr ""
+"Wenn beispielsweise Vielfaches von 5 eingegeben wird, wird angezeigt: 5, 10, "
+"15, 20, 25"
+
+msgid "Page Navigation Options"
+msgstr "Seiten-Navigationsoptionen"
+
+msgid "Settings <strong>saved</strong>."
+msgstr "Einstellungen  <strong> gespeichert </ strong>."
+
+msgid "Plugin License"
+msgstr "Plugin-Lizenz"
+
+msgid "License"
+msgstr "Lizenz"
+
+msgid "Page %CURRENT_PAGE% of %TOTAL_PAGES%"
+msgstr "Seite %CURRENT_PAGE% von %TOTAL_PAGES%"
+
+msgid "&laquo; First"
+msgstr "&laquo; Erste"
+
+msgid "Last &raquo;"
+msgstr "Letzte &raquo;"
+
+msgid "&laquo;"
+msgstr "&laquo;"
+
+msgid "&raquo;"
+msgstr "&raquo;"
+
+msgid "..."
+msgstr "..."

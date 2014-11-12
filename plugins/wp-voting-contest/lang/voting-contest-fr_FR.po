@@ -1,0 +1,2080 @@
+# WPML is a WordPress plugin that can turn any WordPress site into a full featured multilingual content management system.
+# http://wpml.org
+msgid ""
+msgstr ""
+"Project-Id-Version: Wpvoting\n"
+"POT-Creation-Date: 2014-04-29 22:58+0530\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.7\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: D:\\web\\htdocs\\voting\\wp-content\\plugins\\wp-voting-"
+"contest\n"
+"X-Poedit-SearchPath-0: D:\\web\\htdocs\\voting\\wp-content\\plugins\\wp-"
+"voting-contest\n"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/delete_custom_field.php:44
+msgid "Contenstant Fields have been successfully deleted."
+msgstr "Les champs Contenstant ont été supprimés avec succès."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/delete_custom_field.php:92
+msgid "Registration Fields have been successfully deleted."
+msgstr "Inscription Les champs ont été supprimés avec succès."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:27
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:210
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:12
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:132
+msgid "Click to toggle"
+msgstr "Cliquez pour basculer"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:30
+msgid "Edit Contestant Custom Fields"
+msgstr "Modifier Concurrent champs personnalisés"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:39
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:222
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:22
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:142
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:109
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:439
+msgid "Field Name"
+msgstr "Nom du champ"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:44
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:227
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:26
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:147
+msgid "Custom Field name"
+msgstr "Nom de champ personnalisé"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:50
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:233
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:31
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:152
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:116
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:446
+msgid "Type"
+msgstr "type"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:55
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:238
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:36
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:157
+msgid "Text"
+msgstr ""
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:56
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:239
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:37
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:158
+#, fuzzy
+msgid "Text Area"
+msgstr "Texte pour la page"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:57
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:240
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:38
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:159
+#, fuzzy
+msgid "Radio Button"
+msgstr "Désactiver Lire la suite Bouton"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:58
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:241
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:39
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:160
+msgid "Drop Down"
+msgstr ""
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:59
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:242
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:40
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:161
+msgid "Checkbox"
+msgstr ""
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:64
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:248
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:45
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:166
+msgid "Type of the Custom Field"
+msgstr "Type de champ personnalisé"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:74
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:255
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:50
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:171
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:112
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:442
+msgid "Values"
+msgstr "valeurs"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:79
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:260
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:54
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:175
+msgid "A comma seperated list of values. Eg. black, blue, red"
+msgstr "Une virgule liste de valeurs seperated. Par exemple. noir, bleu, rouge"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:85
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:266
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:119
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:449
+msgid "Required"
+msgstr "requis"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:90
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:94
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:110
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:129
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:271
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:275
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:296
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:6
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:126
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:106
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:121
+msgid "Yes"
+msgstr ""
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:91
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:111
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:114
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:130
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:133
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:272
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:297
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:300
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:7
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:127
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:106
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:121
+msgid "No"
+msgstr ""
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:98
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:65
+msgid "Mark this question as required (Mandatory)."
+msgstr "Cochez cette question selon les besoins (obligatoire)."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:104
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:70
+msgid "Show in contestant form"
+msgstr "Afficher sous forme candidat"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:118
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:75
+msgid ""
+"YES: Shows custom field in contestant form.  NO: Shows custom field in admin "
+"only"
+msgstr ""
+"OUI: Affiche champ personnalisé sous forme candidat. NO: Affiche champ "
+"personnalisé dans l'admin seulement"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:124
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:81
+msgid "Show in Contest description page"
+msgstr "Voir dans la page de description du concours"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:138
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:86
+msgid "YES: Shows custom field details in Contestant description page."
+msgstr ""
+"OUI: Affiche les détails de champs personnalisés dans la page de description "
+"Concurrent."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:146
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:317
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:92
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:200
+msgid "Required Text"
+msgstr "Text obligatoire"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:150
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:321
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:96
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:204
+msgid "Text to display if field is empty. (Validation Error Message)"
+msgstr ""
+"Texte à afficher si le champ est vide. (Validation des messages d'erreur)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:156
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:327
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:101
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:209
+msgid "Order/Sequence"
+msgstr "Commande / Séquence"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:161
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:332
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:105
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:213
+msgid ""
+"Order the view of the field by numeric values Ex:(Entering 1- will show "
+"first, 2- will be shown second.. etc)"
+msgstr ""
+"Commandez la vue sur le terrain par des valeurs numériques Ex: (Entrée 1 - "
+"montrera premier, 2 - on le verra deuxième .. etc)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:171
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:342
+msgid "Update Field"
+msgstr "Mise à jour de champ"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:181
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:352
+msgid "Nothing found!"
+msgstr "Rien trouvé!"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:213
+msgid "Edit Registration Fields"
+msgstr "Les champs Modifier l'inscription"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:279
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:186
+msgid "Mark this question as required. (Mandatory)"
+msgstr "Cochez cette question au besoin. (Obligatoire)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:288
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:191
+msgid "Show in Registration form"
+msgstr "Afficher sous forme d'enregistrement"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/edit_custom_field.php:308
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:195
+msgid "YES: Shows custom field in Registration form. "
+msgstr "OUI: Affiche champ personnalisé sous forme d'enregistrement."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/insert_custom_field.php:27
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/insert_custom_field.php:29
+msgid "The Custom Field "
+msgstr "Le champ personnalisé"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/insert_custom_field.php:27
+msgid "has been added."
+msgstr "ont été ajoutées."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/insert_custom_field.php:29
+msgid "was not saved."
+msgstr "n'a pas été enregistré."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/insert_custom_field.php:35
+msgid "Please enter the title for custom field."
+msgstr "S'il vous plaît entrez le titre de champ personnalisé."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/insert_custom_field.php:66
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/insert_custom_field.php:68
+msgid "The Registration Field"
+msgstr "Le champ d'enregistrement"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/insert_custom_field.php:66
+msgid " has been added."
+msgstr "ont été ajoutées."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/insert_custom_field.php:68
+msgid "  was not saved. "
+msgstr "n'a pas été enregistré."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/insert_custom_field.php:74
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/update_custom_field.php:27
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/update_custom_field.php:57
+msgid "Please enter the title for custom field. "
+msgstr "S'il vous plaît entrez le titre de champ personnalisé."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:13
+msgid "Add New Contestant Custom Fields"
+msgstr "Ajouter un nouveau compétiteur champs personnalisés"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:15
+msgid "Add fields using the form below."
+msgstr "Ajouter des champs en utilisant le formulaire ci-dessous."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:22
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:142
+msgid "This field is required"
+msgstr "Ce champ est obligatoire"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:59
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:180
+msgid "Required:"
+msgstr "requis:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:112
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:220
+msgid "Add Custom Fields"
+msgstr "Ajouter des champs personnalisés"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:133
+msgid "Add New Registration Fields"
+msgstr "Ajouter de nouveaux champs d'inscription"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/form_builder/new_custom_field.php:135
+msgid "Add registration fields using the form below."
+msgstr ""
+"Ajoutez des champs d'inscription en utilisant le formulaire ci-dessous."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/move-posts.php:26
+msgid "Contestants Successfully Moved"
+msgstr "Les concurrents passés avec succès"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/move-posts.php:47
+msgid "Required Field Missing"
+msgstr "Champ obligatoire manquant"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/move-posts.php:48
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/move-posts.php:91
+msgid "Move Contestants"
+msgstr "déplacez candidats"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/move-posts.php:53
+msgid "Move Contestants from this Category: "
+msgstr "Déplacez concurrents de cette catégorie:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/move-posts.php:62
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/move-posts.php:86
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:207
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:244
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-purge.php:89
+msgid "Select the Category"
+msgstr "Sélectionnez la catégorie"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/move-posts.php:68
+msgid "List of Contestants in Category"
+msgstr "Liste des candidats dans la catégorie"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/move-posts.php:71
+msgid "Select the Category to get Contestants"
+msgstr "Sélectionnez la catégorie à obtenir concurrents"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/move-posts.php:77
+msgid "To Category "
+msgstr "pour Catégorie"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:228
+msgid "Options saved."
+msgstr "Options de sauvés."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:247
+msgid "Contest Excerpt Options"
+msgstr "Concours options Extrait"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:258
+msgid "Excerpt Length:"
+msgstr "Concours options Extrait"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:266
+msgid "Use words?"
+msgstr "Utilisez des mots?"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:271
+msgid "Ellipsis:"
+msgstr "Points de suspension:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:277
+msgid "Will substitute the part of the post that is omitted in the excerpt."
+msgstr "Remplacera la part de la poste qui est omis dans l'extrait."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:282
+msgid "Finish:"
+msgstr "finition:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:286
+msgid "Word"
+msgstr "mot"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:289
+msgid "Sentence"
+msgstr "phrase"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:291
+msgid ""
+"Prevents cutting a word or sentence at the end of an excerpt. This option "
+"can result in (slightly) longer excerpts."
+msgstr ""
+"Empêche de couper un mot ou une phrase à la fin d'un extrait. Cette option "
+"peut entraîner (légèrement) plus des extraits."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:296
+msgid "&lsquo;Read-more&rsquo; Text:"
+msgstr "&lsquo;Lire la-plus&rsquo; texte:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:302
+msgid "Add link to excerpt"
+msgstr "extraitAjouter un lien à l'extrait"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:307
+msgid "No Custom Excerpts:"
+msgstr "Aucune mesure Extraits:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:311
+msgid "Generate excerpts even if a post has a custom excerpt attached."
+msgstr ""
+"Générer des extraits, même si un poste a un extrait personnalisé ci-joint."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:316
+msgid "Strip Shortcodes:"
+msgstr "Strip Shortcodes:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:320
+msgid "Remove shortcodes from the excerpt. <em>(recommended)</em>"
+msgstr "Retirer shortcodes de l'extrait. <em> (recommandé) </ em>"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:324
+msgid "Keep Markup:"
+msgstr "Gardez Markup:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:331
+msgid "Don't remove any markup"
+msgstr "Ne pas retirer toutes les balises"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:365
+msgid "Select all"
+msgstr "Sélectionner tous"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:366
+msgid "Select none"
+msgstr "Sélectionnez Non"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:367
+msgid "More tags:"
+msgstr "Plus de mots-clés:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:377
+msgid "Add tag"
+msgstr "Ajouter tag"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:382
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-menu.php:43
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/scb/AdminPage.php:255
+msgid "Save Changes"
+msgstr "Enregistrer les modifications"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:393
+msgid "Advanced Excerpt Options"
+msgstr "Options avancées Extrait"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-advanced-excerpt.php:393
+msgid "Excerpt"
+msgstr "extrait"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-content.php:93
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-content.php:95
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-content.php:97
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:284
+msgid "Category:"
+msgstr "Catégorie:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-content.php:138
+msgid "Additional Information"
+msgstr "Informations complémentaires"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-content.php:279
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:426
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-metabox.php:15
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:505
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:224
+msgid "Votes"
+msgstr "votes"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-content.php:313
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-content.php:320
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-content.php:326
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:531
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:542
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:548
+msgid "Voted"
+msgstr "voté"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-content.php:315
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-content.php:322
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-content.php:328
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:534
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:544
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:550
+msgid "Vote Now"
+msgstr "voter maintenant"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-content.php:387
+msgid "Previous Post"
+msgstr "previous Post"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-content.php:387
+msgid "Next Post"
+msgstr "Next Post"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:30
+msgid "Manage Contestant Custom Fields"
+msgstr "Gérer Concurrent champs personnalisés"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:33
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:202
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:360
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:522
+msgid "Add New Field"
+msgstr "Ajouter un nouveau champ"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:58
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:72
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:90
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:386
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:401
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:421
+msgid "This function is not available."
+msgstr "Cette fonction n'est pas disponible."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:123
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:452
+msgid "Show in Form"
+msgstr "Afficher dans le formulaire"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:127
+msgid "Show in Description"
+msgstr "Voir dans la description"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:130
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:455
+msgid "Order Sequence"
+msgstr "afin séquence"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:168
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:487
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:391
+msgid "Edit"
+msgstr "Modifier"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:170
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:490
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-purge.php:96
+msgid "Delete"
+msgstr "effacer"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:198
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:518
+msgid "Check All"
+msgstr "Cocher tout"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:201
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:521
+msgid "Delete Field"
+msgstr "supprimer le champ"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:221
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:541
+msgid "Please add a field name"
+msgstr "S'il vous plaît ajouter un nom de domaine"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:222
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:542
+msgid "Please add a list of values for the field"
+msgstr "S'il vous plaît ajouter une liste de valeurs pour le champ"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:238
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:559
+msgid "Live Search Filter"
+msgstr "Live Search Filtre"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:239
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:560
+msgid "No Records Found!"
+msgstr "Aucun résultat trouvé!"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:312
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:631
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-logs.php:226
+msgid "Are you sure want to delete?"
+msgstr "Êtes-vous sûr de vouloir supprimer?"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:316
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:635
+msgid "Select atleast one field to delete!"
+msgstr "Sélectionner au moins un champ à supprimer!"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-contestant-custom.php:357
+msgid "Manage Registration Custom Fields"
+msgstr "Gestion des inscriptions des champs personnalisés"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:150
+msgid "Error in Uploading"
+msgstr "Erreur dans Téléchargement"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:154
+msgid "Invalid File format"
+msgstr "Format de fichier incorrect"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:158
+msgid "Invalid category."
+msgstr "Catégorie valide."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:164
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:668
+msgid "Import Contestants"
+msgstr "importation candidats"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:166
+msgid "Steps to Import Contestants"
+msgstr "Étapes à suivre pour l'importation candidats"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:168
+msgid "Prepare your Contestants CSV file in the format given below."
+msgstr "Préparez votre dossier concurrents CSV dans le format ci-dessous."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:170
+msgid "Choose Category."
+msgstr "Choisir une catégorie."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:171
+msgid "Note: New Category can be created in this page"
+msgstr "Remarque: Nouvelle catégorie peut être créé dans cette page"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:171
+msgid "Add Category"
+msgstr "Ajouter une catégorie"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:172
+msgid "Upload the CSV file using the form and click upload"
+msgstr ""
+"Téléchargez le fichier CSV en utilisant le formulaire et cliquez sur "
+"Télécharger"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:181
+msgid "Sample file Data"
+msgstr "Les données du fichier de l'échantillon"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:183
+msgid "\"contest_title\",\"contest_content\",\"featured_image_url\""
+msgstr "\"contest_title\",\"contest_content\",\"featured_image_url\""
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:184
+msgid ""
+"\"pagetitle1\",\"pagecontent\",\"http://i0.kym-cdn.com/entries/icons/"
+"original/000/007/263/photo_cat2.jpg\""
+msgstr ""
+"\"pagetitle1\",\"pagecontent\",\"http://i0.kym-cdn.com/entries/icons/"
+"original/000/007/263/photo_cat2.jpg\""
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:185
+msgid "\"pagetitle2\",\"pagecontent\",\"\""
+msgstr "\"pagetitle2\",\"pagecontent\",\"\""
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:186
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:187
+msgid "."
+msgstr "."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:188
+msgid "<u>Required Fields</u>: contest_title"
+msgstr "<u> Champs obligatoires </ u>: contest_title"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:189
+msgid "<b>Note:</b> column values should be seperated by comma."
+msgstr ""
+" <b>Remarque: </ b> les valeurs des colonnes doivent être séparées par des "
+"virgules."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:190
+#, fuzzy
+msgid ""
+"First line of the CSV file should be <b>\"contest_title\",\"contest_content"
+"\",\"featured_image_url\""
+msgstr ""
+"La première ligne du fichier CSV doit être <b>\"contest_title\","
+"\"contest_content\",\"featured_image_url\"   "
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:191
+msgid "By Default <b>votes</b> will be 0"
+msgstr "Par les votes de défaut </ b> sera 0"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:192
+msgid "By Default <b>Expiration Date</b> will be 0"
+msgstr "Par défaut <b> Date d'expiration </ b> sera de 0"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:199
+msgid "Choose a Category for the Contestants"
+msgstr "Choisissez une catégorie pour les candidats"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:211
+msgid "Choose a file from your computer"
+msgstr "Choisissez un fichier de votre ordinateur"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:215
+msgid "Upload file and import"
+msgstr "Télécharger le fichier et l'importation"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:228
+msgid "Export Contestant Details"
+msgstr "Exportation Concurrent Détails"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:231
+msgid "Please select the contest you want to export."
+msgstr "S'il vous plaît sélectionner le concours que vous souhaitez exporter."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:235
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-purge.php:80
+msgid "Select the Contest"
+msgstr "Sélectionnez le concours"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:250
+msgid "Export"
+msgstr "Export"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-csv.php:260
+msgid "Select the category to export"
+msgstr "Sélectionnez la catégorie à exporter"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:41
+msgid "Select All"
+msgstr "Sélectionner tout"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:370
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:386
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:661
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:1188
+msgid "Contestants"
+msgstr "Les participants"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:387
+msgid "Contest"
+msgstr "concours"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:388
+msgid "Contests"
+msgstr "Concours"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:389
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:664
+msgid "Add Contestant"
+msgstr "Ajouter Concurrent"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:390
+msgid "Add New Contestant"
+msgstr "Ajouter un nouveau candidat"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:392
+msgid "Edit Contestant"
+msgstr "Modifier Concurrent"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:393
+msgid "New Contestant"
+msgstr "nouveau Concurrent"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:394
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:395
+msgid "View Contestant"
+msgstr "Voir Concurrent"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:396
+msgid "Search Contestant"
+msgstr "Recherche Concurrent"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:397
+msgid "No Contestants Found"
+msgstr "Pas de candidats trouvés"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:398
+msgid "No Contestants Found in Trash"
+msgstr "Pas de candidats trouvés dans la poubelle"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:410
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:425
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:659
+msgid "Contest Category"
+msgstr "concours Catégorie"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:423
+msgid "Featured Image"
+msgstr "Photo descriptive"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:424
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-logs.php:93
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1097
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:219
+msgid "Title"
+msgstr "titre "
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:427
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:218
+msgid "Date"
+msgstr "date"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:436
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:223
+msgid "ID"
+msgstr "ID"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:437
+msgid "Start Time"
+msgstr "Heure de début"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:438
+msgid "End Time"
+msgstr "Heure de fin"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:439
+msgid "Name"
+msgstr "nom"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:440
+msgid "Description"
+msgstr "Description"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:441
+msgid "Slug"
+msgstr "Slug"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:442
+msgid "Voting Contest"
+msgstr "Concours de vote"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:496
+msgid "Uncategorized"
+msgstr "Non classé "
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:657
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:2
+msgid "Overview"
+msgstr "vue d'ensemble"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:666
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:1190
+msgid "Move Contestant"
+msgstr "déplacez Concurrent"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:668
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:1191
+msgid "Import Contestant"
+msgstr "Importer Concurrent"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:670
+msgid "Export Contestants"
+msgstr "Les participants à l'exportation"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:670
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:1192
+msgid "Export Contestant"
+msgstr "exportation Concurrent"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:672
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-purge.php:62
+msgid "Clear Voting Entries"
+msgstr "Effacer les entrées de vote"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:674
+msgid "Contestant fields"
+msgstr "concurrent champs"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:676
+msgid "Registration fields"
+msgstr "Champs d'inscription"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:678
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-logs.php:76
+msgid "Voting Logs"
+msgstr "vote des journaux "
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:680
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/scb/AdminPage.php:448
+msgid "Settings"
+msgstr "paramètres "
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:1189
+msgid "Add Contestants"
+msgstr "Ajouter candidats "
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:1193
+msgid "Vote Log"
+msgstr "voter Connexion "
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-init.php:1194
+msgid "Contestant Form Builder"
+msgstr "Concurrent Form Builder "
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-logs.php:64
+#, fuzzy
+msgid "Vote Entry deleted successfully"
+msgstr "voté avec succès"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-logs.php:98
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:217
+msgid "Author"
+msgstr "auteur "
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-logs.php:102
+msgid "Voter"
+msgstr "électeur "
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-logs.php:106
+msgid "Vote Date"
+msgstr "date de vote"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-logs.php:112
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-logs.php:159
+#, fuzzy
+msgid "Delete Vote"
+msgstr "effacer"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-logs.php:169
+#, fuzzy
+msgid "No Vote Entries Found"
+msgstr "Pas de candidats trouvés"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-logs.php:183
+msgid "Logs Per Page"
+msgstr ""
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-menu.php:8
+msgid "Plugin License Options"
+msgstr "Options de licence Plugin"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-menu.php:17
+msgid "License Key"
+msgstr "Voir simultanées"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-menu.php:21
+msgid "Enter your license key"
+msgstr "Entrez votre clé de licence"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-menu.php:27
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-menu.php:36
+msgid "Activate License"
+msgstr "activer la licence"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-menu.php:31
+msgid "active"
+msgstr "actif"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-metabox.php:33
+msgid "Select the Expiration Date  "
+msgstr "Sélectionnez la date d'expiration"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-metabox.php:35
+msgid "No Expiry"
+msgstr "Pas d'expiration"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-metabox.php:35
+msgid "for no expiration"
+msgstr "sans expiration"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-metabox.php:41
+msgid "Votes For this Contestant"
+msgstr "Votes pour ce candidat"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-metabox.php:48
+msgid "Custom Fields"
+msgstr "Champs personnalisés"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:12
+#, fuzzy
+msgid "Version"
+msgstr "Version"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:12
+msgid "Online Documentation"
+msgstr "Documentation en ligne"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:13
+msgid "Example of all shortcode usage:"
+msgstr "Exemple de toute utilisation de shortcode:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:15
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:48
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:56
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:63
+msgid "Attributes that can be passed to this shortcode are as follows:"
+msgstr "Attributs qui peuvent être transmis à ce shortcode sont les suivantes:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:18
+msgid "(Note: To specify the Orderby of the Contestant Listing)"
+msgstr "(Remarque: Pour spécifier le Orderby de la liste des candidat)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:19
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:21
+msgid "(Note: To specify the Order of the Contestant Listing)"
+msgstr "(Remarque: Pour spécifier l'ordre de la liste de candidat)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:20
+msgid ""
+"(Note: To specify the Number of Contestants displayed per page in the "
+"Contest Listing)"
+msgstr ""
+"(Remarque: Pour spécifier le nombre de candidats affichés par page dans la "
+"liste des concours)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:22
+msgid ""
+"(Note: To specify whether the thumbnail want to get displayed in the Contest "
+"Listing)"
+msgstr ""
+"(Remarque: Pour spécifier si la vignette veulent se affiché dans la liste "
+"des concours)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:23
+msgid "(Note: To specify the Height of the Thumbnail in the Contest Listing)"
+msgstr ""
+"(Remarque: Pour spécifier la hauteur de la Miniature dans la liste des "
+"concours)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:24
+msgid "(Note: To specify the Width of the Thumbnail in the Contest Listing)"
+msgstr ""
+"(Remarque: Pour spécifier la largeur de la Miniature dans la liste des "
+"concours)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:25
+msgid "(Note: To specify the Title of the Contest Listing)"
+msgstr "(Remarque: Pour spécifier le titre de la liste des concours)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:26
+msgid ""
+"(Note: To specify Whether the Terms want to get displayed in the Contest "
+"Listing)"
+msgstr ""
+"(Remarque: Pour spécifier si les termes veulent se affiché dans la liste des "
+"concours)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:27
+msgid ""
+"(Note: To exclude the specified Contests in the Contest Listing, ids "
+"separated by comma)"
+msgstr ""
+"(Remarque: Pour exclure les concours spécifiques dans la liste du concours, "
+"les identifiants séparés par des virgules)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:28
+msgid ""
+"(Note: The contestants will be displayed without pagination if it is set to "
+"0)"
+msgstr ""
+"(Note: Les concurrents seront affichés sans pagination s'il est réglé sur 0)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:29
+msgid ""
+"(Note: To specify Whether the non-loggedin Users able to cast the vote or "
+"not.)"
+msgstr ""
+"(Remarque: Pour spécifier si les utilisateurs non-LoggedIn capables de jeter "
+"le vote ou non.)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:30
+msgid ""
+"(Note: To specify Whether the Start or End timer should be displayed or Not.)"
+msgstr ""
+"(Remarque: Pour spécifier si le départ ou la minuterie de fin doivent être "
+"affichés ou non.)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:31
+msgid ""
+"(Note: To specify Whether the Add Contestant form should be displayed or "
+"Not.)"
+msgstr ""
+"(Remarque: pour spécifier si le formulaire Ajouter un candidat doit être "
+"affiché ou non.)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:32
+msgid ""
+"(Note: The contestants will be displayed both in grid and list by default. "
+"you can specify the grid/list using this shortcode)"
+msgstr ""
+"(Remarque: Les participants seront affichés à la fois dans la grille et "
+"liste par défaut, vous pouvez spécifier la grille / liste en utilisant ce "
+"code court.)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:38
+msgid "Multiple Contestants In Single Page"
+msgstr "Les participants multiples dans une seule page"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:38
+msgid ""
+"Create a page and use showcontestant shortcode multiple times. It will list "
+"multiple contestants in a single page."
+msgstr ""
+"Créer une page et utiliser shortcode showcontestant plusieurs fois. Il "
+"donnera la liste de plusieurs candidats dans une seule page."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:42
+msgid ""
+"(Note: you can use the attributes available for show contestant shortcode.)"
+msgstr ""
+"(Remarque: vous pouvez utiliser les attributs disponibles pour le spectacle "
+"candidat shortcode.)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:51
+msgid ""
+"(Note: To specify the Category of the post for which the Start timer get "
+"displayed.)"
+msgstr ""
+"(Remarque: Pour spécifier la catégorie du poste pour lequel la minuterie de "
+"démarrage se affichée.)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:52
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:67
+msgid "(Note: To specify Whether the Contestants get displayed or not.)"
+msgstr "(Remarque: Pour spécifier si les candidats se affichés ou non.)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:59
+msgid ""
+"(Note: To specify the Category of the post for which the End timer get "
+"displayed.)"
+msgstr ""
+"(Remarque: Pour spécifier la catégorie du poste pour lequel la minuterie de "
+"fin se affichée.)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-overview.php:66
+msgid ""
+"(Note: To specify the Category of the post for which the contestants to be "
+"added.)"
+msgstr ""
+"(Remarque: Pour spécifier la catégorie de l'emploi pour lequel les candidats "
+"à être ajoutés.)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-purge.php:45
+msgid "Vote Entries Deleted"
+msgstr "Voter entrées supprimées"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-purge.php:47
+msgid "No Votes are polled"
+msgstr "Aucun vote sont interrogés"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-purge.php:50
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-purge.php:60
+msgid "Invalid Data"
+msgstr "données invalides"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-purge.php:65
+msgid ""
+"Select the Start and End Date to delete the votes polled between the dates."
+msgstr ""
+"Sélectionnez le début et de fin pour supprimer les suffrages exprimés entre "
+"les dates."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-purge.php:68
+msgid "Select the Start Date"
+msgstr "Sélectionnez la date de début"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-purge.php:74
+msgid "Select the End Date"
+msgstr "Sélectionnez la date de fin"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-save.php:103
+msgid "Contestants not Available"
+msgstr "Les participants non disponible"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-save.php:110
+msgid "Voting Restricted For Multiple Contestant"
+msgstr "Droit de vote restreint Pour Concurrent multiple"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-save.php:114
+msgid "Multiple Votes Not Allowed For Same Contestant"
+msgstr "Votes multiples non autorisés pour le même candidat"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-save.php:118
+msgid "Already Voted"
+msgstr "déjà voté"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-save.php:140
+msgid "Voted Successfully "
+msgstr "voté avec succès"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-save.php:187
+msgid "The username already exists"
+msgstr "Le nom d'utilisateur existe déjà"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-save.php:196
+msgid "Please enter an username"
+msgstr "S'il vous plaît entrer un nom d'utilisateur"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-save.php:204
+msgid "Please enter a password"
+msgstr "Please enter a password"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-save.php:209
+msgid "Passwords do not match"
+msgstr "Les mots de passe ne correspondent pas"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-save.php:218
+msgid "Please enter a valid EMAIL address"
+msgstr "S'il vous plaît entrer une adresse email valide"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-save.php:227
+msgid "This email address has already been used"
+msgstr "Cette adresse email a déjà été utilisée"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-save.php:233
+msgid "Please enter an email address"
+msgstr "S'il vous plaît entrer une adresse e-mail"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-save.php:260
+msgid "Your account has been created."
+msgstr "Votre compte a été créé."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:568
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:595
+msgid "No contestants to display."
+msgstr "Aucun des candidats à afficher."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:757
+#, fuzzy
+msgid "Enter the contestant title"
+msgstr "Exportation Concurrent Détails  "
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:784
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:785
+msgid "Submit Entry"
+msgstr "soumettre l'inscription"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:786
+msgid "Close"
+msgstr "proche"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:799
+msgid "Invalid Save"
+msgstr "Sauvegarder invalide"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:799
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:806
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:814
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:821
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:824
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:839
+msgid "Error"
+msgstr "erreur: "
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:799
+msgid "Some problem in Saving. Please Try Later"
+msgstr "Problème en économie d'énergie. S'il vous plaît essayez plus tard. "
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:806
+msgid "Invalid Title"
+msgstr "Titre invalide"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:806
+msgid "Enter the Contestants Title"
+msgstr "Exportation Concurrent Détails  "
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:814
+msgid "Invalid Description"
+msgstr "fermé Description "
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:814
+msgid "Enter the Contestants Description"
+msgstr "Afficher Concurrent Description: "
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:821
+msgid "Problem in File Upload"
+msgstr "Problème de téléchargement de fichiers"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:824
+#, fuzzy
+msgid "Invalid File Format. (Note: Supported File Formats "
+msgstr ""
+"Format de fichier incorrect. (Remarque: les formats de fichiers pris en "
+"charge"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:905
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1074
+msgid "Error:"
+msgstr "erreur:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:905
+msgid "You Already Submitted "
+msgstr "Vous déjà présenté"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:905
+msgid "Entries."
+msgstr "Entrées."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1074
+msgid " Problem in Saving. Please try it later."
+msgstr "Problème en économie d'énergie. S'il vous plaît essayez plus tard."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1084
+msgid " Contestants Successfully Added. Waiting for Admin Approval."
+msgstr ""
+"Les participants ajouté avec succès. En attente de l'approbation "
+"Administrateur."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1136
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1150
+msgid "Enter the contestant description"
+msgstr "Entrez la description candidat"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1181
+msgid "Image  "
+msgstr "image"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1193
+msgid "Please upload the file"
+msgstr "S'il vous plaît télécharger le fichier"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1342
+msgid "Save"
+msgstr "sauver"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1366
+msgid "Must be a Problem in Displaying Form."
+msgstr "Doit être un problème dans Affichez formulaire."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1418
+msgid "Voting Starts In:"
+msgstr "Le vote commence dans:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1426
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1528
+msgid "weeks"
+msgstr "semaines"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1431
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1533
+msgid "days"
+msgstr "journées"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1437
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1539
+msgid "hours"
+msgstr "heures"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1443
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1545
+msgid "minutes"
+msgstr "procès-verbal"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1449
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1551
+msgid "seconds"
+msgstr "secondes"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1459
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1474
+msgid "No Upcoming Contest"
+msgstr "Pas de concours à venir"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1467
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/votes.php:207
+msgid "Contest already Started."
+msgstr "Concours déjà commencé."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1499
+msgid "Timer Not Available"
+msgstr "Minuteur Non disponible"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1520
+msgid "Contest Ends In:"
+msgstr "Concours termine dans:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1559
+msgid "Contest Ended"
+msgstr "concours terminé"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-shortcode.php:1614
+msgid "Total votes for the Contest"
+msgstr "Total des votes pour le concours"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:21
+msgid "YOU MUST BE REGISTERED AND LOGGED TO CONTINUE"
+msgstr "Vous devez être inscrit et connecté POUR CONTINUER"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:26
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:48
+msgid "CREATE ACCOUNT"
+msgstr "CREER UN COMPTE"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:29
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:51
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:53
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:30
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:65
+msgid "Password"
+msgstr "mot de passe"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:32
+msgid " Remember Me"
+msgstr "Se souvenir de moi"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:33
+msgid "LOG IN"
+msgstr "CONNEXION"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:37
+msgid "FORGOT YOUR PASSWORD?"
+msgstr "MOT DE PASSE OUBLIE?"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:58
+msgid "Email Address"
+msgstr "Adresse e-mail"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:60
+msgid "Your email"
+msgstr "votre e-mail"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:67
+msgid "Your password"
+msgstr "votre mot de passe"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:72
+msgid "Confirm Password"
+msgstr "confirmer mot de passe"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:74
+msgid "Verify password"
+msgstr "vérifier le mot de passe"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:132
+msgid "Select"
+msgstr "sélectionner"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:151
+msgid "CREATE MY ACCOUNT"
+msgstr "CREER MON COMPTE"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:156
+msgid "ALREADY HAVE AN ACCOUNT?"
+msgstr "VOUS AVEZ DÉJÀ UN COMPTE?"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:167
+msgid "FORGOT YOUR DETAILS?"
+msgstr "Oublié vos infos?"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:170
+msgid "Username or E-mail"
+msgstr "Nom d'utilisateur ou adresse e-mail"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:174
+msgid "SEND MY DETAILS!"
+msgstr "ENVOYER MES DÉTAILS!"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:176
+msgid "AAH, WAIT, I REMEMBER NOW!"
+msgstr "AAH, attendez, je me souviens maintenant!"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes-user-registration.php:288
+msgid "Custom Registration Fields"
+msgstr "Les champs d'inscription personnalisée"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:104
+msgid "Settings Updated"
+msgstr "paramètres Mise à jour"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:149
+msgid "Contest Settings"
+msgstr "Paramètres du concours"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:152
+msgid "Image Settings"
+msgstr "Paramètres d'image"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:155
+msgid "Shortcode Contest Image"
+msgstr "Concours de Shortcode image"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:167
+msgid "Contestants Page Image"
+msgstr "Les participants Image de la page"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:182
+msgid "Content Settings"
+msgstr "Paramètres de contenu"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:186
+msgid "Admin Notification"
+msgstr "administrateur notification"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:189
+msgid "Admin notify on contestant entry submission."
+msgstr "Administrateur informer sur présentation d'entrée candidat."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:195
+msgid "Email From Name"
+msgstr "Email De Nom"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:196
+msgid "Admin notification From name. Ex:YourName &lt;name@domain.com&gt;"
+msgstr "Notification Admin Du nom. Ex: YourName <name@domain.com>"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:196
+msgid ""
+"Note: Make sure that you entered \"Email From Name\" in the format <br/"
+">YourName &lt;name@domain.com&gt;. Mail id is needed as in example <br/"
+">Otherwise the mail may not be sent.\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t   "
+msgstr ""
+"Remarque: Assurez-vous que vous avez entré  \"Email De Nom \" dans le format "
+"<br/> YourName <name@domain.com>. Identifiant Mail est nécessaire comme dans "
+"l'exemple <br/> Sinon, le courrier ne peut pas être envoyé"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:202
+msgid "Notification E-Mail Id"
+msgstr "La notification par e-mail ID"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:203
+msgid "Admin notification E-mail Id"
+msgstr "Notification Admin E-mail Id"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:203
+msgid ""
+"Note: If no Email Id is set. Mail will be sent to admin email (Settings-"
+">General\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t   )"
+msgstr ""
+"Remarque: Si aucun Email Id est réglé. Un courrier sera envoyé à l'admin "
+"email (Réglages-> Général\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t   )"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:208
+msgid "Display Title"
+msgstr "affichage Titre"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:209
+msgid "Title."
+msgstr "Titre."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:214
+msgid "Order by"
+msgstr "Classement par"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:220
+msgid "Modified"
+msgstr "modifié"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:221
+msgid "Menu Order"
+msgstr "Menu Order"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:222
+msgid "Parent"
+msgstr "mère"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:228
+msgid "Asc"
+msgstr "asc"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:231
+msgid "Desc"
+msgstr "desc"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:237
+msgid "Disable Sidebar"
+msgstr "désactiver la barre latérale"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:238
+msgid "Disable Sidebar In Contestant Description Page."
+msgstr "Désactiver la barre latérale En Concurrent Description Page."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:242
+msgid "Disable Read More Button"
+msgstr "Désactiver Lire la suite Bouton"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:243
+msgid "Disable Read More Button In Contestant Page."
+msgstr "Désactiver Lire la suite Bouton"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:247
+msgid "Votes Timer Text color"
+msgstr "Votes minuterie couleur du texte"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:252
+msgid "Votes Timer Background color"
+msgstr "Votes minuterie couleur de fond"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:257
+msgid "Contest Options"
+msgstr "options de concours"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:260
+msgid "Voting Permission"
+msgstr "permission de vote"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:263
+msgid "Must be logged in to Vote."
+msgstr "Doit être connecté pour voter."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:269
+msgid "Must be logged in to submit entries."
+msgstr "Doit être connecté pour soumettre des candidatures."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:277
+msgid "Entry Limit Per User"
+msgstr "Limite d'entrée par l'utilisateur"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:278
+msgid ""
+"Limit the number of entries a single contestant may submit. Leave blank for "
+"unlimited entries per contestant."
+msgstr ""
+"Limiter le nombre d'entrées d'un seul candidat peut présenter. Laissez ce "
+"champ vide pour nombre illimité d'entrées par candidat."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:282
+msgid "Title Truncation grid view"
+msgstr "Titre troncature vue de grille"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:283
+msgid "Limit the title characters show on contestant listing (grid view)"
+msgstr ""
+"Limiter les caractères de titre indiquent le candidat offre (voir grille)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:288
+msgid "Title Truncation list view"
+msgstr "Liste Titre de troncature vue"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:289
+msgid "Limit the title characters show on contestant listing (List view)"
+msgstr ""
+"Limiter les caractères de titre indiquent le candidat offre (Voir la liste)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:294
+msgid "Voting Frequency"
+msgstr "Fréquence vote"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:298
+msgid "No Limit"
+msgstr "No Limit"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:299
+msgid "Once every 12 Hours"
+msgstr "Une fois toutes les 12 heures"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:300
+msgid "Once every 24 Hours"
+msgstr "Une fois toutes les 24 heures"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:301
+msgid "Once per Calendar Day"
+msgstr "Une fois par jour civil"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:303
+msgid "Once per Category"
+msgstr "Une fois par Catégorie"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:306
+msgid "Allows to change the Voting Frequency."
+msgstr "Permet de changer la fréquence de vote."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:310
+msgid "User Can Vote For:"
+msgstr "L'utilisateur peut voter pour:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:315
+msgid "Select for Single Contestant<br />Unselect for All Contestants"
+msgstr ""
+"Sélectionnez Simple Concurrent <br /> désélectionner pour tous les candidats"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:319
+msgid "To Be Started Description"
+msgstr "To Be description en route"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:320
+msgid "Start time Description."
+msgstr "Heure de début description."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:323
+msgid "Closed Description"
+msgstr "fermé Description"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:324
+msgid "Closed Description."
+msgstr "Fermé Description."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:327
+msgid "Entries Closed Description"
+msgstr "Entrées fermées description"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:328
+msgid "Entries Closed Description."
+msgstr "Entrées fermées description."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:331
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:334
+msgid "Deactivation Settings"
+msgstr "Paramètres de désactivation"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:335
+msgid "Data will get retained after Deactivation."
+msgstr "Les données seront conservées après la désactivation se."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:342
+msgid "Facebook Sharing"
+msgstr "Facebook partage"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:345
+msgid "Facebook Share"
+msgstr "Facebook Partager"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:348
+msgid "Enable Facebook Sharing."
+msgstr "Activer Facebook Partage."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:358
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:388
+msgid "Suggested Image Size is max 105px width - max 36px height."
+msgstr ""
+"Suggérée Taille de l'image est au maximum de 105px de largeur - hauteur max "
+"de 36px."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:359
+msgid "Upload image to change the default facebook image."
+msgstr "Téléchargez l'image pour changer l'image par défaut de facebook."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:367
+msgid "Use default Facebook image."
+msgstr "Utilisez l'image par défaut Facebook."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:373
+msgid "Twitter Sharing"
+msgstr "Twitter partage"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:376
+msgid "Twitter Share"
+msgstr "Twitter Partager"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:378
+msgid "Enable Twitter Sharing."
+msgstr "Activer le partage Twitter."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:387
+msgid "Upload image to change the default tweet image."
+msgstr "Téléchargez l'image pour changer l'image de bip par défaut."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:395
+msgid "Use default Twitter image."
+msgstr "Utilisez l'image Twitter par défaut."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:403
+msgid "Turn Off the Loading Scripts"
+msgstr "Désactiver les scripts de chargement"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:407
+msgid "Jquery"
+msgstr "jquery"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:409
+msgid "Disable Jquery from Loading."
+msgstr "Désactiver Jquery de chargement."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:414
+msgid "Jquery Cookie"
+msgstr "jquery Cookie"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:416
+msgid "Disable Jquery Cookie from Loading."
+msgstr "Désactiver Jquery Cookie de chargement."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:421
+msgid "FancyBox"
+msgstr "FancyBox"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:423
+msgid "Disable FancyBox from Loading."
+msgstr "Désactiver FancyBox de chargement."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:428
+msgid "Pretty Photo"
+msgstr "jolie photo"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:430
+msgid "Disable Pretty Photo from Loading."
+msgstr "Désactiver Jolie photo de chargement."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:435
+msgid "Jquery Validate"
+msgstr "jquery Valider"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:437
+msgid "Disable Validate jquery plugin from Loading."
+msgstr "Désactiver Valider plugin jQuery de chargement."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votes_settings.php:447
+msgid "Update"
+msgstr "mettre à jour"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:28
+msgid "Video Contest: "
+msgstr "Concours vidéo:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:31
+msgid ""
+"Image Field will not be shown in Front end Add Contestant (Submit Entries)."
+msgstr ""
+"Champ de l'image ne ​​sera pas affiché en frontal Ajouter Concurrent (Envoyer "
+"entrées)."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:36
+msgid "Display Image: "
+msgstr "Affichage Image:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:39
+msgid "Display Featured Image in Contestant Listing."
+msgstr "Afficher l'image en vedette dans Concurrent annonce."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:44
+msgid "Hide Vote Count: "
+msgstr "Masquer le nombre de votes:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:47
+msgid "Hide Vote Count in Contestant Listing and Description Page."
+msgstr "Masquer le nombre de votes en Concurrent liste et la description page."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:52
+msgid "Display Categories: "
+msgstr "Afficher les catégories:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:55
+msgid "Displays Categories in Contestant Listing."
+msgstr "Affiche Catégories dans Concurrent annonce."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:62
+msgid "Show Total Vote Count: "
+msgstr "Afficher totale Vote Count:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:65
+msgid "Displays Total Vote Count Of Category Below Contest Timer."
+msgstr ""
+"Affiche totale comte de vote de catégorie ci-dessous concours minuterie."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:72
+msgid "Select Start Time: "
+msgstr "Sélectionnez Heure de départ:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:75
+msgid "Default: No Start Time"
+msgstr "Par défaut: Non Heure de début"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:80
+msgid "Select End Time: "
+msgstr "Sélectionnez Heure de fin:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:83
+msgid "Default: No Expiration"
+msgstr "Par défaut: Pas d'expiration"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:89
+msgid "Activation Count: "
+msgstr "Nombre d'activation:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:92
+msgid "Number of Contestants to be reached to make it Active."
+msgstr "Nombre de concurrents à atteindre pour le rendre actif."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:101
+msgid "Middle Button on Custom Post Navigation: "
+msgstr "Bouton du milieu sur commande de navigation du message:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:104
+msgid "Enter Valid URL"
+msgstr "Entrez URL valide"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:105
+msgid "Enter the URL of your main contest page (sets the :: button URL)"
+msgstr ""
+"Entrez l'URL de votre page de concours principal (définit le :: bouton URL)"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:121
+#, fuzzy
+msgid "Show Contestant Description: "
+msgstr "Afficher Concurrent Description:"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/includes/votescategory-metabox.php:132
+msgid ""
+"Select options to show contestant descriptions in the Corresponding view"
+msgstr ""
+"Sélectionnez les options pour afficher les descriptions de concurrent dans "
+"la vue correspondante"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:9
+msgid "Contest PageNavi Settings"
+msgstr "Paramètres Pagenavi concours"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:10
+msgid "Contest PageNavi"
+msgstr "concours PageNavi"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:29
+msgid "Text For Number Of Pages"
+msgstr "Texte pour le nombre de pages"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:34
+msgid "The current page number."
+msgstr "Le numéro de page en cours."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:35
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:59
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:67
+msgid "The total number of pages."
+msgstr "Le nombre total de pages."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:39
+msgid "Text For Current Page"
+msgstr "Texte pour la page"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:43
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:51
+msgid "The page number."
+msgstr "Le numéro de page."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:47
+msgid "Text For Page"
+msgstr "Texte pour la page"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:55
+msgid "Text For First Page"
+msgstr "Texte pour la première page"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:63
+msgid "Text For Last Page"
+msgstr "Texte Pour Dernière page"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:71
+msgid "Text For Previous Page"
+msgstr "Pour texte Page Précédente"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:77
+msgid "Text For Next Page"
+msgstr "Pour texte Page suivante"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:83
+msgid "Text For Previous ..."
+msgstr "Pour texte précédent ..."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:89
+msgid "Text For Next ..."
+msgstr "Texte pour la prochaine ..."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:96
+msgid "Page Navigation Text"
+msgstr "Navigation texte"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:97
+msgid "Leaving a field blank will hide that part of the navigation."
+msgstr "Laisser un champ vide permet de masquer la partie de la navigation."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:103
+msgid "Use pagenavi-css.css"
+msgstr "Utilisez pagenavi-css.css"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:110
+msgid "Page Navigation Style"
+msgstr "Navigation texte"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:113
+msgid "Normal"
+msgstr ""
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:113
+msgid "Drop-down List"
+msgstr ""
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:118
+msgid "Always Show Page Navigation"
+msgstr "Toujours afficher la page de navigation"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:122
+msgid "Show navigation even if there's only one page."
+msgstr "Afficher la navigation même s'il n'y a qu'une seule page."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:126
+msgid "Number Of Pages To Show"
+msgstr "Nombre de pages à afficher"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:133
+msgid "Number Of Larger Page Numbers To Show"
+msgstr "Nombre de grands nombres de page pour afficher"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:138
+msgid ""
+"Larger page numbers are in addition to the normal page numbers. They are "
+"useful when there are many pages of posts."
+msgstr ""
+"Les numéros de pages sont plus grandes, en plus des numéros de pages "
+"normales. Ils sont utiles quand il ya beaucoup de pages de messages."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:139
+msgid ""
+"For example, WP-PageNavi will display: Pages 1, 2, 3, 4, 5, 10, 20, 30, 40, "
+"50."
+msgstr ""
+"Par exemple, WP-PageNavi affiche: Pages 1, 2, 3, 4, 5, 10, 20, 30, 40, 50."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:140
+msgid "Enter 0 to disable."
+msgstr "Entrez 0 pour désactiver."
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:144
+msgid "Show Larger Page Numbers In Multiples Of"
+msgstr "Montrer un plus grand nombre de pages en multiples de"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:149
+msgid "For example, if mutiple is 5, it will show: 5, 10, 15, 20, 25"
+msgstr "Par exemple, si mutiple est 5, il apparaît: 5, 10, 15, 20, 25"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/admin.php:154
+msgid "Page Navigation Options"
+msgstr "Options de la page de navigation"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/scb/AdminPage.php:228
+msgid "Settings <strong>saved</strong>."
+msgstr ""
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/scb/AdminPage.php:426
+#, fuzzy
+msgid "Plugin License"
+msgstr "Options de licence Plugin"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/scb/AdminPage.php:426
+msgid "License"
+msgstr "licence "
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/wp-pagenavi.php:10
+msgid "Page %CURRENT_PAGE% of %TOTAL_PAGES%"
+msgstr "La page% CURRENT_PAGE% de% TOTAL_PAGES%"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/wp-pagenavi.php:13
+msgid "&laquo; First"
+msgstr "&laquo; première"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/wp-pagenavi.php:14
+msgid "Last &raquo;"
+msgstr "dernière &raquo;"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/wp-pagenavi.php:15
+msgid "&laquo;"
+msgstr "&laquo;"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/wp-pagenavi.php:16
+msgid "&raquo;"
+msgstr "&laquo;"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/wp-pagenavi.php:17
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/pagination/wp-pagenavi.php:18
+msgid "..."
+msgstr "&laquo;"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/votes.php:205
+msgid "Contest not yet open for voting"
+msgstr "CONCOURS pas encore ouvert pour le vote"
+
+#: D:\web\htdocs\voting\wp-content\plugins\wp-voting-contest/votes.php:206
+msgid "There is no Contest at this time"
+msgstr "Il n'ya pas de concours en ce moment"
+
+#~ msgid "Votes."
+#~ msgstr "Votes"
+
+#~ msgid "Invalid File"
+#~ msgstr "fichier invalide"
+
+#~ msgid "Invalid File Format"
+#~ msgstr "Format de fichier incorrect"
+
+#~ msgid "please enter numeric values"
+#~ msgstr "s'il vous plaît entrer les valeurs numériques"
+
+#~ msgid "The page number"
+#~ msgstr "Le numéro de page."

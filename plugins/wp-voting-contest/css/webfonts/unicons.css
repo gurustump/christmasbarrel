@@ -1,0 +1,30 @@
+@font-face {
+	font-family: 'unicons';
+	src:url('./unicons.eot');
+	src:url('./unicons.svg') format('svg'),
+		url('./unicons_162a16fe.eot') format('embedded-opentype'),
+		url('./unicons.woff') format('woff'),
+		url('./unicons.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+.voteicon-select-left, .voteicon-large-thumbnails, .voteicon-select-right {
+	font-family: 'unicons';
+	font-style: normal;
+	speak: none;
+	font-weight: normal;
+	-webkit-font-smoothing: antialiased;
+}
+
+.voteicon-select-right:before {
+	content: "\e028";
+}
+.voteicon-select-left:before {
+	content: "\e029";
+}
+
+.voteicon-large-thumbnails:before {
+	content: "\e060";
+}
