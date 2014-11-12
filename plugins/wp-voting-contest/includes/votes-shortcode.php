@@ -350,9 +350,9 @@ if (!function_exists('wp_votes_generate_contestants')) {
 							if($option['short_cont_image']=='')
 							$option['short_cont_image'] = 'thumbnail';
 							$image1 = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), $option['short_cont_image']);
-							$image_alt_text=votes_seo_friendly_alternative_text(get_the_title());
+							$image_alt_text=votes_seo_friendly_alternative_text(get_the_title());														$bigimg_arr = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'large');
                             $bigimg = wp_get_attachment_url(get_post_thumbnail_id(get_the_ID())).'?'.uniqid();
-							$image = "<a class='thumb' id='gallery_".get_the_ID()."' alt='".$pretty_excerpt."<input type=hidden class=voteid value=".get_the_ID()." />' href=".$bigimg." data-gal='prettyPhoto[$categories_str]'><img alt='".$image_alt_text."' src=".$image1[0]." width=".$image1[1]." height=".$image1[2]." class='left-img-thumb' longdesc='".get_permalink(get_the_ID())."' /></a>";
+							$image = "<a class='thumb' id='gallery_".get_the_ID()."' alt='".$pretty_excerpt."<input type=hidden class=voteid value=".get_the_ID()." />' href=".$bigimg_arr[0]." data-gal='prettyPhoto[$categories_str]'><img alt='".$image_alt_text."' src=".$image1[0]." width=".$image1[1]." height=".$image1[2]." class='left-img-thumb' longdesc='".get_permalink(get_the_ID())."' /></a>";
 												
 						} else {
 						

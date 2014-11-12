@@ -135,11 +135,26 @@ get_header();
 				</div>
 
 			</div>
-			<h3 class="sbfp_title">2013<span class="green">Calendar</span></h3>
+			<h3 class="sbfp_title">2014<span class="green">Calendar</span></h3>
 			<div class="section_frontPage">
 				<ul  class="vid-nav">
 					<?php 
 						$catAdvent = get_term_by('slug','advent','category');
+						$cat2014 = get_term_by('slug','2014','category');
+						$posts2014_query = get_posts( array( 'posts_per_page' => -1, 'category__and' => array($catAdvent->term_id, $cat2014->term_id) ) );  
+					?>
+					
+					<?php foreach($posts2014_query as $post) { ?>
+					<li>
+						<?php echo customPostVideoThumbnail(get_the_ID(),'vid-thumb'); ?>
+					</li>
+					<?php } ?>
+				</ul>
+			</div>
+			<h3 class="sbfp_title">2013<span class="green">Calendar</span></h3>
+			<div class="section_frontPage">
+				<ul  class="vid-nav">
+					<?php 
 						$cat2013 = get_term_by('slug','2013','category');
 						$posts2013_query = get_posts( array( 'posts_per_page' => -1, 'category__and' => array($catAdvent->term_id, $cat2013->term_id) ) );  
 					?>

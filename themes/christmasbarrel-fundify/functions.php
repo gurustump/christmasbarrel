@@ -49,13 +49,13 @@ function customPostVideoThumbnail($postID,$size) {
 		$thisThumbnail .= $truncatedTitle;
 		$thisThumbnail .= '</span></a>';
 		$thisThumbnail .= '<div class="info-box">';
-		$thisThumbnail .= '<div class="advent-number">'.get_post_meta($postID,'chrbar_advent_number',true).'</div>';
+		$thisThumbnail .= '<div class="advent-number"><span class="num">'.get_post_meta($postID,'chrbar_advent_number',true).'</span> <span class="sub">days \'til Christmas</span></div>';
 		$thisThumbnail .= '<div class="info-box-content"><h3>'.get_the_title($postID).'</h3>';
 		$thisThumbnail .= '<div class="description">'.get_the_excerpt($postID).'</div></div>';
 		$thisThumbnail .= '</div>';
 		return $thisThumbnail;
 	} else {
-		return '<div class="advent-number">'.get_post_meta($postID,'chrbar_advent_number',true).'</div>';
+		return '<div class="advent-number">'.get_post_meta($postID,'chrbar_advent_number',true).' <span class="sub">day'.(get_post_meta($postID,'chrbar_advent_number',true) == 1 ? '':'s').' \'til Christmas</span></div>';
 	}
 }
 
