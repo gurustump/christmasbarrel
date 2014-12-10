@@ -24,7 +24,7 @@
 	<!--[if lt IE 9]>
 	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script>
 	<![endif]-->
-
+	<?php echo is_front_page() ? '<meta property="og:image" content="'.get_stylesheet_directory_uri().'/img/Logoweb2014-fb.jpg" />':''; ?>
 	<?php wp_head(); ?>
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -61,9 +61,11 @@
 				<span class="count"><?php echo $days; ?></span>	
 				<span class="label">Days 'til Christmas</span>
 			</h2>
-			<a href="<?php echo get_bloginfo('url') . '/' ?>">
-				<img class="header_logo" src="<?php echo get_stylesheet_directory_uri(); ?>/img/Logoweb2014.jpg" alt="A Christmas Barrel" />
-			</a>
+			<?php echo is_front_page()?'<h1':'<div'; ?> class="header_logo">
+				<a href="<?php echo get_bloginfo('url') . '/' ?>">
+					<?php /* <img class="header_logo" src="<?php echo get_stylesheet_directory_uri(); ?>/img/Logoweb2014.jpg" alt="A Christmas Barrel" /> */ ?>
+				</a>
+			<?php echo is_front_page()?'</h1>':'</div>'; ?>
 
 
 

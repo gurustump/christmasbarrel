@@ -71,10 +71,10 @@ html.christmasbarrel body.fixed-header.admin-bar #header {
 #header.mini {
 	padding:5px 0;
 }
-#header.mini .header_logo {
-	width:115px;
-	padding-top:5px;
-	padding-left:4px;
+#header.mini .header_logo {
+	width:115px;	height:36px;
+	padding-top:5px;
+	padding-left:4px;
 }
 #header.mini .days-til {
 	font-size:12px;
@@ -110,7 +110,7 @@ html.christmasbarrel body.fixed-header.admin-bar #header {
 }
 body.home .vid-nav {
 	margin-bottom:25px;
-}
+}body.home .video-container iframe,body.home .video-container object,body.home .video-container embed {	max-height:none;}
 .vid-nav > li {
 	display:inline-block;
 	position:relative;
@@ -299,12 +299,12 @@ body.home .vid-nav {
 	
 }
 
-.header_logo {
-	padding-left:28px;
-	border: 0px;
-	position:relative;
-	z-index:1;
-}
+.header_logo {
+	padding-left:28px;
+	border: 0px;
+	position:relative;
+	z-index:1;	float:left;	width:371px;	height:100px;}.header_logo a {	width:100%;	height:100%;	display:block;	background:url(img/Logoweb2014.jpg) no-repeat;	background-size:contain;
+}#header.mini .header_logo a {	width:115px;	height:36px;	background-size:cover;}
 
 /* Static Header */
 #home-page-featured-static {

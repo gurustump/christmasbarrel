@@ -108,17 +108,12 @@ get_header();
 
 
 
-*/ ?>
-			
-			
+*/ ?>					<?php 						$catAdvent = get_term_by('slug','advent','category');						$cat2014 = get_term_by('slug','2014','category');						$posts2014_query = get_posts( array( 'posts_per_page' => -1, 'category__and' => array($catAdvent->term_id, $cat2014->term_id) ) );  												foreach($posts2014_query as $post) {							if ($latestVideo) {								if (get_post_meta(get_the_ID,'chrbar_advent_number',true) < get_post_meta($latestVideo->ID,'chrbar_advent_number',true)) {									$latestVideo = $post;								}							} else {								$latestVideo = $post;							}						}					?>			<h3 class="sbfp_title">Latest<span class="green">Video</span></h3>			<div class="section_frontPage">				<?php $youtube_vid_id = get_post_meta($latestVideo->ID,'chrbar_youtube_vid_id',true); ?>				<?php if ( ! empty($youtube_vid_id)) { ?>				<div class="video-container">					<iframe width="1140" height="641" src="http://www.youtube.com/embed/<?php echo $youtube_vid_id; ?>?rel=0&modestbranding=1&wmode=transparent" frameborder="0" allowfullscreen></iframe>				</div>				<?php } ?>			</div>
+			
+
 			<h3 class="sbfp_title">2014<span class="green">Calendar</span></h3>
 			<div class="section_frontPage">
-				<ul  class="vid-nav">
-					<?php 
-						$catAdvent = get_term_by('slug','advent','category');
-						$cat2014 = get_term_by('slug','2014','category');
-						$posts2014_query = get_posts( array( 'posts_per_page' => -1, 'category__and' => array($catAdvent->term_id, $cat2014->term_id) ) );  
-					?>
+				<ul  class="vid-nav">
 					
 					<?php foreach($posts2014_query as $post) { ?>
 					<li>

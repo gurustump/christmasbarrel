@@ -13,7 +13,7 @@ Fundify.App = (function($) {
 		$(window).scroll(function () {
 			var y = $(window).scrollTop();    
 
-			if ( y >= 400 ) {
+			if ( y >= 200 ) {
 				$( '#header' ).addClass( 'mini' );
 			} else {
 				$( '#header' ).removeClass( 'mini' );
