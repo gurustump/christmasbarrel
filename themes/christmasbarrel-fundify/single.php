@@ -32,6 +32,16 @@ get_header(); ?>
 								</div>
 								<?php } ?>
 								<div class="content-body">
+									<div class="social-share-section">
+										<a class="youtube-subscribe" href="http://www.youtube.com/subscription_center?add_user=christmasbarrel">Subscribe</a>
+										<?php 
+										$post_thumbnail_url = get_stylesheet_directory_uri().'/img/Logoweb2014-fb-v2.jpg';
+										if ( has_post_thumbnail() ) {
+											$post_thumbnail_id = get_post_thumbnail_id();
+											$post_thumbnail_url = wp_get_attachment_url( $post_thumbnail_id );
+										} ?>
+										<a target="_blank" class="facebook-share" href="http://www.facebook.com/sharer.php?s=100&p[title]=<?php the_title(); ?>&p[summary]=<?php echo get_the_excerpt(); ?>&p[url]=<?php the_permalink(); ?>&p[images][0]=<?php echo $post_thumbnail_url; ?>">Share</a>
+									</div>
 									<?php /*<div class="title-section">
 										<h1 class="entry-title"><span class="number"><?php echo get_post_meta(get_the_ID(),'chrbar_advent_number',true); ?></span> - <?php the_title(); ?></h1>
 									</div> */ ?>
