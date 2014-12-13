@@ -35,6 +35,11 @@ $meta_boxes[] = array(
 			'type'	=> 'text'
 		),
 		array(
+			'name'	=> 'Vimeo Video ID',
+			'id'	=> $prefix . 'vimeo_vid_id',
+			'type'	=> 'text'
+		),
+		array(
 			'name'	=> 'SoundCloud Embed Code',
 			'id'	=> $prefix . 'soundcloud_embed',
 			'type'	=> 'text'

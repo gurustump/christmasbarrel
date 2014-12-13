@@ -66,9 +66,14 @@ get_header(); ?>
 
 					<div class="entry-content">
 						<?php $youtube_vid_id = get_post_meta(get_the_ID(),'chrbar_youtube_vid_id',true); ?>
+						<?php $vimeo_vid_id = get_post_meta(get_the_ID(),'chrbar_vimeo_vid_id',true); ?>
 						<?php if ( ! empty($youtube_vid_id)) { ?>
 						<div class="video-container">
 							<iframe width="960" height="540" src="http://www.youtube.com/embed/<?php echo $youtube_vid_id; ?>?rel=0&modestbranding=1&wmode=transparent" frameborder="0" allowfullscreen></iframe>
+						</div>
+						<?php } else if ( ! empty($vimeo_vid_id)) { ?>
+						<div class="video-container vimeo-video-container">
+							<iframe src="//player.vimeo.com/video/<?php echo $vimeo_vid_id; ?>?title=0&amp;byline=0&amp;portrait=0" width="960" height="540" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 						</div>
 						<?php } ?>
 						<?php if ( ! is_singular() ) : ?>
