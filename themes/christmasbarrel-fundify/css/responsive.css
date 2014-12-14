@@ -43,6 +43,16 @@
 	.sbfp_icons > li img {
 		max-width:100%;
 	}
+	body.single #main-content {
+		width:71%;
+	}
+	body.single-format-video .social-share-section {
+		margin-top:5px;
+	}
+	#sidebar .widget {
+		padding-left:0;
+		padding-right:0;
+	}
 }
 
 @media screen and (max-width: 880px) {
@@ -114,6 +124,13 @@
 	.sbfp_text {
 		clear:left;
 	}
+	body.single #main-content {
+		width:100%;
+	}
+	#sidebar .widget {
+		padding-left:15px;
+		padding-right:15px;
+	}
 }
 
 @media screen and (max-width: 600px) {
@@ -166,6 +183,10 @@
 		margin:50px 0;
 		padding:10px 15px;
 	}
+	#sidebar .widget {
+		padding-left:0;
+		padding-right:0;
+	}
 }
 @media screen and (max-width: 425px) {
 
@@ -188,7 +209,7 @@
 		float:left;
 		padding-bottom:2%
 	}
-	.vid-nav > li > a {
+	.vid-nav > li > a, .vid-nav > li > .advent-number {
 		width:100%;
 		height:auto;
 	}
@@ -198,5 +219,8 @@
 	}
 	.vid-nav > li > .info-box {
 		top:75%;
+	}
+	.comment-subscription-form {
+		float:none;
 	}
 }
