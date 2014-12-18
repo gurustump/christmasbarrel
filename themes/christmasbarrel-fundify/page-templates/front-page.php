@@ -108,18 +108,16 @@ get_header();
 
 
 
-*/ ?>					<?php 						$catAdvent = get_term_by('slug','advent','category');						$cat2014 = get_term_by('slug','2014','category');						$posts2014_query = get_posts( array( 'posts_per_page' => -1, 'category__and' => array($catAdvent->term_id, $cat2014->term_id) ) );  												foreach($posts2014_query as $post) {							if ($latestVideo) {								$this_youtube_id = get_post_meta($post->ID,'chrbar_youtube_vid_id',true);								$this_vimeo_id = get_post_meta($post->ID,'chrbar_vimeo_vid_id',true);																echo '<pre style="display:none">';									echo get_post_meta($post->ID,'chrbar_advent_number',true);									echo '<br />';									echo get_post_meta($latestVideo->ID,'chrbar_advent_number',true);								echo '</pre>';								if (get_post_meta($post->ID,'chrbar_advent_number',true) < get_post_meta($latestVideo->ID,'chrbar_advent_number',true) && (!empty($this_youtube_id) || !empty($this_vimeo_id))) {									$latestVideo = $post;								}							} else {								$latestVideo = $post;							}						}					?>			<pre style="display:none">				<?php print_r($latestVideo); ?>			</pre>			<?php $latestVideo_youtube_id = get_post_meta($latestVideo->ID,'chrbar_youtube_vid_id',true); ?>			<?php $latestVideo_vimeo_id = get_post_meta($latestVideo->ID,'chrbar_vimeo_vid_id',true); ?>			<?php if ( ! empty($latestVideo_youtube_id) || ! empty($latestVideo_vimeo_id )) { ?>			<h3 class="sbfp_title">Latest<span class="green">Video</span></h3>			<div class="section_frontPage">				<?php if ( ! empty($latestVideo_youtube_id) ) { ?>				<div class="video-container">					<iframe width="1140" height="641" src="http://www.youtube.com/embed/<?php echo $latestVideo_youtube_id; ?>?rel=0&modestbranding=1&wmode=transparent" frameborder="0" allowfullscreen></iframe>				</div>				<?php } else if ( ! empty($latestVideo_vimeo_id)) { ?>				<div class="video-container vimeo-video-container">					<iframe src="//player.vimeo.com/video/<?php echo $latestVideo_vimeo_id; ?>?title=0&amp;byline=0&amp;portrait=0" width="1140" height="641" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>				</div>				<?php } ?>			</div>			<?php } ?>			
-
-			<h3 class="sbfp_title">2014<span class="green">Calendar</span></h3>
-			<div class="section_frontPage">
+*/ ?>					<?php 						$catAdvent = get_term_by('slug','advent','category');						$cat2014 = get_term_by('slug','2014','category');						$posts2014_query = get_posts( array( 'posts_per_page' => -1, 'category__and' => array($catAdvent->term_id, $cat2014->term_id) ) );  												foreach($posts2014_query as $post) {							if ($latestVideo) {								$this_youtube_id = get_post_meta($post->ID,'chrbar_youtube_vid_id',true);								$this_vimeo_id = get_post_meta($post->ID,'chrbar_vimeo_vid_id',true);																echo '<pre style="display:none">';									echo get_post_meta($post->ID,'chrbar_advent_number',true);									echo '<br />';									echo get_post_meta($latestVideo->ID,'chrbar_advent_number',true);								echo '</pre>';								if (get_post_meta($post->ID,'chrbar_advent_number',true) < get_post_meta($latestVideo->ID,'chrbar_advent_number',true) && (!empty($this_youtube_id) || !empty($this_vimeo_id))) {									$latestVideo = $post;								}							} else {								$latestVideo = $post;							}						}					?>			<pre style="display:none">				<?php print_r($latestVideo); ?>			</pre>			<?php $latestVideo_youtube_id = get_post_meta($latestVideo->ID,'chrbar_youtube_vid_id',true); ?>			<?php $latestVideo_vimeo_id = get_post_meta($latestVideo->ID,'chrbar_vimeo_vid_id',true); ?>			<?php if ( ! empty($latestVideo_youtube_id) || ! empty($latestVideo_vimeo_id )) { ?>			<h3 class="sbfp_title">Latest<span class="green">Video</span></h3>			<div class="section_frontPage">				<?php if ( ! empty($latestVideo_youtube_id) ) { ?>				<div class="video-container">					<iframe width="1140" height="641" src="http://www.youtube.com/embed/<?php echo $latestVideo_youtube_id; ?>?rel=0&modestbranding=1&wmode=transparent" frameborder="0" allowfullscreen></iframe>				</div>				<?php } else if ( ! empty($latestVideo_vimeo_id)) { ?>				<div class="video-container vimeo-video-container">					<iframe src="//player.vimeo.com/video/<?php echo $latestVideo_vimeo_id; ?>?title=0&amp;byline=0&amp;portrait=0" width="1140" height="641" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>				</div>				<?php } ?>			</div>			<?php } ?>
+			<h3 class="sbfp_title">2014<span class="green">Calendar</span></h3>
+			<div class="section_frontPage">
 				<ul  class="vid-nav">
-					
-					<?php foreach($posts2014_query as $post) { ?>
-					<li>
-						<?php echo customPostVideoThumbnail(get_the_ID(),'vid-thumb'); ?>
-					</li>
-					<?php } ?>
-				</ul>
+					<?php foreach($posts2014_query as $post) { ?>
+					<li>
+						<?php echo customPostVideoThumbnail(get_the_ID(),'vid-thumb'); ?>
+					</li>
+					<?php } ?>
+				</ul>
 			</div>
 
 
@@ -162,7 +160,7 @@ get_header();
 
 
 
-			<h3 class="sbfp_title">2013<span class="green">Calendar</span></h3>
+			<h3 id="2013Calendar" class="sbfp_title">2013<span class="green">Calendar</span></h3>
 			<div class="section_frontPage">
 				<ul  class="vid-nav">
 					<?php 

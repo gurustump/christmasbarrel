@@ -1063,5 +1063,34 @@ padding: 10px;}
 	float:none !important;
 	height:auto !important;
 }
+#sidebar .widget_advent_calendar_widget .vid-nav {
+	margin:0 -10px;
+}
+#sidebar .widget_advent_calendar_widget .vid-nav > li {
+	margin:0 1px;
+	padding:0;
+}
+#sidebar .widget_advent_calendar_widget .vid-nav > li > a,
+#sidebar .widget_advent_calendar_widget .vid-nav > li > a img,
+#sidebar .widget_advent_calendar_widget .vid-nav > li > .advent-number {
+	width:48px;
+	height:27px;
+	display:block;
+}
+#sidebar .widget_advent_calendar_widget .vid-nav > li > a:hover {
+	-webkit-box-shadow:0 0 5px #f77;
+	-moz-box-shadow:0 0 5px #f77;
+	-o-box-shadow:0 0 5px #f77;
+	box-shadow:0 0 5px #f77;
+	border:1px solid #f77;
+	margin:-1px;
+}
+#sidebar .widget_advent_calendar_widget .vid-nav > li > .advent-number {
+	font-size:18px;
+	line-height:22px;
+}
+#sidebar .widget_advent_calendar_widget .vid-nav > li > .advent-number .sub {
+	display:none;
+}
 
 @media only screen and (max-width: 1100px) {.vote_single_container {width: 100%;}}

@@ -209,6 +209,14 @@
 		float:left;
 		padding-bottom:2%
 	}
+	#sidebar .widget_advent_calendar_widget .vid-nav {
+		margin:0;
+	}
+	#sidebar .widget_advent_calendar_widget .vid-nav > li {
+		width:auto;
+		margin:2px 1px;
+		padding:0;
+	}
 	.vid-nav > li > a, .vid-nav > li > .advent-number {
 		width:100%;
 		height:auto;
