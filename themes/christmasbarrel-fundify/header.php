@@ -53,15 +53,26 @@
 
 			<?php 
 				date_default_timezone_set('Pacific/Honolulu');
-				$christmas_day = mktime(0,0,0,12,25,2014);
 				$today = time();
+				$thisYear = (int) (date('Y', $today));
+				$christmas_day = mktime(0,0,0,12,25,$thisYear);
 				$difference = ($christmas_day - $today);
-				$days = (int) ($difference / 86400) + 1;
+				$days = ceil($difference / 60 /60 / 24);
 			?>
+			<?php /* <pre><?php echo $today; ?></pre>
+			<pre><?php echo $christmas_day; ?></pre>
+			<pre><?php echo date('Y M D d g:i', $today); ?></pre>
+			<pre><?php echo date('Y M D d g:i', $christmas_day); ?></pre>
+			<pre><?php echo $difference; ?></pre>
+			<pre><?php echo ceil($difference / 60 / 60 / 24); ?></pre> */ ?>
+			<?php if ($christmas_day > $today) { ?>
 			<h2 class="days-til">
 				<span class="count"><?php echo $days; ?></span>	
-				<span class="label">Days 'til Christmas</span>
+				<span class="label">Day<?php echo $days > 1 ? 's' : ''; ?> 'til Christmas</span>
 			</h2>
+			<?php } else { ?>
+			<h2 class="merry-christmas"><span>Merry</span> <span>Christmas!</span></h2>
+			<?php } ?>
 			<?php echo is_front_page()?'<h1':'<div'; ?> class="header_logo">
 				<a href="<?php echo get_bloginfo('url') . '/' ?>">
 					<?php /* <img class="header_logo" src="<?php echo get_stylesheet_directory_uri(); ?>/img/Logoweb2014.jpg" alt="A Christmas Barrel" /> */ ?>
