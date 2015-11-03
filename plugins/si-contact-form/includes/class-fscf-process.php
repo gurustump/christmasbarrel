@@ -192,7 +192,7 @@ class FSCF_Process {
 					self::$form_data[$field['slug']] = FSCF_Util::clean_input( $_POST[$field['slug']] );
 			}
 			// Set up values for unchecked checkboxes and unselected radio types
-			else if ( 'checkbox' == $field['type'] || 'radio' == $field['type'] ) 
+			else if ( 'checkbox' == $field['type'] || 'radio' == $field['type'] )
 				self::$form_data[$field['slug']] = '';
 			else if ( 'checkbox-multiple' == $field['type'] )
 				self::$form_data[$field['slug']] = array();
@@ -484,7 +484,7 @@ class FSCF_Process {
 						self::$email_msg .= self::make_bold( $key ) . $inline_or_newline . stripslashes( $value ) . self::$php_eol . self::$php_eol;
 						self::$email_fields[$key] = $value;
 					}
-				}				
+				}
 				}
 		}
 
@@ -497,12 +497,12 @@ class FSCF_Process {
         if (self::$form_options['print_form_enable'] == 'true') {
           self::$email_msg_print = self::$email_msg;
           //self::$email_msg_print .= self::make_bold( 'Time:' ) . $inline_or_newline;
-		  //self::$email_msg_print .= date_i18n(get_option('date_format').' '.get_option('time_format'), time() );
+		  //self::$email_msg_print .= date_i18n(get_option('date_format').' '.get_option('time_format'), current_time('timestamp') );
         }
 
-		self::$email_fields['date_time'] = date_i18n(get_option('date_format').' '.get_option('time_format'), time() );
+		self::$email_fields['date_time'] = date_i18n(get_option('date_format').' '.get_option('time_format'), current_time('timestamp') );
 
-        self::$email_fields['ip_address'] = (isset( $_SERVER['REMOTE_ADDR'] )) ? $_SERVER['REMOTE_ADDR'] : 'n/a'; 
+        self::$email_fields['ip_address'] = (isset( $_SERVER['REMOTE_ADDR'] )) ? $_SERVER['REMOTE_ADDR'] : 'n/a';
 
 		self::check_captcha();
 
@@ -790,7 +790,7 @@ class FSCF_Process {
 
 	static function validate_attach( $slug, $req, $label, $inline_or_newline ) {
 		// validates and saves uploaded file attchments for file attach field types.
-		// also sets errors if the file did not upload or was not accepted.	
+		// also sets errors if the file did not upload or was not accepted.
 		// Test if a file was selected for attach.
 		$field_file['name'] = '';
 		if ( isset( $_FILES[$slug] ) )
@@ -907,42 +907,51 @@ class FSCF_Process {
 				if ( $li['country_code'] == 'US' ) {
 					$geo_loc = $li['city_name'];
 					if ( $li['state_code'] != '' )
-						$geo_loc = $li['city_name'] . ', ' . strtoupper( $li['state_code'] );
+						$geo_loc = $li['city_name'] . ', ' . strtoupper( $li['state_code'] ) . self::$php_eol;
 				} else {	  // all non us countries
-					$geo_loc = $li['city_name'] . ', ' . strtoupper( $li['country_code'] );
+					$geo_loc = $li['city_name'] . ', ' . strtoupper( $li['country_code'] ) . self::$php_eol;
 				}
 			} else {
-				$geo_loc = '~ ' . $li['country_name'];
+				$geo_loc = '~ ' . $li['country_name'] . self::$php_eol;
 			}
+            $geo_loc .= 'http://maps.google.com/maps?q='. $li['latitude'] . ','. $li['longitude'];
 		}
 		// add some info about sender to the email message
 		$userdomain = '';
 		$userdomain = gethostbyaddr( $_SERVER['REMOTE_ADDR'] );
 		$user_info_string = '';
+        $user_info = array();
 		if ( self::$form_options['email_html'] == 'true' )
 			$user_info_string = '<div style="background:#eee;border:1px solid gray;color:gray;padding:1em;margin:1em 0;">';
 		if ( $user_ID != '' ) {
 			//user logged in
 			if ( $current_user->user_login != '' )
-				$user_info_string .= __( 'From a WordPress user', 'si-contact-form' ) . ': ' . $current_user->user_login . self::$php_eol;
+				$user_info['wp_user'] = __( 'From a WordPress user', 'si-contact-form' ) . ': ' . $current_user->user_login;
 			if ( $current_user->user_email != '' )
-				$user_info_string .= __( 'User email', 'si-contact-form' ) . ': ' . $current_user->user_email . self::$php_eol;
+			   	$user_info['wp_user_email'] = __( 'User email', 'si-contact-form' ) . ': ' . $current_user->user_email;
 			if ( $current_user->user_firstname != '' )
-				$user_info_string .= __( 'User first name', 'si-contact-form' ) . ': ' . $current_user->user_firstname . self::$php_eol;
+				$user_info['wp_user_first_name'] = __( 'User first name', 'si-contact-form' ) . ': ' . $current_user->user_firstname;
 			if ( $current_user->user_lastname != '' )
-				$user_info_string .= __( 'User last name', 'si-contact-form' ) . ': ' . $current_user->user_lastname . self::$php_eol;
+				$user_info['wp_user_last_name'] = __( 'User last name', 'si-contact-form' ) . ': ' . $current_user->user_lastname;
 			if ( $current_user->display_name != '' )
-				$user_info_string .= __( 'User display name', 'si-contact-form' ) . ': ' . $current_user->display_name . self::$php_eol;
+			    $user_info['wp_user_display_name'] = __( 'User display name', 'si-contact-form' ) . ': ' . $current_user->display_name;
 		}
-		$user_info_string .= __( 'Sent from (ip address)', 'si-contact-form' ) . ': ' . esc_attr( $_SERVER['REMOTE_ADDR'] ) . " ($userdomain)" . self::$php_eol;
+		$user_info['wp_user_ip'] = __( 'Sent from (ip address)', 'si-contact-form' ) . ': ' . esc_attr( $_SERVER['REMOTE_ADDR'] ) . " ($userdomain)";
 		if ( $geo_loc != '' ) {
-			$user_info_string .= __( 'Location', 'si-contact-form' ) . ': ' . $geo_loc . self::$php_eol;
+			$user_info['wp_user_location'] = __( 'Location', 'si-contact-form' ) . ': ' . $geo_loc;
 			self::$form_data['sender_location'] = __( 'Location', 'si-contact-form' ) . ': ' . $geo_loc;
 		}
-		$user_info_string .= __( 'Date/Time', 'si-contact-form' ) . ': ' . date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), time() ) . self::$php_eol;
-		$user_info_string .= __( 'Coming from (referer)', 'si-contact-form' ) . ': ' . esc_url( self::$form_action_url ) . self::$php_eol;
-		$user_info_string .= __( 'Using (user agent)', 'si-contact-form' ) . ': ' . FSCF_Util::clean_input( $_SERVER['HTTP_USER_AGENT'] ) . self::$php_eol . self::$php_eol;
-		if ( self::$form_options['email_html'] == 'true' )
+	    $user_info['wp_user_date'] = __( 'Date/Time', 'si-contact-form' ) . ': ' . date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), current_time('timestamp') );
+		$user_info['wp_user_referer'] = __( 'Coming from (referer)', 'si-contact-form' ) . ': ' . esc_url( self::$form_action_url );
+		$user_info['wp_user_agent'] = __( 'Using (user agent)', 'si-contact-form' ) . ': ' . FSCF_Util::clean_input( $_SERVER['HTTP_USER_AGENT'] ) . self::$php_eol;
+
+        // filter hook to allow modify $user_info array
+        $user_info = apply_filters('si_contact_user_info', $user_info, self::$form_id_num);
+
+        foreach ($user_info as $k => $v) {
+                $user_info_string .= $v . self::$php_eol;
+        }
+  		if ( self::$form_options['email_html'] == 'true' )
 			$user_info_string .= '</div>';
 
 		return($user_info_string);
@@ -1509,6 +1518,8 @@ class FSCF_Process {
             foreach ( self::$av_tags_subj_arr as $i ) {
 			  $subj = str_replace( '[' . $i . ']', '', $subj );
 		    }
+            // filter hook for modifying the autoresponder email subject(great for adding a ticket number)
+            $subj = apply_filters('si_contact_autoresp_email_subject', $subj, self::$form_id_num);
 
 			// wordwrap email message
 			$msg = wordwrap( $msg, 70, self::$php_eol );
@@ -1572,11 +1583,14 @@ class FSCF_Process {
              $silent_ok = 0;
        }
 
+         // filter hook for modifying the email_fields array
+        self::$email_fields = apply_filters('si_contact_email_fields_posted', self::$email_fields, self::$form_id_num);
+
 		// Silent sending?
 		if ( self::$form_options['silent_send'] == 'get' && !empty(self::$form_options['silent_url']) && $silent_ok ) {
 			// build query string
 			$query_string = self::export_convert( self::$email_fields, self::$form_options['silent_rename'], self::$form_options['silent_ignore'], self::$form_options['silent_add'], 'query' );
-            echo $query_string;
+            //echo $query_string;
 			if ( !preg_match( "/\?/", self::$form_options['silent_url'] ) )
 				$silent_result = wp_remote_get( self::$form_options['silent_url'] . '?' . $query_string, array( 'timeout'	 => 20, 'sslverify'	 => false ) );
 			else
@@ -1584,7 +1598,7 @@ class FSCF_Process {
 			if ( !is_wp_error( $silent_result ) ) {
 				$silent_result = wp_remote_retrieve_body( $silent_result );
 			}
-			//echo $silent_result;
+		   //	print_r($silent_result);
 		}
 
 		if ( self::$form_options['silent_send'] == 'post' && !empty(self::$form_options['silent_url']) && $silent_ok ) {
@@ -1594,11 +1608,8 @@ class FSCF_Process {
 			if ( !is_wp_error( $silent_result ) ) {
 				$silent_result = wp_remote_retrieve_body( $silent_result );
 			}
-			//echo $silent_result;
+		   //	print_r($silent_result);
 		}
-
-        // filter hook for modifying the email_fields array before export
-        self::$email_fields = apply_filters('si_contact_email_fields_posted', self::$email_fields, self::$form_id_num);
 
 		// Export option
 		// filter posted data based on admin settings
@@ -1669,20 +1680,21 @@ class FSCF_Process {
 				else
 					$ctf_redirect_url .= '&' . $query_string;
 			}
-
 			$ctf_redirect_timeout = absint(self::$form_options['redirect_seconds']); // time in seconds to wait before loading another Web page
-
+                   // echo $ctf_redirect_url; exit;
             if ($ctf_redirect_timeout == 0 ) {
                // use wp_redirect when timeout seconds is 0.
                // So now if you set the timeout to 0 seconds, then post the form, it gets instantly redirected to the redirect URL
                // and you are responsible to display the "your message has been sent, thank you" message there.
-               wp_redirect( $ctf_redirect_url );
+               //wp_redirect( $ctf_redirect_url );
+               header("Location: $ctf_redirect_url");
 		       exit;
            }
 
 			// meta refresh page timer feature
             // allows some seconds to to display the "your message has been sent, thank you" message.
-			self::$meta_string = "<meta http-equiv=\"refresh\" content=\"$ctf_redirect_timeout;URL=$ctf_redirect_url\">\n";
+            // note $ctf_redirect_url query_string is already url encoded
+			self::$meta_string = "<meta http-equiv=\"refresh\" content=\"$ctf_redirect_timeout;URL=".$ctf_redirect_url."\">\n";
 			if (is_admin())
 				add_action('admin_head', 'FSCF_Process::meta_refresh',1);
 			else

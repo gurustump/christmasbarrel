@@ -4,7 +4,7 @@ Author URI: http://www.642weather.com/weather/scripts.php
 Donate link: https://www.FastSecureContactForm.com/donate
 Tags: Akismet, captcha, contact, contact form, form, mail, email, spam, multilingual, wpmu
 Requires at least: 3.4.2
-Tested up to: 4.0
+Tested up to: 4.3
 Stable tag: trunk
 
 An easy and powerful form builder that lets your visitors send you email. Blocks all automated spammers. No templates to mess with.
@@ -100,7 +100,7 @@ CAPTCHA Image Support:
 
 Requirements/Restrictions:
 -------------------------
- * Works with Wordpress 3.4.2+ and WPMU (Wordpress 3.6+ is highly recommended)
+ * Works with Wordpress 3.4.2+ and WPMU (Wordpress 4+ is highly recommended)
  * PHP5 
 
 == Installation ==
@@ -269,6 +269,44 @@ You can enable or disable this option in the "Scheduling" tab of your contact fo
 If you have additional questions visit [vCita Support Page](http://support.vcita.com)
 
 == Changelog ==
+
+= 4.0.38 =
+- (07 Sep 2015) - Fix: There are five form settings fields where unfiltered HTML is allowed by form Administrators by design. The problem fixed was that the setting DISALLOW_UNFILTERED_HTML was not being checked before allowing HTML. This issue was reported by Sathish from Cyber Security Works Pvt Ltd.
+
+= 4.0.37 =
+- (25 May 2015) - fixed bug: redirect url encoding.
+- fixed bug: the auto form fill feature will now automatically make the name and email form fields readonly when the feature is enabled to auto fill the logged on user's name and email. Non-logged in users can still edit those fields to enter their own name and email. Note: administrator is ignored, always has to fill in the fields. 
+- fixed bug: placeholder was not working on password field type.
+- added filter to modify autoresponder subject. This is useful for adding a ticket number.
+
+= 4.0.36 =
+- (02 May 2015) - Fixed possible xss vulnerability with add_query_arg(), remove_query_arg() and esc_url() usage.
+- Improved timezone compliance with WP standards.
+
+
+= 4.0.34 =
+- (03 Apr 2015) - added a new filter hook to allow modifying the $user_info array. The user info is displayed at the end of the email
+- changed the default CSS for Radio and Checkbox field inputs to comply with [google webmaster tools mobile friendly test](https://www.google.com/webmasters/tools/mobile-friendly/). The tap targets were too close for radio and checkbox fields on mobile devices.
+CSS changes made in an update will only change the defaults for new forms you add, not any existing ones. This is to respect any settings you might have made yourself on the forms you have now.
+
+Please adjust these settings manually on any existing forms with radio or checkbox fields:
+Edit each of your forms on the form edit page, click on the Styles tab
+Change these two settings, like so:
+Input checkbox fields: width:22px; height:32px;
+Input radio fields: width:22px; height:32px;
+
+Click the Save Changes button, repeat for your other forms.
+The defaults settings were: width:13px; 
+
+= 4.0.33 =
+- (17 Feb 2015) - fixed fscf_init_languages priority
+- fixed a print array was left active during silent send
+- updated turkish language file
+ 
+= 4.0.32 =
+- (22 Dec 2014) - Move the filter hook si_contact_email_fields_posted to before Silent Remote Sending.
+- add new advanced tab setting "Enable Internationalized Domain Names when checking for a valid email address". Because this setting relaxes the email validation check considerably, do not enable unless you have to allow Russian, Japanese, Chinese, etc. characters in the email address.
+- Fix so field tags can have upper case characters.
 
 = 4.0.30 =
 - (23 Sep 2014) - Translated Spanish 100% (es_ES) - Translated by [Manuel](http://www.mbrsolution.com/)

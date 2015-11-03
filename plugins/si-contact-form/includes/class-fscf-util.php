@@ -17,7 +17,7 @@ class FSCF_Util {
         // Come here when the plugin is run
 
         // load plugin textdomain for languages
-		add_action('plugins_loaded', 'FSCF_Util::fscf_init_languages',1);
+		add_action('plugins_loaded', 'FSCF_Util::fscf_init_languages');
 
         // imports old settings on plugin activate or first time upgrade from 3.xx to 4.xx
         add_action('init', 'FSCF_Util::import',1);
@@ -429,6 +429,7 @@ $('head').append(fscf_css);
 			 'domain_protect_names' => '',
 			 'anchor_enable' => 'true',
 			 'email_check_dns' => 'false',
+             'email_check_easy' => 'false',
 			 'email_html' => 'false',
 			 'email_inline_label' => 'false',
              'email_hide_empty' => 'false',
@@ -632,8 +633,8 @@ $('head').append(fscf_css);
   			'captcha_input_style'  => 'text-align:left; margin:0; width:50px;', // CAPTCHA input field
  			'textarea_style'       => 'text-align:left; margin:0; width:99%; max-width:250px; height:120px;',  // Input Textarea
             'select_style'         => 'text-align:left;',  // Input Select
- 			'checkbox_style'       => 'width:13px;',  // Input checkbox
-            'radio_style'          => 'width:13px;',  // Input radio
+ 			'checkbox_style'       => 'width:22px; height:32px;',  // Input checkbox
+            'radio_style'          => 'width:22px; height:32px;',  // Input radio
             'placeholder_style'    => 'opacity:0.6; color:#333333;', // placeholder style
 
 			'button_style'         => 'cursor:pointer; margin:0;', // Submit button
@@ -715,6 +716,10 @@ $('head').append(fscf_css);
 	   $pattern = "/^[-_a-z0-9\'+*$^&%=~!?{}]++(?:\.[-_a-z0-9\'+*$^&%=~!?{}]+)*+@(?:(?![-.])[-a-z0-9.]+(?<![-.])\.[a-z]{2,12}|\d{1,3}(?:\.\d{1,3}){3})(?::\d++)?$/iD";
        // 09/17/2014 above is updated for new generic top-level domains (gTLDs) released in 2014 and beyond up to 12 characters like .training
        // (note: does not do IPv6, does not support Internationalized Domain Names, sorry)
+
+       if (!empty(FSCF_Process::$form_options['email_check_easy']) && FSCF_Process::$form_options['email_check_easy'] == 'true') {
+         $pattern = "/^\S+@\S+$/"; // check for @ sign with non whitespace on either side
+       }
 
 	   if(!preg_match($pattern, $email)){
 	   	  return false;

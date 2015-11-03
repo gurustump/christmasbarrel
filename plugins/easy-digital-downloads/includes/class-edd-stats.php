@@ -4,11 +4,13 @@
  *
  * @package     EDD
  * @subpackage  Classes/Stats
- * @copyright   Copyright (c) 2012, Pippin Williamson
+ * @copyright   Copyright (c) 2015, Pippin Williamson
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.8
 */
 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * EDD_Stats Class
@@ -79,16 +81,16 @@ class EDD_Stats {
 	 */
 	public function get_predefined_dates() {
 		$predefined = array(
-			'today'        => __( 'Today',        'edd' ),
-			'yesterday'    => __( 'Yesterday',    'edd' ),
-			'this_week'    => __( 'This Week',    'edd' ),
-			'last_week'    => __( 'Last Week',    'edd' ),
-			'this_month'   => __( 'This Month',   'edd' ),
-			'last_month'   => __( 'Last Month',   'edd' ),
-			'this_quarter' => __( 'This Quarter', 'edd' ),
-			'last_quarter' => __( 'Last Quater',  'edd' ),
-			'this_year'    => __( 'This Year',    'edd' ),
-			'last_year'    => __( 'Last Year',    'edd' )
+			'today'        => __( 'Today',        'easy-digital-downloads' ),
+			'yesterday'    => __( 'Yesterday',    'easy-digital-downloads' ),
+			'this_week'    => __( 'This Week',    'easy-digital-downloads' ),
+			'last_week'    => __( 'Last Week',    'easy-digital-downloads' ),
+			'this_month'   => __( 'This Month',   'easy-digital-downloads' ),
+			'last_month'   => __( 'Last Month',   'easy-digital-downloads' ),
+			'this_quarter' => __( 'This Quarter', 'easy-digital-downloads' ),
+			'last_quarter' => __( 'Last Quarter',  'easy-digital-downloads' ),
+			'this_year'    => __( 'This Year',    'easy-digital-downloads' ),
+			'last_year'    => __( 'Last Year',    'easy-digital-downloads' )
 		);
 		return apply_filters( 'edd_stats_predefined_dates', $predefined );
 	}
@@ -105,19 +107,15 @@ class EDD_Stats {
 	public function setup_dates( $_start_date = 'this_month', $_end_date = false ) {
 
 		if( empty( $_start_date ) ) {
-			$this->start_date = 'this_month';
+			$_start_date = 'this_month';
 		}
 
-		$this->start_date = $_start_date;
-
-		if( ! empty( $_end_date ) ) {
-			$this->end_date = $_end_date;
-		} else {
-			$this->end_date = $this->start_date;
+		if( empty( $_end_date ) ) {
+			$_end_date = $_start_date;
 		}
 
-		$this->start_date = $this->convert_date( $this->start_date );
-		$this->end_date   = $this->convert_date( $this->end_date, true );
+		$this->start_date = $this->convert_date( $_start_date );
+		$this->end_date   = $this->convert_date( $_end_date, true );
 
 	}
 
@@ -159,7 +157,7 @@ class EDD_Stats {
 
 						$month = 12;
 						$year--;
-				
+
 					} else {
 
 						$month--;
@@ -173,7 +171,7 @@ class EDD_Stats {
 					break;
 
 				case 'today' :
-				
+
 					$day = date( 'd', current_time( 'timestamp' ) );
 
 					if( $end_date ) {
@@ -432,7 +430,7 @@ class EDD_Stats {
 
 		} else {
 
-			return new WP_Error( 'invalid_date', __( 'Improper date provided.', 'edd' ) );
+			return new WP_Error( 'invalid_date', __( 'Improper date provided.', 'easy-digital-downloads' ) );
 
 		}
 
@@ -504,7 +502,7 @@ class EDD_Stats {
 		$start_where = '';
 		$end_where   = '';
 
-		if( $this->start_date ) {
+		if( ! is_wp_error( $this->start_date ) ) {
 
 			if( $this->timestamp ) {
 				$format = 'Y-m-d H:i:s';
@@ -516,7 +514,7 @@ class EDD_Stats {
 			$start_where = " AND $wpdb->posts.post_date >= '{$start_date}'";
 		}
 
-		if( $this->end_date ) {
+		if( ! is_wp_error( $this->end_date ) ) {
 
 			if( $this->timestamp ) {
 				$format = 'Y-m-d H:i:s';

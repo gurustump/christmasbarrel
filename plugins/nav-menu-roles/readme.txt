@@ -4,8 +4,8 @@ Contributors: helgatheviking
 Donate link: https://inspirepay.com/pay/helgatheviking
 Tags: menu, menus, nav menu, nav menus
 Requires at least: 3.8
-Tested up to: 4.0
-Stable tag: 1.6.3
+Tested up to: 4.2
+Stable tag: 1.7.1
 License: GPLv3
 
 Hide custom menu items based on user roles
@@ -38,9 +38,8 @@ Please report any bugs, errors, warnings, code problems to [Github](https://gith
 1. Upload the `plugin` folder to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Go to Appearance > Menus
-1. Edit the menu items accordingly.  First select whether you'd like to display the item to all logged in users, all logged out users or to customize by role.
-1. If you chose customize by role, then you you can check the boxes next to the roles you'd like to restrict visibility to.
-1. If you choose 'By Role' and don't check any boxes, the item will be visible to everyone like normal.
+1. Edit the menu items accordingly. First select whether you'd like to display the item to Everyone, all logged out users, or all logged in users. 
+1. Logged in users can be further limited to specific roles by checking the boxes next to the roles you'd like to restrict visibility to.
 
 == Screenshots ==
 
@@ -67,19 +66,64 @@ WordPress does not have sufficient hooks in this area of the admin and until the
 
 
 = <a name="compatibility"></a>Workaround #1 =
-Shazdeh, the author of Menu Item Visibility Control plugin had the [genius idea](http://shazdeh.me/2014/06/25/custom-fields-nav-menu-items/) to not wait for a core hook and simply add the hook ourselves. If all plugin and theme authors use the same hook, we can make our plugins play together.
+[Shazdeh](https://profiles.wordpress.org/shazdeh/) had the genius idea to not wait for a core hook and simply add the hook ourselves. If all plugin and theme authors use the same hook, we can make our plugins play together.
 
-Therefore, as of version 1.6 I am modifying my admin walker to *only* adding the following line (right after the description input):
+Therefore, as of version 1.6 I am modifying my admin nav menu Walker to *only* adding the following lines (right after the description input):
 
 `
 <?php 
-// This is the added section
+// Place this in your admin nav menu Walker
+do_action( 'wp_nav_menu_item_custom_fields', $item_id, $item, $depth, $args );
+// end added section 
+?>
+` 
+
+**Ask your conflicting plugin/theme's author to add this code to his plugin or theme and our plugins will become compatible.**
+
+= <a name="patch"></a>Patching Your Plugin/Theme =
+
+Should you wish to attempt this patch yourself, you can modify your conflicting plugin/theme's admin menu Walker class. **Reminder: I do not provide support for fixing your plugin/theme. If you aren't comfortable with the following instructions, contact the developer of the conflicting plugin/theme!**
+
+1. Find the class that extends the `Walker_Nav_Menu`. As a hint, it is filtering `wp_edit_nav_menu_walker` and you might even be getting a warning about it from Nav Menu Roles. Example: 
+
+`
+add_filter( 'wp_edit_nav_menu_walker', 'sample_edit_nav_menu_walker');
+function sample_edit_nav_menu_walker( $walker ) {
+    return 'Walker_Nav_Menu_Edit_Roles'; // this is the class name
+}
+`
+
+2. Find the file for the extending class. In my plugin this is in a file located at `inc/class.Walker_Nav_Menu_Edit_Roles.php`. I can't know *where* this file is in your plugin/theme. Please don't ask me, but here's what the beginning of that class will look like:
+
+`class Walker_Nav_Menu_Edit_Roles extends Walker_Nav_Menu {}`
+
+Note that the class name is the same as the class name you found in step 1.
+
+3. Find the `start_el()` method
+
+In that file you will eventually see a class method that looks like:
+
+`function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {`
+
+4. Paste my action hook somewhere in this method!
+
+In Nav Menu Roles, I have placed the hook directly after the description, ex:
+
+`
+<p class="field-description description description-wide">
+  <label for="edit-menu-item-description-<?php echo $item_id; ?>">
+    <?php _e( 'Description' ); ?><br />
+    <textarea id="edit-menu-item-description-<?php echo $item_id; ?>" class="widefat edit-menu-item-description" rows="3" cols="20" name="menu-item-description[<?php echo $item_id; ?>]"><?php echo esc_html( $item->description ); // textarea_escaped ?></textarea>
+    <span class="description"><?php _e('The description will be displayed in the menu if the current theme supports it.'); ?></span>
+  </label>
+</p>
+
+<?php 
+// Add this directly after the description paragraph in the start_el() method
 do_action( 'wp_nav_menu_item_custom_fields', $item_id, $item, $depth, $args );
 // end added section 
 ?>
 `
-
-I am then adding my fields to this hook. Ask your conflicting plugin/theme's author to do the same and our plugins should become compatible. 
 
 = Workaround #2 =
 
@@ -133,6 +177,18 @@ add_filter( 'nav_menu_roles_item_visibility', 'kia_item_visibility', 10, 2 );
 
 Note that you have to generate your own if/then logic. I can't provide free support for custom integration with another plugin. You may [contact me](http://kathyisawesome.com/contact) to discuss hiring me, or I would suggest using a plugin that supports WordPress' roles, such as Justin Tadlock's [Members](http://wordpress.org/plugins/members).
 
+= The menu exploded? Why are all my pages displaying for logged out users? =
+
+If every item in your menu is configured to display to logged in users (either all logged in users, or by specific role), then when a logged out visitor comes to your site there are no items in the menu to display.  `wp_nav_menu()` will then try check its `fallback_cb` argument... which defaults to `wp_page_menu`.
+
+Therefore, if you have no items to display, WordPress will end up displaying ALL your pages!!
+
+If you don't want this, you must set the fallback argument to be a null string.
+
+`
+wp_nav_menu( array( 'theme_location' => 'primary-menu', 'fallback_cb' => '' ) );
+`
+
 = What happened to my menu roles on import/export? =
 
 The Nav Menu Roles plugin stores 1 piece of post *meta* to every menu item/post.  This is exported just fine by the default Export tool.
@@ -148,6 +204,20 @@ However, the Import plugin only imports certain post meta for menu items.  As of
 1. No duplicate posts will be created but all menu post meta (including your Nav Menu Roles info) will be imported
 
 == Changelog ==
+
+= 1.7.1 =
+* Updated FAQ with patch instructions for conflicting plugins/themes
+* add Italian language. props @sododesign
+* add Portugeuse language. props @brunobarros
+
+= 1.7.0 =
+* adjust admin UI to be more user-friendly. Options are now: show to everyone, show to logged out users, and show to logged in users (optionally, logged in users by specific role)
+
+= 1.6.5 =
+* add Guajarati language. props @rohilmistry93
+
+= 1.6.4 =
+* more language issues -> sync svn+git version numbers
 
 = 1.6.3 =
 * Try again to add languages. Where'd they all go?

@@ -1,6 +1,8 @@
 <?php
 /* unserialize all saved option for  section 5 options */
-  
+ 
+  $icons = ($option1['sfsi_custom_files']) ? unserialize($option1['sfsi_custom_files']) : array() ;
+  $option3=  unserialize(get_option('sfsi_section3_options',false));
   $option5=  unserialize(get_option('sfsi_section5_options',false));
   $custom_icons_order=unserialize($option5['sfsi_CustomIcons_order']);
   $icons_order=array($option5['sfsi_rssIcon_order']=>'rss',
@@ -14,62 +16,94 @@
                      $option5['sfsi_linkedinIcon_order']=>'linkedin',
 		     $option5['sfsi_instagramIcon_order']=>'instagram'
                     ) ;
-  /* arrange the icons as per their stored order */
-  $elements=array_keys($icons);
-  $cnt=0;
-  $total=count($custom_icons_order);
-  foreach($icons as $cn=>$c_icons)
-  {    
-      if(is_array($custom_icons_order) ) :
-        if(in_array($custom_icons_order[$cnt]['ele'],$elements)) :   
-            $key=key($elements);
-            unset($elements[$key]);
-         
-            $icons_order[$custom_icons_order[$cnt]['order']]=array('ele'=>$cn,'img'=>$c_icons);
-        else :
-        $icons_order[]=array('ele'=>$cn,'img'=>$c_icons);
-       endif;
-        
-       $cnt++;
-      else :
-      $icons_order[]=array('ele'=>$cn,'img'=>$c_icons);
-      endif;
-     
-    }
- ksort($icons_order);
- 
+  
+  if(is_array($custom_icons_order) ) 
+  {
+	  foreach($custom_icons_order as $data)
+	  {
+		 $icons_order[$data['order']] = $data;
+	  }
+  }
+  ksort($icons_order);
+  
 ?>
 <!-- Section 5 "Any other wishes for your main icons?" main div Start -->
 <div class="tab5">
 	<h4>Order of your icons</h4>
     <!-- icon drag drop  section start here -->	
     <ul class="share_icon_order" >
-     <?php $ctn=0; foreach($icons_order as $index=>$icn) :  ?>   
-        <?php switch ($icn) : 
-            
-            case 'rss' :   ?><li class="rss_section" data-index="<?php echo $index; ?>" id="sfsi_rssIcon_order"><a href="#" title="RSS"><img src="<?php echo SFSI_PLUGURL; ?>images/rss.png" alt="RSS" /></a></li>
+            <?php 
+	 	$ctn = 0;
+	 	foreach($icons_order as $index=>$icn) :
+          
+		  switch ($icn) : 
+          case 'rss' :?>
+            	 <li class="rss_section" data-index="<?php echo $index; ?>" id="sfsi_rssIcon_order">
+                	<a href="#" title="RSS"><img src="<?php echo SFSI_PLUGURL; ?>images/rss.png" alt="RSS" /></a>
+                 </li>
           <?php break; ?>
-          <?php case 'email' :   ?><li class="email_section " data-index="<?php echo $index; ?>" id="sfsi_emailIcon_order"><a href="#" title="Email"><img src="<?php echo SFSI_PLUGURL; ?>images/<?php echo $email_image; ?>" alt="Email" class="icon_img" /></a></li>
+          
+		  <?php case 'email' :?>
+          		<li class="email_section " data-index="<?php echo $index; ?>" id="sfsi_emailIcon_order">
+                	<a href="#" title="Email"><img src="<?php echo SFSI_PLUGURL; ?>images/<?php echo $email_image; ?>" alt="Email" class="icon_img" /></a>
+                </li>
           <?php break; ?>
-          <?php case 'facebook' :   ?><li class="facebook_section " data-index="<?php echo $index; ?>" id="sfsi_facebookIcon_order"><a href="#" title="Facebook"><img src="<?php echo SFSI_PLUGURL; ?>images/facebook.png" alt="Facebook" /></a></li>
+          
+		  <?php case 'facebook' :?>
+          		<li class="facebook_section " data-index="<?php echo $index; ?>" id="sfsi_facebookIcon_order">
+                	<a href="#" title="Facebook"><img src="<?php echo SFSI_PLUGURL; ?>images/facebook.png" alt="Facebook" /></a>
+                </li>
           <?php break; ?>
-          <?php case 'google' :   ?><li class="google_section " data-index="<?php echo $index; ?>" id="sfsi_googleIcon_order"><a href="#" title="Google Plus" ><img src="<?php echo SFSI_PLUGURL; ?>images/google_plus.png" alt="Google Plus" /></a></li>
+          
+          <?php case 'google' :?>
+          		<li class="google_section " data-index="<?php echo $index; ?>" id="sfsi_googleIcon_order">
+                	<a href="#" title="Google Plus" ><img src="<?php echo SFSI_PLUGURL; ?>images/google_plus.png" alt="Google Plus" /></a>
+                </li>
           <?php break; ?>
-          <?php case 'twitter' :   ?><li class="twitter_section " data-index="<?php echo $index; ?>" id="sfsi_twitterIcon_order"><a href="#" title="Twitter" ><img src="<?php echo SFSI_PLUGURL; ?>images/twitter.png" alt="Twitter" /></a></li>
+          
+          <?php case 'twitter' :?>
+          		<li class="twitter_section " data-index="<?php echo $index; ?>" id="sfsi_twitterIcon_order">
+                	<a href="#" title="Twitter" ><img src="<?php echo SFSI_PLUGURL; ?>images/twitter.png" alt="Twitter" /></a>
+                </li>
           <?php break; ?>
-          <?php case 'share' :   ?><li class="share_section " data-index="<?php echo $index; ?>"  id="sfsi_shareIcon_order"><a href="#" title="Share" ><img src="<?php echo SFSI_PLUGURL; ?>images/share.png" alt="Share" /></a></li>
+          
+          <?php case 'share' : ?>
+          		<li class="share_section " data-index="<?php echo $index; ?>"  id="sfsi_shareIcon_order">
+                	<a href="#" title="Share" ><img src="<?php echo SFSI_PLUGURL; ?>images/share.png" alt="Share" /></a>
+                </li>
           <?php break; ?>
-          <?php case 'youtube' :   ?><li class="youtube_section " data-index="<?php echo $index; ?>" id="sfsi_youtubeIcon_order"><a href="#" title="YouTube" ><img src="<?php echo SFSI_PLUGURL; ?>images/youtube.png" alt="YouTube" /></a></li>
+          
+          <?php case 'youtube' :?>
+          		<li class="youtube_section " data-index="<?php echo $index; ?>" id="sfsi_youtubeIcon_order">
+                	<a href="#" title="YouTube" ><img src="<?php echo SFSI_PLUGURL; ?>images/youtube.png" alt="YouTube" /></a>
+                </li>
           <?php break; ?>
-          <?php case 'pinterest' :   ?><li class="pinterest_section " data-index="<?php echo $index; ?>" id="sfsi_pinterestIcon_order"><a href="#" title="Pinterest" ><img src="<?php echo SFSI_PLUGURL; ?>images/pinterest.png" alt="Pinterest" /></a></li>
+          
+          <?php case 'pinterest' :?>
+          		<li class="pinterest_section " data-index="<?php echo $index; ?>" id="sfsi_pinterestIcon_order">
+                	<a href="#" title="Pinterest" ><img src="<?php echo SFSI_PLUGURL; ?>images/pinterest.png" alt="Pinterest" /></a>
+                </li>
           <?php break; ?>
-          <?php case 'linkedin' :   ?><li class="linkedin_section " data-index="<?php echo $index; ?>" id="sfsi_linkedinIcon_order"><a href="#" title="Linked In" ><img src="<?php echo SFSI_PLUGURL; ?>images/linked_in.png" alt="Linked In" /></a></li>
+                
+          <?php case 'linkedin' :?>
+          		<li class="linkedin_section " data-index="<?php echo $index; ?>" id="sfsi_linkedinIcon_order">
+                	<a href="#" title="Linked In" ><img src="<?php echo SFSI_PLUGURL; ?>images/linked_in.png" alt="Linked In" /></a>
+                </li>
           <?php break; ?>
-          <?php case 'instagram' :   ?><li class="instagram_section " data-index="<?php echo $index; ?>" id="sfsi_instagramIcon_order"><a href="#" title="Instagram" ><img src="<?php echo SFSI_PLUGURL; ?>images/instagram.png" alt="Instagram" /></a></li>
-          <?php break; ?>          
-          <?php default   :  ?><li class="custom_iconOrder sfsiICON_<?php echo $icn['ele']; ?>" data-index="<?php echo $index; ?>" element-id="<?php echo $icn['ele']; ?>" ><a href="#" title="Custom Icon" ><img src="<?php echo $icn['img']; ?>" alt="Linked In" class="sfcm" /></a></li> 
-          <?php    break; ?>
-            
+          
+          <?php case 'instagram' :?>
+          		<li class="instagram_section " data-index="<?php echo $index; ?>" id="sfsi_instagramIcon_order">
+                	<a href="#" title="Instagram" ><img src="<?php echo SFSI_PLUGURL; ?>images/instagram.png" alt="Instagram" /></a>
+                </li>
+          <?php break; ?>
+          
+          <?php default   :?>
+          		<?php if(isset($icons[$icn['ele']]) && !empty($icons[$icn['ele']]) && filter_var($icons[$icn['ele']], FILTER_VALIDATE_URL) ): ?>
+          		<li class="custom_iconOrder sfsiICON_<?php echo $icn['ele']; ?>" data-index="<?php echo $index; ?>" element-id="<?php echo $icn['ele']; ?>" >
+                	<a href="#" title="Custom Icon" ><img src="<?php echo $icons[$icn['ele']]; ?>" alt="Linked In" class="sfcm" /></a>
+                </li> 
+                <?php endif; ?>
+          <?php break; ?>
          <?php  endswitch; ?>   
     <?php endforeach; ?> 
      
@@ -110,17 +144,41 @@
 	</ul>
       </div>
       <div class="clear float_options" <?php if($option5['sfsi_icons_stick']=='yes' || $option5['sfsi_icons_float']=='no') :?> style="display:none" <?php endif;?>>
-	<div class="float">Where shall they float?</div>
-	<div class="field " >
-	    <select name="sfsi_icons_floatPosition" id="sfsi_icons_floatPosition" class="styled">
-		<option value="top-left" <?php echo ($option5['sfsi_icons_floatPosition']=='top-left') ?  'selected="selected"' : '' ;?> >Top - Left</option>
-		<option value="top-right" <?php echo ($option5['sfsi_icons_floatPosition']=='top-right') ?  'selected="selected"' : '' ;?> >Top - Right</option>
-		<option value="center-left" <?php echo ($option5['sfsi_icons_floatPosition']=='center-left') ?  'selected="selected"' : '' ;?> >Center - Left</option>
-		<option value="center-right" <?php echo ($option5['sfsi_icons_floatPosition']=='center-right') ?  'selected="selected"' : '' ;?> >Center - Right</option>
-		<option value="bottom-left" <?php echo ($option5['sfsi_icons_floatPosition']=='bottom-left') ?  'selected="selected"' : '' ;?> >Bottom - Left</option>
-		<option value="bottom-right" <?php echo ($option5['sfsi_icons_floatPosition']=='bottom-right') ?  'selected="selected"' : '' ;?> >Bottom - Right</option>
-	    </select>
-	</div>
+	<div style="width: 100%; float: left;">
+        <div class="float">Where shall they float?</div>
+        <div class="field " >
+            <select name="sfsi_icons_floatPosition" id="sfsi_icons_floatPosition" class="styled">
+            <option value="top-left" <?php echo ($option5['sfsi_icons_floatPosition']=='top-left') ?  'selected="selected"' : '' ;?> >Top - Left</option>
+            <option value="top-right" <?php echo ($option5['sfsi_icons_floatPosition']=='top-right') ?  'selected="selected"' : '' ;?> >Top - Right</option>
+            <option value="center-left" <?php echo ($option5['sfsi_icons_floatPosition']=='center-left') ?  'selected="selected"' : '' ;?> >Center - Left</option>
+            <option value="center-right" <?php echo ($option5['sfsi_icons_floatPosition']=='center-right') ?  'selected="selected"' : '' ;?> >Center - Right</option>
+            <option value="bottom-left" <?php echo ($option5['sfsi_icons_floatPosition']=='bottom-left') ?  'selected="selected"' : '' ;?> >Bottom - Left</option>
+            <option value="bottom-right" <?php echo ($option5['sfsi_icons_floatPosition']=='bottom-right') ?  'selected="selected"' : '' ;?> >Bottom - Right</option>
+            </select>
+        </div>
+    </div>
+    <div style="width: 88%; float: left; margin:25px 0 0 187px">
+    	<h4>Margin From :</h4>
+        <ul class="sfsi_floaticon_margin_sec">
+        	<li>
+            	<label>Top :</label>
+                <input name="sfsi_icons_floatMargin_top" type="text" value="<?php echo ($option5['sfsi_icons_floatMargin_top']!='') ?  $option5['sfsi_icons_floatMargin_top'] : '' ;?>" /><ins>Pixels</ins>
+            </li>
+            <li>
+            	<label>Bottom :</label>
+                <input name="sfsi_icons_floatMargin_bottom" type="text" value="<?php echo ($option5['sfsi_icons_floatMargin_bottom'] != '') ?  $option5['sfsi_icons_floatMargin_bottom'] : '' ;?>" /><ins>Pixels</ins>
+            </li>
+            <li>
+            	<label>Left :</label>
+                <input name="sfsi_icons_floatMargin_left" type="text" value="<?php echo ($option5['sfsi_icons_floatMargin_left']!='') ?  $option5['sfsi_icons_floatMargin_left'] : '' ;?>" /><ins>Pixels</ins>
+            </li>
+            <li>
+            	<label>Right :</label>
+                <input name="sfsi_icons_floatMargin_right" type="text" value="<?php echo ($option5['sfsi_icons_floatMargin_right']!='') ?  $option5['sfsi_icons_floatMargin_right'] : '' ;?>" /><ins>Pixels</ins>
+            </li>
+        </ul>
+    </div>
+  
   </div> 
   
   <div class="space">
@@ -131,6 +189,15 @@
   </ul>
 
   </div>
+  <!--disable float icons-->
+  <div class="space disblfltonmbl">
+    <p class="list">Disable float icons on mobile devices</p>	
+    <ul class="enough_waffling">
+    <li><input name="sfsi_disable_floaticons" <?php echo ($option5['sfsi_disable_floaticons']=='yes') ?  'checked="true"' : '' ;?> type="radio" value="yes" class="styled"  /><label>Yes</label></li>
+	<li><input name="sfsi_disable_floaticons" <?php echo ($option5['sfsi_disable_floaticons']=='no') ?  'checked="true"' : '' ;?>  type="radio" value="no" class="styled" /><label>No</label></li>
+  </ul>
+  </div>
+  <!--disable float icons-->
 </div><!-- END icon's floating and stick section -->
  
  <!-- mouse over text section start here -->
@@ -215,9 +282,10 @@ here what text will be displayed if a user moves his mouse over the icon:</p>
      <!-- SAVE BUTTON SECTION   --> 
      <div class="save_button">
          <img src="<?php echo SFSI_PLUGURL ?>images/ajax-loader.gif" class="loader-img" />
-         <a href="javascript:;" id="sfsi_save5" title="Save">Save</a>
+         <?php  $nonce = wp_create_nonce("update_step5"); ?>
+         <a href="javascript:;" id="sfsi_save5" title="Save" data-nonce="<?php echo $nonce;?>">Save</a>
      </div><!-- END SAVE BUTTON SECTION   -->
-     <a class="sfsiColbtn closeSec" href="javascript:;" class="closeSec">Collapse area</a>
+     <a class="sfsiColbtn closeSec" href="javascript:;" >Collapse area</a>
      <label class="closeSec"></label>
        <!-- ERROR AND SUCCESS MESSAGE AREA-->
      <p class="red_txt errorMsg" style="display:none"> </p>

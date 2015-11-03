@@ -1,149 +1,89 @@
-window.Manipulator = (function($) {
-  'use strict';
-
-  var hasConsole = window.console && typeof window.console.log === 'function';
-
-  var Manipulator = function( element ) {
-    var self = this;
-  
-    self.$el = $( element );
-    self.init();
-  };
-
-  Manipulator.prototype.init = function() {
-    var self = this;
-
-    self.initShuffle();
-    self.setupEvents();
-  };
-
-  // Column width and gutter width options can be functions
-  Manipulator.prototype.initShuffle = function() {
-    this.$el.shuffle({
-      itemSelector: '.sfsi_wicons',
-      speed: 250,
-      easing: 'ease',
-      columnWidth: function( containerWidth ) {
-        // .box's have a width of 18%
-        //alert(containerWidth);
-       return parseInt($('.sfsi_wicons').css('width')); 
-          //return 0.18 * containerWidth;
-      },
-      gutterWidth: function( containerWidth ) {
-        // .box's have a margin-left of 2.5%
-        return parseInt($('.sfsi_wicons').css('margin-left')); 
-      }
-    });
-
-    // Shuffle is stored in the elements data with jQuery.
-    // You can access the class instance here
-    this.shuffle = this.$el.data('shuffle');
-  };
-
-  Manipulator.prototype.setupEvents = function() {
-    var self = this;
- 
-   // $('#add').on('click', $.proxy( self.onAddClick, self ));
-    $('.sfsi_wDiv').on('click', $.proxy( self.onRandomize, self ));
-    //$('#remove').on('click', $.proxy( self.onRemoveClick, self ));
-
-    // Show off some shuffle events
-    self.$el.on('removed.shuffle', function( evt, $collection, shuffle ) {
-
-      // Make sure logs work
-      if ( !hasConsole ) {
-        return;
-      }
-
-      //console.log( this, evt, $collection, shuffle );
-    });
-  };
-
-  Manipulator.prototype.onAddClick = function() {
-
-    // Creating random elements. You could use an
-    // ajax request or clone elements instead
-    var self = this,
-        itemsToCreate = 5,
-        frag = document.createDocumentFragment(),
-        grid = self.$el[0],
-        items = [],
-        $items,
-        classes = ['w2', 'h2', 'w3'],
-        box, i, random, randomClass;
-
-    for (i = 0; i < itemsToCreate; i++) {
-      random = Math.random();
-      box = document.createElement('div');
-      box.className = 'sfsi_wicons';
-
-      // Randomly add a class
-      if ( random > 0.8 ) {
-        randomClass = Math.floor( Math.random() * 3 );
-        box.className = box.className + ' ' + classes[ randomClass ];
-      }
-      items.push( box );
-      frag.appendChild( box );
-    }
-
-    grid.appendChild( frag );
-    $items = $(items);
-
-
-    // Tell shuffle items have been appended.
-    // It expects a jQuery object as the parameter.
-    self.shuffle.appended( $items );
-    // or
-    // self.$el.shuffle('appended', $items );
-  };
-
-  Manipulator.prototype.getRandomInt = function(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
-
-  // Randomly choose some elements to remove
-  Manipulator.prototype.onRemoveClick = function() {
-    var self = this,
-        total = self.shuffle.visibleItems,
-        numberToRemove = Math.min( 3, total ),
-        indexesToRemove = [],
-        i = 0,
-        $collection = $();
-
-    // None left
-    if ( !total ) {
-      return;
-    }
-
-    // This has the possibility to choose the same index for more than
-    // one in the array, meaning sometimes less than 3 will be removed
-    for ( ; i < numberToRemove; i++ ) {
-      indexesToRemove.push( self.getRandomInt( 0, total - 1 ) );
-    }
-
-    // Make a jQuery collection out of the index selections
-    $.each(indexesToRemove, function(i, index) {
-      $collection = $collection.add( self.shuffle.$items.eq( index ) );
-    });
-
-    // Tell shuffle to remove them
-    self.shuffle.remove( $collection );
-    // or
-    // self.$el.shuffle('remove', $collection);
-  };
-
-  Manipulator.prototype.onRandomize = function() {
-    var self = this,
-        sortObj = {
-          randomize: true
-        };
-
-    self.shuffle.sort( sortObj );
-    // or
-    // self.$el.shuffle('sort', sortObj);
-  };
-
-  return Manipulator;
-
-}(jQuery));
-
+window.Manipulator = function(e) {
+    "use strict";
+    var t = window.console && typeof window.console.log === "function";
+    var n = function(t) {
+        var n = this;
+        n.$el = e(t);
+        n.init()
+    };
+    n.prototype.init = function() {
+        var e = this;
+        e.initShuffle();
+        e.setupEvents()
+    };
+    n.prototype.initShuffle = function() {
+        this.$el.shuffle({
+            itemSelector: ".shuffeldiv",
+            speed: 250,
+            easing: "ease",
+            columnWidth: function(t) {
+                return parseInt(e(".shuffeldiv").css("width"))
+            },
+            gutterWidth: function(t) {
+                return parseInt(e(".shuffeldiv").css("margin-left"))
+            }
+        });
+        this.shuffle = this.$el.data("shuffle")
+    };
+    n.prototype.setupEvents = function() {
+        var n = this;
+        e("#sfsi_wDiv").on("click", e.proxy(n.onRandomize, n));
+        n.$el.on("removed.shuffle", function(e, n, r) {
+            if (!t) {
+                return
+            }
+        })
+    };
+    n.prototype.onAddClick = function() {
+        var t = this,
+            n = 5,
+            r = document.createDocumentFragment(),
+            i = t.$el[0],
+            s = [],
+            o, u = ["w2", "h2", "w3"],
+            a, f, l, c;
+        for (f = 0; f < n; f++) {
+            l = Math.random();
+            a = document.createElement("div");
+            a.className = "shuffeldiv";
+            if (l > .8) {
+                c = Math.floor(Math.random() * 3);
+                a.className = a.className + " " + u[c]
+            }
+            s.push(a);
+            r.appendChild(a)
+        }
+        i.appendChild(r);
+        o = e(s);
+        t.shuffle.appended(o)
+    };
+    n.prototype.getRandomInt = function(e, t) {
+        return Math.floor(Math.random() * (t - e + 1)) + e
+    };
+    n.prototype.onRemoveClick = function() {
+        var t = this,
+            n = t.shuffle.visibleItems,
+            r = Math.min(3, n),
+            i = [],
+            s = 0,
+            o = e();
+        if (!n) {
+            return
+        }
+        for (; s < r; s++) {
+            i.push(t.getRandomInt(0, n - 1))
+        }
+        e.each(i, function(e, n) {
+            o = o.add(t.shuffle.$items.eq(n))
+        });
+        t.shuffle.remove(o)
+    };
+    n.prototype.onRandomize = function() {
+        var e = this,
+            t = {
+                randomize: true
+            };
+        e.shuffle.sort(t)
+    };
+    return n
+}(jQuery)

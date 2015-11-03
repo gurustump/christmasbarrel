@@ -6,7 +6,7 @@
  *
  * @package     EDD
  * @subpackage  Deprecated
- * @copyright   Copyright (c) 2014, Pippin Williamson
+ * @copyright   Copyright (c) 2015, Pippin Williamson
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -218,7 +218,7 @@ function edd_show_has_purchased_item_message() {
 		return;
 
 	if ( edd_has_user_purchased( $user_ID, $post->ID ) ) {
-		$alert = '<p class="edd_has_purchased">' . __( 'You have already purchased this item, but you may purchase it again.', 'edd' ) . '</p>';
+		$alert = '<p class="edd_has_purchased">' . __( 'You have already purchased this item, but you may purchase it again.', 'easy-digital-downloads' ) . '</p>';
 		echo apply_filters( 'edd_show_has_purchased_item_message', $alert );
 	}
 }
@@ -257,7 +257,7 @@ function edd_get_cart_amount( $add_taxes = true, $local_override = false ) {
 
 	_edd_deprecated_function( __FUNCTION__, '1.9', 'edd_get_cart_subtotal() or edd_get_cart_total()', $backtrace );
 
-	$amount = edd_get_cart_subtotal( false );
+	$amount = edd_get_cart_subtotal( );
 	if ( ! empty( $_POST['edd-discount'] ) || edd_get_cart_discounts() !== false ) {
 		// Retrieve the discount stored in cookies
 		$discounts = edd_get_cart_discounts();
@@ -298,23 +298,23 @@ function edd_get_cart_amount( $add_taxes = true, $local_override = false ) {
  * @return string $tags
  */
 function edd_get_purchase_receipt_template_tags() {
-	$tags = __('Enter the email that is sent to users after completing a successful purchase. HTML is accepted. Available template tags:', 'edd') . '<br/>' .
-			'{download_list} - ' . __('A list of download links for each download purchased', 'edd') . '<br/>' .
-			'{file_urls} - ' . __('A plain-text list of download URLs for each download purchased', 'edd') . '<br/>' .
-			'{name} - ' . __('The buyer\'s first name', 'edd') . '<br/>' .
-			'{fullname} - ' . __('The buyer\'s full name, first and last', 'edd') . '<br/>' .
-			'{username} - ' . __('The buyer\'s user name on the site, if they registered an account', 'edd') . '<br/>' .
-			'{user_email} - ' . __('The buyer\'s email address', 'edd') . '<br/>' .
-			'{billing_address} - ' . __('The buyer\'s billing address', 'edd') . '<br/>' .
-			'{date} - ' . __('The date of the purchase', 'edd') . '<br/>' .
-			'{subtotal} - ' . __('The price of the purchase before taxes', 'edd') . '<br/>' .
-			'{tax} - ' . __('The taxed amount of the purchase', 'edd') . '<br/>' .
-			'{price} - ' . __('The total price of the purchase', 'edd') . '<br/>' .
-			'{payment_id} - ' . __('The unique ID number for this purchase', 'edd') . '<br/>' .
-			'{receipt_id} - ' . __('The unique ID number for this purchase receipt', 'edd') . '<br/>' .
-			'{payment_method} - ' . __('The method of payment used for this purchase', 'edd') . '<br/>' .
-			'{sitename} - ' . __('Your site name', 'edd') . '<br/>' .
-			'{receipt_link} - ' . __( 'Adds a link so users can view their receipt directly on your website if they are unable to view it in the browser correctly.', 'edd' );
+	$tags = __('Enter the email that is sent to users after completing a successful purchase. HTML is accepted. Available template tags:','easy-digital-downloads' ) . '<br/>' .
+			'{download_list} - ' . __('A list of download links for each download purchased','easy-digital-downloads' ) . '<br/>' .
+			'{file_urls} - ' . __('A plain-text list of download URLs for each download purchased','easy-digital-downloads' ) . '<br/>' .
+			'{name} - ' . __('The buyer\'s first name','easy-digital-downloads' ) . '<br/>' .
+			'{fullname} - ' . __('The buyer\'s full name, first and last','easy-digital-downloads' ) . '<br/>' .
+			'{username} - ' . __('The buyer\'s user name on the site, if they registered an account','easy-digital-downloads' ) . '<br/>' .
+			'{user_email} - ' . __('The buyer\'s email address','easy-digital-downloads' ) . '<br/>' .
+			'{billing_address} - ' . __('The buyer\'s billing address','easy-digital-downloads' ) . '<br/>' .
+			'{date} - ' . __('The date of the purchase','easy-digital-downloads' ) . '<br/>' .
+			'{subtotal} - ' . __('The price of the purchase before taxes','easy-digital-downloads' ) . '<br/>' .
+			'{tax} - ' . __('The taxed amount of the purchase','easy-digital-downloads' ) . '<br/>' .
+			'{price} - ' . __('The total price of the purchase','easy-digital-downloads' ) . '<br/>' .
+			'{payment_id} - ' . __('The unique ID number for this purchase','easy-digital-downloads' ) . '<br/>' .
+			'{receipt_id} - ' . __('The unique ID number for this purchase receipt','easy-digital-downloads' ) . '<br/>' .
+			'{payment_method} - ' . __('The method of payment used for this purchase','easy-digital-downloads' ) . '<br/>' .
+			'{sitename} - ' . __('Your site name','easy-digital-downloads' ) . '<br/>' .
+			'{receipt_link} - ' . __( 'Adds a link so users can view their receipt directly on your website if they are unable to view it in the browser correctly.', 'easy-digital-downloads' );
 
 	return apply_filters( 'edd_purchase_receipt_template_tags_description', $tags );
 }
@@ -331,22 +331,22 @@ function edd_get_purchase_receipt_template_tags() {
  * @return string $tags
  */
 function edd_get_sale_notification_template_tags() {
-	$tags = __( 'Enter the email that is sent to sale notification emails after completion of a purchase. HTML is accepted. Available template tags:', 'edd' ) . '<br/>' .
-			'{download_list} - ' . __('A list of download links for each download purchased', 'edd') . '<br/>' .
-			'{file_urls} - ' . __('A plain-text list of download URLs for each download purchased', 'edd') . '<br/>' .
-			'{name} - ' . __('The buyer\'s first name', 'edd') . '<br/>' .
-			'{fullname} - ' . __('The buyer\'s full name, first and last', 'edd') . '<br/>' .
-			'{username} - ' . __('The buyer\'s user name on the site, if they registered an account', 'edd') . '<br/>' .
-			'{user_email} - ' . __('The buyer\'s email address', 'edd') . '<br/>' .
-			'{billing_address} - ' . __('The buyer\'s billing address', 'edd') . '<br/>' .
-			'{date} - ' . __('The date of the purchase', 'edd') . '<br/>' .
-			'{subtotal} - ' . __('The price of the purchase before taxes', 'edd') . '<br/>' .
-			'{tax} - ' . __('The taxed amount of the purchase', 'edd') . '<br/>' .
-			'{price} - ' . __('The total price of the purchase', 'edd') . '<br/>' .
-			'{payment_id} - ' . __('The unique ID number for this purchase', 'edd') . '<br/>' .
-			'{receipt_id} - ' . __('The unique ID number for this purchase receipt', 'edd') . '<br/>' .
-			'{payment_method} - ' . __('The method of payment used for this purchase', 'edd') . '<br/>' .
-			'{sitename} - ' . __('Your site name', 'edd');
+	$tags = __( 'Enter the email that is sent to sale notification emails after completion of a purchase. HTML is accepted. Available template tags:', 'easy-digital-downloads' ) . '<br/>' .
+			'{download_list} - ' . __('A list of download links for each download purchased','easy-digital-downloads' ) . '<br/>' .
+			'{file_urls} - ' . __('A plain-text list of download URLs for each download purchased','easy-digital-downloads' ) . '<br/>' .
+			'{name} - ' . __('The buyer\'s first name','easy-digital-downloads' ) . '<br/>' .
+			'{fullname} - ' . __('The buyer\'s full name, first and last','easy-digital-downloads' ) . '<br/>' .
+			'{username} - ' . __('The buyer\'s user name on the site, if they registered an account','easy-digital-downloads' ) . '<br/>' .
+			'{user_email} - ' . __('The buyer\'s email address','easy-digital-downloads' ) . '<br/>' .
+			'{billing_address} - ' . __('The buyer\'s billing address','easy-digital-downloads' ) . '<br/>' .
+			'{date} - ' . __('The date of the purchase','easy-digital-downloads' ) . '<br/>' .
+			'{subtotal} - ' . __('The price of the purchase before taxes','easy-digital-downloads' ) . '<br/>' .
+			'{tax} - ' . __('The taxed amount of the purchase','easy-digital-downloads' ) . '<br/>' .
+			'{price} - ' . __('The total price of the purchase','easy-digital-downloads' ) . '<br/>' .
+			'{payment_id} - ' . __('The unique ID number for this purchase','easy-digital-downloads' ) . '<br/>' .
+			'{receipt_id} - ' . __('The unique ID number for this purchase receipt','easy-digital-downloads' ) . '<br/>' .
+			'{payment_method} - ' . __('The method of payment used for this purchase','easy-digital-downloads' ) . '<br/>' .
+			'{sitename} - ' . __('Your site name','easy-digital-downloads' );
 
 	return apply_filters( 'edd_sale_notification_template_tags_description', $tags );
 }
@@ -460,4 +460,87 @@ function edd_taxes_after_discounts() {
 	global $edd_options;
 	$ret = isset( $edd_options['taxes_after_discounts'] ) && edd_use_taxes();
 	return apply_filters( 'edd_taxes_after_discounts', $ret );
+}
+
+/**
+ * Verifies a download purchase using a purchase key and email.
+ *
+ * @deprecated Please avoid usage of this function in favor of the tokenized urls with edd_validate_url_token()
+ * introduced in EDD 2.3
+ *
+ * @since 1.0
+ *
+ * @param int    $download_id
+ * @param string $key
+ * @param string $email
+ * @param string $expire
+ * @param int    $file_key
+ *
+ * @return bool True if payment and link was verified, false otherwise
+ */
+function edd_verify_download_link( $download_id = 0, $key = '', $email = '', $expire = '', $file_key = 0 ) {
+
+	$meta_query = array(
+		'relation'  => 'AND',
+		array(
+			'key'   => '_edd_payment_purchase_key',
+			'value' => $key
+		),
+		array(
+			'key'   => '_edd_payment_user_email',
+			'value' => $email
+		)
+	);
+
+	$accepted_stati = apply_filters( 'edd_allowed_download_stati', array( 'publish', 'complete' ) );
+
+	$payments = get_posts( array( 'meta_query' => $meta_query, 'post_type' => 'edd_payment', 'post_status' => $accepted_stati ) );
+
+	if ( $payments ) {
+		foreach ( $payments as $payment ) {
+
+			$cart_details = edd_get_payment_meta_cart_details( $payment->ID, true );
+
+			if ( ! empty( $cart_details ) ) {
+				foreach ( $cart_details as $cart_key => $cart_item ) {
+
+					if ( $cart_item['id'] != $download_id )
+						continue;
+
+					$price_options 	= isset( $cart_item['item_number']['options'] ) ? $cart_item['item_number']['options'] : false;
+					$price_id 		= isset( $price_options['price_id'] ) ? $price_options['price_id'] : false;
+
+					$file_condition = edd_get_file_price_condition( $cart_item['id'], $file_key );
+
+					// Check to see if the file download limit has been reached
+					if ( edd_is_file_at_download_limit( $cart_item['id'], $payment->ID, $file_key, $price_id ) )
+						wp_die( apply_filters( 'edd_download_limit_reached_text', __( 'Sorry but you have hit your download limit for this file.', 'easy-digital-downloads' ) ), __( 'Error', 'easy-digital-downloads' ), array( 'response' => 403 ) );
+
+					// If this download has variable prices, we have to confirm that this file was included in their purchase
+					if ( ! empty( $price_options ) && $file_condition != 'all' && edd_has_variable_prices( $cart_item['id'] ) ) {
+						if ( $file_condition == $price_options['price_id'] )
+							return $payment->ID;
+					}
+
+					// Make sure the link hasn't expired
+
+					if ( base64_encode( base64_decode( $expire, true ) ) === $expire ) {
+						$expire = base64_decode( $expire ); // If it is a base64 string, decode it. Old expiration dates were in base64
+					}
+
+					if ( current_time( 'timestamp' ) > $expire ) {
+						wp_die( apply_filters( 'edd_download_link_expired_text', __( 'Sorry but your download link has expired.', 'easy-digital-downloads' ) ), __( 'Error', 'easy-digital-downloads' ), array( 'response' => 403 ) );
+					}
+					return $payment->ID; // Payment has been verified and link is still valid
+				}
+
+			}
+
+		}
+
+	} else {
+		wp_die( __( 'No payments matching your request were found.', 'easy-digital-downloads' ), __( 'Error', 'easy-digital-downloads' ), array( 'response' => 403 ) );
+	}
+	// Payment not verified
+	return false;
 }

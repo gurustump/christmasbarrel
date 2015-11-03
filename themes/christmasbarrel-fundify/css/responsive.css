@@ -133,6 +133,17 @@
 	}
 }
 
+@media screen and (max-width: 680px) {
+	.merry-christmas {
+		font-size:25px;
+		padding-top:36px;
+		line-height:17px;
+	}
+	.merry-christmas span:first-child {
+		font-size:22px;
+	}
+}
+
 @media screen and (max-width: 600px) {
 	#header {
 		padding: 10px 0 0 0 !important;
@@ -167,6 +178,14 @@
 		line-height:13px;
 		width:45px;
 		text-align:left;
+	}
+	.merry-christmas {
+		font-size:25px;
+		padding-top:3px;
+		line-height:15px;
+	}
+	.merry-christmas span:first-child {
+		font-size:20px;
 	}
 	#header .menu-toggle {
 		padding:10px 0;

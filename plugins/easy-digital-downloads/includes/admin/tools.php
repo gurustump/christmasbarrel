@@ -6,7 +6,7 @@
  *
  * @package     EDD
  * @subpackage  Admin/Tools
- * @copyright   Copyright (c) 2014, Pippin Williamson
+ * @copyright   Copyright (c) 2015, Pippin Williamson
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
@@ -65,10 +65,10 @@ function edd_tools_page() {
 function edd_get_tools_tabs() {
 
 	$tabs                  = array();
-	$tabs['general']       = __( 'General', 'edd' );
-	$tabs['api_keys']      = __( 'API Keys', 'edd' );
-	$tabs['system_info']   = __( 'System Info', 'edd' );
-	$tabs['import_export'] = __( 'Import/Export', 'edd' );
+	$tabs['general']       = __( 'General', 'easy-digital-downloads' );
+	$tabs['api_keys']      = __( 'API Keys', 'easy-digital-downloads' );
+	$tabs['system_info']   = __( 'System Info', 'easy-digital-downloads' );
+	$tabs['import_export'] = __( 'Import/Export', 'easy-digital-downloads' );
 
 	return apply_filters( 'edd_tools_tabs', $tabs );
 }
@@ -81,21 +81,26 @@ function edd_get_tools_tabs() {
  * @return      void
  */
 function edd_tools_banned_emails_display() {
+
+	if( ! current_user_can( 'manage_shop_settings' ) ) {
+		return;
+	}
+
 	do_action( 'edd_tools_banned_emails_before' );
 ?>
 	<div class="postbox">
-		<h3><span><?php _e( 'Banned Emails', 'edd' ); ?></span></h3>
+		<h3><span><?php _e( 'Banned Emails', 'easy-digital-downloads' ); ?></span></h3>
 		<div class="inside">
-			<p><?php _e( 'Emails placed in the box below will not be allowed to make purchases.', 'edd' ); ?></p>
+			<p><?php _e( 'Emails placed in the box below will not be allowed to make purchases. To ban an entire domain, enter the domain starting with "@".', 'easy-digital-downloads' ); ?></p>
 			<form method="post" action="<?php echo admin_url( 'edit.php?post_type=download&page=edd-tools&tab=general' ); ?>">
 				<p>
 					<textarea name="banned_emails" rows="10" class="large-text"><?php echo implode( "\n", edd_get_banned_emails() ); ?></textarea>
-					<span class="description"><?php _e( 'Enter emails to disallow, one per line', 'edd' ); ?></span>
+					<span class="description"><?php _e( 'Enter emails and/or domains (starting with @) to disallow, one per line.', 'easy-digital-downloads' ); ?></span>
 				</p>
 				<p>
 					<input type="hidden" name="edd_action" value="save_banned_emails" />
 					<?php wp_nonce_field( 'edd_banned_emails_nonce', 'edd_banned_emails_nonce' ); ?>
-					<?php submit_button( __( 'Save', 'edd' ), 'secondary', 'submit', false ); ?>
+					<?php submit_button( __( 'Save', 'easy-digital-downloads' ), 'secondary', 'submit', false ); ?>
 				</p>
 			</form>
 		</div><!-- .inside -->
@@ -106,6 +111,38 @@ function edd_tools_banned_emails_display() {
 }
 add_action( 'edd_tools_tab_general', 'edd_tools_banned_emails_display' );
 
+/**
+ * Display the clear upgrades tab
+ *
+ * @since       2.3.5
+ * @return      void
+ */
+function edd_tools_clear_doing_upgrade_display() {
+
+	if( ! current_user_can( 'manage_shop_settings' ) || false === get_option( 'edd_doing_upgrade' ) ) {
+		return;
+	}
+
+	do_action( 'edd_tools_clear_doing_upgrade_before' );
+?>
+	<div class="postbox">
+		<h3><span><?php _e( 'Clear Incomplete Upgrade Notice', 'easy-digital-downloads' ); ?></span></h3>
+		<div class="inside">
+			<p><?php _e( 'Sometimes a database upgrade notice may not be cleared after an upgrade is completed due to conflicts with other extensions or other minor issues.', 'easy-digital-downloads' ); ?></p>
+			<p><?php _e( 'If you\'re certain these upgrades have been completed, you can clear these upgrade notices by clicking the button below. If you have any questions about this, please contact the Easy Digital Downloads support team and we\'ll be happy to help.', 'easy-digital-downloads' ); ?></p>
+			<form method="post" action="<?php echo admin_url( 'edit.php?post_type=download&page=edd-tools&tab=general' ); ?>">
+				<p>
+					<input type="hidden" name="edd_action" value="clear_doing_upgrade" />
+					<?php wp_nonce_field( 'edd_clear_upgrades_nonce', 'edd_clear_upgrades_nonce' ); ?>
+					<?php submit_button( __( 'Clear Incomplete Upgrade Notice', 'easy-digital-downloads' ), 'secondary', 'submit', false ); ?>
+				</p>
+			</form>
+		</div><!-- .inside -->
+	</div><!-- .postbox -->
+<?php
+	do_action( 'edd_tools_clear_doing_upgrade_after' );
+}
+add_action( 'edd_tools_tab_general', 'edd_tools_clear_doing_upgrade_display' );
 
 /**
  * Display the API Keys
@@ -114,6 +151,11 @@ add_action( 'edd_tools_tab_general', 'edd_tools_banned_emails_display' );
  * @return      void
  */
 function edd_tools_api_keys_display() {
+
+	if( ! current_user_can( 'manage_shop_settings' ) ) {
+		return;
+	}
+
 	do_action( 'edd_tools_api_keys_before' );
 
 	require_once EDD_PLUGIN_DIR . 'includes/admin/class-api-keys-table.php';
@@ -124,9 +166,9 @@ function edd_tools_api_keys_display() {
 ?>
 	<p>
 	<?php printf(
-		__( 'These API keys allow you to use the <a href="%s">EDD REST API</a> to retrieve store data in JSON or XML for external applications or devices, such as the <a href="%s">EDD mobile apps</a>.', 'edd' ),
-		'https://easydigitaldownloads.com/docs/edd-api-reference/',
-		'https://easydigitaldownloads.com/blog/extensions/categories/mobile/'
+		__( 'These API keys allow you to use the <a href="%s">EDD REST API</a> to retrieve store data in JSON or XML for external applications or devices, such as the <a href="%s">EDD mobile app</a>.', 'easy-digital-downloads' ),
+		'http://docs.easydigitaldownloads.com/article/544-edd-api-reference/',
+		'https://easydigitaldownloads.com/downloads/ios-sales-earnings-tracker/'
 	); ?>
 	</p>
 <?php
@@ -154,15 +196,47 @@ function edd_tools_banned_emails_save() {
 		return;
 	}
 
+	if( ! empty( $_POST['banned_emails'] ) ) {
 
-	// Sanitize the input
-	$emails = array_map( 'trim', explode( "\n", $_POST['banned_emails'] ) );
-	$emails = array_filter( array_map( 'is_email', $emails ) );
+		// Sanitize the input
+		$emails = array_map( 'trim', explode( "\n", $_POST['banned_emails'] ) );
+		$emails = array_unique( $emails );
+		$emails = array_map( 'sanitize_text_field', $emails );
+
+		foreach( $emails as $id => $email ) {
+			if( ! is_email( $email ) ) {
+				if( $email[0] != '@' ) {
+					unset( $emails[$id] );
+				}
+			}
+		}
+	} else {
+		$emails = '';
+	}
 
 	$edd_options['banned_emails'] = $emails;
 	update_option( 'edd_settings', $edd_options );
 }
 add_action( 'edd_save_banned_emails', 'edd_tools_banned_emails_save' );
+
+/**
+ * Execute upgrade notice clear
+ *
+ * @since       2.3.5
+ * @return      void
+ */
+function edd_tools_clear_upgrade_notice() {
+	if( ! wp_verify_nonce( $_POST['edd_clear_upgrades_nonce'], 'edd_clear_upgrades_nonce' ) ) {
+		return;
+	}
+
+	if( ! current_user_can( 'manage_shop_settings' ) ) {
+		return;
+	}
+
+	delete_option( 'edd_doing_upgrade' );
+}
+add_action( 'edd_clear_doing_upgrade', 'edd_tools_clear_upgrade_notice' );
 
 
 /**
@@ -172,27 +246,32 @@ add_action( 'edd_save_banned_emails', 'edd_tools_banned_emails_save' );
  * @return      void
  */
 function edd_tools_import_export_display() {
+
+	if( ! current_user_can( 'manage_shop_settings' ) ) {
+		return;
+	}
+
 	do_action( 'edd_tools_import_export_before' );
 ?>
 	<div class="postbox">
-		<h3><span><?php _e( 'Export Settings', 'edd' ); ?></span></h3>
+		<h3><span><?php _e( 'Export Settings', 'easy-digital-downloads' ); ?></span></h3>
 		<div class="inside">
-			<p><?php _e( 'Export the Easy Digital Downloads settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'edd' ); ?></p>
-			<p><?php printf( __( 'To export shop data (purchases, customers, etc), visit the <a href="%s">Reports</a> page.', 'edd' ), admin_url( 'edit.php?post_type=download&page=edd-reports&tab=export' ) ); ?></p>
+			<p><?php _e( 'Export the Easy Digital Downloads settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'easy-digital-downloads' ); ?></p>
+			<p><?php printf( __( 'To export shop data (purchases, customers, etc), visit the <a href="%s">Reports</a> page.', 'easy-digital-downloads' ), admin_url( 'edit.php?post_type=download&page=edd-reports&tab=export' ) ); ?></p>
 			<form method="post" action="<?php echo admin_url( 'edit.php?post_type=download&page=edd-tools&tab=import_export' ); ?>">
 				<p><input type="hidden" name="edd_action" value="export_settings" /></p>
 				<p>
 					<?php wp_nonce_field( 'edd_export_nonce', 'edd_export_nonce' ); ?>
-					<?php submit_button( __( 'Export', 'edd' ), 'secondary', 'submit', false ); ?>
+					<?php submit_button( __( 'Export', 'easy-digital-downloads' ), 'secondary', 'submit', false ); ?>
 				</p>
 			</form>
 		</div><!-- .inside -->
 	</div><!-- .postbox -->
 
 	<div class="postbox">
-		<h3><span><?php _e( 'Import Settings', 'edd' ); ?></span></h3>
+		<h3><span><?php _e( 'Import Settings', 'easy-digital-downloads' ); ?></span></h3>
 		<div class="inside">
-			<p><?php _e( 'Import the Easy Digital Downloads settings from a .json file. This file can be obtained by exporting the settings on another site using the form above.', 'edd' ); ?></p>
+			<p><?php _e( 'Import the Easy Digital Downloads settings from a .json file. This file can be obtained by exporting the settings on another site using the form above.', 'easy-digital-downloads' ); ?></p>
 			<form method="post" enctype="multipart/form-data" action="<?php echo admin_url( 'edit.php?post_type=download&page=edd-tools&tab=import_export' ); ?>">
 				<p>
 					<input type="file" name="import_file"/>
@@ -200,7 +279,7 @@ function edd_tools_import_export_display() {
 				<p>
 					<input type="hidden" name="edd_action" value="import_settings" />
 					<?php wp_nonce_field( 'edd_import_nonce', 'edd_import_nonce' ); ?>
-					<?php submit_button( __( 'Import', 'edd' ), 'secondary', 'submit', false ); ?>
+					<?php submit_button( __( 'Import', 'easy-digital-downloads' ), 'secondary', 'submit', false ); ?>
 				</p>
 			</form>
 		</div><!-- .inside -->
@@ -265,13 +344,13 @@ function edd_tools_import_export_process_import() {
 		return;
 
     if( edd_get_file_extension( $_FILES['import_file']['name'] ) != 'json' ) {
-        wp_die( __( 'Please upload a valid .json file', 'edd' ) );
+        wp_die( __( 'Please upload a valid .json file', 'easy-digital-downloads' ), __( 'Error', 'easy-digital-downloads' ), array( 'response' => 400 ) );
     }
 
 	$import_file = $_FILES['import_file']['tmp_name'];
 
 	if( empty( $import_file ) ) {
-		wp_die( __( 'Please upload a file to import', 'edd' ) );
+		wp_die( __( 'Please upload a file to import', 'easy-digital-downloads' ), __( 'Error', 'easy-digital-downloads' ), array( 'response' => 400 ) );
 	}
 
 	// Retrieve the settings from the file and convert the json object to an array
@@ -292,6 +371,11 @@ add_action( 'edd_import_settings', 'edd_tools_import_export_process_import' );
  * @return      void
  */
 function edd_tools_sysinfo_display() {
+
+	if( ! current_user_can( 'manage_shop_settings' ) ) {
+		return;
+	}
+
 ?>
 	<form action="<?php echo esc_url( admin_url( 'edit.php?post_type=download&page=edd-tools&tab=system_info' ) ); ?>" method="post" dir="ltr">
 		<textarea readonly="readonly" onclick="this.focus(); this.select()" id="system-info-textarea" name="edd-sysinfo" title="To copy the system info, click below then press Ctrl + C (PC) or Cmd + C (Mac)."><?php echo edd_tools_sysinfo_get(); ?></textarea>
@@ -311,11 +395,10 @@ add_action( 'edd_tools_tab_system_info', 'edd_tools_sysinfo_display' );
  * @since       2.0
  * @access      public
  * @global      object $wpdb Used to query the database using the WordPress Database API
- * @global      array $edd_options Array of all EDD options
  * @return      string $return A string containing the info to output
  */
 function edd_tools_sysinfo_get() {
-	global $wpdb, $edd_options;
+	global $wpdb;
 
 	if( !class_exists( 'Browser' ) )
 		require_once EDD_PLUGIN_DIR . 'includes/libraries/browser.php';
@@ -395,6 +478,8 @@ function edd_tools_sysinfo_get() {
 
 	$return .= 'Remote Post:              ' . $WP_REMOTE_POST . "\n";
 	$return .= 'Table Prefix:             ' . 'Length: ' . strlen( $wpdb->prefix ) . '   Status: ' . ( strlen( $wpdb->prefix ) > 16 ? 'ERROR: Too long' : 'Acceptable' ) . "\n";
+	// Commented out per https://github.com/easydigitaldownloads/Easy-Digital-Downloads/issues/3475
+	//$return .= 'Admin AJAX:               ' . ( edd_test_ajax_works() ? 'Accessible' : 'Inaccessible' ) . "\n";
 	$return .= 'WP_DEBUG:                 ' . ( defined( 'WP_DEBUG' ) ? WP_DEBUG ? 'Enabled' : 'Disabled' : 'Not set' ) . "\n";
 	$return .= 'Memory Limit:             ' . WP_MEMORY_LIMIT . "\n";
 	$return .= 'Registered Post Stati:    ' . implode( ', ', get_post_stati() ) . "\n";
@@ -408,21 +493,26 @@ function edd_tools_sysinfo_get() {
 	$return .= 'Test Mode:                ' . ( edd_is_test_mode() ? "Enabled\n" : "Disabled\n" );
 	$return .= 'Ajax:                     ' . ( ! edd_is_ajax_disabled() ? "Enabled\n" : "Disabled\n" );
 	$return .= 'Guest Checkout:           ' . ( edd_no_guest_checkout() ? "Disabled\n" : "Enabled\n" );
-	$return .= 'Symlinks:                 ' . ( apply_filters( 'edd_symlink_file_downloads', isset( $edd_options['symlink_file_downloads'] ) ) && function_exists( 'symlink' ) ? "Enabled\n" : "Disabled\n" );
+	$return .= 'Symlinks:                 ' . ( apply_filters( 'edd_symlink_file_downloads', edd_get_option( 'symlink_file_downloads', false ) ) && function_exists( 'symlink' ) ? "Enabled\n" : "Disabled\n" );
 	$return .= 'Download Method:          ' . ucfirst( edd_get_file_download_method() ) . "\n";
 	$return .= 'Currency Code:            ' . edd_get_currency() . "\n";
 	$return .= 'Currency Position:        ' . edd_get_option( 'currency_position', 'before' ) . "\n";
 	$return .= 'Decimal Separator:        ' . edd_get_option( 'decimal_separator', '.' ) . "\n";
 	$return .= 'Thousands Separator:      ' . edd_get_option( 'thousands_separator', ',' ) . "\n";
+	$return .= 'Upgrades Completed:       ' . implode( ',', edd_get_completed_upgrades() ) . "\n";
 
 	$return  = apply_filters( 'edd_sysinfo_after_edd_config', $return );
 
 	// EDD pages
+	$purchase_page = edd_get_option( 'purchase_page', '' );
+	$success_page  = edd_get_option( 'success_page', '' );
+	$failure_page  = edd_get_option( 'failure_page', '' );
+
 	$return .= "\n" . '-- EDD Page Configuration' . "\n\n";
-	$return .= 'Checkout:                 ' . ( !empty( $edd_options['purchase_page'] ) ? "Valid\n" : "Invalid\n" );
-	$return .= 'Checkout Page:            ' . ( !empty( $edd_options['purchase_page'] ) ? get_permalink( $edd_options['purchase_page'] ) . "\n" : "Unset\n" );
-	$return .= 'Success Page:             ' . ( !empty( $edd_options['success_page'] ) ? get_permalink( $edd_options['success_page'] ) . "\n" : "Unset\n" );
-	$return .= 'Failure Page:             ' . ( !empty( $edd_options['failure_page'] ) ? get_permalink( $edd_options['failure_page'] ) . "\n" : "Unset\n" );
+	$return .= 'Checkout:                 ' . ( !empty( $purchase_page ) ? "Valid\n" : "Invalid\n" );
+	$return .= 'Checkout Page:            ' . ( !empty( $purchase_page ) ? get_permalink( $purchase_page ) . "\n" : "Unset\n" );
+	$return .= 'Success Page:             ' . ( !empty( $success_page ) ? get_permalink( $success_page ) . "\n" : "Unset\n" );
+	$return .= 'Failure Page:             ' . ( !empty( $failure_page ) ? get_permalink( $failure_page ) . "\n" : "Unset\n" );
 	$return .= 'Downloads Slug:           ' . ( defined( 'EDD_SLUG' ) ? '/' . EDD_SLUG . "\n" : "/downloads\n" );
 
 	$return  = apply_filters( 'edd_sysinfo_after_edd_pages', $return );
@@ -458,7 +548,7 @@ function edd_tools_sysinfo_get() {
 	$return .= "\n" . '-- EDD Tax Configuration' . "\n\n";
 	$return .= 'Taxes:                    ' . ( edd_use_taxes() ? "Enabled\n" : "Disabled\n" );
 	$return .= 'Tax Rate:                 ' . edd_get_tax_rate() * 100 . "\n";
-	$return .= 'Display On Checkout:      ' . ( !empty( $edd_options['checkout_include_tax'] ) ? "Displayed\n" : "Not Displayed\n" );
+	$return .= 'Display On Checkout:      ' . ( edd_get_option( 'checkout_include_tax', false ) ? "Displayed\n" : "Not Displayed\n" );
 	$return .= 'Prices Include Tax:       ' . ( edd_prices_include_tax() ? "Yes\n" : "No\n" );
 
 	$rates = edd_get_tax_rates();
@@ -482,6 +572,18 @@ function edd_tools_sysinfo_get() {
 
 		$return  = apply_filters( 'edd_sysinfo_after_edd_templates', $return );
 	}
+
+    // Must-use plugins
+    $muplugins = get_mu_plugins();
+    if( count( $muplugins > 0 ) ) {
+        $return .= "\n" . '-- Must-Use Plugins' . "\n\n";
+
+        foreach( $muplugins as $plugin => $plugin_data ) {
+            $return .= $plugin_data['Name'] . ': ' . $plugin_data['Version'] . "\n";
+        }
+
+        $return = apply_filters( 'edd_sysinfo_after_wordpress_mu_plugins', $return );
+    }
 
 	// WordPress active plugins
 	$return .= "\n" . '-- WordPress Active Plugins' . "\n\n";
@@ -589,6 +691,11 @@ function edd_tools_sysinfo_get() {
  * @return      void
  */
 function edd_tools_sysinfo_download() {
+
+	if( ! current_user_can( 'manage_shop_settings' ) ) {
+		return;
+	}
+
 	nocache_headers();
 
 	header( 'Content-Type: text/plain' );

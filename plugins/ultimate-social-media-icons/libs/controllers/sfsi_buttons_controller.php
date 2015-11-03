@@ -4,7 +4,9 @@
 add_action('wp_ajax_updateSrcn1','sfsi_options_updater1');        
 function sfsi_options_updater1()
 {
-  
+	if ( !wp_verify_nonce( $_POST['nonce'], "update_step1")) {
+      echo  json_encode(array("wrong_nonce")); exit;
+	} 
     $option1=  unserialize(get_option('sfsi_section1_options',false));
     $sfsi_rss_display           = isset($_POST["sfsi_rss_display"]) ? $_POST["sfsi_rss_display"] : 'no'; 
     $sfsi_email_display         = isset($_POST["sfsi_email_display"]) ? $_POST["sfsi_email_display"] : 'no'; 
@@ -38,6 +40,9 @@ function sfsi_options_updater1()
 add_action('wp_ajax_updateSrcn2','sfsi_options_updater2');        
 function sfsi_options_updater2()
 {
+	if ( !wp_verify_nonce( $_POST['nonce'], "update_step2")) {
+      echo  json_encode(array("wrong_nonce")); exit;
+   	}
     $sfsi_rss_url                   = isset($_POST["sfsi_rss_url"]) ? trim($_POST["sfsi_rss_url"]) : ''; 
     $sfsi_rss_icons                 = isset($_POST["sfsi_rss_icons"]) ? $_POST["sfsi_rss_icons"] : 'email'; 
     
@@ -49,8 +54,8 @@ function sfsi_options_updater2()
     $sfsi_twitter_followme          = isset($_POST["sfsi_twitter_followme"]) ? $_POST["sfsi_twitter_followme"] : 'no'; 
     $sfsi_twitter_followUserName    = isset($_POST["sfsi_twitter_followUserName"]) ? trim($_POST["sfsi_twitter_followUserName"]) : '';
     $sfsi_twitter_aboutPage         = isset($_POST["sfsi_twitter_aboutPage"]) ? $_POST["sfsi_twitter_aboutPage"] : 'no';
-	$sfsi_twitter_page               = isset($_POST["sfsi_twitter_page"]) ? $_POST["sfsi_twitter_page"] : 'no';
-    $sfsi_twitter_pageURL            = isset($_POST["sfsi_twitter_pageURL"]) ? trim($_POST["sfsi_twitter_pageURL"]) : '';
+	$sfsi_twitter_page              = isset($_POST["sfsi_twitter_page"]) ? $_POST["sfsi_twitter_page"] : 'no';
+    $sfsi_twitter_pageURL           = isset($_POST["sfsi_twitter_pageURL"]) ? trim($_POST["sfsi_twitter_pageURL"]) : '';
     $sfsi_twitter_aboutPageText     = isset($_POST["sfsi_twitter_aboutPageText"]) ? $_POST["sfsi_twitter_aboutPageText"] : 'Hey check out this cool site I found';
     
     $sfsi_google_page               = isset($_POST["sfsi_google_page"]) ? $_POST["sfsi_google_page"] : 'no';
@@ -77,9 +82,11 @@ function sfsi_options_updater2()
     $sfsi_linkedin_recommendCompany = isset($_POST["sfsi_linkedin_recommendCompany"]) ? trim($_POST["sfsi_linkedin_recommendCompany"]) : '';
     $sfsi_linkedin_recommendProductId= isset($_POST["sfsi_linkedin_recommendProductId"]) ? trim($_POST["sfsi_linkedin_recommendProductId"]) : '';
     
-    $sfsi_youtube_user              = ($_POST["sfsi_ytube_user"]) ? $_POST["sfsi_ytube_user"] : '';
+	$sfsi_youtubeusernameorid = isset($_POST["sfsi_youtubeusernameorid"]) ? trim($_POST["sfsi_youtubeusernameorid"]) : '';
+    $sfsi_ytube_user          = ($_POST["sfsi_ytube_user"]) ? $_POST["sfsi_ytube_user"] : '';
+	$sfsi_ytube_chnlid        = isset($_POST["sfsi_ytube_chnlid"]) ? $_POST["sfsi_ytube_chnlid"] : '';
     
-    $sfsi_CustomIcon_links          = isset($_POST["sfsi_custom_links"]) ? serialize($_POST["sfsi_custom_links"]) : '';
+    $sfsi_CustomIcon_links    = isset($_POST["sfsi_custom_links"]) ? serialize($_POST["sfsi_custom_links"]) : '';
    
     $option2=unserialize(get_option('sfsi_section2_options',false)); 
     $up_option2=array(
@@ -109,7 +116,8 @@ function sfsi_options_updater2()
                         'sfsi_youtube_pageUrl'=>$sfsi_youtube_pageUrl,
                         'sfsi_youtube_page'=>$sfsi_youtube_page,
                         'sfsi_youtube_follow'=>$sfsi_youtube_follow,
-                         /* pinterest options */
+						'sfsi_ytube_user'=> $sfsi_ytube_user,
+						 /* pinterest options */
                         'sfsi_pinterest_page'=>$sfsi_pinterest_page,
                         'sfsi_pinterest_pageUrl'=>$sfsi_pinterest_pageUrl,
                         'sfsi_pinterest_pingBlog'=>$sfsi_pinterest_pingBlog,
@@ -127,19 +135,24 @@ function sfsi_options_updater2()
                         'sfsi_CustomIcon_links'=>$sfsi_CustomIcon_links
     
     );
-      update_option('sfsi_section2_options',serialize($up_option2));
-      $option4=unserialize(get_option('sfsi_section4_options',false));     
-      $option4['sfsi_youtube_user']=$sfsi_youtube_user;
-      update_option('sfsi_section4_options',serialize($option4));
-    header('Content-Type: application/json');
+    update_option('sfsi_section2_options',serialize($up_option2));
+    $option4=unserialize(get_option('sfsi_section4_options',false));     
+    
+	//$option4['sfsi_ytube_user']=$sfsi_ytube_user;
+	$option4['sfsi_youtubeusernameorid']=$sfsi_youtubeusernameorid;
+	$option4['sfsi_ytube_chnlid']=$sfsi_ytube_chnlid;
+    update_option('sfsi_section4_options',serialize($option4));
+    
+	header('Content-Type: application/json');
     echo  json_encode(array("success")); exit;
 }
 /* save settings for section 3 */ 
 add_action('wp_ajax_updateSrcn3','sfsi_options_updater3');        
 function sfsi_options_updater3()
-{
-  
-    
+{   
+	if ( !wp_verify_nonce( $_POST['nonce'], "update_step3")) {
+      echo  json_encode(array("wrong_nonce")); exit;
+   	}
     $sfsi_actvite_theme             = isset($_POST["sfsi_actvite_theme"]) ? $_POST["sfsi_actvite_theme"] : 'no'; 
     $sfsi_mouseOver                 = isset($_POST["sfsi_mouseOver"]) ? $_POST["sfsi_mouseOver"] : 'no'; 
     $sfsi_mouseOver_effect          = isset($_POST["sfsi_mouseOver_effect"]) ? $_POST["sfsi_mouseOver_effect"] : 'fade_in'; 
@@ -181,6 +194,9 @@ function sfsi_options_updater3()
 add_action('wp_ajax_updateSrcn4','sfsi_options_updater4');        
 function sfsi_options_updater4()
 {
+	if ( !wp_verify_nonce( $_POST['nonce'], "update_step4")) {
+      echo  json_encode(array("wrong_nonce")); exit;
+   	}
     $sfsi_display_counts             = isset($_POST["sfsi_display_counts"]) ? $_POST["sfsi_display_counts"] : 'no'; 
    
     $sfsi_email_countsDisplay        = isset($_POST["sfsi_email_countsDisplay"]) ? $_POST["sfsi_email_countsDisplay"] : 'no'; 
@@ -192,7 +208,8 @@ function sfsi_options_updater4()
     
     $sfsi_facebook_countsDisplay     = isset($_POST["sfsi_facebook_countsDisplay"]) ? $_POST["sfsi_facebook_countsDisplay"] : 'no'; 
     $sfsi_facebook_countsFrom       = isset($_POST["sfsi_facebook_countsFrom"]) ? $_POST["sfsi_facebook_countsFrom"] : 'manual';
-    $sfsi_facebook_manualCounts      = isset($_POST["sfsi_facebook_manualCounts"]) ? trim($_POST["sfsi_facebook_manualCounts"]) : '';
+    $sfsi_facebook_mypageCounts      = isset($_POST["sfsi_facebook_mypageCounts"]) ? trim($_POST["sfsi_facebook_mypageCounts"]) : '';
+	$sfsi_facebook_manualCounts      = isset($_POST["sfsi_facebook_manualCounts"]) ? trim($_POST["sfsi_facebook_manualCounts"]) : '';
     $sfsi_facebook_PageLink          = isset($_POST["sfsi_facebook_PageLink"]) ? trim($_POST["sfsi_facebook_PageLink"]) : '';
     
     $sfsi_twitter_countsDisplay      = isset($_POST["sfsi_twitter_countsDisplay"]) ? $_POST["sfsi_twitter_countsDisplay"] : 'no';
@@ -250,6 +267,7 @@ function sfsi_options_updater4()
    
    'sfsi_facebook_countsDisplay'=>$sfsi_facebook_countsDisplay,
    'sfsi_facebook_countsFrom'=>$sfsi_facebook_countsFrom,
+   'sfsi_facebook_mypageCounts'=>$sfsi_facebook_mypageCounts,
    'sfsi_facebook_manualCounts'=>$sfsi_facebook_manualCounts,
    //'sfsi_facebook_PageLink'=>$sfsi_facebook_PageLink,
    
@@ -306,15 +324,23 @@ function sfsi_options_updater4()
 add_action('wp_ajax_updateSrcn5','sfsi_options_updater5');        
 function sfsi_options_updater5()
 {
-    $sfsi_icons_size                = isset($_POST["sfsi_icons_size"]) ? $_POST["sfsi_icons_size"] : '51'; 
+	if ( !wp_verify_nonce( $_POST['nonce'], "update_step5")) {
+      echo  json_encode(array("wrong_nonce")); exit;
+   	}
+	$sfsi_icons_size                = isset($_POST["sfsi_icons_size"]) ? $_POST["sfsi_icons_size"] : '51'; 
     $sfsi_icons_spacing             = isset($_POST["sfsi_icons_spacing"]) ? $_POST["sfsi_icons_spacing"] : '2'; 
     $sfsi_icons_Alignment           = isset($_POST["sfsi_icons_Alignment"]) ? $_POST["sfsi_icons_Alignment"] : 'center'; 
     
     $sfsi_icons_perRow              = isset($_POST["sfsi_icons_perRow"]) ? $_POST["sfsi_icons_perRow"] : '5'; 
     $sfsi_icons_ClickPageOpen       = isset($_POST["sfsi_icons_ClickPageOpen"]) ? $_POST["sfsi_icons_ClickPageOpen"] : 'no'; 
     
-    $sfsi_icons_float               = isset($_POST["sfsi_icons_float"]) ? $_POST["sfsi_icons_float"] : 'no'; 
+    $sfsi_icons_float               = isset($_POST["sfsi_icons_float"]) ? $_POST["sfsi_icons_float"] : 'no';
+	$sfsi_disable_floaticons		= isset($_POST["sfsi_disable_floaticons"]) ? $_POST["sfsi_disable_floaticons"] : 'no'; 
     $sfsi_icons_floatPosition       = isset($_POST["sfsi_icons_floatPosition"]) ? $_POST["sfsi_icons_floatPosition"] : 'center-right';
+	$sfsi_icons_floatMargin_top     = isset($_POST["sfsi_icons_floatMargin_top"]) ? $_POST["sfsi_icons_floatMargin_top"] : '';
+	$sfsi_icons_floatMargin_bottom  = isset($_POST["sfsi_icons_floatMargin_bottom"])? $_POST["sfsi_icons_floatMargin_bottom"]:'';
+	$sfsi_icons_floatMargin_left    = isset($_POST["sfsi_icons_floatMargin_left"]) ? $_POST["sfsi_icons_floatMargin_left"] : '';
+	$sfsi_icons_floatMargin_right   = isset($_POST["sfsi_icons_floatMargin_right"]) ? $_POST["sfsi_icons_floatMargin_right"]:''; 
     $sfsi_icons_stick               = isset($_POST["sfsi_icons_stick"]) ? $_POST["sfsi_icons_stick"] : 'no';
     $sfsi_rss_MouseOverText         = isset($_POST["sfsi_rss_MouseOverText"]) ? $_POST["sfsi_rss_MouseOverText"] : '';
     $sfsi_email_MouseOverText       = isset($_POST["sfsi_email_MouseOverText"]) ? $_POST["sfsi_email_MouseOverText"] : '';
@@ -327,7 +353,6 @@ function sfsi_options_updater5()
     $sfsi_youtube_MouseOverText     = isset($_POST["sfsi_youtube_MouseOverText"]) ? $_POST["sfsi_youtube_MouseOverText"] : '';
     $sfsi_share_MouseOverText       = isset($_POST["sfsi_share_MouseOverText"]) ? $_POST["sfsi_share_MouseOverText"] : '';
     $sfsi_custom_orders             = isset($_POST["sfsi_custom_orders"]) ? serialize($_POST["sfsi_custom_orders"]) : '';
-    
     
     $sfsi_rssIcon_order             = isset($_POST["sfsi_rssIcon_order"]) ? $_POST["sfsi_rssIcon_order"] : '1';
     $sfsi_emailIcon_order           = isset($_POST["sfsi_emailIcon_order"]) ? $_POST["sfsi_emailIcon_order"] : '2';
@@ -349,7 +374,12 @@ function sfsi_options_updater5()
         'sfsi_icons_perRow'=>$sfsi_icons_perRow,
         'sfsi_icons_ClickPageOpen'=>$sfsi_icons_ClickPageOpen,
         'sfsi_icons_float'=>$sfsi_icons_float,
+		'sfsi_disable_floaticons'=>$sfsi_disable_floaticons,
         'sfsi_icons_floatPosition'=>$sfsi_icons_floatPosition,
+		'sfsi_icons_floatMargin_top'=>$sfsi_icons_floatMargin_top,
+		'sfsi_icons_floatMargin_bottom'=>$sfsi_icons_floatMargin_bottom,
+		'sfsi_icons_floatMargin_left'=>$sfsi_icons_floatMargin_left,
+		'sfsi_icons_floatMargin_right'=>$sfsi_icons_floatMargin_right,
         'sfsi_icons_stick'=>$sfsi_icons_stick,
         /* mouse over texts */
         'sfsi_rss_MouseOverText'=>$sfsi_rss_MouseOverText,
@@ -384,18 +414,31 @@ function sfsi_options_updater5()
 add_action('wp_ajax_updateSrcn6','sfsi_options_updater6');        
 function sfsi_options_updater6()
 {
+	if ( !wp_verify_nonce( $_POST['nonce'], "update_step6")) {
+      echo  json_encode(array("wrong_nonce")); exit;
+   	}
     $sfsi_show_Onposts                = isset($_POST["sfsi_show_Onposts"]) ? $_POST["sfsi_show_Onposts"] : 'no'; 
     $sfsi_icons_postPositon           = isset($_POST["sfsi_icons_postPositon"]) ? $_POST["sfsi_icons_postPositon"] : ''; 
     $sfsi_icons_alignment             = isset($_POST["sfsi_icons_alignment"]) ? $_POST["sfsi_icons_alignment"] : 'center-right'; 
     $sfsi_textBefor_icons             = isset($_POST["sfsi_textBefor_icons"]) ? $_POST["sfsi_textBefor_icons"] : ''; 
     $sfsi_icons_DisplayCounts         = isset($_POST["sfsi_icons_DisplayCounts"]) ? $_POST["sfsi_icons_DisplayCounts"] : 'no'; 
+	$sfsi_rectsub    = isset($_POST["sfsi_rectsub"]) ? $_POST["sfsi_rectsub"] : 'no';
+	$sfsi_rectfb    = isset($_POST["sfsi_rectfb"]) ? $_POST["sfsi_rectfb"] : 'no';
+	$sfsi_rectgp    = isset($_POST["sfsi_rectgp"]) ? $_POST["sfsi_rectgp"] : 'no';
+	$sfsi_rectshr    = isset($_POST["sfsi_rectshr"]) ? $_POST["sfsi_rectshr"] : 'no';
+	$sfsi_recttwtr    = isset($_POST["sfsi_recttwtr"]) ? $_POST["sfsi_recttwtr"] : 'no';
     /* post options */
     $up_option6=array(
                 'sfsi_show_Onposts'=>$sfsi_show_Onposts,
                 'sfsi_icons_postPositon'=>$sfsi_icons_postPositon,
                 'sfsi_icons_alignment'=>$sfsi_icons_alignment,
-                'sfsi_textBefor_icons'=>$sfsi_textBefor_icons,
+                'sfsi_textBefor_icons'=> stripslashes($sfsi_textBefor_icons),
                 'sfsi_icons_DisplayCounts'=>$sfsi_icons_DisplayCounts,
+				'sfsi_rectsub'=>$sfsi_rectsub,
+				'sfsi_rectfb'=>$sfsi_rectfb,
+				'sfsi_rectgp'=>$sfsi_rectgp,
+				'sfsi_rectshr'=>$sfsi_rectshr,
+				'sfsi_recttwtr'=>$sfsi_recttwtr	
                  );
      update_option('sfsi_section6_options',serialize($up_option6));
     header('Content-Type: application/json');
@@ -405,6 +448,9 @@ function sfsi_options_updater6()
 add_action('wp_ajax_updateSrcn7','sfsi_options_updater7');        
 function sfsi_options_updater7()
 {
+	if ( !wp_verify_nonce( $_POST['nonce'], "update_step7")) {
+      echo  json_encode(array("wrong_nonce")); exit;
+   	}
     $sfsi_popup_text                    = isset($_POST["sfsi_popup_text"]) ? $_POST["sfsi_popup_text"] : ''; 
     $sfsi_popup_background_color        = isset($_POST["sfsi_popup_background_color"]) ? $_POST["sfsi_popup_background_color"] : '#fffff'; 
     $sfsi_popup_border_color            = isset($_POST["sfsi_popup_border_color"]) ? $_POST["sfsi_popup_border_color"] : 'center-right'; 
@@ -422,7 +468,7 @@ function sfsi_options_updater7()
   		
     /* icons pop options */
 	$up_option7=array(	
-		'sfsi_popup_text'=>$sfsi_popup_text,
+		'sfsi_popup_text'=> stripslashes($sfsi_popup_text),
 		'sfsi_popup_background_color'=>$sfsi_popup_background_color,
 		'sfsi_popup_border_color'=>$sfsi_popup_border_color,
 		'sfsi_popup_border_thickness'=>$sfsi_popup_border_thickness,
@@ -442,7 +488,80 @@ function sfsi_options_updater7()
     update_option('sfsi_section7_options',serialize($up_option7)); 
     header('Content-Type: application/json');
     echo  json_encode(array("success")); exit;
-} 
+}
+/* save settings for section 8 */ 
+add_action('wp_ajax_updateSrcn8','sfsi_options_updater8');
+function sfsi_options_updater8()
+{
+	if ( !wp_verify_nonce( $_POST['nonce'], "update_step8")) {
+      echo  json_encode(array("wrong_nonce")); exit;
+   	}
+	$sfsi_form_adjustment		= isset($_POST["sfsi_form_adjustment"]) ? $_POST["sfsi_form_adjustment"] : 'yes';
+	$sfsi_form_height			= isset($_POST["sfsi_form_height"]) ? $_POST["sfsi_form_height"] : '180';
+	$sfsi_form_width			= isset($_POST["sfsi_form_width"]) ? $_POST["sfsi_form_width"] : '230';
+	$sfsi_form_border			= isset($_POST["sfsi_form_border"]) ? $_POST["sfsi_form_border"] : 'no';
+	$sfsi_form_border_thickness	= isset($_POST["sfsi_form_border_thickness"]) ? $_POST["sfsi_form_border_thickness"] : '1';
+	$sfsi_form_border_color		= isset($_POST["sfsi_form_border_color"]) ? $_POST["sfsi_form_border_color"] : '#f3faf2';
+	$sfsi_form_background		= isset($_POST["sfsi_form_background"]) ? $_POST["sfsi_form_background"] : '#eff7f7';
+	
+	$sfsi_form_heading_text		= isset($_POST["sfsi_form_heading_text"]) ? $_POST["sfsi_form_heading_text"] : '';
+	$sfsi_form_heading_font		= isset($_POST["sfsi_form_heading_font"]) ? $_POST["sfsi_form_heading_font"] : '';
+	$sfsi_form_heading_fontstyle= isset($_POST["sfsi_form_heading_fontstyle"]) ? $_POST["sfsi_form_heading_fontstyle"] : '';
+	$sfsi_form_heading_fontcolor= isset($_POST["sfsi_form_heading_fontcolor"]) ? $_POST["sfsi_form_heading_fontcolor"] : '';
+	$sfsi_form_heading_fontsize	= isset($_POST["sfsi_form_heading_fontsize"]) ? $_POST["sfsi_form_heading_fontsize"] : '22';
+	$sfsi_form_heading_fontalign= isset($_POST["sfsi_form_heading_fontalign"]) ? $_POST["sfsi_form_heading_fontalign"] :'center';
+	
+	$sfsi_form_field_text		= isset($_POST["sfsi_form_field_text"]) ? $_POST["sfsi_form_field_text"] : '';
+	$sfsi_form_field_font		= isset($_POST["sfsi_form_field_font"]) ? $_POST["sfsi_form_field_font"] : '';
+	$sfsi_form_field_fontstyle	= isset($_POST["sfsi_form_field_fontstyle"]) ? $_POST["sfsi_form_field_fontstyle"] : '';
+	$sfsi_form_field_fontcolor	= isset($_POST["sfsi_form_field_fontcolor"]) ? $_POST["sfsi_form_field_fontcolor"] : '';
+	$sfsi_form_field_fontsize	= isset($_POST["sfsi_form_field_fontsize"]) ? $_POST["sfsi_form_field_fontsize"] : '22';
+	$sfsi_form_field_fontalign	= isset($_POST["sfsi_form_field_fontalign"]) ? $_POST["sfsi_form_field_fontalign"] :'center';
+	
+	$sfsi_form_button_text		= isset($_POST["sfsi_form_button_text"]) ? $_POST["sfsi_form_button_text"] : 'Subscribe';
+	$sfsi_form_button_font		= isset($_POST["sfsi_form_button_font"]) ? $_POST["sfsi_form_button_font"] : '';
+	$sfsi_form_button_fontstyle	= isset($_POST["sfsi_form_button_fontstyle"]) ? $_POST["sfsi_form_button_fontstyle"] : '';
+	$sfsi_form_button_fontcolor	= isset($_POST["sfsi_form_button_fontcolor"]) ? $_POST["sfsi_form_button_fontcolor"] : '';
+	$sfsi_form_button_fontsize	= isset($_POST["sfsi_form_button_fontsize"]) ? $_POST["sfsi_form_button_fontsize"] : '22';
+	$sfsi_form_button_fontalign	= isset($_POST["sfsi_form_button_fontalign"]) ? $_POST["sfsi_form_button_fontalign"] :'center';
+	$sfsi_form_button_background= isset($_POST["sfsi_form_button_background"]) ? $_POST["sfsi_form_button_background"]:'#5a6570';
+	
+	/* icons pop options */
+	$up_option8 = array(	
+		'sfsi_form_adjustment'		=>	$sfsi_form_adjustment,
+		'sfsi_form_height'			=>	$sfsi_form_height,
+		'sfsi_form_width'			=>	$sfsi_form_width,
+		'sfsi_form_border'			=>	$sfsi_form_border,
+		'sfsi_form_border_thickness'=>	$sfsi_form_border_thickness,
+		'sfsi_form_border_color'	=>	$sfsi_form_border_color,
+		'sfsi_form_background'		=>	$sfsi_form_background,
+		
+		'sfsi_form_heading_text'	=>	stripslashes($sfsi_form_heading_text),
+		'sfsi_form_heading_font'	=>	$sfsi_form_heading_font,
+		'sfsi_form_heading_fontstyle'=>	$sfsi_form_heading_fontstyle,
+		'sfsi_form_heading_fontcolor'=>	$sfsi_form_heading_fontcolor,
+		'sfsi_form_heading_fontsize'=>	$sfsi_form_heading_fontsize,
+		'sfsi_form_heading_fontalign'=>	$sfsi_form_heading_fontalign,
+		
+		'sfsi_form_field_text'		=>	stripslashes($sfsi_form_field_text),
+		'sfsi_form_field_font'		=>	$sfsi_form_field_font,
+		'sfsi_form_field_fontstyle'	=>	$sfsi_form_field_fontstyle,
+		'sfsi_form_field_fontcolor'	=>	$sfsi_form_field_fontcolor,
+		'sfsi_form_field_fontsize'	=>	$sfsi_form_field_fontsize,
+		'sfsi_form_field_fontalign'	=>	$sfsi_form_field_fontalign,
+		
+		'sfsi_form_button_text'		=>	stripslashes($sfsi_form_button_text),
+		'sfsi_form_button_font'		=>	$sfsi_form_button_font,
+		'sfsi_form_button_fontstyle'=>	$sfsi_form_button_fontstyle,
+		'sfsi_form_button_fontcolor'=>	$sfsi_form_button_fontcolor,
+		'sfsi_form_button_fontsize'	=>	$sfsi_form_button_fontsize,
+		'sfsi_form_button_fontalign'=>	$sfsi_form_button_fontalign,
+		'sfsi_form_button_background'=>	$sfsi_form_button_background,
+	);
+	update_option('sfsi_section8_options',serialize($up_option8)); 
+    header('Content-Type: application/json');
+    echo  json_encode(array("success")); exit;
+}
 /* upload custom icons images */
 /* get counts for admin section */        
 function sfsi_getCounts()
@@ -450,7 +569,7 @@ function sfsi_getCounts()
    $socialObj=new sfsi_SocialHelper();
    $sfsi_section4_options= unserialize(get_option('sfsi_section4_options',false));
    $sfsi_section2_options=unserialize(get_option('sfsi_section2_options',false));
-   $scounts=array('rss_count'=>'','email_count'=>'','fb_count'=>'','twitter_count'=>'','google_count'=>'','linkedIn_count'=>'','youtube_count'=>'','pin_count'=>'','share_count'=>'');
+   $scounts = array('rss_count'=>'','email_count'=>'','fb_count'=>'','twitter_count'=>'','google_count'=>'','linkedIn_count'=>'','youtube_count'=>'','pin_count'=>'','share_count'=>'');
    /* get rss count */
    if(!empty($sfsi_section4_options['sfsi_rss_manualCounts']) )
    {
@@ -459,8 +578,8 @@ function sfsi_getCounts()
     /* get email count */
    if($sfsi_section4_options['sfsi_email_countsFrom']=="source" )
    {
-       $feed_id=get_option('sfsi_feed_id',false);
-       $feed_data=$socialObj->SFSI_getFeedSubscriber($feed_id);
+       $feed_id = get_option('sfsi_feed_id',false);
+       $feed_data = $socialObj->SFSI_getFeedSubscriber($feed_id);
      
        $scounts['email_count']= $socialObj->format_num($feed_data);
         if(empty($scounts['email_count']))
@@ -477,33 +596,37 @@ function sfsi_getCounts()
    /* get fb count */
    if($sfsi_section4_options['sfsi_facebook_countsFrom']=="likes" )
    {
-        $url=home_url();
-        $fb_data=$socialObj->sfsi_get_fb($url);
-       
+       $url = home_url();
+       $fb_data = $socialObj->sfsi_get_fb($url);
        $scounts['fb_count']= $socialObj->format_num($fb_data['like_count']);
-       
    }
-   else if($sfsi_section4_options['sfsi_facebook_countsFrom']=="followers" ){
-        $url=home_url();
-        $fb_data=$socialObj->sfsi_get_fb($url);
+   else if($sfsi_section4_options['sfsi_facebook_countsFrom']=="followers" )
+   {
+       $url = home_url();
+       $fb_data = $socialObj->sfsi_get_fb($url);
        $scounts['fb_count']= format_num($fb_data['share_count']);
        if(empty($scounts['fb_count']))
-        {
+       {
           $scounts['fb_count']=(string) "0";
-        }
-       
+       }
+   }
+   else if($sfsi_section4_options['sfsi_facebook_countsFrom']=="mypage" )
+   {
+       $url = $sfsi_section4_options['sfsi_facebook_mypageCounts'];
+       $fb_data = $socialObj->sfsi_get_fb_pagelike($url);
+       $scounts['fb_count']= $fb_data;
    }
    else
    {
-        $scounts['fb_count']=$sfsi_section4_options['sfsi_facebook_manualCounts'];
+        $scounts['fb_count'] = $sfsi_section4_options['sfsi_facebook_manualCounts'];
    }
    /* get twitter counts */
    if($sfsi_section4_options['sfsi_twitter_countsFrom']=="source")
    {    $twitter_user=$sfsi_section2_options['sfsi_twitter_followUserName'];
         $tw_settings=array('tw_consumer_key'=>$sfsi_section4_options['tw_consumer_key'],
-                                               'tw_consumer_secret'=> $sfsi_section4_options['tw_consumer_secret'],
-                                               'tw_oauth_access_token'=> $sfsi_section4_options['tw_oauth_access_token'],
-                                               'tw_oauth_access_token_secret'=> $sfsi_section4_options['tw_oauth_access_token_secret']
+						   'tw_consumer_secret'=> $sfsi_section4_options['tw_consumer_secret'],
+						   'tw_oauth_access_token'=> $sfsi_section4_options['tw_oauth_access_token'],
+						   'tw_oauth_access_token_secret'=> $sfsi_section4_options['tw_oauth_access_token_secret']
                            );         
           
        $followers=$socialObj->sfsi_get_tweets($twitter_user,$tw_settings);
@@ -602,11 +725,20 @@ function sfsi_getCounts()
    if($sfsi_section4_options['sfsi_instagram_countsFrom']=="followers" )
    {
       $iuser_name= $sfsi_section4_options['sfsi_instagram_User'];
-       $counts=$socialObj->sfsi_get_instagramFollowers($iuser_name);
+       /*$counts=$socialObj->sfsi_get_instagramFollowers($iuser_name);
         if(empty($counts))
         {
           $scounts['instagram_count']=(string) "0";
-        }
+        }*/
+		$counts = $socialObj->sfsi_get_instagramFollowers($iuser_name);
+		if(empty($counts))
+		{
+		  $scounts['instagram_count']=(string) "0";
+		}
+		else
+		{
+			 $scounts['instagram_count']=$counts;
+		}
    }
    else
    {
@@ -619,13 +751,47 @@ function sfsi_getCounts()
 add_action('wp_ajax_activateFooter','sfsiActivateFooter');     
 function sfsiActivateFooter()
 {
+	if ( !wp_verify_nonce( $_POST['nonce'], "active_footer")) {
+      echo  json_encode(array('res'=>'wrong_nonce')); exit;
+   	}
     update_option('sfsi_footer_sec', 'yes');
     echo json_encode(array('res'=>'success'));exit;
 }
 add_action('wp_ajax_removeFooter','sfsiremoveFooter');     
 function sfsiremoveFooter()
 {
+	if ( !wp_verify_nonce( $_POST['nonce'], "remove_footer")) {
+      echo  json_encode(array('res'=>'wrong_nonce')); exit;
+   	}
     update_option('sfsi_footer_sec', 'no');
     echo json_encode(array('res'=>'success'));exit;
+}
+add_action('wp_ajax_getForm','sfsigetForm');     
+function sfsigetForm()
+{
+	extract($_POST);
+	?>
+	<xmp>
+    <div class="sfsi_subscribe_Popinner">
+    <form method="post">
+    <h5><?php echo $heading; ?></h5>
+    <div class="sfsi_subscription_form_field">
+    	<input type="email" name="subscribe_email" placeholder="<?php echo $placeholder; ?>" value="" />
+    </div>
+    <div class="sfsi_subscription_form_field">
+    	<input type="submit" name="subscribe" value="<?php echo $button; ?>" />
+    </div>
+    </form>
+    </div>
+	</xmp>
+    <?php
+	die;
+}
+add_action("wp_ajax_notification_read", "notification_read");
+function notification_read()
+{
+	update_option("show_notification", "no");
+	echo "success";
+	die;
 }
 ?>

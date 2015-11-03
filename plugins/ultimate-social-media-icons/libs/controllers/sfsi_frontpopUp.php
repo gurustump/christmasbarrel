@@ -11,111 +11,114 @@ function sfsi_check_PopUp($content)
 {
      global $post; global $wpdb; 
      $sfsi_section7_options=  unserialize(get_option('sfsi_section7_options',false));
+	 
      if($sfsi_section7_options['sfsi_Show_popupOn']=="blogpage")
      {   
-	   if(!is_feed() && !is_home() && !is_page()) {
+	   if(!is_feed() && !is_home() && !is_page())
+	   {
 		     $content=  sfsi_frontPopUp ().$content;
-	     }
-     }else if($sfsi_section7_options['sfsi_Show_popupOn']=="selectedpage")
+	   }
+     }
+	 else if($sfsi_section7_options['sfsi_Show_popupOn']=="selectedpage")
      {
-	 if(is_page() && in_array($post->ID,  unserialize($sfsi_section7_options['sfsi_Show_popupOn_PageIDs']))) {
+	 	if(is_page() && in_array($post->ID,  unserialize($sfsi_section7_options['sfsi_Show_popupOn_PageIDs']))) {
 		     $content=  sfsi_frontPopUp ().$content;
 	     }
      }
-      else if($sfsi_section7_options['sfsi_Show_popupOn']=="everypage") {
-	 $content= sfsi_frontPopUp ().$content;
+     else if($sfsi_section7_options['sfsi_Show_popupOn']=="everypage")
+	 {
+	 	$content= sfsi_frontPopUp ().$content;
      }
 
      /* check for pop times */
      if($sfsi_section7_options['sfsi_Shown_pop']=="once")
      {
-	$time_popUp=$sfsi_section7_options['sfsi_Shown_popupOnceTime'];
-	$time_popUp=$time_popUp*1000;
-	 ob_start();
+		$time_popUp=$sfsi_section7_options['sfsi_Shown_popupOnceTime'];
+		$time_popUp=$time_popUp*1000;
+		ob_start();
 	 ?>
      <script>
-	    SFSI( document ).ready(function( $ ) {
-	       
-		setTimeout(function() {SFSI('.sfsi_outr_div').css({'z-index':'1000000',opacity:1}); SFSI('.sfsi_outr_div').fadeIn();},<?php echo $time_popUp; ?>);
-		
-	    });
-	    
-     </script>
+	    jQuery( document ).ready(function( $ )
+		{
+	    	setTimeout(function()
+			{
+				jQuery('.sfsi_outr_div').css({'z-index':'1000000',opacity:1});
+				jQuery('.sfsi_outr_div').fadeIn(200);
+				jQuery('.sfsi_FrntInner_chg').fadeIn(200);
+			}
+			,<?php echo $time_popUp; ?>);
+		});
+	 </script>
      <?php 
      echo ob_get_clean();
      return $content;
      }
      if($sfsi_section7_options['sfsi_Shown_pop']=="ETscroll")
      {
-	$time_popUp=$sfsi_section7_options['sfsi_Shown_popupOnceTime'];
-	$time_popUp=$time_popUp*1000;
+		$time_popUp=$sfsi_section7_options['sfsi_Shown_popupOnceTime'];
+		$time_popUp=$time_popUp*1000;
 	    ob_start();
 	 ?>
      <script>
-	    SFSI( document ).scroll(function( $ ) {
-	       
-		 var y = jQuery(this).scrollTop();
-	      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {	 
-	       if(SFSI(window).scrollTop() + SFSI(window).height() >= SFSI(document).height()-100) {
-	     
-		 
-		  SFSI('.sfsi_outr_div').css({'z-index':'9996',opacity:1,top:SFSI(window).scrollTop()+"px",position:"absolute"});
-		  SFSI('.sfsi_outr_div').fadeIn(200);
-		  SFSI('.sfsi_FrntInner').fadeIn(200);
-	       }
-	       else{
-		   SFSI('.sfsi_outr_div').fadeOut();
-		   SFSI('.sfsi_FrntInner').fadeOut();
-	       }
-	    
-	  }
-	  else{
-	       if(SFSI(window).scrollTop() + SFSI(window).height() >= SFSI(document).height()-3) {
-
-	        SFSI('.sfsi_outr_div').css({'z-index':'9996',opacity:1,top:SFSI(window).scrollTop()+200+"px",position:"absolute"});
-	        SFSI('.sfsi_outr_div').fadeIn(200);
-		SFSI('.sfsi_FrntInner').fadeIn(200);
-	    }
-	  else {
-	
-	     SFSI('.sfsi_outr_div').fadeOut();
-	      SFSI('.sfsi_FrntInner').fadeOut();
-	       }
-	 } 
-		
-	    });
-     
+	    jQuery( document ).scroll(function( $ )
+		{
+	    	var y = jQuery(this).scrollTop();
+	      	if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+			{	 
+			   if(jQuery(window).scrollTop() + jQuery(window).height() >= jQuery(document).height()-100)
+			   {
+				  jQuery('.sfsi_outr_div').css({'z-index':'9996',opacity:1,top:jQuery(window).scrollTop()+"px",position:"absolute"});
+				  jQuery('.sfsi_outr_div').fadeIn(200);
+				  jQuery('.sfsi_FrntInner_chg').fadeIn(200);
+			   }
+			   else{
+				   jQuery('.sfsi_outr_div').fadeOut();
+				   jQuery('.sfsi_FrntInner_chg').fadeOut();
+			   }
+		  }
+		  else
+		  {
+			   if(jQuery(window).scrollTop() + jQuery(window).height() >= jQuery(document).height()-3)
+			   {
+					jQuery('.sfsi_outr_div').css({'z-index':'9996',opacity:1,top:jQuery(window).scrollTop()+200+"px",position:"absolute"});
+					jQuery('.sfsi_outr_div').fadeIn(200);
+					jQuery('.sfsi_FrntInner_chg').fadeIn(200);
+		  	   }
+	 		   else
+			   {
+				 jQuery('.sfsi_outr_div').fadeOut();
+				 jQuery('.sfsi_FrntInner_chg').fadeOut();
+			   }
+	 	  } 
+		});
      </script>
      <?php 
      echo ob_get_clean();
      }
      if($sfsi_section7_options['sfsi_Shown_pop']=="LimitPopUp")
      {
-	 $time_popUp=$sfsi_section7_options['sfsi_Shown_popuplimitPerUserTime'];
-	 $end_time=$_COOKIE['sfsi_socialPopUp']+($time_popUp*60); 
-	
-	$time_popUp=$time_popUp*1000;
+		$time_popUp=$sfsi_section7_options['sfsi_Shown_popuplimitPerUserTime'];
+		$end_time=$_COOKIE['sfsi_socialPopUp']+($time_popUp*60); 
+		$time_popUp=$time_popUp*1000;
      
-	 if(!empty($end_time)) {
-	 if($end_time<time())
-	 {     
-	 ?>
-     <script>
-	    SFSI( document ).ready(function( $ ) {
-	       //SFSI('.sfsi_outr_div').fadeIn();
-	       sfsi_setCookie('sfsi_socialPopUp',<?php echo time(); ?>,32);
-		setTimeout(function() {SFSI('.sfsi_outr_div').css({'z-index':'1000000',opacity:1});SFSI('.sfsi_outr_div').fadeIn();},<?php echo $time_popUp; ?>);
-		
-	    });
-     
-     </script>
-     <?php
-	 }
+	 if(!empty($end_time))
+	 {
+	 	if($end_time<time())
+		{     
+		 ?>
+		 <script>
+			jQuery( document ).ready(function( $ ) {
+			//jQuery('.sfsi_outr_div').fadeIn();
+			sfsi_setCookie('sfsi_socialPopUp',<?php echo time(); ?>,32);
+			setTimeout(function(){jQuery('.sfsi_outr_div').css({'z-index':'1000000',opacity:1});jQuery('.sfsi_outr_div').fadeIn();},<?php echo $time_popUp;?>);
+			});
+		 </script>
+		 <?php
+		 }
      }
      echo ob_get_clean();
      }    
-
-return $content;
+	return $content;
 }
 /* make front end pop div */
 function sfsi_FrontPopupDiv()
@@ -188,7 +191,10 @@ function sfsi_FrontPopupDiv()
     }
   endif;  
     ksort($icons_order);     /* short icons in order to display */
-    $icons='<div class="sfsi_outr_div" > <div class="sfsi_FrntInner" style="'.$style.'">';
+    $icons='<div class="sfsi_outr_div" > <div class="sfsi_FrntInner_chg" style="'.$style.'">';
+	//adding close button
+	$icons.='<div class="sfsiclpupwpr" onclick="sfsihidemepopup();"><img src="'.SFSI_PLUGURL.'images/close.png" /></div>';
+	
 	 if(!empty($heading_text))
 	 {
 	 $icons.='<h2 style="'.$h_style.'">'.$heading_text.'</h2>';

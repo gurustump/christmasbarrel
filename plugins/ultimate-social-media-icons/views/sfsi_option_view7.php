@@ -13,7 +13,7 @@
 	<ul class="like_icon sfsi_sample_icons">
     	 <li class="rss_section"><div><img src="<?php echo SFSI_PLUGURL ?>images/rss.png" alt="RSS" /><span class="sfsi_Cdisplay" id="sfsi_rss_countsDisplay">12k</span></div></li>
         <li class="email_section"><div><img src="<?php echo SFSI_PLUGURL ?>images/<?php echo $email_image; ?>" alt="Email" class="icon_img" /><span class="sfsi_Cdisplay" id="sfsi_email_countsDisplay">12k</span></div></li>
-        <li class="facebook_section"><div><img src="<?php echo SFSI_PLUGURL ?>images/facebook.png" alt="Facebook" /><span class="sfsi_Cdisplay" id="sfsi_facebook_countsDisplay">12k</span><div></li>
+        <li class="facebook_section"><div><img src="<?php echo SFSI_PLUGURL ?>images/facebook.png" alt="Facebook" /><span class="sfsi_Cdisplay" id="sfsi_facebook_countsDisplay">12k</span></div></li>
         <li class="google_section"><div><img src="<?php echo SFSI_PLUGURL ?>images/google_plus.png" alt="Google Plus" /><span class="sfsi_Cdisplay" id="sfsi_google_countsDisplay">12k</span></div></li>
         <li class="twitter_section"><div><img src="<?php echo SFSI_PLUGURL ?>images/twitter.png" alt="Twitter" /><span class="sfsi_Cdisplay" id="sfsi_twitter_countsDisplay">12k</span></div></li>
         <li class="share_section"><div><img src="<?php echo SFSI_PLUGURL ?>images/share.png" alt="Share" /><span class="sfsi_Cdisplay" id="sfsi_shares_countsDisplay">12k</span></div></li>
@@ -21,9 +21,15 @@
         <li class="pinterest_section"><div><img src="<?php echo SFSI_PLUGURL ?>images/pinterest.png" alt="Pinterest" /><span class="sfsi_Cdisplay" id="sfsi_pinterest_countsDisplay">12k</span></div></li>
         <li class="linkedin_section"><div><img src="<?php echo SFSI_PLUGURL ?>images/linked_in.png" alt="Linked In" /><span class="sfsi_Cdisplay" id="sfsi_linkedIn_countsDisplay">12k</span></div></li>
 	<li class="instagram_section"><div><img src="<?php echo SFSI_PLUGURL ?>images/instagram.png" alt="Instagram" /><span class="sfsi_Cdisplay" id="sfsi_instagram_countsDisplay">12k</span></div></li>
-	<?php foreach($icons as $icn =>$img) : ?>
-		<li class="custom_section sfsiICON_<?php echo $icn; ?>"  element-id="<?php echo $icn; ?>" ><div><img src="<?php echo $img; ?>" alt="Custom Icon" class="sfcm" /><span class="sfsi_Cdisplay">12k</span></div></li>
-	<?php endforeach; ?>
+    <?php
+		if(isset($icons) && !empty($icons))
+		{
+			foreach($icons as $icn =>$img)
+			{
+				echo '<li class="custom_section sfsiICON_'.$icn.'"  element-id="'.$icn.'" ><div><img src="'.$img.'" alt="Custom Icon" class="sfcm" /><span class="sfsi_Cdisplay">12k</span></div></li>';
+			}
+		}
+		?>
 	</ul>  
 </div>
 </div><!-- END icons preview section -->
@@ -58,7 +64,7 @@
                         </div>
 		</div>
 		<div class="row_tab">
-			<label>Font style:</label>
+        	<label>Font style:</label>
 			<div class="field">
                             <select name="sfsi_popup_fontStyle" id="sfsi_popup_fontStyle" class="styled">
                                 <option value="normal" <?php echo ($option7['sfsi_popup_fontStyle']=='normal') ?  'selected="true"' : '' ;?>>Normal</option>
@@ -101,7 +107,7 @@
 		</div>
 		<div class="row_tab">
 			<label>Border<br />
-			Thinckness:</label>
+			Thickness:</label>
 			<div class="field"><input name="sfsi_popup_border_thickness" type="text" value="<?php echo ($option7['sfsi_popup_border_thickness']!='') ?  $option7['sfsi_popup_border_thickness'] : '' ;?>" class="small" />
 			</div>
 		</div>
@@ -168,7 +174,8 @@
      <!-- SAVE BUTTON SECTION   --> 
 	<div class="save_button">
 	     <img src="<?php echo SFSI_PLUGURL ?>images/ajax-loader.gif" class="loader-img" />
-	    <a href="javascript:;" id="sfsi_save7" title="Save">Save</a>
+         <?php  $nonce = wp_create_nonce("update_step7"); ?>
+	    <a href="javascript:;" id="sfsi_save7" title="Save" data-nonce="<?php echo $nonce;?>">Save</a>
 	</div><!-- END SAVE BUTTON SECTION   -->
 	<a class="sfsiColbtn closeSec" href="javascript:;" class="closeSec">Collapse area</a>
 	<label class="closeSec"></label>

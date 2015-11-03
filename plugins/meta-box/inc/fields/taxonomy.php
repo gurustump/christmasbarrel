@@ -17,7 +17,7 @@ if ( ! class_exists( 'RWMB_Taxonomy_Field' ) )
 		{
 			RWMB_Select_Advanced_Field::admin_enqueue_scripts();
 			wp_enqueue_style( 'rwmb-taxonomy', RWMB_CSS_URL . 'taxonomy.css', array(), RWMB_VER );
-			wp_enqueue_script( 'rwmb-taxonomy', RWMB_JS_URL . 'taxonomy.js', array( 'jquery', 'rwmb-select-advanced', 'wp-ajax-response' ), RWMB_VER, true );
+			wp_enqueue_script( 'rwmb-taxonomy', RWMB_JS_URL . 'taxonomy.js', array( 'rwmb-select-advanced' ), RWMB_VER, true );
 		}
 
 		/**
@@ -88,7 +88,8 @@ if ( ! class_exists( 'RWMB_Taxonomy_Field' ) )
 			$options = $field['options'];
 			$terms   = get_terms( $options['taxonomy'], $options['args'] );
 
-			$field['options'] = self::get_options( $terms );
+			$field['options']      = self::get_options( $terms );
+			$field['display_type'] = $options['type'];
 
 			$html = '';
 
@@ -130,7 +131,7 @@ if ( ! class_exists( 'RWMB_Taxonomy_Field' ) )
 		static function walk_checkbox_tree( $meta, $field, $elements, $parent = 0, $active = false )
 		{
 			if ( ! isset( $elements[$parent] ) )
-				return;
+				return '';
 			$terms            = $elements[$parent];
 			$field['options'] = self::get_options( $terms );
 			$hidden           = $active ? '' : 'hidden';
@@ -167,7 +168,8 @@ if ( ! class_exists( 'RWMB_Taxonomy_Field' ) )
 		static function walk_select_tree( $meta, $field, $elements, $parent = 0, $active = false )
 		{
 			if ( ! isset( $elements[$parent] ) )
-				return;
+				return '';
+			$meta             = empty( $meta ) ? array() : ( ! is_array( $meta ) ? array() : $meta );
 			$terms            = $elements[$parent];
 			$field['options'] = self::get_options( $terms );
 
@@ -258,6 +260,65 @@ if ( ! class_exists( 'RWMB_Taxonomy_Field' ) )
 			$meta = wp_list_pluck( $meta, 'term_id' );
 
 			return $meta;
+		}
+
+		/**
+		 * Get the field value
+		 * Return list of post term objects
+		 *
+		 * @param  array    $field   Field parameters
+		 * @param  array    $args    Additional arguments. Rarely used. See specific fields for details
+		 * @param  int|null $post_id Post ID. null for current post. Optional.
+		 *
+		 * @return array List of post term objects
+		 */
+		static function get_value( $field, $args = array(), $post_id = null )
+		{
+			if ( ! $post_id )
+				$post_id = get_the_ID();
+
+			$value = wp_get_post_terms( $post_id, $field['options']['taxonomy'] );
+
+			// Get single value if necessary
+			if ( ! $field['clone'] && ! $field['multiple'] )
+			{
+				$value = reset( $value );
+			}
+			return $value;
+		}
+
+		/**
+		 * Output the field value
+		 * Display unordered list of option labels, not option values
+		 *
+		 * @param  array    $field   Field parameters
+		 * @param  array    $args    Additional arguments. Not used for these fields.
+		 * @param  int|null $post_id Post ID. null for current post. Optional.
+		 *
+		 * @return string Link(s) to post
+		 */
+		static function the_value( $field, $args = array(), $post_id = null )
+		{
+			return RWMB_Select_Field::the_value( $field, $args, $post_id );
+		}
+
+		/**
+		 * Get post link to display in the frontend
+		 *
+		 * @param object $value Option value, e.g. term object
+		 * @param int    $index Array index
+		 * @param array  $field Field parameter
+		 *
+		 * @return string
+		 */
+		static function get_option_label( &$value, $index, $field )
+		{
+			$value = sprintf(
+				'<a href="%s" title="%s">%s</a>',
+				esc_url( get_term_link( $value ) ),
+				esc_attr( $value->name ),
+				$value->name
+			);
 		}
 	}
 }

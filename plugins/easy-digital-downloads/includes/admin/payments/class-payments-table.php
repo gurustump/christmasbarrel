@@ -4,7 +4,7 @@
  *
  * @package     EDD
  * @subpackage  Admin/Payments
- * @copyright   Copyright (c) 2014, Pippin Williamson
+ * @copyright   Copyright (c) 2015, Pippin Williamson
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.4
  */
@@ -128,19 +128,19 @@ class EDD_Payment_History_Table extends WP_List_Table {
 ?>
 		<div id="edd-payment-filters">
 			<span id="edd-payment-date-filters">
-				<label for="start-date"><?php _e( 'Start Date:', 'edd' ); ?></label>
+				<label for="start-date"><?php _e( 'Start Date:', 'easy-digital-downloads' ); ?></label>
 				<input type="text" id="start-date" name="start-date" class="edd_datepicker" value="<?php echo $start_date; ?>" placeholder="mm/dd/yyyy"/>
-				<label for="end-date"><?php _e( 'End Date:', 'edd' ); ?></label>
+				<label for="end-date"><?php _e( 'End Date:', 'easy-digital-downloads' ); ?></label>
 				<input type="text" id="end-date" name="end-date" class="edd_datepicker" value="<?php echo $end_date; ?>" placeholder="mm/dd/yyyy"/>
-				<input type="submit" class="button-secondary" value="<?php _e( 'Apply', 'edd' ); ?>"/>
+				<input type="submit" class="button-secondary" value="<?php _e( 'Apply', 'easy-digital-downloads' ); ?>"/>
 			</span>
 			<?php if( ! empty( $status ) ) : ?>
 				<input type="hidden" name="status" value="<?php echo esc_attr( $status ); ?>"/>
 			<?php endif; ?>
 			<?php if( ! empty( $start_date ) || ! empty( $end_date ) ) : ?>
-				<a href="<?php echo admin_url( 'edit.php?post_type=download&page=edd-payment-history' ); ?>" class="button-secondary"><?php _e( 'Clear Filter', 'edd' ); ?></a>
+				<a href="<?php echo admin_url( 'edit.php?post_type=download&page=edd-payment-history' ); ?>" class="button-secondary"><?php _e( 'Clear Filter', 'easy-digital-downloads' ); ?></a>
 			<?php endif; ?>
-			<?php $this->search_box( __( 'Search', 'edd' ), 'edd-payments' ); ?>
+			<?php $this->search_box( __( 'Search', 'easy-digital-downloads' ), 'edd-payments' ); ?>
 		</div>
 
 <?php
@@ -196,13 +196,13 @@ class EDD_Payment_History_Table extends WP_List_Table {
 		$revoked_count  = '&nbsp;<span class="count">(' . $this->revoked_count   . ')</span>';
 
 		$views = array(
-			'all'		=> sprintf( '<a href="%s"%s>%s</a>', remove_query_arg( array( 'status', 'paged' ) ), $current === 'all' || $current == '' ? ' class="current"' : '', __('All', 'edd') . $total_count ),
-			'publish'	=> sprintf( '<a href="%s"%s>%s</a>', add_query_arg( array( 'status' => 'publish', 'paged' => FALSE ) ), $current === 'publish' ? ' class="current"' : '', __('Completed', 'edd') . $complete_count ),
-			'pending'	=> sprintf( '<a href="%s"%s>%s</a>', add_query_arg( array( 'status' => 'pending', 'paged' => FALSE ) ), $current === 'pending' ? ' class="current"' : '', __('Pending', 'edd') . $pending_count ),
-			'refunded'	=> sprintf( '<a href="%s"%s>%s</a>', add_query_arg( array( 'status' => 'refunded', 'paged' => FALSE ) ), $current === 'refunded' ? ' class="current"' : '', __('Refunded', 'edd') . $refunded_count ),
-			'revoked'	=> sprintf( '<a href="%s"%s>%s</a>', add_query_arg( array( 'status' => 'revoked', 'paged' => FALSE ) ), $current === 'revoked' ? ' class="current"' : '', __('Revoked', 'edd') . $revoked_count ),
-            'failed'	=> sprintf( '<a href="%s"%s>%s</a>', add_query_arg( array( 'status' => 'failed', 'paged' => FALSE ) ), $current === 'failed' ? ' class="current"' : '', __('Failed', 'edd') . $failed_count ),
-            'abandoned'	=> sprintf( '<a href="%s"%s>%s</a>', add_query_arg( array( 'status' => 'abandoned', 'paged' => FALSE ) ), $current === 'abandoned' ? ' class="current"' : '', __('Abandoned', 'edd') . $abandoned_count )
+			'all'		=> sprintf( '<a href="%s"%s>%s</a>', remove_query_arg( array( 'status', 'paged' ) ), $current === 'all' || $current == '' ? ' class="current"' : '', __('All','easy-digital-downloads' ) . $total_count ),
+			'publish'	=> sprintf( '<a href="%s"%s>%s</a>', add_query_arg( array( 'status' => 'publish', 'paged' => FALSE ) ), $current === 'publish' ? ' class="current"' : '', __('Completed','easy-digital-downloads' ) . $complete_count ),
+			'pending'	=> sprintf( '<a href="%s"%s>%s</a>', add_query_arg( array( 'status' => 'pending', 'paged' => FALSE ) ), $current === 'pending' ? ' class="current"' : '', __('Pending','easy-digital-downloads' ) . $pending_count ),
+			'refunded'	=> sprintf( '<a href="%s"%s>%s</a>', add_query_arg( array( 'status' => 'refunded', 'paged' => FALSE ) ), $current === 'refunded' ? ' class="current"' : '', __('Refunded','easy-digital-downloads' ) . $refunded_count ),
+			'revoked'	=> sprintf( '<a href="%s"%s>%s</a>', add_query_arg( array( 'status' => 'revoked', 'paged' => FALSE ) ), $current === 'revoked' ? ' class="current"' : '', __('Revoked','easy-digital-downloads' ) . $revoked_count ),
+            'failed'	=> sprintf( '<a href="%s"%s>%s</a>', add_query_arg( array( 'status' => 'failed', 'paged' => FALSE ) ), $current === 'failed' ? ' class="current"' : '', __('Failed','easy-digital-downloads' ) . $failed_count ),
+            'abandoned'	=> sprintf( '<a href="%s"%s>%s</a>', add_query_arg( array( 'status' => 'abandoned', 'paged' => FALSE ) ), $current === 'abandoned' ? ' class="current"' : '', __('Abandoned','easy-digital-downloads' ) . $abandoned_count )
 		);
 
 		return apply_filters( 'edd_payments_table_views', $views );
@@ -217,14 +217,14 @@ class EDD_Payment_History_Table extends WP_List_Table {
 	 */
 	public function get_columns() {
 		$columns = array(
-			'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
-			'ID'     	=> __( 'ID', 'edd' ),
-			'email'  	=> __( 'Email', 'edd' ),
-			'details'  	=> __( 'Details', 'edd' ),
-			'amount'  	=> __( 'Amount', 'edd' ),
-			'date'  	=> __( 'Date', 'edd' ),
-			'user'  	=> __( 'User', 'edd' ),
-			'status'  	=> __( 'Status', 'edd' )
+			'cb'       => '<input type="checkbox" />', //Render a checkbox instead of text
+			'ID'       => __( 'ID', 'easy-digital-downloads' ),
+			'email'    => __( 'Email', 'easy-digital-downloads' ),
+			'details'  => __( 'Details', 'easy-digital-downloads' ),
+			'amount'   => __( 'Amount', 'easy-digital-downloads' ),
+			'date'     => __( 'Date', 'easy-digital-downloads' ),
+			'customer' => __( 'Customer', 'easy-digital-downloads' ),
+			'status'   => __( 'Status', 'easy-digital-downloads' )
 		);
 
 		return apply_filters( 'edd_payments_table_columns', $columns );
@@ -252,7 +252,7 @@ class EDD_Payment_History_Table extends WP_List_Table {
 	 * @access public
 	 * @since 1.4
 	 *
-	 * @param array $item Contains all the data of the discount code
+	 * @param array $payment Contains all the data of the payment
 	 * @param string $column_name The name of the column
 	 *
 	 * @return string Column Name
@@ -261,7 +261,7 @@ class EDD_Payment_History_Table extends WP_List_Table {
 		switch ( $column_name ) {
 			case 'amount' :
 				$amount  = ! empty( $payment->total ) ? $payment->total : 0;
-				$value   = edd_currency_filter( edd_format_amount( $amount ) );
+				$value   = edd_currency_filter( edd_format_amount( $amount ), edd_get_payment_currency_code( $payment->ID ) );
 				break;
 			case 'date' :
 				$date    = strtotime( $payment->date );
@@ -272,7 +272,7 @@ class EDD_Payment_History_Table extends WP_List_Table {
 				$value   = edd_get_payment_status( $payment, true );
 				break;
 			case 'details' :
-				$value = '<a href="' . add_query_arg( 'id', $payment->ID, admin_url( 'edit.php?post_type=download&page=edd-payment-history&view=view-order-details' ) ) . '">' . __( 'View Order Details', 'edd' ) . '</a>';
+				$value = '<a href="' . add_query_arg( 'id', $payment->ID, admin_url( 'edit.php?post_type=download&page=edd-payment-history&view=view-order-details' ) ) . '">' . __( 'View Order Details', 'easy-digital-downloads' ) . '</a>';
 				break;
 			default:
 				$value = isset( $payment->$column_name ) ? $payment->$column_name : '';
@@ -295,19 +295,21 @@ class EDD_Payment_History_Table extends WP_List_Table {
 		$row_actions = array();
 
 		if ( edd_is_payment_complete( $payment->ID ) ) {
-			$row_actions['email_links'] = '<a href="' . add_query_arg( array( 'edd-action' => 'email_links', 'purchase_id' => $payment->ID ), $this->base_url ) . '">' . __( 'Resend Purchase Receipt', 'edd' ) . '</a>';
+			$row_actions['email_links'] = '<a href="' . add_query_arg( array( 'edd-action' => 'email_links', 'purchase_id' => $payment->ID ), $this->base_url ) . '">' . __( 'Resend Purchase Receipt', 'easy-digital-downloads' ) . '</a>';
 
 		}
 
-		$row_actions['delete'] = '<a href="' . wp_nonce_url( add_query_arg( array( 'edd-action' => 'delete_payment', 'purchase_id' => $payment->ID ), $this->base_url ), 'edd_payment_nonce') . '">' . __( 'Delete', 'edd' ) . '</a>';
+		$row_actions['delete'] = '<a href="' . wp_nonce_url( add_query_arg( array( 'edd-action' => 'delete_payment', 'purchase_id' => $payment->ID ), $this->base_url ), 'edd_payment_nonce') . '">' . __( 'Delete', 'easy-digital-downloads' ) . '</a>';
 
 		$row_actions = apply_filters( 'edd_payment_row_actions', $row_actions, $payment );
 
-		if ( ! isset( $payment->user_info['email'] ) ) {
-			$payment->user_info['email'] = __( '(unknown)', 'edd' );
+		$email = edd_get_payment_user_email( $payment->ID );
+
+		if ( empty( $email ) ) {
+			$payment->user_info['email'] = __( '(unknown)', 'easy-digital-downloads' );
 		}
 
-		$value = $payment->user_info['email'] . $this->row_actions( $row_actions );
+		$value = $email . $this->row_actions( $row_actions );
 
 		return apply_filters( 'edd_payments_table_column', $value, $payment->ID, 'email' );
 	}
@@ -341,25 +343,19 @@ class EDD_Payment_History_Table extends WP_List_Table {
 	}
 
 	/**
-	 * Render the User Column
+	 * Render the Customer Column
 	 *
 	 * @access public
-	 * @since 1.4
+	 * @since 2.4.3
 	 * @param array $payment Contains all the data of the payment
 	 * @return string Data shown in the User column
 	 */
-	public function column_user( $payment ) {
+	public function column_customer( $payment ) {
 
-		$user_id = edd_get_payment_user_id( $payment->ID );
+		$customer_id = edd_get_payment_customer_id( $payment->ID );
+		$customer    = new EDD_Customer( $customer_id );
 
-		if ( $user_id && $user_id > 0 ) {
-			$user = get_userdata( $user_id ) ;
-			$display_name = is_object( $user ) ? $user->display_name : __( 'guest', 'edd' );
-		} else {
-			$display_name = __( 'guest', 'edd' );
-		}
-
-		$value = '<a href="' . esc_url( add_query_arg( array( 'user' => urlencode( $payment->user_info['email'] ), 'paged' => false ) ) ) . '">' . $display_name . '</a>';
+		$value = '<a href="' . esc_url( add_query_arg( array( 'user' => urlencode( $customer->email ), 'paged' => false ) ) ) . '">' . $customer->name . '</a>';
 		return apply_filters( 'edd_payments_table_column', $value, $payment->ID, 'user' );
 	}
 
@@ -372,16 +368,16 @@ class EDD_Payment_History_Table extends WP_List_Table {
 	 */
 	public function get_bulk_actions() {
 		$actions = array(
-			'delete'                 => __( 'Delete',                'edd' ),
-			'set-status-publish'     => __( 'Set To Completed',      'edd' ),
-			'set-status-pending'     => __( 'Set To Pending',        'edd' ),
-			'set-status-refunded'    => __( 'Set To Refunded',       'edd' ),
-			'set-status-revoked'     => __( 'Set To Revoked',        'edd' ),
-			'set-status-failed'      => __( 'Set To Failed',         'edd' ),
-			'set-status-abandoned'   => __( 'Set To Abandoned',      'edd' ),
-			'set-status-preapproval' => __( 'Set To Preapproval',    'edd' ),
-			'set-status-cancelled'   => __( 'Set To Cancelled',      'edd' ),
-			'resend-receipt'         => __( 'Resend Email Receipts', 'edd' )
+			'delete'                 => __( 'Delete',                'easy-digital-downloads' ),
+			'set-status-publish'     => __( 'Set To Completed',      'easy-digital-downloads' ),
+			'set-status-pending'     => __( 'Set To Pending',        'easy-digital-downloads' ),
+			'set-status-refunded'    => __( 'Set To Refunded',       'easy-digital-downloads' ),
+			'set-status-revoked'     => __( 'Set To Revoked',        'easy-digital-downloads' ),
+			'set-status-failed'      => __( 'Set To Failed',         'easy-digital-downloads' ),
+			'set-status-abandoned'   => __( 'Set To Abandoned',      'easy-digital-downloads' ),
+			'set-status-preapproval' => __( 'Set To Preapproval',    'easy-digital-downloads' ),
+			'set-status-cancelled'   => __( 'Set To Cancelled',      'easy-digital-downloads' ),
+			'resend-receipt'         => __( 'Resend Email Receipts', 'easy-digital-downloads' )
 		);
 
 		return apply_filters( 'edd_payments_table_bulk_actions', $actions );
@@ -505,7 +501,7 @@ class EDD_Payment_History_Table extends WP_List_Table {
 		$orderby 		= isset( $_GET['orderby'] )     ? urldecode( $_GET['orderby'] )              : 'ID';
 		$order 			= isset( $_GET['order'] )       ? $_GET['order']                             : 'DESC';
 		$user 			= isset( $_GET['user'] )        ? $_GET['user']                              : null;
-		$status 		= isset( $_GET['status'] )      ? $_GET['status']                            : 'any';
+		$status 		= isset( $_GET['status'] )      ? $_GET['status']                            : edd_get_payment_status_keys();
 		$meta_key		= isset( $_GET['meta_key'] )    ? $_GET['meta_key']                          : null;
 		$year 			= isset( $_GET['year'] )        ? $_GET['year']                              : null;
 		$month 			= isset( $_GET['m'] )           ? $_GET['m']                                 : null;
@@ -513,6 +509,10 @@ class EDD_Payment_History_Table extends WP_List_Table {
 		$search         = isset( $_GET['s'] )           ? sanitize_text_field( $_GET['s'] )          : null;
 		$start_date     = isset( $_GET['start-date'] )  ? sanitize_text_field( $_GET['start-date'] ) : null;
 		$end_date       = isset( $_GET['end-date'] )    ? sanitize_text_field( $_GET['end-date'] )   : $start_date;
+
+		if( ! empty( $search ) ) {
+			$status = 'any'; // Force all payment statuses when searching
+		}
 
 		$args = array(
 			'output'     => 'payments',

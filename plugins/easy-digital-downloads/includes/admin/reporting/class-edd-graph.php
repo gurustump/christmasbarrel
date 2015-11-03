@@ -6,7 +6,7 @@
  *
  * @package     EDD
  * @subpackage  Admin/Reports
- * @copyright   Copyright (c) 2012, Pippin Williamson
+ * @copyright   Copyright (c) 2015, Pippin Williamson
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.9
  */
@@ -81,7 +81,7 @@ class EDD_Graph {
 		$this->data = $_data;
 
 		// Generate unique ID
-		$this->id   = md5( rand() );
+		$this->id   = 'a' . md5( rand() );
 
 		// Setup default options;
 		$this->options = array(
@@ -144,6 +144,8 @@ class EDD_Graph {
 		// Use minified libraries if SCRIPT_DEBUG is turned off
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 		wp_enqueue_script( 'jquery-flot', EDD_PLUGIN_URL . 'assets/js/jquery.flot' . $suffix . '.js' );
+
+		do_action( 'edd_graph_load_scripts' );
 	}
 
 	/**
@@ -183,7 +185,7 @@ class EDD_Graph {
 							lines: {
 								show: <?php echo $this->options['lines'] ? 'true' : 'false'; ?>
 							},
-							<?php if( $this->options[ 'multiple_y_axes' ] ) : ?>
+							<?php if( $this->options['multiple_y_axes'] ) : ?>
 							yaxis: <?php echo $yaxis_count; ?>
 							<?php endif; ?>
 						},
@@ -194,10 +196,10 @@ class EDD_Graph {
 						grid: {
 							show: true,
 							aboveData: false,
-							color: "<?php echo $this->options[ 'color' ]; ?>",
-							backgroundColor: "<?php echo $this->options[ 'bgcolor' ]; ?>",
-							borderColor: "<?php echo $this->options[ 'bordercolor' ]; ?>",
-							borderWidth: <?php echo absint( $this->options[ 'borderwidth' ] ); ?>,
+							color: "<?php echo $this->options['color']; ?>",
+							backgroundColor: "<?php echo $this->options['bgcolor']; ?>",
+							borderColor: "<?php echo $this->options['bordercolor']; ?>",
+							borderWidth: <?php echo absint( $this->options['borderwidth'] ); ?>,
 							clickable: false,
 							hoverable: true
 						},

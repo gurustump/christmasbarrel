@@ -4,7 +4,7 @@
  *
  * @package     EDD
  * @subpackage  Cart
- * @copyright   Copyright (c) 2014, Pippin Williamson
+ * @copyright   Copyright (c) 2015, Pippin Williamson
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -48,8 +48,6 @@ function edd_checkout_cart() {
  * @return string Fully formatted cart
  */
 function edd_shopping_cart( $echo = false ) {
-	global $edd_options;
-
 	ob_start();
 
 	do_action( 'edd_before_cart' );
@@ -78,9 +76,10 @@ function edd_get_cart_item_template( $cart_key, $item, $ajax = false ) {
 
 	$id = is_array( $item ) ? $item['id'] : $item;
 
-	$remove_url = edd_remove_item_url( $cart_key, $post, $ajax );
+	$remove_url = edd_remove_item_url( $cart_key );
 	$title      = get_the_title( $id );
 	$options    = !empty( $item['options'] ) ? $item['options'] : array();
+	$quantity   = edd_get_cart_item_quantity( $id, $options );
 	$price      = edd_get_cart_item_price( $id, $options );
 
 	if ( ! empty( $options ) ) {
@@ -97,6 +96,7 @@ function edd_get_cart_item_template( $cart_key, $item, $ajax = false ) {
 	$item = str_replace( '{item_amount}', edd_currency_filter( edd_format_amount( $price ) ), $item );
 	$item = str_replace( '{cart_item_id}', absint( $cart_key ), $item );
 	$item = str_replace( '{item_id}', absint( $id ), $item );
+	$item = str_replace( '{item_quantity}', absint( $quantity ), $item );
 	$item = str_replace( '{remove_url}', $remove_url, $item );
   	$subtotal = '';
   	if ( $ajax ){
@@ -114,7 +114,7 @@ function edd_get_cart_item_template( $cart_key, $item, $ajax = false ) {
  * @return string Cart is empty message
  */
 function edd_empty_cart_message() {
-	return apply_filters( 'edd_empty_cart_message', '<span class="edd_empty_cart">' . __( 'Your cart is empty.', 'edd' ) . '</span>' );
+	return apply_filters( 'edd_empty_cart_message', '<span class="edd_empty_cart">' . __( 'Your cart is empty.', 'easy-digital-downloads' ) . '</span>' );
 }
 
 /**
@@ -146,22 +146,19 @@ function edd_checkout_cart_columns() {
  * Display the "Save Cart" button on the checkout
  *
  * @since 1.8
- * @global $edd_options Array of all the EDD Options
  * @return void
  */
 function edd_save_cart_button() {
-	global $edd_options;
-
 	if ( edd_is_cart_saving_disabled() )
 		return;
 
-	$color = isset( $edd_options[ 'checkout_color' ] ) ? $edd_options[ 'checkout_color' ] : 'blue';
+	$color = edd_get_option( 'checkout_color', 'blue' );
 	$color = ( $color == 'inherit' ) ? '' : $color;
 
 	if ( edd_is_cart_saved() ) : ?>
-		<a class="edd-cart-saving-button edd-submit button<?php echo ' ' . $color; ?>" id="edd-restore-cart-button" href="<?php echo add_query_arg( array( 'edd_action' => 'restore_cart', 'edd_cart_token' => edd_get_cart_token() ) ) ?>"><?php _e( 'Restore Previous Cart', 'edd' ); ?></a>
+		<a class="edd-cart-saving-button edd-submit button<?php echo ' ' . $color; ?>" id="edd-restore-cart-button" href="<?php echo esc_url( add_query_arg( array( 'edd_action' => 'restore_cart', 'edd_cart_token' => edd_get_cart_token() ) ) ); ?>"><?php _e( 'Restore Previous Cart', 'easy-digital-downloads' ); ?></a>
 	<?php endif; ?>
-	<a class="edd-cart-saving-button edd-submit button<?php echo ' ' . $color; ?>" id="edd-save-cart-button" href="<?php echo add_query_arg( 'edd_action', 'save_cart' ) ?>"><?php _e( 'Save Cart', 'edd' ); ?></a>
+	<a class="edd-cart-saving-button edd-submit button<?php echo ' ' . $color; ?>" id="edd-save-cart-button" href="<?php echo esc_url( add_query_arg( 'edd_action', 'save_cart' ) ); ?>"><?php _e( 'Save Cart', 'easy-digital-downloads' ); ?></a>
 	<?php
 }
 
@@ -177,7 +174,7 @@ function edd_empty_cart_restore_cart_link() {
 		return;
 
 	if( edd_is_cart_saved() ) {
-		echo ' <a class="edd-cart-saving-link" id="edd-restore-cart-link" href="' . add_query_arg( array( 'edd_action' => 'restore_cart', 'edd_cart_token' => edd_get_cart_token() ) ) . '">' . __( 'Restore Previous Cart.', 'edd' ) . '</a>';
+		echo ' <a class="edd-cart-saving-link" id="edd-restore-cart-link" href="' . esc_url( add_query_arg( array( 'edd_action' => 'restore_cart', 'edd_cart_token' => edd_get_cart_token() ) ) ) . '">' . __( 'Restore Previous Cart.', 'easy-digital-downloads' ) . '</a>';
 	}
 }
 add_action( 'edd_cart_empty', 'edd_empty_cart_restore_cart_link' );
@@ -186,19 +183,16 @@ add_action( 'edd_cart_empty', 'edd_empty_cart_restore_cart_link' );
  * Display the "Save Cart" button on the checkout
  *
  * @since 1.8
- * @global $edd_options Array of all the EDD Options
  * @return void
  */
 function edd_update_cart_button() {
-	global $edd_options;
-
 	if ( ! edd_item_quantities_enabled() )
 		return;
 
-	$color = isset( $edd_options[ 'checkout_color' ] ) ? $edd_options[ 'checkout_color' ] : 'blue';
+	$color = edd_get_option( 'checkout_color', 'blue' );
 	$color = ( $color == 'inherit' ) ? '' : $color;
 ?>
-	<input type="submit" name="edd_update_cart_submit" class="edd-submit edd-no-js button<?php echo ' ' . $color; ?>" value="<?php _e( 'Update Cart', 'edd' ); ?>"/>
+	<input type="submit" name="edd_update_cart_submit" class="edd-submit edd-no-js button<?php echo ' ' . $color; ?>" value="<?php _e( 'Update Cart', 'easy-digital-downloads' ); ?>"/>
 	<input type="hidden" name="edd_action" value="update_cart"/>
 <?php
 
@@ -214,15 +208,27 @@ function edd_display_cart_messages() {
 	$messages = EDD()->session->get( 'edd_cart_messages' );
 
 	if ( $messages ) {
-		$classes = apply_filters( 'edd_error_class', array(
-			'edd_errors'
-		) );
-		echo '<div class="' . implode( ' ', $classes ) . '">';
-		    // Loop message codes and display messages
-		   foreach ( $messages as $message_id => $message ){
-		        echo '<p class="edd_error" id="edd_msg_' . $message_id . '">' . $message . '</p>';
-		   }
-		echo '</div>';
+		foreach ( $messages as $message_id => $message ) {
+
+			// Try and detect what type of message this is
+			if ( strpos( strtolower( $message ), 'error' ) ) {
+				$type = 'error';
+			} elseif ( strpos( strtolower( $message ), 'success' ) ) {
+				$type = 'success';
+			} else {
+				$type = 'info';
+			}
+
+			$classes = apply_filters( 'edd_' . $type . '_class', array(
+				'edd_errors', 'edd-alert', 'edd-alert-' . $type
+			) );
+
+			echo '<div class="' . implode( ' ', $classes ) . '">';
+				// Loop message codes and display messages
+					echo '<p class="edd_error" id="edd_msg_' . $message_id . '">' . $message . '</p>';
+			echo '</div>';
+
+		}
 
 		// Remove all of the cart saving messages
 		EDD()->session->set( 'edd_cart_messages', null );
@@ -243,8 +249,8 @@ function edd_show_added_to_cart_messages( $download_id ) {
 			$download_id = absint( $_POST['download_id'] );
 
 		$alert = '<div class="edd_added_to_cart_alert">'
-		. sprintf( __('You have successfully added %s to your shopping cart.', 'edd'), get_the_title( $download_id ) )
-		. ' <a href="' . edd_get_checkout_uri() . '" class="edd_alert_checkout_link">' . __('Checkout.', 'edd') . '</a>'
+		. sprintf( __('You have successfully added %s to your shopping cart.','easy-digital-downloads' ), get_the_title( $download_id ) )
+		. ' <a href="' . edd_get_checkout_uri() . '" class="edd_alert_checkout_link">' . __('Checkout.','easy-digital-downloads' ) . '</a>'
 		. '</div>';
 
 		echo apply_filters( 'edd_show_added_to_cart_messages', $alert );

@@ -4,7 +4,7 @@
  *
  * @package     EDD
  * @subpackage  Functions
- * @copyright   Copyright (c) 2014, Pippin Williamson
+ * @copyright   Copyright (c) 2015, Pippin Williamson
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -16,14 +16,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Is Test Mode
  *
  * @since 1.0
- * @global $edd_options
  * @return bool $ret True if return mode is enabled, false otherwise
  */
 function edd_is_test_mode() {
-	global $edd_options;
-
-	$ret = ! empty( $edd_options['test_mode'] );
-
+	$ret = edd_get_option( 'test_mode', false );
 	return (bool) apply_filters( 'edd_is_test_mode', $ret );
 }
 
@@ -31,14 +27,10 @@ function edd_is_test_mode() {
  * Checks if Guest checkout is enabled
  *
  * @since 1.0
- * @global $edd_options
  * @return bool $ret True if guest checkout is enabled, false otherwise
  */
 function edd_no_guest_checkout() {
-	global $edd_options;
-
-	$ret = ! empty ( $edd_options['logged_in_only'] );
-
+	$ret = edd_get_option( 'logged_in_only', false );
 	return (bool) apply_filters( 'edd_no_guest_checkout', $ret );
 }
 
@@ -46,14 +38,10 @@ function edd_no_guest_checkout() {
  * Checks if users can only purchase downloads when logged in
  *
  * @since 1.0
- * @global $edd_options
  * @return bool $ret Whether or not the logged_in_only setting is set
  */
 function edd_logged_in_only() {
-	global $edd_options;
-
-	$ret = ! empty( $edd_options['logged_in_only'] );
-
+	$ret = edd_get_option( 'logged_in_only', false );
 	return (bool) apply_filters( 'edd_logged_in_only', $ret );
 }
 
@@ -64,8 +52,7 @@ function edd_logged_in_only() {
  * @return bool $ret True is redirect is enabled, false otherwise
  */
 function edd_straight_to_checkout() {
-	global $edd_options;
-	$ret = isset( $edd_options['redirect_on_add'] );
+	$ret = edd_get_option( 'redirect_on_add', false );
 	return (bool) apply_filters( 'edd_straight_to_checkout', $ret );
 }
 
@@ -74,14 +61,10 @@ function edd_straight_to_checkout() {
  *
  * @access public
  * @since 1.0.8.2
- * @global $edd_options
  * @return bool True if redownloading of files is disabled, false otherwise
  */
 function edd_no_redownload() {
-	global $edd_options;
-
-	$ret = isset( $edd_options['disable_redownload'] );
-
+	$ret = edd_get_option( 'disable_redownload', false );
 	return (bool) apply_filters( 'edd_no_redownload', $ret );
 }
 
@@ -89,12 +72,9 @@ function edd_no_redownload() {
  * Verify credit card numbers live?
  *
  * @since 1.4
- * @global $edd_options
  * @return bool $ret True is verify credit cards is live
  */
 function edd_is_cc_verify_enabled() {
-	global $edd_options;
-
 	$ret = true;
 
 	/*
@@ -228,6 +208,11 @@ function edd_get_host() {
 		$host = 'Rackspace Cloud';
 	} elseif( strpos( DB_HOST, '.sysfix.eu' ) !== false ) {
 		$host = 'SysFix.eu Power Hosting';
+	} elseif( strpos( $_SERVER['SERVER_NAME'], 'Flywheel' ) !== false ) {
+		$host = 'Flywheel';
+	} else {
+		// Adding a general fallback for data gathering
+		$host = 'DBH: ' . DB_HOST . ', SRV: ' . $_SERVER['SERVER_NAME'];
 	}
 
 	return $host;
@@ -290,6 +275,10 @@ function edd_is_host( $host = false ) {
 				if( strpos( DB_HOST, '.sysfix.eu' ) !== false )
 					$return = true;
 				break;
+			case 'flywheel':
+				if( strpos( $_SERVER['SERVER_NAME'], 'Flywheel' ) !== false )
+					$return = true;
+				break;
 			default:
 				$return = false;
 		}
@@ -297,7 +286,6 @@ function edd_is_host( $host = false ) {
 
 	return $return;
 }
-
 
 
 /**
@@ -308,38 +296,37 @@ function edd_is_host( $host = false ) {
  */
 function edd_get_currencies() {
 	$currencies = array(
-		'USD'  => __( 'US Dollars (&#36;)', 'edd' ),
-		'EUR'  => __( 'Euros (&euro;)', 'edd' ),
-		'GBP'  => __( 'Pounds Sterling (&pound;)', 'edd' ),
-		'AUD'  => __( 'Australian Dollars (&#36;)', 'edd' ),
-		'BRL'  => __( 'Brazilian Real (R&#36;)', 'edd' ),
-		'CAD'  => __( 'Canadian Dollars (&#36;)', 'edd' ),
-		'CZK'  => __( 'Czech Koruna', 'edd' ),
-		'DKK'  => __( 'Danish Krone', 'edd' ),
-		'HKD'  => __( 'Hong Kong Dollar (&#36;)', 'edd' ),
-		'HUF'  => __( 'Hungarian Forint', 'edd' ),
-		'ILS'  => __( 'Israeli Shekel (&#8362;)', 'edd' ),
-		'JPY'  => __( 'Japanese Yen (&yen;)', 'edd' ),
-		'MYR'  => __( 'Malaysian Ringgits', 'edd' ),
-		'MXN'  => __( 'Mexican Peso (&#36;)', 'edd' ),
-		'NZD'  => __( 'New Zealand Dollar (&#36;)', 'edd' ),
-		'NOK'  => __( 'Norwegian Krone', 'edd' ),
-		'PHP'  => __( 'Philippine Pesos', 'edd' ),
-		'PLN'  => __( 'Polish Zloty', 'edd' ),
-		'SGD'  => __( 'Singapore Dollar (&#36;)', 'edd' ),
-		'SEK'  => __( 'Swedish Krona', 'edd' ),
-		'CHF'  => __( 'Swiss Franc', 'edd' ),
-		'TWD'  => __( 'Taiwan New Dollars', 'edd' ),
-		'THB'  => __( 'Thai Baht (&#3647;)', 'edd' ),
-		'INR'  => __( 'Indian Rupee (&#8377;)', 'edd' ),
-		'TRY'  => __( 'Turkish Lira (&#8378;)', 'edd' ),
-		'RIAL' => __( 'Iranian Rial (&#65020;)', 'edd' ),
-		'RUB'  => __( 'Russian Rubles', 'edd' )
+		'USD'  => __( 'US Dollars (&#36;)', 'easy-digital-downloads' ),
+		'EUR'  => __( 'Euros (&euro;)', 'easy-digital-downloads' ),
+		'GBP'  => __( 'Pounds Sterling (&pound;)', 'easy-digital-downloads' ),
+		'AUD'  => __( 'Australian Dollars (&#36;)', 'easy-digital-downloads' ),
+		'BRL'  => __( 'Brazilian Real (R&#36;)', 'easy-digital-downloads' ),
+		'CAD'  => __( 'Canadian Dollars (&#36;)', 'easy-digital-downloads' ),
+		'CZK'  => __( 'Czech Koruna', 'easy-digital-downloads' ),
+		'DKK'  => __( 'Danish Krone', 'easy-digital-downloads' ),
+		'HKD'  => __( 'Hong Kong Dollar (&#36;)', 'easy-digital-downloads' ),
+		'HUF'  => __( 'Hungarian Forint', 'easy-digital-downloads' ),
+		'ILS'  => __( 'Israeli Shekel (&#8362;)', 'easy-digital-downloads' ),
+		'JPY'  => __( 'Japanese Yen (&yen;)', 'easy-digital-downloads' ),
+		'MYR'  => __( 'Malaysian Ringgits', 'easy-digital-downloads' ),
+		'MXN'  => __( 'Mexican Peso (&#36;)', 'easy-digital-downloads' ),
+		'NZD'  => __( 'New Zealand Dollar (&#36;)', 'easy-digital-downloads' ),
+		'NOK'  => __( 'Norwegian Krone', 'easy-digital-downloads' ),
+		'PHP'  => __( 'Philippine Pesos', 'easy-digital-downloads' ),
+		'PLN'  => __( 'Polish Zloty', 'easy-digital-downloads' ),
+		'SGD'  => __( 'Singapore Dollar (&#36;)', 'easy-digital-downloads' ),
+		'SEK'  => __( 'Swedish Krona', 'easy-digital-downloads' ),
+		'CHF'  => __( 'Swiss Franc', 'easy-digital-downloads' ),
+		'TWD'  => __( 'Taiwan New Dollars', 'easy-digital-downloads' ),
+		'THB'  => __( 'Thai Baht (&#3647;)', 'easy-digital-downloads' ),
+		'INR'  => __( 'Indian Rupee (&#8377;)', 'easy-digital-downloads' ),
+		'TRY'  => __( 'Turkish Lira (&#8378;)', 'easy-digital-downloads' ),
+		'RIAL' => __( 'Iranian Rial (&#65020;)', 'easy-digital-downloads' ),
+		'RUB'  => __( 'Russian Rubles', 'easy-digital-downloads' )
 	);
 
 	return apply_filters( 'edd_currencies', $currencies );
 }
-
 
 /**
  * Get the store's set currency
@@ -348,9 +335,64 @@ function edd_get_currencies() {
  * @return string The currency code
  */
 function edd_get_currency() {
-	global $edd_options;
-	$currency = isset( $edd_options['currency'] ) ? $edd_options['currency'] : 'USD';
+	$currency = edd_get_option( 'currency', 'USD' );
 	return apply_filters( 'edd_currency', $currency );
+}
+
+/**
+ * Given a currency determine the symbol to use. If no currency given, site default is used.
+ * If no symbol is determine, the currency string is returned.
+ *
+ * @since  2.2
+ * @param  string $currency The currency string
+ * @return string           The symbol to use for the currency
+ */
+function edd_currency_symbol( $currency = '' ) {
+	if ( empty( $currency ) ) {
+		$currency = edd_get_currency();
+	}
+
+	switch ( $currency ) :
+		case "GBP" :
+			$symbol = '&pound;';
+			break;
+		case "BRL" :
+			$symbol = 'R&#36;';
+			break;
+		case "EUR" :
+			$symbol = '&euro;';
+			break;
+		case "USD" :
+		case "AUD" :
+		case "NZD" :
+		case "CAD" :
+		case "HKD" :
+		case "MXN" :
+		case "SGD" :
+			$symbol = '&#36;';
+			break;
+		case "JPY" :
+			$symbol = '&yen;';
+			break;
+		default :
+			$symbol = $currency;
+			break;
+	endswitch;
+
+	return apply_filters( 'edd_currency_symbol', $symbol, $currency );
+}
+
+/**
+ * Get the name of a currency
+ *
+ * @since 2.2
+ * @param  string $code The currency code
+ * @return string The currency's name
+ */
+function edd_get_currency_name( $code = 'USD' ) {
+	$currencies = edd_get_currencies();
+	$name       = isset( $currencies[ $code ] ) ? $currencies[ $code ] : $code;
+	return apply_filters( 'edd_currency_name', $name );
 }
 
 /**
@@ -360,7 +402,7 @@ function edd_get_currency() {
  *
  * @since 1.0
  *
- * @param unknown $n
+ * @param integer $n
  * @return string Short month name
  */
 function edd_month_num_to_name( $n ) {
@@ -383,29 +425,58 @@ function edd_get_php_arg_separator_output() {
  * Get the current page URL
  *
  * @since 1.3
- * @global $post
+ * @param  bool   $nocache  If we should bust cache on the returned URL
  * @return string $page_url Current page URL
  */
-function edd_get_current_page_url() {
-	global $post;
+function edd_get_current_page_url( $nocache = false ) {
 
-	if ( is_front_page() ) :
-		$page_url = home_url();
-	else :
-		$page_url = 'http';
+	global $wp;
 
-	if ( isset( $_SERVER["HTTPS"] ) && $_SERVER["HTTPS"] == "on" )
-		$page_url .= "s";
+	if( get_option( 'permalink_structure' ) ) {
 
-	$page_url .= "://";
+		$base = trailingslashit( home_url( $wp->request ) );
 
-	if ( isset( $_SERVER["SERVER_PORT"] ) && $_SERVER["SERVER_PORT"] != "80" )
-		$page_url .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
-	else
-		$page_url .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-	endif;
+	} else {
 
-	return apply_filters( 'edd_get_current_page_url', esc_url( $page_url ) );
+		$base = add_query_arg( $wp->query_string, '', trailingslashit( home_url( $wp->request ) ) );
+		$base = remove_query_arg( array( 'post_type', 'name' ), $base );
+
+	}
+
+	$scheme = is_ssl() ? 'https' : 'http';
+	$uri    = set_url_scheme( $base, $scheme );
+
+	if ( is_front_page() ) {
+		$uri = home_url( '/' );
+	} elseif ( edd_is_checkout( array(), false ) ) {
+		$uri = edd_get_checkout_uri();
+	}
+
+	$uri = apply_filters( 'edd_get_current_page_url', $uri );
+
+	if ( $nocache ) {
+		$uri = edd_add_cache_busting( $uri );
+	}
+
+	return $uri;
+}
+
+/**
+ * Adds the 'nocache' parameter to the provided URL
+ *
+ * @since  2.4.4
+ * @param  string $url The URL being requested
+ * @return string      The URL with cache busting added or not
+ */
+function edd_add_cache_busting( $url = '' ) {
+
+	$no_cache_checkout = edd_get_option( 'no_cache_checkout', false );
+
+	if ( edd_is_caching_plugin_active() || ( edd_is_checkout() && $no_cache_checkout ) ) {
+		$url = add_query_arg( 'nocache', 'true', $url );
+	}
+
+	return $url;
 }
 
 /**
@@ -437,12 +508,12 @@ function _edd_deprecated_function( $function, $version, $replacement = null, $ba
 	// Allow plugin to filter the output error trigger
 	if ( WP_DEBUG && apply_filters( 'edd_deprecated_function_trigger_error', $show_errors ) ) {
 		if ( ! is_null( $replacement ) ) {
-			trigger_error( sprintf( __( '%1$s is <strong>deprecated</strong> since Easy Digital Downloads version %2$s! Use %3$s instead.', 'edd' ), $function, $version, $replacement ) );
+			trigger_error( sprintf( __( '%1$s is <strong>deprecated</strong> since Easy Digital Downloads version %2$s! Use %3$s instead.', 'easy-digital-downloads' ), $function, $version, $replacement ) );
 			trigger_error(  print_r( $backtrace, 1 ) ); // Limited to previous 1028 characters, but since we only need to move back 1 in stack that should be fine.
 			// Alternatively we could dump this to a file.
 		}
 		else {
-			trigger_error( sprintf( __( '%1$s is <strong>deprecated</strong> since Easy Digital Downloads version %2$s with no alternative available.', 'edd' ), $function, $version ) );
+			trigger_error( sprintf( __( '%1$s is <strong>deprecated</strong> since Easy Digital Downloads version %2$s with no alternative available.', 'easy-digital-downloads' ), $function, $version ) );
 			trigger_error( print_r( $backtrace, 1 ) );// Limited to previous 1028 characters, but since we only need to move back 1 in stack that should be fine.
 			// Alternatively we could dump this to a file.
 		}
@@ -563,19 +634,13 @@ add_action( 'edd_cleanup_file_symlinks', 'edd_cleanup_file_symlinks' );
  * Checks if SKUs are enabled
  *
  * @since 1.6
- * @global $edd_options
  * @author Daniel J Griffiths
  * @return bool $ret True if SKUs are enabled, false otherwise
  */
 function edd_use_skus() {
-	global $edd_options;
-
-	$ret = isset( $edd_options['enable_skus'] );
-
+	$ret = edd_get_option( 'enable_skus', false );
 	return (bool) apply_filters( 'edd_use_skus', $ret );
 }
-
-
 
 /**
  * Retrieve timezone
@@ -660,6 +725,43 @@ function edd_set_upload_dir( $upload ) {
 	return $upload;
 }
 
+/**
+ * Check if the upgrade routine has been run for a specific action
+ *
+ * @since  2.3
+ * @param  string $upgrade_action The upgrade action to check completion for
+ * @return bool                   If the action has been added to the copmleted actions array
+ */
+function edd_has_upgrade_completed( $upgrade_action = '' ) {
+
+	if ( empty( $upgrade_action ) ) {
+		return false;
+	}
+
+	$completed_upgrades = edd_get_completed_upgrades();
+
+	return in_array( $upgrade_action, $completed_upgrades );
+
+}
+
+/**
+ * Get's the array of completed upgrade actions
+ *
+ * @since  2.3
+ * @return array The array of completed upgrades
+ */
+function edd_get_completed_upgrades() {
+
+	$completed_upgrades = get_option( 'edd_completed_upgrades' );
+
+	if ( false === $completed_upgrades ) {
+		$completed_upgrades = array();
+	}
+
+	return $completed_upgrades;
+
+}
+
 
 if ( ! function_exists( 'cal_days_in_month' ) ) {
 	// Fallback in case the calendar extension is not loaded in PHP
@@ -667,4 +769,98 @@ if ( ! function_exists( 'cal_days_in_month' ) ) {
 	function cal_days_in_month( $calendar, $month, $year ) {
 		return date( 't', mktime( 0, 0, 0, $month, 1, $year ) );
 	}
+}
+
+
+if ( ! function_exists( 'hash_equals' ) ) :
+/**
+ * Compare two strings in constant time.
+ *
+ * This function was added in PHP 5.6.
+ * It can leak the length of a string.
+ *
+ * @since 2.2.1
+ *
+ * @param string $a Expected string.
+ * @param string $b Actual string.
+ * @return bool Whether strings are equal.
+ */
+function hash_equals( $a, $b ) {
+	$a_length = strlen( $a );
+	if ( $a_length !== strlen( $b ) ) {
+		return false;
+	}
+	$result = 0;
+
+	// Do not attempt to "optimize" this.
+	for ( $i = 0; $i < $a_length; $i++ ) {
+		$result |= ord( $a[ $i ] ) ^ ord( $b[ $i ] );
+	}
+
+	return $result === 0;
+}
+endif;
+
+if ( ! function_exists( 'getallheaders' ) ) :
+
+	/**
+	 * Retrieve all headers
+	 *
+	 * Ensure getallheaders function exists in the case we're using nginx
+	 *
+	 * @access public
+	 * @since  2.4
+	 * @return array
+	 */
+	function getallheaders() {
+		$headers = '';
+		foreach ( $_SERVER as $name => $value ) {
+			if ( substr( $name, 0, 5 ) == 'HTTP_' ) {
+				$headers[ str_replace( ' ', '-', ucwords( strtolower( str_replace( '_', ' ', substr( $name, 5 ) ) ) ) ) ] = $value;
+			}
+		}
+		return $headers;
+	}
+
+endif;
+
+/**
+ * Determines the receipt visibility status
+ *
+ * @return bool Whether the receipt is visible or not.
+ */
+function edd_can_view_receipt( $payment_key = '' ) {
+
+	$return = false;
+
+	if ( empty( $payment_key ) ) {
+		return $return;
+	}
+
+	global $edd_receipt_args;
+
+	$edd_receipt_args['id'] = edd_get_purchase_id_by_key( $payment_key );
+
+	$user_id = (int) edd_get_payment_user_id( $edd_receipt_args['id'] );
+
+	$payment_meta = edd_get_payment_meta( $edd_receipt_args['id'] );
+
+	if ( is_user_logged_in() ) {
+		if ( $user_id === (int) get_current_user_id() ) {
+			$return = true;
+		} elseif ( wp_get_current_user()->user_email === edd_get_payment_user_email( $edd_receipt_args['id'] ) ) {
+			$return = true;
+		} elseif ( current_user_can( 'view_shop_sensitive_data' ) ) {
+			$return = true;
+		}
+	}
+
+	$session = edd_get_purchase_session();
+	if ( ! empty( $session ) && ! is_user_logged_in() ) {
+		if ( $session['purchase_key'] === $payment_meta['key'] ) {
+			$return = true;
+		}
+	}
+
+	return (bool) apply_filters( 'edd_can_view_receipt', $return, $payment_key );
 }

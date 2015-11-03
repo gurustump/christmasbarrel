@@ -6,7 +6,7 @@
  *
  * @package     EDD
  * @subpackage  Admin/Reports
- * @copyright   Copyright (c) 2014, Pippin Williamson
+ * @copyright   Copyright (c) 2015, Pippin Williamson
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.4.4
  */
@@ -61,11 +61,11 @@ class EDD_Download_History_Export extends EDD_Export {
 	 */
 	public function csv_cols() {
 		$cols = array(
-			'date'     => __( 'Date',   'edd' ),
-			'user'     => __( 'Downloaded by', 'edd' ),
-			'ip'       => __( 'IP Address', 'edd' ),
-			'download' => __( 'Product', 'edd' ),
-			'file'     => __( 'File', 'edd' )
+			'date'     => __( 'Date',   'easy-digital-downloads' ),
+			'user'     => __( 'Downloaded by', 'easy-digital-downloads' ),
+			'ip'       => __( 'IP Address', 'easy-digital-downloads' ),
+			'download' => __( 'Product', 'easy-digital-downloads' ),
+			'file'     => __( 'File', 'easy-digital-downloads' )
 		);
 		return $cols;
 	}

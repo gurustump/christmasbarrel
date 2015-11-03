@@ -1,13 +1,14 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Cache helper
  *
  * @package     EDD
  * @subpackage  Classes/Cache Helper
- * @copyright   Copyright (c) 2014, Pippin Williamson
+ * @copyright   Copyright (c) 2015, Pippin Williamson
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.7
 */
@@ -32,21 +33,21 @@ class EDD_Cache_Helper {
 
 		if ( false === ( $page_uris = get_transient( 'edd_cache_excluded_uris' ) ) ) {
 
-			global $edd_options;
-
-			if( empty( $edd_options['purchase_page'] ) || empty( $edd_options['success_page'] ) ) {
+			$purchase_page = edd_get_option( 'purchase_page', '' );
+			$success_page  = edd_get_option( 'success_page', '' );
+			if ( empty( $purchase_page ) || empty( $success_page ) ) {
 				return;
 			}
 
 			$page_uris   = array();
 
 			// Exclude querystring when using page ID
-			$page_uris[] = 'p=' . $edd_options['purchase_page'];
-			$page_uris[] = 'p=' . $edd_options['success_page'];
+			$page_uris[] = 'p=' . $purchase_page;
+			$page_uris[] = 'p=' . $success_page;
 
 	    	// Exclude permalinks
-			$checkout_page  = get_post( $edd_options['purchase_page'] );
-			$success_page   = get_post( $edd_options['success_page'] );
+			$checkout_page  = get_post( $purchase_page );
+			$success_page   = get_post( $success_page );
 
 	    	if ( ! is_null( $checkout_page ) )
 	    		$page_uris[] = '/' . $checkout_page->post_name;
@@ -113,7 +114,7 @@ class EDD_Cache_Helper {
 			if ( $enabled && ! in_array( '_wp_session_', $settings ) ) {
 				?>
 				<div class="error">
-					<p><?php printf( __( 'In order for <strong>database caching</strong> to work with Easy Digital Downloads you must add <code>_wp_session_</code> to the "Ignored query stems" option in W3 Total Cache settings <a href="%s">here</a>.', 'edd' ), admin_url( 'admin.php?page=w3tc_dbcache' ) ); ?></p>
+					<p><?php printf( __( 'In order for <strong>database caching</strong> to work with Easy Digital Downloads you must add <code>_wp_session_</code> to the "Ignored query stems" option in W3 Total Cache settings <a href="%s">here</a>.', 'easy-digital-downloads' ), admin_url( 'admin.php?page=w3tc_dbcache' ) ); ?></p>
 				</div>
 				<?php
 			}

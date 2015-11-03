@@ -4,7 +4,7 @@
  *
  * @package     EDD
  * @subpackage  Checkout
- * @copyright   Copyright (c) 2014, Pippin Williamson
+ * @copyright   Copyright (c) 2015, Pippin Williamson
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -19,8 +19,25 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @return bool True if on the Checkout page, false otherwise
  */
 function edd_is_checkout() {
-	global $edd_options;
-	$is_checkout = isset( $edd_options['purchase_page'] ) ? is_page( $edd_options['purchase_page'] ) : false;
+
+	global $wp_query;
+
+	$is_object_set    = isset( $wp_query->queried_object );
+	$is_object_id_set = isset( $wp_query->queried_object_id );
+	$is_checkout      = is_page( edd_get_option( 'purchase_page' ) );
+
+	if( ! $is_object_set ) {
+
+		unset( $wp_query->queried_object );
+
+	}
+
+	if( ! $is_object_id_set ) {
+
+		unset( $wp_query->queried_object_id );
+
+	}
+
 	return apply_filters( 'edd_is_checkout', $is_checkout );
 }
 
@@ -28,12 +45,9 @@ function edd_is_checkout() {
  * Determines if a user can checkout or not
  *
  * @since 1.3.3
- * @global $edd_options Array of all the EDD Options
  * @return bool Can user checkout?
  */
 function edd_can_checkout() {
-	global $edd_options;
-
 	$can_checkout = true; // Always true for now
 
 	return (bool) apply_filters( 'edd_can_checkout', $can_checkout );
@@ -47,11 +61,10 @@ function edd_can_checkout() {
  * @return      string
 */
 function edd_get_success_page_uri() {
-	global $edd_options;
+	$page_id = edd_get_option( 'success_page', 0 );
+	$page_id = absint( $page_id );
 
-	$page_id = isset( $edd_options['success_page'] ) ? absint( $edd_options['success_page'] ) : 0;
-
-	return apply_filters( 'edd_get_success_page_uri', get_permalink( $edd_options['success_page'] ) );
+	return apply_filters( 'edd_get_success_page_uri', get_permalink( $page_id ) );
 }
 
 /**
@@ -61,8 +74,9 @@ function edd_get_success_page_uri() {
  * @return bool True if on the Success page, false otherwise.
  */
 function edd_is_success_page() {
-	global $edd_options;
-	$is_success_page = isset( $edd_options['success_page'] ) ? is_page( $edd_options['success_page'] ) : false;
+	$is_success_page = edd_get_option( 'success_page', false );
+	$is_success_page = isset( $is_success_page ) ? is_page( $is_success_page ) : false;
+
 	return apply_filters( 'edd_is_success_page', $is_success_page );
 }
 
@@ -77,8 +91,6 @@ function edd_is_success_page() {
  * @return      void
 */
 function edd_send_to_success_page( $query_string = null ) {
-	global $edd_options;
-
 	$redirect = edd_get_success_page_uri();
 
 	if ( $query_string )
@@ -94,14 +106,12 @@ function edd_send_to_success_page( $query_string = null ) {
  * Get the URL of the Checkout page
  *
  * @since 1.0.8
- * @global $edd_options Array of all the EDD Options
  * @param array $args Extra query args to add to the URI
  * @return mixed Full URL to the checkout page, if present | null if it doesn't exist
  */
 function edd_get_checkout_uri( $args = array() ) {
-	global $edd_options;
-
-	$uri = isset( $edd_options['purchase_page'] ) ? get_permalink( $edd_options['purchase_page'] ) : NULL;
+	$uri = edd_get_option( 'purchase_page', false );
+	$uri = isset( $uri ) ? get_permalink( $uri ) : NULL;
 
 	if ( ! empty( $args ) ) {
 		// Check for backward compatibility
@@ -117,12 +127,13 @@ function edd_get_checkout_uri( $args = array() ) {
 
 	$ajax_url = admin_url( 'admin-ajax.php', $scheme );
 
-	if ( ( ! preg_match( '/^https/', $uri ) && preg_match( '/^https/', $ajax_url ) ) || edd_is_ssl_enforced() ) {
+	if ( ( ! preg_match( '/^https/', $uri ) && preg_match( '/^https/', $ajax_url ) && edd_is_ajax_enabled() ) || edd_is_ssl_enforced() ) {
 		$uri = preg_replace( '/^http:/', 'https:', $uri );
 	}
 
-	if ( isset( $edd_options['no_cache_checkout'] ) && edd_is_caching_plugin_active() )
-		$uri = add_query_arg( 'nocache', 'true', $uri );
+	if ( edd_get_option( 'no_cache_checkout', false ) ) {
+		$uri = edd_add_cache_busting( $uri );
+	}
 
 	return apply_filters( 'edd_get_checkout_uri', $uri );
 }
@@ -166,9 +177,9 @@ function edd_send_back_to_checkout( $args = array() ) {
  * @return      string
 */
 function edd_get_success_page_url( $query_string = null ) {
-	global $edd_options;
+	$success_page = edd_get_option( 'success_page', 0 );
+	$success_page = get_permalink( $success_page );
 
-	$success_page = get_permalink($edd_options['success_page']);
 	if ( $query_string )
 		$success_page .= $query_string;
 
@@ -179,15 +190,13 @@ function edd_get_success_page_url( $query_string = null ) {
  * Get the URL of the Transaction Failed page
  *
  * @since 1.3.4
- * @global $edd_options Array of all the EDD Options
- *
  * @param bool $extras Extras to append to the URL
  * @return mixed|void Full URL to the Transaction Failed page, if present, home page if it doesn't exist
  */
 function edd_get_failed_transaction_uri( $extras = false ) {
-	global $edd_options;
+	$uri = edd_get_option( 'failure_page', '' );
+	$uri = ! empty( $uri ) ? trailingslashit( get_permalink( $uri ) ) : home_url();
 
-	$uri = ! empty( $edd_options['failure_page'] ) ? trailingslashit( get_permalink( $edd_options['failure_page'] ) ) : home_url();
 	if ( $extras )
 		$uri .= $extras;
 
@@ -201,8 +210,9 @@ function edd_get_failed_transaction_uri( $extras = false ) {
  * @return bool True if on the Failed Transaction page, false otherwise.
  */
 function edd_is_failed_transaction_page() {
-	global $edd_options;
-	$ret = isset( $edd_options['failure_page'] ) ? is_page( $edd_options['failure_page'] ) : false;
+	$ret = edd_get_option( 'failure_page', false );
+	$ret = isset( $ret ) ? is_page( $ret ) : false;
+
 	return apply_filters( 'edd_is_failure_page', $ret );
 }
 
@@ -214,13 +224,20 @@ function edd_is_failed_transaction_page() {
  * @return      void
 */
 function edd_listen_for_failed_payments() {
-	
+
 	$failed_page = edd_get_option( 'failure_page', 0 );
 
 	if( ! empty( $failed_page ) && is_page( $failed_page ) && ! empty( $_GET['payment-id'] ) ) {
 
 		$payment_id = absint( $_GET['payment-id'] );
-		edd_update_payment_status( $payment_id, 'failed' );
+		$payment    = get_post( $payment_id );
+		$status     = edd_get_payment_status( $payment );
+
+		if( $status && 'pending' === strtolower( $status ) ) {
+
+			edd_update_payment_status( $payment_id, 'failed' );
+
+		}
 
 	}
 
@@ -264,12 +281,28 @@ function edd_is_email_banned( $email = '' ) {
 		return false;
 	}
 
-	$ret = in_array( trim( $email ), edd_get_banned_emails() );
+	$banned_emails = edd_get_banned_emails();
+
+	if( ! is_array( $banned_emails ) || empty( $banned_emails ) ) {
+		return false;
+	}
+
+	foreach( $banned_emails as $banned_email ) {
+		if( is_email( $banned_email ) ) {
+			$ret = ( $banned_email == trim( $email ) ? true : false );
+		} else {
+			$ret = ( stristr( trim( $email ), $banned_email ) ? true : false );
+		}
+
+		if( true === $ret ) {
+			break;
+		}
+	}
 
 	return apply_filters( 'edd_is_email_banned', $ret, $email );
 }
 
-/** 
+/**
  * Determines if secure checkout pages are enforced
  *
  * @since       2.0
@@ -284,15 +317,15 @@ function edd_is_ssl_enforced() {
  * Handle redirections for SSL enforced checkouts
  *
  * @since 2.0
- * @global $edd_options Array of all the EDD Options
  * @return void
  */
 function edd_enforced_ssl_redirect_handler() {
+
 	if ( ! edd_is_ssl_enforced() || ! edd_is_checkout() || is_admin() || is_ssl() ) {
 		return;
 	}
- 
-	if ( isset( $_SERVER["HTTPS"] ) && $_SERVER["HTTPS"] == "on" ) {
+
+	if( edd_is_checkout() && false !== strpos( edd_get_current_page_url(), 'https://' ) ) {
 		return;
 	}
 
@@ -327,7 +360,7 @@ function edd_enforced_ssl_asset_handler() {
 		'stylesheet_directory_uri',
 		'site_url'
 	);
-	
+
 	$filters = apply_filters( 'edd_enforced_ssl_asset_filters', $filters );
 
 	foreach ( $filters as $filter ) {
@@ -383,4 +416,184 @@ function edd_enforced_ssl_asset_filter( $content ) {
 	}
 
 	return $content;
+}
+
+/**
+ * Given a number and algorithem, determine if we have a valid credit card format
+ *
+ * @since  2.4
+ * @param  integer $number The Credit Card Number to validate
+ * @return bool            If the card number provided matches a specific format of a valid card
+ */
+function edd_validate_card_number_format( $number = 0 ) {
+
+	$number = trim( $number );
+	if ( empty( $number ) ) {
+		return false;
+	}
+
+	if ( ! is_numeric( $number ) ) {
+		return false;
+	}
+
+	$is_valid_format = false;
+
+	// First check if it passes with the passed method, Luhn by default
+	$is_valid_format = edd_validate_card_number_format_luhn( $number );
+
+	// Run additional checks before we start the regexing and looping by type
+	$is_valid_format = apply_filters( 'edd_valiate_card_format_pre_type', $is_valid_format, $number );
+
+	if ( true === $is_valid_format ) {
+		// We've passed our method check, onto card specific checks
+		$card_type       = edd_detect_cc_type( $number );
+		$is_valid_format = ! empty( $card_type ) ? true : false;
+	}
+
+	return apply_filters( 'edd_cc_is_valid_format', $is_valid_format, $number );
+}
+
+/**
+ * Validate credit card number based on the luhn algorithm
+ *
+ * @since  2.4
+ * @param string $number
+ * @return bool
+ */
+function edd_validate_card_number_format_luhn( $number ) {
+
+	// Strip any non-digits (useful for credit card numbers with spaces and hyphens)
+	$number = preg_replace( '/\D/', '', $number );
+
+	// Set the string length and parity
+	$length = strlen( $number );
+	$parity = $length % 2;
+
+	// Loop through each digit and do the math
+	$total = 0;
+	for ( $i = 0; $i < $length; $i++ ) {
+		$digit = $number[ $i ];
+
+		// Multiply alternate digits by two
+		if ( $i % 2 == $parity ) {
+			$digit *= 2;
+
+			// If the sum is two digits, add them together (in effect)
+			if ( $digit > 9 ) {
+				$digit -= 9;
+			}
+		}
+
+		// Total up the digits
+		$total += $digit;
+	}
+
+	// If the total mod 10 equals 0, the number is valid
+	return ( $total % 10 == 0 ) ? true : false;
+
+}
+
+/**
+ * Detect credit card type based on the number and return an
+ * array of data to validate the credit card number
+ *
+ * @since  2.4
+ * @param string  $number
+ * @return string|bool
+ */
+function edd_detect_cc_type( $number ) {
+
+	$return = false;
+
+	$card_types = array(
+		array(
+			'name'         => 'amex',
+			'pattern'      => '/^3[4|7]/',
+			'valid_length' => array( 15 ),
+		),
+		array(
+			'name'         => 'diners_club_carte_blanche',
+			'pattern'      => '/^30[0-5]/',
+			'valid_length' => array( 14 ),
+		),
+		array(
+			'name'         => 'diners_club_international',
+			'pattern'      => '/^36/',
+			'valid_length' => array( 14 ),
+		),
+		array(
+			'name'         => 'jcb',
+			'pattern'      => '/^35(2[89]|[3-8][0-9])/',
+			'valid_length' => array( 16 ),
+		),
+		array(
+			'name'         => 'laser',
+			'pattern'      => '/^(6304|670[69]|6771)/',
+			'valid_length' => array( 16, 17, 18, 19 ),
+		),
+		array(
+			'name'         => 'visa_electron',
+			'pattern'      => '/^(4026|417500|4508|4844|491(3|7))/',
+			'valid_length' => array( 16 ),
+		),
+		array(
+			'name'         => 'visa',
+			'pattern'      => '/^4/',
+			'valid_length' => array( 16 ),
+		),
+		array(
+			'name'         => 'mastercard',
+			'pattern'      => '/^5[1-5]/',
+			'valid_length' => array( 16 ),
+		),
+		array(
+			'name'         => 'maestro',
+			'pattern'      => '/^(5018|5020|5038|6304|6759|676[1-3])/',
+			'valid_length' => array( 12, 13, 14, 15, 16, 17, 18, 19 ),
+		),
+		array(
+			'name'         => 'discover',
+			'pattern'      => '/^(6011|622(12[6-9]|1[3-9][0-9]|[2-8][0-9]{2}|9[0-1][0-9]|92[0-5]|64[4-9])|65)/',
+			'valid_length' => array( 16 ),
+		),
+	);
+
+	$card_types = apply_filters( 'edd_cc_card_types', $card_types );
+
+	if ( ! is_array( $card_types ) ) {
+		return false;
+	}
+
+	foreach ( $card_types as $card_type ){
+
+		if ( preg_match( $card_type['pattern'], $number ) ) {
+
+			$number_length = strlen( $number );
+			if ( in_array( $number_length, $card_type['valid_length'] ) ) {
+				$return = $card_type['name'];
+				break;
+			}
+
+		}
+
+	}
+
+	return apply_filters( 'edd_cc_found_card_type', $return, $number, $card_types );
+}
+
+/**
+ * Validate credit card expiration date
+ *
+ * @since  2.4
+ * @param string  $exp_month
+ * @param string  $exp_year
+ * @return bool
+ */
+function edd_purchase_form_validate_cc_exp_date( $exp_month, $exp_year ) {
+
+	$month_name = date( 'M', mktime( 0, 0, 0, $exp_month, 10 ) );
+	$expiration = strtotime( date( 't', strtotime( $month_name . ' ' . $exp_year ) ) . ' ' . $month_name . ' ' . $exp_year . ' 11:59:59PM' );
+
+	return $expiration >= time();
+
 }

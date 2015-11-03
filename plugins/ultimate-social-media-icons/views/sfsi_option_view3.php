@@ -5,14 +5,18 @@
 ?>
 <!-- Section 3 "What design & animation do you want to give your icons?" main div Start -->
 <div class="tab3">
-<p>A good & well-fitting design is not only nice to look at, but it increases chances that people will subscribe and/or share your site with friends:</p>
+	<p>
+    	A good & well-fitting design is not only nice to look at, but it increases chances that people will subscribe and/or share your site with friends:
+    </p>
 
 	<ul class="tab_3_list">
-    <li>It comes across as <span>more professional/</span> gives your site <span>more “credit”</span></li>
-	<li>A smart automatic animation can <span>make your visitors aware of your icons</span> in an unintrusive manner</li> 
-	<!--<li>Animated icons can trigger <span>a positive emotion for </span> the viewer, getting them into a state in which they are more likely 		to subscribe</li> -->
-</ul>
-
+        <li>It comes across as <span>more professional/</span> gives your site <span>more “credit”</span></li>
+        <li>A smart automatic animation can <span>make your visitors aware of your icons</span> in an unintrusive manner</li> 
+	</ul>
+    
+    <p style="padding:0px;">
+    	The icons have been compressed by <a href="https://goo.gl/IV5Q3z" target="_blank">Shortpixel.com</a> for faster loading of your site. Thank you Shortpixel!
+    </p>	
 
     <div class="row">
     <h3>Theme options</h3>
@@ -61,7 +65,106 @@
                  
                 <li><input name="sfsi_actvite_theme" <?php echo ( $option3['sfsi_actvite_theme']=='transparent') ?  'checked="true"' : '' ;?> type="radio" value="transparent" class="styled" /><label style="line-height:20px !important;margin-top:15px;  ">Transparent <br/><span style="font-size: 9px;" >(for dark backgrounds)</span></label> <div class="icns_tab_3 trans_bg" style="padding-left: 6px;"><span class="row_16_1 rss_section"></span><span class="row_16_2 email_section"></span><span class="row_16_3 facebook_section"></span><span class="row_16_4 google_section"></span><span class="row_16_5  twitter_section"></span><span class="row_16_6 share_section"></span><span class="row_16_7 youtube_section"></span><span class="row_16_8 pinterest_section"></span><span class="row_16_9 linkedin_section"></span><span class="row_16_10 instagram_section"></span><!--<span class="row_16_11 sf_section"></span>--></div></li>
                 
-                
+                <!--Custom Icon Support {Monad}-->
+                                <li class="cstomskins_upload">
+                    <input name="sfsi_actvite_theme" <?php echo ( $option3['sfsi_actvite_theme']=='custom_support') ?  'checked="true"' : '' ;?> type="radio" value="custom_support" class="styled" />
+                    <label style="line-height:20px !important;margin-top:15px;  ">Custom Icons <br/></label>
+                    <div class="icns_tab_3" style="padding-left: 6px;">
+                         <?php
+                         if(get_option("rss_skin"))
+                         {
+                            $icon = get_option("rss_skin");
+                            echo '<span class="row_17_1 rss_section" style="background: url('.$icon.') no-repeat;"></span>';
+                         }else
+                         {
+                             echo '<span class="row_17_1 rss_section" style="background-position:-1px 0;"></span>';
+                         }
+                         
+                         if(get_option("email_skin"))
+                         {
+                            $icon = get_option("email_skin");
+                            echo '<span class="row_17_2 email_section" style="background: url('.$icon.') no-repeat;"></span>';
+                         }else
+                         {
+                             echo '<span class="row_17_2 email_section" style="background-position:-58px 0;"></span>';
+                         }
+                         
+                         if(get_option("facebook_skin"))
+                         {
+                            $icon = get_option("facebook_skin");
+                            echo '<span class="row_17_3 facebook_section" style="background: url('.$icon.') no-repeat;"></span>';
+                         }else
+                         {
+                             echo '<span class="row_17_3 facebook_section" style="background-position:-118px 0;"></span>';
+                         }
+                         
+                         if(get_option("google_skin"))
+                         {
+                            $icon = get_option("google_skin");
+                            echo '<span class="row_17_4 google_section" style="background: url('.$icon.') no-repeat;"></span>';
+                         }else
+                         {
+                             echo '<span class="row_17_4 google_section" style="background-position:-176px 0;"></span>';
+                         }
+                         
+                         if(get_option("twitter_skin"))
+                         {
+                            $icon = get_option("twitter_skin");
+                            echo '<span class="row_17_5 twitter_section" style="background: url('.$icon.') no-repeat;"></span>';
+                         }else
+                         {
+                             echo '<span class="row_17_5 twitter_section" style="background-position:-235px 0;"></span>';
+                         }
+                         
+                         if(get_option("share_skin"))
+                         {
+                            $icon = get_option("share_skin");
+                            echo '<span class="row_17_6 share_section" style="background: url('.$icon.') no-repeat;"></span>';
+                         }else
+                         {
+                             echo '<span class="row_17_6 share_section" style="background-position:-293px 0;"></span>';
+                         }
+                         
+                         if(get_option("youtube_skin"))
+                         {
+                            $icon = get_option("youtube_skin");
+                            echo '<span class="row_17_7 youtube_section" style="background: url('.$icon.') no-repeat;"></span>';
+                         }else
+                         {
+                             echo '<span class="row_17_7 youtube_section" style="background-position:-350px 0;"></span>';
+                         }
+                         
+                         if(get_option("pintrest_skin"))
+                         {
+                            $icon = get_option("pintrest_skin");
+                            echo '<span class="row_17_8 pinterest_section" style="background: url('.$icon.') no-repeat;"></span>';
+                         }else
+                         {
+                             echo '<span class="row_17_8 pinterest_section" style="background-position:-409px 0;"></span>';
+                         }
+                         
+                         if(get_option("linkedin_skin"))
+                         {
+                            $icon = get_option("linkedin_skin");
+                            echo '<span class="row_17_9 linkedin_section" style="background: url('.$icon.') no-repeat;"></span>';
+                         }else
+                         {
+                             echo '<span class="row_17_9 linkedin_section" style="background-position:-476px 0;"></span>';
+                         }
+                         
+                         if(get_option("instagram_skin"))
+                         {
+                            $icon = get_option("instagram_skin");
+                            echo '<span class="row_17_10 instagram_section" style="background: url('.$icon.') no-repeat;"></span>';
+                         }else
+                         {
+                             echo '<span class="row_17_10 instagram_section" style="background-position:-526px 0;"></span>';
+                         }
+                         ?>
+                        
+                    </div>
+               </li>
+          
               </ul><!--icon themes section start -->
 	  
              <!--icon Animation section   start -->	  
@@ -82,7 +185,8 @@
 	   <!-- SAVE BUTTON SECTION   --> 
 	<div class="save_button tab_3_sav">
 	     <img src="<?php echo SFSI_PLUGURL ?>images/ajax-loader.gif" class="loader-img" />
-	     <a href="javascript:;" id="sfsi_save3" title="Save">Save</a>
+         <?php  $nonce = wp_create_nonce("update_step3"); ?>
+	     <a href="javascript:;" id="sfsi_save3" title="Save" data-nonce="<?php echo $nonce;?>">Save</a>
 	</div>   <!-- END SAVE BUTTON SECTION   --> 
 	<a class="sfsiColbtn closeSec" href="javascript:;" class="closeSec">Collapse area</a>
         <label class="closeSec"></label>

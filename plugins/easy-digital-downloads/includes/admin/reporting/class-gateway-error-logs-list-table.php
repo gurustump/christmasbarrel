@@ -4,7 +4,7 @@
  *
  * @package     EDD
  * @subpackage  Admin/Reports
- * @copyright   Copyright (c) 2014, Pippin Williamson
+ * @copyright   Copyright (c) 2015, Pippin Williamson
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
@@ -56,7 +56,7 @@ class EDD_Gateway_Error_Log_Table extends WP_List_Table {
 	 * @access public
 	 * @since 1.4
 	 *
-	 * @param array $item Contains all the data of the discount code
+	 * @param array $item Contains all the data of the log item
 	 * @param string $column_name The name of the column
 	 *
 	 * @return string Column Name
@@ -64,7 +64,7 @@ class EDD_Gateway_Error_Log_Table extends WP_List_Table {
 	public function column_default( $item, $column_name ) {
 		switch ( $column_name ) {
 			case 'error' :
-				return get_the_title( $item['ID'] ) ? get_the_title( $item['ID'] ) : __( 'Payment Error', 'edd' );
+				return get_the_title( $item['ID'] ) ? get_the_title( $item['ID'] ) : __( 'Payment Error', 'easy-digital-downloads' );
 			default:
 				return $item[ $column_name ];
 		}
@@ -80,7 +80,7 @@ class EDD_Gateway_Error_Log_Table extends WP_List_Table {
 	 */
 	public function column_message( $item ) {
 	?>
-		<a href="#TB_inline?width=640&amp;inlineId=log-message-<?php echo $item['ID']; ?>" class="thickbox" title="<?php _e( 'View Log Message', 'edd' ); ?> "><?php _e( 'View Log Message', 'edd' ); ?></a>
+		<a href="#TB_inline?width=640&amp;inlineId=log-message-<?php echo $item['ID']; ?>" class="thickbox" title="<?php _e( 'View Log Message', 'easy-digital-downloads' ); ?> "><?php _e( 'View Log Message', 'easy-digital-downloads' ); ?></a>
 		<div id="log-message-<?php echo $item['ID']; ?>" style="display:none;">
 			<?php
 
@@ -94,7 +94,7 @@ class EDD_Gateway_Error_Log_Table extends WP_List_Table {
 				$data    = substr( $log_message, $serialized, strlen( $log_message ) - 1 );
 
 				echo wpautop( $intro );
-				echo wpautop( __( '<strong>Log data:</strong>', 'edd' ) );
+				echo wpautop( __( '<strong>Log data:</strong>', 'easy-digital-downloads' ) );
 				echo '<div style="word-wrap: break-word;">' . wpautop( $data ) . '</div>';
 			} else {
 				// No serialized data found
@@ -114,12 +114,12 @@ class EDD_Gateway_Error_Log_Table extends WP_List_Table {
 	 */
 	public function get_columns() {
 		$columns = array(
-			'ID'         => __( 'Log ID', 'edd' ),
-			'payment_id' => __( 'Payment ID', 'edd' ),
-			'error'      => __( 'Error', 'edd' ),
-			'message'    => __( 'Error Message', 'edd' ),
-			'gateway'    => __( 'Gateway', 'edd' ),
-			'date'       => __( 'Date', 'edd' )
+			'ID'         => __( 'Log ID', 'easy-digital-downloads' ),
+			'payment_id' => __( 'Payment ID', 'easy-digital-downloads' ),
+			'error'      => __( 'Error', 'easy-digital-downloads' ),
+			'message'    => __( 'Error Message', 'easy-digital-downloads' ),
+			'gateway'    => __( 'Gateway', 'easy-digital-downloads' ),
+			'date'       => __( 'Date', 'easy-digital-downloads' )
 		);
 
 		return $columns;
@@ -143,7 +143,7 @@ class EDD_Gateway_Error_Log_Table extends WP_List_Table {
 	 * @since 1.4
 	 * @return void
 	 */
-	public function bulk_actions() {
+	public function bulk_actions( $which = '' ) {
 		// These aren't really bulk actions but this outputs the markup in the right place
 		edd_log_views();
 	}
@@ -207,7 +207,6 @@ class EDD_Gateway_Error_Log_Table extends WP_List_Table {
 		$hidden                = array(); // No hidden columns
 		$sortable              = $this->get_sortable_columns();
 		$this->_column_headers = array( $columns, $hidden, $sortable );
-		$current_page          = $this->get_pagenum();
 		$this->items           = $this->get_logs();
 		$total_items           = $edd_logs->get_log_count( 0, 'gateway_error' );
 

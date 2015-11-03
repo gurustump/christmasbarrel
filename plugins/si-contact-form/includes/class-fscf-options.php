@@ -187,8 +187,15 @@ class FSCF_Options {
 
 
         add_settings_section(
+				'fscf_advanced_form',
+				__('Advanced Form Settings', 'si-contact-form'),
+				'FSCF_Options::advanced_form_callback',
+				'tab_page6'
+		);
+
+        add_settings_section(
 				'fscf_advanced_email',
-				__('Advanced Form and Email Settings', 'si-contact-form'),
+				__('Advanced Email Settings', 'si-contact-form'),
 				'FSCF_Options::advanced_email_callback',
 				'tab_page6'
 		);
@@ -1948,7 +1955,7 @@ if( self::$form_options['external_style'] == 'true' ) {
 <br />
 
         <input name="<?php echo self::$form_option_name;?>[req_field_label_enable]" id="si_contact_req_field_label_enable" type="checkbox" <?php if ( self::$form_options['req_field_label_enable'] == 'true' ) echo ' checked="checked" '; ?> value="true" />
-        <label for="<?php echo self::$form_option_name;?>[req_field_label_enable]"><?php _e('Enable required field label on contact form:', 'si-contact-form') ?></label> <?php echo (self::$form_options['tooltip_required'] != '') ? self::$form_options['req_field_indicator'] .self::$form_options['tooltip_required'] : self::$form_options['req_field_indicator'] . __('indicates required field', 'si-contact-form'); ?><br />
+        <label for="<?php echo self::$form_option_name;?>[req_field_label_enable]"><?php _e('Enable required field label on contact form:', 'si-contact-form') ?></label> <?php echo esc_html( (self::$form_options['tooltip_required'] != '') ? self::$form_options['req_field_indicator'] .self::$form_options['tooltip_required'] : self::$form_options['req_field_indicator'] . __('indicates required field', 'si-contact-form') ); ?><br />
 
         <label for="<?php echo self::$form_option_name;?>[tooltip_required]"><?php _e('indicates required field', 'si-contact-form'); ?></label><input name="<?php echo self::$form_option_name;?>[tooltip_required]" id="si_contact_tooltip_required" type="text" value="<?php echo esc_attr(self::$form_options['tooltip_required']);  ?>" size="50" /><br />
 
@@ -2336,32 +2343,13 @@ if( self::$form_options['external_style'] == 'true' ) {
 	}	// end function redirect_callback()
 
 
-	static function advanced_email_callback() {
+	static function advanced_form_callback() {
 		?>
 		<div class="clear"></div>
 		<fieldset class="fscf_settings_group">
         <p class="submit">
 			<input id="submit" class="button-primary" type="submit" value="<?php esc_attr_e('Save Changes', 'si-contact-form'); ?>" onclick="document.pressed=this.value" name="submit" />
 		</p>
-      <label for="fs_contact_php_mailer_enable"><?php _e( 'Send Email function:', 'si-contact-form' ); ?></label>
-	  <select id="fs_contact_php_mailer_enable" name="<?php echo self::$form_option_name; ?>[php_mailer_enable]">
-	   <?php
-	   $selected = '';
-	   foreach ( array( 'wordpress' => esc_attr( __( 'WordPress', 'si-contact-form' ) ), 'php' => esc_attr( __( 'PHP', 'si-contact-form' ) ) ) as $k => $v ) {
-		   if ( self::$form_options['php_mailer_enable'] == "$k" )
-			   $selected = ' selected="selected"';
-		   echo '<option value="' . $k . '"' . $selected . '>' . $v . '</option>' . "\n";
-		   $selected = '';
-	   }
-	   ?>
-		</select>
-		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_php_mailer_enable_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
-		<div class="fscf_tip" id="si_contact_php_mailer_enable_tip">
-		<?php _e( 'Emails are normally sent by the wordpress mail function. Other functions are provided for diagnostic uses.', 'si-contact-form' ); ?>
-		<?php _e( 'If your form does not send any email, first try setting the "Email From" setting above because some web hosts do not allow PHP to send email unless the "From:" email address is on the same web domain.', 'si-contact-form' ); ?>
-		<?php _e( 'Note: attachments are only supported when using the "WordPress" mail function.', 'si-contact-form' ); ?>
-	   </div>
-	   <br />
 
         <label for="fs_contact_submit_attributes"><?php _e('Submit button input attributes', 'si-contact-form'); ?>:</label>
         <input name="<?php echo self::$form_option_name; ?>[submit_attributes]" id="si_contact_submit_attributes" type="text" value="<?php echo esc_attr(self::$form_options['submit_attributes']);  ?>" size="60" />
@@ -2391,40 +2379,7 @@ if( self::$form_options['external_style'] == 'true' ) {
 		</div>
 		<br />
 
-		<input name="<?php echo self::$form_option_name; ?>[email_html]" id="fs_contact_email_html" type="checkbox" <?php if ( self::$form_options['email_html'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
-		<label for="fs_contact_email_html"><?php _e( 'Enable to receive email as HTML instead of plain text.', 'si-contact-form' ); ?></label>
-		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_email_html_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
-		<div class="fscf_tip" id="si_contact_email_html_tip">
-		<?php _e( 'Enable if you want the email message sent as HTML format. HTML format is desired if you want to avoid a 70 character line wordwrap when you copy and paste the email message. Normally the email is sent in plain text wordwrapped 70 characters per line to comply with most email programs.', 'si-contact-form' ) ?>
-		</div>
-		<br />
-
-		<input name="<?php echo self::$form_option_name; ?>[email_inline_label]" id="fs_contact_email_inline_label" type="checkbox" <?php if ( self::$form_options['email_inline_label'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
-		<label for="fs_contact_email_inline_label"><?php _e( 'Enable to have the email labels on same line as values.', 'si-contact-form' ); ?></label>
-		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_email_inline_label_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
-		<div class="fscf_tip" id="si_contact_email_inline_label_tip">
-		<?php _e( 'Enable if you want the email labels on same line as values. Normally the email labels are on separate lines as the values.', 'si-contact-form' ) ?>
-		</div>
-		<br />
-
-		<input name="<?php echo self::$form_option_name; ?>[email_hide_empty]" id="fs_contact_email_hide_empty" type="checkbox" <?php if ( self::$form_options['email_hide_empty'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
-		<label for="fs_contact_email_hide_empty"><?php _e( 'Enable to skip names of non-required and unfilled-out fields in emails.', 'si-contact-form' ); ?></label>
-		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_email_hide_empty_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
-		<div class="fscf_tip" id="si_contact_email_hide_empty_tip">
-		<?php _e( 'Enable if you want the email message to skip names of non-required and unfilled-out fields.', 'si-contact-form' ) ?>
-		</div>
-		<br />
-
-		<input name="<?php echo self::$form_option_name; ?>[email_keep_attachments]" id="fs_contact_email_keep_attachments" type="checkbox" <?php if ( self::$form_options['email_keep_attachments'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
-		<label for="fs_contact_email_keep_attachments"><?php _e( 'Enable to not delete email attachments from the server.', 'si-contact-form' ); ?></label>
-		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_email_keep_attachments_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
-		<div class="fscf_tip" id="si_contact_email_keep_attachments_tip">
-		<?php _e( 'Enable if you want the email attachments to not be deleted automatically. They will stay in the /plugins/si-contact-form/attachments folder until you delete them.', 'si-contact-form' ); echo ' ';?>
- 		<?php _e( 'Note: use this feature at your own risk, because storing the files there could potentially expose privacy if the files uploaded contain private information.', 'si-contact-form' ) ?>
-		</div>
-		<br />
-
-		<input name="<?php echo self::$form_option_name; ?>[print_form_enable]" id="fs_contact_print_form_enable" type="checkbox" <?php if ( self::$form_options['print_form_enable'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
+        <input name="<?php echo self::$form_option_name; ?>[print_form_enable]" id="fs_contact_print_form_enable" type="checkbox" <?php if ( self::$form_options['print_form_enable'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
 		<label for="fs_contact_print_form_enable"><?php _e( 'Enable to add a "view / print message" button after message sent.', 'si-contact-form' ); ?></label>
 		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_print_form_enable_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
 		<div class="fscf_tip" id="si_contact_print_form_enable_tip">
@@ -2432,34 +2387,6 @@ if( self::$form_options['external_style'] == 'true' ) {
  		<?php _e( 'Note: the message content will be viewable and could potentially expose privacy if the messages contain private information.', 'si-contact-form' ) ?>
 		</div>
 		<br />
-
-		<input name="<?php echo self::$form_option_name;?>[name_case_enable]" id="fs_contact_name_case_enable" type="checkbox" <?php if ( self::$form_options['name_case_enable'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
-		<label for="fs_contact_name_case_enable"><?php _e( 'Enable upper case alphabet correction.', 'si-contact-form' ); ?></label>
-		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_name_case_enable_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
-		<div class="fscf_tip" id="si_contact_name_case_enable_tip">
-		<?php _e( 'Automatically corrects form input using a function knowing about alphabet case (example: correct caps on McDonald, or correct USING ALL CAPS).', 'si-contact-form' ); ?>
-		<?php _e( 'Enable on English language only because it can cause accent character problems if enabled on other languages.', 'si-contact-form' ); ?>
-		</div>
-		<br />
-
-		<input name="<?php echo self::$form_option_name;?>[sender_info_enable]" id="fs_contact_sender_info_enable" type="checkbox" <?php if ( self::$form_options['sender_info_enable'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
-		<label for="fs_contact_sender_info_enable"><?php _e( 'Enable sender information in email footer.', 'si-contact-form' ); ?></label>
-		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_sender_info_enable_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
-		<div class="fscf_tip" id="si_contact_sender_info_enable_tip">
-		<?php _e( 'Includes detailed information in the email about the sender. Such as IP Address, date, time, and which web browser they used.', 'si-contact-form' ); ?>
-		<?php echo ' ';
-		_e( 'Install the <a href="http://wordpress.org/extend/plugins/visitor-maps/">Visitor Maps plugin</a> to enable geolocation and then city, state, country will automatically be included.', 'si-contact-form' ); ?>
-		</div>
-		<br />
-
-
-		<input name="<?php echo self::$form_option_name;?>[email_check_dns]" id="fs_contact_email_check_dns" type="checkbox" <?php if ( self::$form_options['email_check_dns'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
-		<label for="fs_contact_email_check_dns"><?php _e( 'Enable checking DNS records for the domain name when checking for a valid email address.', 'si-contact-form' ); ?></label>
-		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_email_check_dns_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
-		<div class="fscf_tip" id="si_contact_email_check_dns_tip">
-		<?php _e( 'Improves email address validation by checking that the domain of the email address actually has a valid DNS record.', 'si-contact-form' ) ?>
-		</div>
-        <br />
 
 		<input name="enable_php_sessions" id="si_contact_enable_php_sessions" type="checkbox" <?php if ( self::$global_options['enable_php_sessions'] == 'true' ) echo ' checked="checked" '; ?> value="true" />
 		<label for="enable_php_sessions"><?php _e( 'Enable PHP sessions.', 'si-contact-form' ); ?></label>
@@ -2544,6 +2471,107 @@ if( self::$form_options['external_style'] == 'true' ) {
         </div><div class="fscf_tip" id="si_contact_success_page_html_tip">
         <?php _e('This is printed on the success page after the message sent text. Useful for tracking a conversion with Google Analytics. Put the Google Code for Conversion Page here. HTML is allowed.', 'si-contact-form');?>
         </div>
+
+		</fieldset>
+		<?php
+	}	//
+
+
+	static function advanced_email_callback() {
+		?>
+		<div class="clear"></div>
+		<fieldset class="fscf_settings_group">
+        <p class="submit">
+			<input id="submit" class="button-primary" type="submit" value="<?php esc_attr_e('Save Changes', 'si-contact-form'); ?>" onclick="document.pressed=this.value" name="submit" />
+		</p>
+      <label for="fs_contact_php_mailer_enable"><?php _e( 'Send Email function:', 'si-contact-form' ); ?></label>
+	  <select id="fs_contact_php_mailer_enable" name="<?php echo self::$form_option_name; ?>[php_mailer_enable]">
+	   <?php
+	   $selected = '';
+	   foreach ( array( 'wordpress' => esc_attr( __( 'WordPress', 'si-contact-form' ) ), 'php' => esc_attr( __( 'PHP', 'si-contact-form' ) ) ) as $k => $v ) {
+		   if ( self::$form_options['php_mailer_enable'] == "$k" )
+			   $selected = ' selected="selected"';
+		   echo '<option value="' . $k . '"' . $selected . '>' . $v . '</option>' . "\n";
+		   $selected = '';
+	   }
+	   ?>
+		</select>
+		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_php_mailer_enable_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
+		<div class="fscf_tip" id="si_contact_php_mailer_enable_tip">
+		<?php _e( 'Emails are normally sent by the wordpress mail function. Other functions are provided for diagnostic uses.', 'si-contact-form' ); ?>
+		<?php _e( 'If your form does not send any email, first try setting the "Email From" setting above because some web hosts do not allow PHP to send email unless the "From:" email address is on the same web domain.', 'si-contact-form' ); ?>
+		<?php _e( 'Note: attachments are only supported when using the "WordPress" mail function.', 'si-contact-form' ); ?>
+	   </div>
+	   <br />
+
+
+
+		<input name="<?php echo self::$form_option_name; ?>[email_html]" id="fs_contact_email_html" type="checkbox" <?php if ( self::$form_options['email_html'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
+		<label for="fs_contact_email_html"><?php _e( 'Enable to receive email as HTML instead of plain text.', 'si-contact-form' ); ?></label>
+		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_email_html_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
+		<div class="fscf_tip" id="si_contact_email_html_tip">
+		<?php _e( 'Enable if you want the email message sent as HTML format. HTML format is desired if you want to avoid a 70 character line wordwrap when you copy and paste the email message. Normally the email is sent in plain text wordwrapped 70 characters per line to comply with most email programs.', 'si-contact-form' ) ?>
+		</div>
+		<br />
+
+		<input name="<?php echo self::$form_option_name; ?>[email_inline_label]" id="fs_contact_email_inline_label" type="checkbox" <?php if ( self::$form_options['email_inline_label'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
+		<label for="fs_contact_email_inline_label"><?php _e( 'Enable to have the email labels on same line as values.', 'si-contact-form' ); ?></label>
+		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_email_inline_label_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
+		<div class="fscf_tip" id="si_contact_email_inline_label_tip">
+		<?php _e( 'Enable if you want the email labels on same line as values. Normally the email labels are on separate lines as the values.', 'si-contact-form' ) ?>
+		</div>
+		<br />
+
+		<input name="<?php echo self::$form_option_name; ?>[email_hide_empty]" id="fs_contact_email_hide_empty" type="checkbox" <?php if ( self::$form_options['email_hide_empty'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
+		<label for="fs_contact_email_hide_empty"><?php _e( 'Enable to skip names of non-required and unfilled-out fields in emails.', 'si-contact-form' ); ?></label>
+		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_email_hide_empty_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
+		<div class="fscf_tip" id="si_contact_email_hide_empty_tip">
+		<?php _e( 'Enable if you want the email message to skip names of non-required and unfilled-out fields.', 'si-contact-form' ) ?>
+		</div>
+		<br />
+
+		<input name="<?php echo self::$form_option_name; ?>[email_keep_attachments]" id="fs_contact_email_keep_attachments" type="checkbox" <?php if ( self::$form_options['email_keep_attachments'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
+		<label for="fs_contact_email_keep_attachments"><?php _e( 'Enable to not delete email attachments from the server.', 'si-contact-form' ); ?></label>
+		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_email_keep_attachments_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
+		<div class="fscf_tip" id="si_contact_email_keep_attachments_tip">
+		<?php _e( 'Enable if you want the email attachments to not be deleted automatically. They will stay in the /plugins/si-contact-form/attachments folder until you delete them.', 'si-contact-form' ); echo ' ';?>
+ 		<?php _e( 'Note: use this feature at your own risk, because storing the files there could potentially expose privacy if the files uploaded contain private information.', 'si-contact-form' ) ?>
+		</div>
+		<br />
+
+		<input name="<?php echo self::$form_option_name;?>[name_case_enable]" id="fs_contact_name_case_enable" type="checkbox" <?php if ( self::$form_options['name_case_enable'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
+		<label for="fs_contact_name_case_enable"><?php _e( 'Enable upper case alphabet correction.', 'si-contact-form' ); ?></label>
+		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_name_case_enable_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
+		<div class="fscf_tip" id="si_contact_name_case_enable_tip">
+		<?php _e( 'Automatically corrects form input using a function knowing about alphabet case (example: correct caps on McDonald, or correct USING ALL CAPS).', 'si-contact-form' ); ?>
+		<?php _e( 'Enable on English language only because it can cause accent character problems if enabled on other languages.', 'si-contact-form' ); ?>
+		</div>
+		<br />
+
+		<input name="<?php echo self::$form_option_name;?>[sender_info_enable]" id="fs_contact_sender_info_enable" type="checkbox" <?php if ( self::$form_options['sender_info_enable'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
+		<label for="fs_contact_sender_info_enable"><?php _e( 'Enable sender information in email footer.', 'si-contact-form' ); ?></label>
+		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_sender_info_enable_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
+		<div class="fscf_tip" id="si_contact_sender_info_enable_tip">
+		<?php _e( 'Includes detailed information in the email about the sender. Such as IP Address, date, time, and which web browser they used.', 'si-contact-form' ); ?>
+		<?php echo ' ';
+		_e( 'Install the <a href="http://wordpress.org/extend/plugins/visitor-maps/">Visitor Maps plugin</a> to enable geolocation and then city, state, country will automatically be included.', 'si-contact-form' ); ?>
+		</div>
+		<br />
+
+		<input name="<?php echo self::$form_option_name;?>[email_check_easy]" id="fs_contact_email_check_easy" type="checkbox" <?php if ( self::$form_options['email_check_easy'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
+		<label for="fs_contact_email_check_easy"><?php _e( 'Enable Internationalized Domain Names when checking for a valid email address.', 'si-contact-form' ); ?></label>
+		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_email_check_easy_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
+		<div class="fscf_tip" id="si_contact_email_check_easy_tip">
+		<?php _e( 'Allows Internationalized Domain Names for email address validation. Because this relaxes the email validation check considerably, do not enable unless you have to allow Russian, Japanese, Chinese, etc. characters in the email address.', 'si-contact-form' ) ?>
+		</div>
+        <br />
+
+		<input name="<?php echo self::$form_option_name;?>[email_check_dns]" id="fs_contact_email_check_dns" type="checkbox" <?php if ( self::$form_options['email_check_dns'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
+		<label for="fs_contact_email_check_dns"><?php _e( 'Enable checking DNS records for the domain name when checking for a valid email address.', 'si-contact-form' ); ?></label>
+		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_email_check_dns_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
+		<div class="fscf_tip" id="si_contact_email_check_dns_tip">
+		<?php _e( 'Improves email address validation by checking that the domain of the email address actually has a valid DNS record.', 'si-contact-form' ) ?>
+		</div>
 
 		</fieldset>
 		<?php
@@ -3560,8 +3588,8 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
 				'captcha_input_style'	 => 'text-align:left; margin:0; width:50px;', // CAPTCHA input field
  			    'textarea_style'         => 'text-align:left; margin:0; width:99%; max-width:250px; height:120px;', // Input Textarea 
 				'select_style'			 => 'text-align:left;',	// Input Select
- 			    'checkbox_style'         => 'width:13px;', // Input checkbox
-                'radio_style'            => 'width:13px;', // Input radio
+ 			    'checkbox_style'         => 'width:22px; height:32px;', // Input checkbox
+                'radio_style'            => 'width:22px; height:32px;', // Input radio
                 'placeholder_style'      => 'opacity:0.6; color:#333333;', // placeholder style
 
 				'button_style'			 => 'cursor:pointer; margin:0;', // Submit button 
@@ -3581,7 +3609,7 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
 		
 		// List of all checkbox settings names (except for checkboxes in fields)
 		$checkboxes = array ( 'email_from_enforced', 'preserve_space_enable', 'double_email',
-			 'name_case_enable' , 'sender_info_enable', 'domain_protect', 'email_check_dns',
+			 'name_case_enable' , 'sender_info_enable', 'domain_protect', 'email_check_dns', 'email_check_easy',
 			 'email_html', 'akismet_disable', 'captcha_enable', 'akismet_send_anyway',
 			 'captcha_small','email_hide_empty', 'email_keep_attachments','print_form_enable',
 			 'captcha_perm', 'honeypot_enable', 'redirect_enable', 'redirect_query', 'redirect_email_off',
@@ -3601,10 +3629,11 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
 		// Sanitize settings fields
 		$html_fields = array( 'welcome', 'after_form_note', 'req_field_indicator', 'text_message_sent', 'success_page_html' );
 		if ( 'true' == $text['auto_respond_html'] ) $html_fields[] = 'auto_respond_message';
+        if ( defined( 'DISALLOW_UNFILTERED_HTML' ) && DISALLOW_UNFILTERED_HTML ) // do not allow unfiltered HTML
+            $html_fields = array( );
 		foreach ( $text as $key => $value ) {
 			if ( is_string($value) ) {
 				if ( in_array( $key, $html_fields ) ) {
-					//$text[$key] = wp_filter_kses( $value );  //strips too much
                     $text[$key] = $value;
 				}
 				else $text[$key] = strip_tags( $value );
@@ -3679,11 +3708,11 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
 					// the sanitize title function encodes UTF-8 characters, so we need to undo that
 
                     // this line croaked on some chinese characters
-				    //$field['slug'] = substr( urldecode(sanitize_title_with_dashes(remove_accents($field['label']))), 0, FSCF_MAX_SLUG_LEN );
+				    //$field['slug'] = substr( urldecode(self::sanitize_slug_with_dashes(remove_accents($field['label']))), 0, FSCF_MAX_SLUG_LEN );
 
                     $field['slug'] = remove_accents($field['label']);
                     $field['slug'] = preg_replace('~([^a-zA-Z\d_ .-])~', '', $field['slug']);
-                    $field['slug'] = substr( urldecode(sanitize_title_with_dashes($field['slug'])), 0, FSCF_MAX_SLUG_LEN );
+                    $field['slug'] = substr( urldecode(self::sanitize_slug_with_dashes($field['slug'])), 0, FSCF_MAX_SLUG_LEN );
                     if ($field['slug'] == '')
                        $field['slug'] = 'na';
 					if ( '-' == substr( $field['slug'], strlen($field['slug'])-1, 1) )
@@ -3693,23 +3722,24 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
 					// The slug has changed, so sanitize it
                     
                     // this line croaked on some chinese characters
-				    //$field['slug'] = substr( urldecode(sanitize_title_with_dashes(remove_accents($field['slug']))), 0, FSCF_MAX_SLUG_LEN );
+				    //$field['slug'] = substr( urldecode(self::sanitize_slug_with_dashes(remove_accents($field['slug']))), 0, FSCF_MAX_SLUG_LEN );
 
                     $field['slug'] = remove_accents($field['slug']);
                     $field['slug'] = preg_replace('~([^a-zA-Z\d_ .-])~', '', $field['slug']);
-                    $field['slug'] = substr( urldecode(sanitize_title_with_dashes($field['slug'])), 0, FSCF_MAX_SLUG_LEN );
+                    $field['slug'] = substr( urldecode(self::sanitize_slug_with_dashes($field['slug'])), 0, FSCF_MAX_SLUG_LEN );
                     if ($field['slug'] == '')
                        $field['slug'] = 'na';
 					$slug_changed = true;
 				}
-				
+
 				// Make sure the slug is unique
 				if ( $slug_changed ) {
 					$text['fields'][$key]['slug'] = self::check_slug( $field['slug'], $slug_list );
 				}
 			}
-			$slug_list[] = $text['fields'][$key]['slug'];
-			
+            if( isset( $text['fields'][$key]['slug'] ) )
+			  $slug_list[] = $text['fields'][$key]['slug'];
+
 			// If a select type field, make sure the select options list is not empty
 			if ( in_array( $field['type'], $select_type_fields ) ) {
                  // remove blank lines and trim options
@@ -3750,19 +3780,43 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
 		// Update the query args if necessary
 		if ( ! isset($_POST['ctf_action'])&& isset( $_REQUEST['_wp_http_referer'] ) ) {
 			// Set the current tab in _wp_http_referer so that we go there after the save
-			$wp_referer = remove_query_arg( 'fscf_tab', $_REQUEST['_wp_http_referer'] );
-			$wp_referer = add_query_arg( 'fscf_tab', $_POST['current_tab'], $wp_referer );
+			$wp_referer = esc_url_raw(remove_query_arg( 'fscf_tab', $_REQUEST['_wp_http_referer'] ));
+			$wp_referer = esc_url_raw(add_query_arg( 'fscf_tab', $_POST['current_tab'], $wp_referer ));
 			if ( isset( $text['akismet_check'] ) ) {
 				// Request Akismet check on page reload
-				$wp_referer = add_query_arg( 'akismet_check', 'true', $wp_referer );
+				$wp_referer = esc_url_raw(add_query_arg( 'akismet_check', 'true', $wp_referer ));
 				unset ( $text['akismet_check'] );	// Don't save this in database
 			} else {
-				$wp_referer = remove_query_arg( 'akismet_check', $wp_referer );
+				$wp_referer = esc_url_raw(remove_query_arg( 'akismet_check', $wp_referer ));
 			}
 			$_REQUEST['_wp_http_referer'] = $wp_referer;
 		}
 		return( $text );
 	}	// end function validate($text);
+
+
+    static function sanitize_slug_with_dashes( $title, $raw_title = '' ) {
+          $title = strip_tags($title);
+	      // Preserve escaped octets.
+	      $title = preg_replace('|%([a-fA-F0-9][a-fA-F0-9])|', '---$1---', $title);
+          // Remove percent signs that are not part of an octet.
+	      $title = str_replace('%', '', $title);
+	      // Restore octets.
+	      $title = preg_replace('|---([a-fA-F0-9][a-fA-F0-9])---|', '%$1', $title);
+
+	      if (seems_utf8($title)) {
+	            $title = utf8_uri_encode($title, 200);
+	      }
+	      $title = preg_replace('/&.+?;/', '', $title); // kill entities
+          $title = str_replace('.', '-', $title);
+	      $title = preg_replace('/[^%a-zA-Z0-9 _-]/', '', $title);
+	      $title = preg_replace('/\s+/', '-', $title);
+          $title = preg_replace('|-+|', '-', $title);
+	      $title = trim($title, '-');
+
+        return $title;
+	}
+    // function sanitize_title_with_dashes
 
 
     static function get_post_types_slugs() {

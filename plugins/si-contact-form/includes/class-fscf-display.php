@@ -612,6 +612,10 @@ $string .= '
 						$string .=  ' maxlength="'.$field['max_len'].'"';
 					if($field['attributes'] != '')
 					  $string .= ' '.$field['attributes'];
+                    if ( 'true' == $field['placeholder'] && $field['default'] != '') {
+                         $string .= ' placeholder="'.esc_attr($field['default']).'"';
+                         self::$placeholder = 1;
+                    }
 					$string .= " />\n    </div>\n";
 					break;
 				
@@ -715,7 +719,7 @@ $string .= '
         }
 		$string .= '/> ';
 		
-		if ( self::$form_options['enable_reset'] == 'true' ) {
+		if ( !self::$contact_error && self::$form_options['enable_reset'] == 'true' ) {
 			$string .= '<input type="reset" id="fscf_reset' . self::$form_id_num . '" ' . self::get_this_css('reset_style') . ' value="';
 			$string .= (self::$form_options['title_reset'] != '') ? esc_attr( self::$form_options['title_reset'] ) : esc_attr( __( 'Reset', 'si-contact-form' ) );
 			$msg = addslashes( __( 'Do you really want to reset the form?', 'si-contact-form' ) );
@@ -791,6 +795,7 @@ $string .= '
 
 		// Find logged in user's WP name (auto form fill feature):
 		// http://codex.wordpress.org/Function_Reference/get_currentuserinfo
+        $auto_fill = 0;
 		if ( isset(self::$form_content[$field['slug']]) &&
         '' == self::$form_content[$field['slug']] &&
         $user_ID != '' &&
@@ -799,6 +804,7 @@ $string .= '
 
         self::$form_options['auto_fill_enable'] == 'true' ) {
 			// user logged in (and not admin rights) (and auto_fill_enable set in options)
+            $auto_fill = 1;
 			self::$form_content[$field['slug']] = $current_user->user_login;
 		}
 
@@ -902,6 +908,8 @@ $string .= '    </div>
 		$string .= ' type="text" id="fscf_name' . self::$form_id_num . '" name="full_name" value="' . esc_attr( self::$form_content[$field['slug']] ) . '" ' . self::$aria_required;
         if($field['attributes'] != '')
 			  $string .= ' '.$field['attributes'];
+        if($auto_fill) //auto form fill logged in name and email
+              $string .= ' readonly="readonly"';
 if ( 'true' == $field['placeholder'] && $field['default'] != '') {
    $string .= ' placeholder="'.esc_attr($field['default']).'"';
  self::$placeholder = 1;
@@ -996,9 +1004,11 @@ $string .= '    </div>
 
 		// Find logged in user's WP email address (auto form fill feature):
 		// http://codex.wordpress.org/Function_Reference/get_currentuserinfo
+        $auto_fill = 0;
 		if ( '' == self::$form_content[$field['slug']] && $user_ID != '' && $current_user->user_login != 'admin' &&
 				!current_user_can( 'manage_options' ) && self::$form_options['auto_fill_enable'] == 'true' ) {
 			// user logged in (and not admin rights) (and auto_fill_enable set in options)
+            $auto_fill = 1;
 			self::$form_content[$field['slug']] = $current_user->user_email;
             if ( 'true' == self::$form_options['double_email'] )
 			    self::$form_content['email2'] = $current_user->user_email;
@@ -1039,6 +1049,8 @@ $string .= '      <label ';
 		$string .= '" ' . self::$aria_required;
         if($field['attributes'] != '')
 				  $string .= ' '.$field['attributes'];
+        if($auto_fill) //auto form fill logged in name and email
+              $string .= ' readonly="readonly"';
          if ( 'true' == $field['placeholder'] && $email_default != '') {
             $string .= ' placeholder="'.esc_attr($email_default).'"';
             self::$placeholder = 1;
@@ -1064,6 +1076,8 @@ $string .= '      <label ';
 		$string .= ' type="'.$email_input_type.'" id="fscf_email' . self::$form_id_num. '_2" name="email2" value="' . esc_attr( self::$form_content['email2'] ) . '" ' . self::$aria_required;
         if($field['attributes'] != '') // XXX same as email 1 though
 					  $string .= ' '.$field['attributes'];
+        if($auto_fill) //auto form fill logged in name and email
+              $string .= ' readonly="readonly"';
          if ( 'true' == $field['placeholder'] && $email2_default != '') {
               $string .= ' placeholder="'.esc_attr($email2_default).'"';
               self::$placeholder = 1;
@@ -1097,8 +1111,9 @@ $string .= '      <label ';
 $string .= "    </div>";
 		}
         $type = $field['type'];
-        if ( 'email' == $field['type'] || 'url' == $field['type']) // XXX fix this later? email or url type was breaking the 'already posted' javascript
-           $type = 'text';
+        //if ( 'email' == $field['type'] || 'url' == $field['type']) // XXX fix this later? email or url type was breaking the 'already posted' javascript
+        //   $type = 'text';
+        // Since then I have changed the 'already posted' javascript, so try email and url types again.
         $string .= "\n    <div " . self::get_this_css('field_div_style') . '>' . self::echo_if_error( $field['slug'] ) ."\n"
 		. '      <input ';
 		$string .= ($field['input_css'] != '') ? self::convert_css( $field['input_css'] ) : self::get_this_css('field_style');

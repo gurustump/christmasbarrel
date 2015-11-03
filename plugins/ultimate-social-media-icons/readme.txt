@@ -1,48 +1,58 @@
-=== Ultimate Social Media and Share Icons (Twitter, Facebook, Google+, Instagram, Pinterest etc.) ===
+=== Social Media and Share Icons (Ultimate Social Media) ===
 Contributors: socialdude
-Tags: social media, social media icons, sidebar, admin, icons, sharing icons, social media widget, social icon widget, socialmedia, fb widget, facebook, facebook icon, facebook button, facebook share button, facebook like button, twitter, twitter icon, twitter button, google+, google, google plus, google plus icon, google plus button, pinterest, pinterest icon, pinterest button, instagram, Instagram icon, Instagram button, youtube, youtube icon, youtube button, linkedin, linkedin icon, linkedin button, subscription popup, pop-up, ultimate, email, rss, rss2email, subscription icons, subscription icon, social media pop-up, free, newsletter, email newsletter, follow, follow me, counter, feed, feeds, filter, links, link, media, plugin, social, widget, tweet button, email button, email icon, socialize, facebook like, facebook recommend
-Requires at least: 3.0
-Tested up to: 4.0
-Stable tag: 1.1.1.3
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=seb.richter%40gmx%2enet&lc=LI
+Tags: social media, social media icons, social media buttons, social media sharing, floating social media, social media icon, social media button, sharing icons, sharing, sharing buttons, social media widget, socialmedia, social media pop-up, social, social icons, icon, icons, buttons, facebook icon, twitter icon, instagram, instagram icon, counter, facebook, facebook like, like, tweet, tweet button, buttons, tweet icon, youtube, youtube icon, linkedin, linkedin icon, logos, follow, social profiles, social media accounts, social share, social media plugin
+Requires at least: 2.8
+Tested up to: 4.4
+Stable tag: 1.3.2
 License: GPLv2 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Easy to use and 100% FREE social media plugin which adds social media icons to your website with tons of customization features! 
+Easy to use and 100% FREE social media plugin which adds social media icons to your website with tons of customization features!    
 
 == Description ==
-This 100% FREE  plugin allows you to display social media icons on your website, and allows tons of customization features!
 
-You can add icons for RSS, Email, Facebook, Twitter, LinkedIn, Google+, Pinterest, Instagram, Youtube, "Share" (covering 200+ other social media platforms) and upload custom icons of your choice. 
+Social media plugin which let's you add icons for RSS, Email, Facebook, Twitter, LinkedIn, Google+, Pinterest, Instagram, Youtube, "Share" (covering 200+ other social media platforms) and upload custom icons of your choice. 
 
-The plugin offers a wide range of options, for example you can: 
+The social media plugin offers a wide range of options, for example you can: 
 
-- Pick from 16 different designs for your icons
-- Give several actions to one icon (e.g. your facebook icon can lead visitors to your Facebook page, and also give visitors the opportunity to like your page)
-- Decide to give your icons an animation (e.g. automatic shuffling, mouse-over effects) to make your visitors aware of them, increasing the chance that they follow/share your blog
-- Make your icons "float" or "sticky"
+- Pick from 16 different designs for your social media icons
+- Give several actions to one social media icon (e.g. your facebook icon can lead visitors to your Facebook page, and also give visitors the opportunity to like your page)
+- Decide to give your social media icons an animation (e.g. automatic shuffling, mouse-over effects) to make your visitors aware of them, increasing the chance that they follow/share your blog
+- Make your social media icons "float" or "sticky"
 - Allow visitors to subscribe to your blog by Email 
-- Add "counts" to your icons
-- Decide to display a pop-up (on all or only on selected pages) asking people to follow/share you
-- Decide to display sharing-buttons at the end of every post
-- Select from many other customization features!
+- Add "counts" to your social media icons
+- Decide to display a pop-up (on all or only on selected pages) asking people to follow/share you via your social media icons
+- Decide to display sharing-buttons and social media icons at the end of every post
+- Select from many other customization features for your social media icons!
 
-The plugin is very easy to use as it takes you through all the steps: 
+The social media plugin is very easy to use as it takes you through all the steps: 
 
-- Step 1: Choose which icons you want to display
-- Step 2: Define what actions your icons should perform
-- Step 3: Pick design & animation options for your icons
-- Step 4: Add counts to your icons (optional)
-- Step 5: Select from various other options, e.g. make your icons "float"
+- Step 1: Choose which social media icons you want to display
+- Step 2: Define what actions your social media icons should perform
+- Step 3: Pick design & animation options for your social media icons
+- Step 4: Add counts to your social media icons (optional)
+- Step 5: Select from various other options, e.g. make your social media icons "float"
 - Step 6: Add sharing/linking icons next to each blog post (optional)
 - Step 7: Add a customized pop-up asking people to follow/share (optional)
+- Step 8: Add a subscription form on your site (optional)
 
+In case of issues please check the FAQ on http://ultimatelysocial.com/faq
+
+We hope you enjoy the social media plugin! 
+
+**Want to get alerted if a new plugin version has been released?** Subscribe here http://www.wikilerts.com/secret/getalertedif/a-new-update-for-the-ultimate-social-media-and-share-icons-p
 
 == Installation ==
 Extract the zip file and drop the contents into the wp-content/plugins/ directory of your WordPress installation. Then activate the plugin from the plugins page.
 
 Then go to plugin settings page and follow the instructions. After you're done, go to the Widget area (Appearance >> Widget) and place the widget on your sidebar to display your your icons on your blog.
 
-Note: This plugin requires CURL to be activated/installed on your server (which should be the standard case). If you don't have it, please contact your hosting provider.
+Note: This plugin requires CURL to be activated/installed on your server (which should be the standard case), and a PHP version of 5.4 or above. If you don't have it, please contact your hosting provider or server admin.
+
+== Frequently Asked Questions ==
+
+Please check out the FAQ on http://ultimatelysocial.com  
 
 == Screenshots ==
 
@@ -67,11 +77,162 @@ Note: This plugin requires CURL to be activated/installed on your server (which 
 
 == Changelog ==
 
+= 1.3.2 =
+* Feed claiming optimized 
+
+= 1.3.1 =
+* Shortpixel link fixed
+
+= 1.3.0 =
+* Feed claiming bug fixed 
+
+= 1.2.9 =
+* New G+ button updated
+* Quicker claiming of feed possible
+* Comments to share-button added
+* Credit to shortpixel added
+
+= 1.2.8 =
+* New feature: Users can now decide where exactly the floating icons will display
+* Internal links corrected
+* Fixed: Targets only labels within the social icons div.
+* Subscriber counts fixed
+* Apostrophe issues fixed
+* Conflicts with Yoast SEO plugin resolved
+* PHP errors fixed
+
+= 1.2.7 =
+* Count issues fixed - please upgrade!
+* Style constructor updated to PHP 5
+* Text adjustments in admin area
+
+= 1.2.6 =
+* (Minor) compatibility issues with Wordpress 4.3. fixed
+
+= 1.2.5 =
+* Updating process fixed
+
+= 1.2.4 =
+* New question 8 added: you can now also add a subscription form to your site
+
+= 1.2.3 =
+* More explanations added how to fix if counts don't work
+* Icon files are compressed now for faster loading - thank you ShortPixel.com!
+* A typo in the code threw an error message in certain cases, this is fixed now
+
+= 1.2.2 =
+* jQuery issues fixed
+* Vulnerability issues fixed
+* Twitter-button didn't get displayed in full sometimes, this is fixed now
+* CSS issues (occurred on some templates) fixed
+* Facebook updated API (so counts didn't get displayed correctly anymore), we updated the plugin accordingly
+
+= 1.2.1 =
+* Template-specific issues fixed
+* Layout in admin-area optimized
+* Sometimes title didn't get rendered correctly, this is fixed now
+* Youtube API changes also updated in plugin
+* Outdated (and vulnerable) JS library updated
+* New options for placing icons after every post (under question 6) 
+
+= 1.2.0 =
+* Links with "@" in the url (e.g. as in Flickr-links) now get recognized as well
+* Alignment issues of icons in tooltip fixed
+* Layout optimizations in plugin area
+* Users can now select to have the number of likes of their facebook page displayed as counts of the facebook icon on their blogs
+* Typos in admin area corrected
+
+= 1.1.1.12 =
+* Vulnerabilities (AJAX) fixed 
+* OG-issues (caused in conjunction with other plugins) fixed
+
+= 1.1.1.11 =
+* Conflicts with Yoast SEO plugin sorted
+* Performance optimized
+* Facebook sharing text issues fixed
+* Sometimes facebook share count didn't increase despite liking it, this should be fixed now (to be observed) 
+* When sharing from a Facebook business page it returned errors, this should be fixed now (to be observed) 
+* Share-box only displayed partly sometimes, fixed now
+* Template CSS conflicts solved in the plugin
+* Adding of unwanted spans fixed
+
+= 1.1.1.10 =
+* OG-issues fixed
+* Text which gets shared sometimes didn't contain spaces, fixed now
+* Plugin name in php file shortened
+* More explanation texts added in admin area
+* Facebook share window sometimes only got displayed partially, fixed now
+* Other facebook share issues fixed
+* Template CSS issues causing icons to be displayed not in one straight horizontal line fixed
+* In some cases facebook counts didn't increase if liked, this should be fixed now
+* Tested for up to Wordpress version 4.2.1.
+
+= 1.1.1.9 =
+* Issues with custom icon upload & custom icon removal fixed
+* Box asking for review didn't disappear in some cases, fixed now
+* Some design issues with some CSS for icons after every post, fixed now
+* Changes in text / guide in plugin
+* Conflicts with YOAST SEO plugin sorted
+* Conflicts with ADD MEDIA button and ADD LINK sorted
+* In some cases activating the icons after every post the content disappeared, this is fixed now
+* New option to center icons after posts
+* In some cases if no widget was placed it said "Kindly go to settings page and check the option "show them via widget"" got displayed on the blog, this is fixed now
+* G+ window disappeared sometimes after moving over it, fixed now
+* LinkedIn icon disappeared after moving over it a few times, fixed now
+* Several other CSS issues fixed
+* Sometimes tooltips didn't appear, fixed now
+* When plugin is activated some toggle functionality stopped working, fixed now
+* Click on icons after posts now shares the post, not the blog page
+* Several little design enhancements
+* When user selected that icons should show floating in the bottom right they floated in the center right, fixed now
+* Issues with Youtube direct follow fixed
+* Number of Instagram followers not always got pulled correctly, fixed now
+* When site loaded the widget sometimes overlapped with others, fixed now
+
+= 1.1.1.8 =
+* Plugin's menu button now has less aggressive colors 
+* Sometimes sharing via facebook returned error messages, this is fixed now
+* Conflicts with WooTheme Whitelight resolved
+* Occasional problems with https-sites previously, now compatibile 
+
+= 1.1.1.7 =
+* The "counts" were not always correct, fixed now
+* Conflicts with page editor resolved
+* Last plugin update fixed Youtube points, however the "channel" was as default, set back to "username"
+* Mouseover-text for social icons now correct
+* Some layout adjustment in the admin area (menu-button will also be adjusted in next release)
+* Setting order of icons sometimes didnt work properly when custom icons got uploaded, this is fixed now
+
+= 1.1.1.6 =
+* jQuery updated, now most conflicts with other plugins should be resolved
+
+= 1.1.1.5 =
+* Conflicts with several plugins sorted
+* Icons can now be disabled on mobile
+* Renaming of "Youtube Channel" to "Username" to avoid confusion
+* On some templates there were alignment issues of the icons, this is fixed
+* Menu button sub-menu removed (wasn't really necessary)
+* Lightbox in admin area for custom icon upload shortened (was too large)
+* Tags for all icons defined (for SEO purposes) 
+
+= 1.1.1.4 =
+* If given only a "visit us"-function for the Twitter-icon, the is no tooltip anymore (like for the other icons)
+* Sharing sometimes pulled an incorrect image, fixed now
+* Pop-up now also has an "x" in the top right corner for people to close
+* Sometimes icons overlapped, this is fixed now
+* Several issues fixed when users put shortcode into the header
+* Sometimes our request to ask users for feedback got displayed too early, this is fixed now
+* Some youtube accounts don't have a username, but only a channel. To allow users to directly to subscribe to your youtube channel the plugin required a User ID, now a channel is possible too
+* Several conflicts with other plugins resolved
+* Some CSS issues fixed
+* Steps 1., 2., 3. in the guide how to upload a custom icon were sometimes missing, this is fixed now
+* Title removed now when using shortcodes
+* Some error messages in developer tools not showing up anymore
+
 = 1.1.1.3 =
 * Several CSS issues fixed
 
 = 1.1.1.2 =
-* Roll-back to this version as 1.1.1.3 caused some issues
 * Shortcode now available too, so that you can place the icons wherever you want: Insert [DISPLAY_ULTIMATE_SOCIAL_ICONS]
 * "Visit us"-option now also available for Twitter-users
 * Description added for people helping to find their LinkedIn-ID
@@ -145,5 +306,5 @@ Note: This plugin requires CURL to be activated/installed on your server (which 
 
 == Upgrade Notice ==
 
-= 1.1.1.3 =
-Several CSS issues fixed, no need to update if you didn't experience any issues
+= 1.3.2 =
+Several enhancements - please upgrade!

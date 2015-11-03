@@ -4,7 +4,7 @@
  *
  * @package     EDD
  * @subpackage  Functions/Install
- * @copyright   Copyright (c) 2014, Pippin Williamson
+ * @copyright   Copyright (c) 2015, Pippin Williamson
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
 */
@@ -41,7 +41,7 @@ function edd_install() {
 	edd_setup_download_taxonomies();
 
 	// Clear the permalinks
-	flush_rewrite_rules();
+	flush_rewrite_rules( false );
 
 	// Add Upgraded From Option
 	$current_version = get_option( 'edd_version' );
@@ -53,11 +53,11 @@ function edd_install() {
 	$options = array();
 
 	// Checks if the purchase page option exists
-	if ( ! isset( $edd_options['purchase_page'] ) ) {
+	if ( ! edd_get_option( 'purchase_page', false ) ) {
 	  // Checkout Page
 		$checkout = wp_insert_post(
 			array(
-				'post_title'     => __( 'Checkout', 'edd' ),
+				'post_title'     => __( 'Checkout', 'easy-digital-downloads' ),
 				'post_content'   => '[download_checkout]',
 				'post_status'    => 'publish',
 				'post_author'    => 1,
@@ -69,8 +69,8 @@ function edd_install() {
 		// Purchase Confirmation (Success) Page
 		$success = wp_insert_post(
 			array(
-				'post_title'     => __( 'Purchase Confirmation', 'edd' ),
-				'post_content'   => __( 'Thank you for your purchase! [edd_receipt]', 'edd' ),
+				'post_title'     => __( 'Purchase Confirmation', 'easy-digital-downloads' ),
+				'post_content'   => __( 'Thank you for your purchase! [edd_receipt]', 'easy-digital-downloads' ),
 				'post_status'    => 'publish',
 				'post_author'    => 1,
 				'post_parent'    => $checkout,
@@ -82,8 +82,8 @@ function edd_install() {
 		// Failed Purchase Page
 		$failed = wp_insert_post(
 			array(
-				'post_title'     => __( 'Transaction Failed', 'edd' ),
-				'post_content'   => __( 'Your transaction failed, please try again or contact site support.', 'edd' ),
+				'post_title'     => __( 'Transaction Failed', 'easy-digital-downloads' ),
+				'post_content'   => __( 'Your transaction failed, please try again or contact site support.', 'easy-digital-downloads' ),
 				'post_status'    => 'publish',
 				'post_author'    => 1,
 				'post_type'      => 'page',
@@ -95,7 +95,7 @@ function edd_install() {
 		// Purchase History (History) Page
 		$history = wp_insert_post(
 			array(
-				'post_title'     => __( 'Purchase History', 'edd' ),
+				'post_title'     => __( 'Purchase History', 'easy-digital-downloads' ),
 				'post_content'   => '[purchase_history]',
 				'post_status'    => 'publish',
 				'post_author'    => 1,
@@ -137,6 +137,9 @@ function edd_install() {
 	$roles->add_roles();
 	$roles->add_caps();
 
+	$api = new EDD_API;
+	update_option( 'edd_default_api_version', 'v' . $api->get_version() );
+
 	// Create the customers database
 	@EDD()->customers->create_table();
 
@@ -149,6 +152,22 @@ function edd_install() {
 	// Bail if activating from network, or bulk
 	if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
 		return;
+	}
+
+	if ( ! $current_version ) {
+		require_once EDD_PLUGIN_DIR . 'includes/admin/upgrades/upgrade-functions.php';
+
+		// When new upgrade routines are added, mark them as complete on fresh install
+		$upgrade_routines = array(
+			'upgrade_payment_taxes',
+			'upgrade_customer_payments_association',
+			'upgrade_user_api_keys',
+			'remove_refunded_sale_logs'
+		);
+
+		foreach ( $upgrade_routines as $upgrade ) {
+			edd_set_upgrade_complete( $upgrade );
+		}
 	}
 
 	// Add the transient to redirect

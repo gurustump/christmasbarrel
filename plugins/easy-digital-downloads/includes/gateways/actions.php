@@ -4,7 +4,7 @@
  *
  * @package     EDD
  * @subpackage  Gateways
- * @copyright   Copyright (c) 2014, Pippin Williamson
+ * @copyright   Copyright (c) 2015, Pippin Williamson
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.7
  */
@@ -51,7 +51,7 @@ function edd_no_gateway_error() {
 	$gateways = edd_get_enabled_payment_gateways();
 
 	if ( empty( $gateways ) )
-		edd_set_error( 'no_gateways', __( 'You must enable a payment gateway to use Easy Digital Downloads', 'edd' ) );
+		edd_set_error( 'no_gateways', __( 'You must enable a payment gateway to use Easy Digital Downloads', 'easy-digital-downloads' ) );
 	else
 		edd_unset_error( 'no_gateways' );
 }

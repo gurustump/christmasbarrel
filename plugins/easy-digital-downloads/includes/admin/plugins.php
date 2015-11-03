@@ -4,7 +4,7 @@
  *
  * @package     EDD
  * @subpackage  Admin/Plugins
- * @copyright   Copyright (c) 2014, Pippin Williamson
+ * @copyright   Copyright (c) 2015, Pippin Williamson
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.8
  */
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @return array $links
  */
 function edd_plugin_action_links( $links, $file ) {
-	$settings_link = '<a href="' . admin_url( 'edit.php?post_type=download&page=edd-settings' ) . '">' . esc_html__( 'General Settings', 'edd' ) . '</a>';
+	$settings_link = '<a href="' . admin_url( 'edit.php?post_type=download&page=edd-settings' ) . '">' . esc_html__( 'General Settings', 'easy-digital-downloads' ) . '</a>';
 	if ( $file == 'easy-digital-downloads/easy-digital-downloads.php' )
 		array_unshift( $links, $settings_link );
 
@@ -46,9 +46,16 @@ function edd_plugin_row_meta( $input, $file ) {
 	if ( $file != 'easy-digital-downloads/easy-digital-downloads.php' )
 		return $input;
 
+	$edd_link = esc_url( add_query_arg( array(
+			'utm_source'   => 'plugins-page',
+			'utm_medium'   => 'plugin-row',
+			'utm_campaign' => 'admin',
+		), 'https://easydigitaldownloads.com/downloads/' )
+	);
+
 	$links = array(
-		'<a href="' . admin_url( 'index.php?page=edd-getting-started' ) . '">' . esc_html__( 'Getting Started', 'edd' ) . '</a>',
-		'<a href="https://easydigitaldownloads.com/extensions/">' . esc_html__( 'Add Ons', 'edd' ) . '</a>',
+		'<a href="' . admin_url( 'index.php?page=edd-getting-started' ) . '">' . esc_html__( 'Getting Started', 'easy-digital-downloads' ) . '</a>',
+		'<a href="' . $edd_link . '">' . esc_html__( 'Extensions', 'easy-digital-downloads' ) . '</a>',
 	);
 
 	$input = array_merge( $input, $links );

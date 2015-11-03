@@ -4,7 +4,7 @@
  *
  * @package     EDD
  * @subpackage  Admin/Reports
- * @copyright   Copyright (c) 2014, Pippin Williamson
+ * @copyright   Copyright (c) 2015, Pippin Williamson
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.5
  */
@@ -86,10 +86,12 @@ class EDD_API_Request_Log_Table extends WP_List_Table {
 	 */
 	public function get_columns() {
 		$columns = array(
-			'ID'         => __( 'Log ID', 'edd' ),
-			'details'    => __( 'Request Details', 'edd' ),
-			'ip'         => __( 'Request IP', 'edd' ),
-			'date'       => __( 'Date', 'edd' )
+			'ID'         => __( 'Log ID', 'easy-digital-downloads' ),
+			'details'    => __( 'Request Details', 'easy-digital-downloads' ),
+			'version'    => __( 'API Version', 'easy-digital-downloads' ),
+			'ip'         => __( 'Request IP', 'easy-digital-downloads' ),
+			'speed'      => __( 'Request Speed', 'easy-digital-downloads' ),
+			'date'       => __( 'Date', 'easy-digital-downloads' )
 		);
 
 		return $columns;
@@ -101,16 +103,13 @@ class EDD_API_Request_Log_Table extends WP_List_Table {
 	 * @access public
 	 * @since 1.5
 	 *
-	 * @param array $item Contains all the data of the discount code
+	 * @param array $item Contains all the data of the api request
 	 * @param string $column_name The name of the column
 	 *
 	 * @return string Column Name
 	 */
 	public function column_default( $item, $column_name ) {
-		switch( $column_name ){
-			default:
-				return $item[ $column_name ];
-		}
+		return $item[ $column_name ];
 	}
 
 	/**
@@ -123,23 +122,23 @@ class EDD_API_Request_Log_Table extends WP_List_Table {
 	 */
 	public function column_details( $item ) {
 	?>
-		<a href="#TB_inline?width=640&amp;inlineId=log-details-<?php echo $item['ID']; ?>" class="thickbox" title="<?php _e( 'View Request Details', 'edd' ); ?> "><?php _e( 'View Request', 'edd' ); ?></a>
+		<a href="#TB_inline?width=640&amp;inlineId=log-details-<?php echo $item['ID']; ?>" class="thickbox" title="<?php _e( 'View Request Details', 'easy-digital-downloads' ); ?> "><?php _e( 'View Request', 'easy-digital-downloads' ); ?></a>
 		<div id="log-details-<?php echo $item['ID']; ?>" style="display:none;">
 			<?php
 
 			$request = get_post_field( 'post_excerpt', $item['ID'] );
 			$error   = get_post_field( 'post_content', $item['ID'] );
-			echo '<p><strong>' . __( 'API Request:', 'edd' ) . '</strong></p>';
+			echo '<p><strong>' . __( 'API Request:', 'easy-digital-downloads' ) . '</strong></p>';
 			echo '<div>' . $request . '</div>';
 			if( ! empty( $error ) ) {
-				echo '<p><strong>' . __( 'Error', 'edd' ) . '</strong></p>';
+				echo '<p><strong>' . __( 'Error', 'easy-digital-downloads' ) . '</strong></p>';
 				echo '<div>' . esc_html( $error ) . '</div>';
 			}
-			echo '<p><strong>' . __( 'API User:', 'edd' ) . '</strong></p>';
+			echo '<p><strong>' . __( 'API User:', 'easy-digital-downloads' ) . '</strong></p>';
 			echo '<div>' . get_post_meta( $item['ID'], '_edd_log_user', true ) . '</div>';
-			echo '<p><strong>' . __( 'API Key:', 'edd' ) . '</strong></p>';
+			echo '<p><strong>' . __( 'API Key:', 'easy-digital-downloads' ) . '</strong></p>';
 			echo '<div>' . get_post_meta( $item['ID'], '_edd_log_key', true ) . '</div>';
-			echo '<p><strong>' . __( 'Request Date:', 'edd' ) . '</strong></p>';
+			echo '<p><strong>' . __( 'Request Date:', 'easy-digital-downloads' ) . '</strong></p>';
 			echo '<div>' . get_post_field( 'post_date', $item['ID'] ) . '</div>';
 			?>
 		</div>
@@ -151,7 +150,7 @@ class EDD_API_Request_Log_Table extends WP_List_Table {
 	 *
 	 * @access public
 	 * @since 1.5
-	 * @return mixed String if search is present, false otherwise
+	 * @return string|false String if search is present, false otherwise
 	 */
 	public function get_search() {
 		return ! empty( $_GET['s'] ) ? urldecode( trim( $_GET['s'] ) ) : false;
@@ -178,8 +177,8 @@ class EDD_API_Request_Log_Table extends WP_List_Table {
 			} else if ( is_email( $search ) ) {
 				// This is an email search
 				$userdata = get_user_by( 'email', $search );
-				
-				if( $userdata ) { 
+
+				if( $userdata ) {
 					$search = $userdata->ID;
 				}
 
@@ -261,9 +260,11 @@ class EDD_API_Request_Log_Table extends WP_List_Table {
 			foreach ( $logs as $log ) {
 
 				$logs_data[] = array(
-					'ID'   => $log->ID,
-					'ip'   => get_post_meta( $log->ID, '_edd_log_request_ip', true ),
-					'date' => $log->post_date
+					'ID'      => $log->ID,
+					'version' => get_post_meta( $log->ID, '_edd_log_version', true ),
+					'speed'   => get_post_meta( $log->ID, '_edd_log_time', true ),
+					'ip'      => get_post_meta( $log->ID, '_edd_log_request_ip', true ),
+					'date'    => $log->post_date
 				);
 			}
 		}
@@ -290,7 +291,7 @@ class EDD_API_Request_Log_Table extends WP_List_Table {
 		$columns               = $this->get_columns();
 		$hidden                = array(); // No hidden columns
 		$sortable              = $this->get_sortable_columns();
-		$this->_column_headers = array( $columns, $hidden, $sortable );
+		$this->_column_headers = array( $columns, $hidden, $sortable, 'ID' );
 		$this->items           = $this->get_logs();
 		$total_items           = $edd_logs->get_log_count( 0, 'api_requests' );
 

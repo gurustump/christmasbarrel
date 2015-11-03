@@ -12,7 +12,7 @@ function christmasbarrel_scripts() {
 	$protocol = is_ssl() ? 'https' : 'http'; 
 	
 	if ( fundify_theme_mod( 'responsive' ) )  {
-		wp_enqueue_style( 'christmasbarrel-responsive', get_stylesheet_directory_uri() . '/css/responsive.css', array('fundify-style','fundify-responsive') );
+		wp_enqueue_style( 'christmasbarrel-responsive', get_stylesheet_directory_uri() . '/css/responsive.css?v1', array('fundify-style','fundify-responsive') );
 	}
 	wp_enqueue_script( 'christmasbarrel-scripts', get_stylesheet_directory_uri() . '/js/christmasbarrel.js', array(), 20140709, true );
 }

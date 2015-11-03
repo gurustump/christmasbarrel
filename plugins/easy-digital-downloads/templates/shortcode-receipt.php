@@ -2,9 +2,20 @@
 /**
  * This template is used to display the purchase summary with [edd_receipt]
  */
-global $edd_receipt_args, $edd_options;
+global $edd_receipt_args;
 
 $payment   = get_post( $edd_receipt_args['id'] );
+
+if( empty( $payment ) ) : ?>
+
+	<div class="edd_errors edd-alert edd-alert-error">
+		<?php _e( 'The specified receipt ID appears to be invalid', 'easy-digital-downloads' ); ?>
+	</div>
+
+<?php
+return;
+endif;
+
 $meta      = edd_get_payment_meta( $payment->ID );
 $cart      = edd_get_payment_meta_cart_details( $payment->ID, true );
 $user      = edd_get_payment_meta_user_info( $payment->ID );
@@ -17,7 +28,7 @@ $status    = edd_get_payment_status( $payment, true );
 
 		<?php if ( $edd_receipt_args['payment_id'] ) : ?>
 		<tr>
-			<th><strong><?php _e( 'Payment', 'edd' ); ?>:</strong></th>
+			<th><strong><?php _e( 'Payment', 'easy-digital-downloads' ); ?>:</strong></th>
 			<th><?php echo edd_get_payment_number( $payment->ID ); ?></th>
 		</tr>
 		<?php endif; ?>
@@ -26,33 +37,33 @@ $status    = edd_get_payment_status( $payment, true );
 	<tbody>
 
 		<tr>
-			<td class="edd_receipt_payment_status"><strong><?php _e( 'Payment Status', 'edd' ); ?>:</strong></td>
+			<td class="edd_receipt_payment_status"><strong><?php _e( 'Payment Status', 'easy-digital-downloads' ); ?>:</strong></td>
 			<td class="edd_receipt_payment_status <?php echo strtolower( $status ); ?>"><?php echo $status; ?></td>
 		</tr>
 
 		<?php if ( $edd_receipt_args['payment_key'] ) : ?>
 			<tr>
-				<td><strong><?php _e( 'Payment Key', 'edd' ); ?>:</strong></td>
+				<td><strong><?php _e( 'Payment Key', 'easy-digital-downloads' ); ?>:</strong></td>
 				<td><?php echo get_post_meta( $payment->ID, '_edd_payment_purchase_key', true ); ?></td>
 			</tr>
 		<?php endif; ?>
 
 		<?php if ( $edd_receipt_args['payment_method'] ) : ?>
 			<tr>
-				<td><strong><?php _e( 'Payment Method', 'edd' ); ?>:</strong></td>
+				<td><strong><?php _e( 'Payment Method', 'easy-digital-downloads' ); ?>:</strong></td>
 				<td><?php echo edd_get_gateway_checkout_label( edd_get_payment_gateway( $payment->ID ) ); ?></td>
 			</tr>
 		<?php endif; ?>
 		<?php if ( $edd_receipt_args['date'] ) : ?>
 		<tr>
-			<td><strong><?php _e( 'Date', 'edd' ); ?>:</strong></td>
+			<td><strong><?php _e( 'Date', 'easy-digital-downloads' ); ?>:</strong></td>
 			<td><?php echo date_i18n( get_option( 'date_format' ), strtotime( $meta['date'] ) ); ?></td>
 		</tr>
 		<?php endif; ?>
 
 		<?php if ( ( $fees = edd_get_payment_fees( $payment->ID, 'fee' ) ) ) : ?>
 		<tr>
-			<td><strong><?php _e( 'Fees', 'edd' ); ?>:</strong></td>
+			<td><strong><?php _e( 'Fees', 'easy-digital-downloads' ); ?>:</strong></td>
 			<td>
 				<ul class="edd_receipt_fees">
 				<?php foreach( $fees as $fee ) : ?>
@@ -67,16 +78,16 @@ $status    = edd_get_payment_status( $payment, true );
 		</tr>
 		<?php endif; ?>
 
-		<?php if ( $edd_receipt_args['discount'] && $user['discount'] != 'none' ) : ?>
+		<?php if ( $edd_receipt_args['discount'] && isset( $user['discount'] ) && $user['discount'] != 'none' ) : ?>
 			<tr>
-				<td><strong><?php _e( 'Discount(s)', 'edd' ); ?>:</strong></td>
+				<td><strong><?php _e( 'Discount(s)', 'easy-digital-downloads' ); ?>:</strong></td>
 				<td><?php echo $user['discount']; ?></td>
 			</tr>
 		<?php endif; ?>
 
 		<?php if( edd_use_taxes() ) : ?>
 			<tr>
-				<td><strong><?php _e( 'Tax', 'edd' ); ?></strong></td>
+				<td><strong><?php _e( 'Tax', 'easy-digital-downloads' ); ?></strong></td>
 				<td><?php echo edd_payment_tax( $payment->ID ); ?></td>
 			</tr>
 		<?php endif; ?>
@@ -84,14 +95,14 @@ $status    = edd_get_payment_status( $payment, true );
 		<?php if ( $edd_receipt_args[ 'price' ] ) : ?>
 
 			<tr>
-				<td><strong><?php _e( 'Subtotal', 'edd' ); ?></strong></td>
+				<td><strong><?php _e( 'Subtotal', 'easy-digital-downloads' ); ?></strong></td>
 				<td>
 					<?php echo edd_payment_subtotal( $payment->ID ); ?>
 				</td>
 			</tr>
 
 			<tr>
-				<td><strong><?php _e( 'Total Price', 'edd' ); ?>:</strong></td>
+				<td><strong><?php _e( 'Total Price', 'easy-digital-downloads' ); ?>:</strong></td>
 				<td><?php echo edd_payment_amount( $payment->ID ); ?></td>
 			</tr>
 
@@ -105,18 +116,18 @@ $status    = edd_get_payment_status( $payment, true );
 
 <?php if ( $edd_receipt_args[ 'products' ] ) : ?>
 
-	<h3><?php echo apply_filters( 'edd_payment_receipt_products_title', __( 'Products', 'edd' ) ); ?></h3>
+	<h3><?php echo apply_filters( 'edd_payment_receipt_products_title', __( 'Products', 'easy-digital-downloads' ) ); ?></h3>
 
 	<table id="edd_purchase_receipt_products">
 		<thead>
-			<th><?php _e( 'Name', 'edd' ); ?></th>
+			<th><?php _e( 'Name', 'easy-digital-downloads' ); ?></th>
 			<?php if ( edd_use_skus() ) { ?>
-				<th><?php _e( 'SKU', 'edd' ); ?></th>
+				<th><?php _e( 'SKU', 'easy-digital-downloads' ); ?></th>
 			<?php } ?>
 			<?php if ( edd_item_quantities_enabled() ) : ?>
-				<th><?php _e( 'Quantity', 'edd' ); ?></th>
+				<th><?php _e( 'Quantity', 'easy-digital-downloads' ); ?></th>
 			<?php endif; ?>
-			<th><?php _e( 'Price', 'edd' ); ?></th>
+			<th><?php _e( 'Price', 'easy-digital-downloads' ); ?></th>
 		</thead>
 
 		<tbody>
@@ -148,7 +159,7 @@ $status    = edd_get_payment_status( $payment, true );
 						<?php endif; ?>
 
 						<?php
-						if( edd_is_payment_complete( $payment->ID ) && edd_receipt_show_download_files( $item['id'], $edd_receipt_args ) ) : ?>
+						if( edd_is_payment_complete( $payment->ID ) && edd_receipt_show_download_files( $item['id'], $edd_receipt_args, $item ) ) : ?>
 						<ul class="edd_purchase_receipt_files">
 							<?php
 							if ( ! empty( $download_files ) && is_array( $download_files ) ) :
@@ -158,7 +169,7 @@ $status    = edd_get_payment_status( $payment, true );
 									$download_url = edd_get_download_file_url( $meta['key'], $email, $filekey, $item['id'], $price_id );
 									?>
 									<li class="edd_download_file">
-										<a href="<?php echo esc_url( $download_url ); ?>" download="<?php echo edd_get_file_name( $file ); ?>" class="edd_download_file_link"><?php echo edd_get_file_name( $file ); ?></a>
+										<a href="<?php echo esc_url( $download_url ); ?>" class="edd_download_file_link"><?php echo edd_get_file_name( $file ); ?></a>
 									</li>
 									<?php
 									do_action( 'edd_receipt_files', $filekey, $file, $item['id'], $payment->ID, $meta );
@@ -188,7 +199,7 @@ $status    = edd_get_payment_status( $payment, true );
 
 												endforeach;
 											else :
-												echo '<li>' . __( 'No downloadable files found for this bundled item.', 'edd' ) . '</li>';
+												echo '<li>' . __( 'No downloadable files found for this bundled item.', 'easy-digital-downloads' ) . '</li>';
 											endif;
 											?>
 										</ul>
@@ -197,7 +208,7 @@ $status    = edd_get_payment_status( $payment, true );
 								endforeach;
 
 							else :
-								echo '<li>' . __( 'No downloadable files found.', 'edd' ) . '</li>';
+								echo '<li>' . apply_filters( 'edd_receipt_no_files_found_text', __( 'No downloadable files found.', 'easy-digital-downloads' ), $item['id'] ) . '</li>';
 							endif; ?>
 						</ul>
 						<?php endif; ?>

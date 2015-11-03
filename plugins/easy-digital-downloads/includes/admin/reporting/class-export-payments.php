@@ -6,7 +6,7 @@
  *
  * @package     EDD
  * @subpackage  Admin/Reports
- * @copyright   Copyright (c) 2014, Pippin Williamson
+ * @copyright   Copyright (c) 2015, Pippin Williamson
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.4.4
  */
@@ -57,38 +57,36 @@ class EDD_Payments_Export extends EDD_Export {
 	 * @return array $cols All the columns
 	 */
 	public function csv_cols() {
-		global $edd_options;
-
 		$cols = array(
-			'id'       => __( 'ID',   'edd' ), // unaltered payment ID (use for querying)
-			'seq_id'   => __( 'Payment Number',   'edd' ), // sequential payment ID
-			'email'    => __( 'Email', 'edd' ),
-			'first'    => __( 'First Name', 'edd' ),
-			'last'     => __( 'Last Name', 'edd' ),
-			'address1' => __( 'Address', 'edd' ),
-			'address2' => __( 'Address (Line 2)', 'edd' ),
-			'city'     => __( 'City', 'edd' ),
-			'state'    => __( 'State', 'edd' ),
-			'country'  => __( 'Country', 'edd' ),
-			'zip'      => __( 'Zip Code', 'edd' ),
-			'products' => __( 'Products', 'edd' ),
-			'skus'     => __( 'SKUs', 'edd' ),
-			'amount'   => __( 'Amount', 'edd' ) . ' (' . html_entity_decode( edd_currency_filter( '' ) ) . ')',
-			'tax'      => __( 'Tax', 'edd' ) . ' (' . html_entity_decode( edd_currency_filter( '' ) ) . ')',
-			'discount' => __( 'Discount Code', 'edd' ),
-			'gateway'  => __( 'Payment Method', 'edd' ),
-			'trans_id' => __( 'Transaction ID', 'edd' ),
-			'key'      => __( 'Purchase Key', 'edd' ),
-			'date'     => __( 'Date', 'edd' ),
-			'user'     => __( 'User', 'edd' ),
-			'status'   => __( 'Status', 'edd' )
+			'id'       => __( 'ID',   'easy-digital-downloads' ), // unaltered payment ID (use for querying)
+			'seq_id'   => __( 'Payment Number',   'easy-digital-downloads' ), // sequential payment ID
+			'email'    => __( 'Email', 'easy-digital-downloads' ),
+			'first'    => __( 'First Name', 'easy-digital-downloads' ),
+			'last'     => __( 'Last Name', 'easy-digital-downloads' ),
+			'address1' => __( 'Address', 'easy-digital-downloads' ),
+			'address2' => __( 'Address (Line 2)', 'easy-digital-downloads' ),
+			'city'     => __( 'City', 'easy-digital-downloads' ),
+			'state'    => __( 'State', 'easy-digital-downloads' ),
+			'country'  => __( 'Country', 'easy-digital-downloads' ),
+			'zip'      => __( 'Zip Code', 'easy-digital-downloads' ),
+			'products' => __( 'Products', 'easy-digital-downloads' ),
+			'skus'     => __( 'SKUs', 'easy-digital-downloads' ),
+			'amount'   => __( 'Amount', 'easy-digital-downloads' ) . ' (' . html_entity_decode( edd_currency_filter( '' ) ) . ')',
+			'tax'      => __( 'Tax', 'easy-digital-downloads' ) . ' (' . html_entity_decode( edd_currency_filter( '' ) ) . ')',
+			'discount' => __( 'Discount Code', 'easy-digital-downloads' ),
+			'gateway'  => __( 'Payment Method', 'easy-digital-downloads' ),
+			'trans_id' => __( 'Transaction ID', 'easy-digital-downloads' ),
+			'key'      => __( 'Purchase Key', 'easy-digital-downloads' ),
+			'date'     => __( 'Date', 'easy-digital-downloads' ),
+			'user'     => __( 'User', 'easy-digital-downloads' ),
+			'status'   => __( 'Status', 'easy-digital-downloads' )
 		);
 
 		if( ! edd_use_skus() ){
 			unset( $cols['skus'] );
 		}
 		if ( ! edd_get_option( 'enable_sequential' ) ) {
-			unset( $cols['seq_id'] );			
+			unset( $cols['seq_id'] );
 		}
 
 		return $cols;
@@ -104,7 +102,7 @@ class EDD_Payments_Export extends EDD_Export {
 	 * @return array $data The data for the CSV file
 	 */
 	public function get_data() {
-		global $wpdb, $edd_options;
+		global $wpdb;
 
 		$data = array();
 
@@ -172,10 +170,10 @@ class EDD_Payments_Export extends EDD_Export {
 
 			$data[] = array(
 				'id'       => $payment->ID,
-				'seq_id'   => edd_get_payment_number( $payment->ID ),		
+				'seq_id'   => edd_get_payment_number( $payment->ID ),
 				'email'    => $payment_meta['email'],
 				'first'    => $user_info['first_name'],
-                'last'     => $user_info['last_name'],
+				'last'     => $user_info['last_name'],
 				'address1' => isset( $user_info['address']['line1'] )   ? $user_info['address']['line1']   : '',
 				'address2' => isset( $user_info['address']['line2'] )   ? $user_info['address']['line2']   : '',
 				'city'     => isset( $user_info['address']['city'] )    ? $user_info['address']['city']    : '',
@@ -185,13 +183,13 @@ class EDD_Payments_Export extends EDD_Export {
 				'products' => $products,
 				'skus'     => $skus,
 				'amount'   => html_entity_decode( edd_format_amount( $total ) ),
-				'tax'      => html_entity_decode( edd_get_payment_tax( $payment->ID, $payment_meta ) ),
-				'discount' => isset( $user_info['discount'] ) && $user_info['discount'] != 'none' ? $user_info['discount'] : __( 'none', 'edd' ),
+				'tax'      => html_entity_decode( edd_format_amount( edd_get_payment_tax( $payment->ID, $payment_meta ) ) ),
+				'discount' => isset( $user_info['discount'] ) && $user_info['discount'] != 'none' ? $user_info['discount'] : __( 'none', 'easy-digital-downloads' ),
 				'gateway'  => edd_get_gateway_admin_label( get_post_meta( $payment->ID, '_edd_payment_gateway', true ) ),
 				'trans_id' => edd_get_payment_transaction_id( $payment->ID ),
 				'key'      => $payment_meta['key'],
 				'date'     => $payment->post_date,
-				'user'     => $user ? $user->display_name : __( 'guest', 'edd' ),
+				'user'     => $user ? $user->display_name : __( 'guest', 'easy-digital-downloads' ),
 				'status'   => edd_get_payment_status( $payment, true )
 			);
 

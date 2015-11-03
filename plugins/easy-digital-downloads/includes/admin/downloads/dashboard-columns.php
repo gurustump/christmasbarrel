@@ -4,7 +4,7 @@
  *
  * @package     EDD
  * @subpackage  Admin/Downloads
- * @copyright   Copyright (c) 2014, Pippin Williamson
+ * @copyright   Copyright (c) 2015, Pippin Williamson
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -23,16 +23,18 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *  Post Type List Table
  */
 function edd_download_columns( $download_columns ) {
+	$category_labels   = edd_get_taxonomy_labels( 'download_category' );
+	$tag_labels        = edd_get_taxonomy_labels( 'download_tag' );
+
 	$download_columns = array(
 		'cb'                => '<input type="checkbox"/>',
-		'title'             => __( 'Name', 'edd' ),
-		'download_category' => __( 'Categories', 'edd' ),
-		'download_tag'      => __( 'Tags', 'edd' ),
-		'price'             => __( 'Price', 'edd' ),
-		'sales'             => __( 'Sales', 'edd' ),
-		'earnings'          => __( 'Earnings', 'edd' ),
-		'shortcode'         => __( 'Purchase Short Code', 'edd' ),
-		'date'              => __( 'Date', 'edd' )
+		'title'             => __( 'Name', 'easy-digital-downloads' ),
+		'download_category' => $category_labels['name'],
+		'download_tag'      => $tag_labels['name'],
+		'price'             => __( 'Price', 'easy-digital-downloads' ),
+		'sales'             => __( 'Sales', 'easy-digital-downloads' ),
+		'earnings'          => __( 'Earnings', 'easy-digital-downloads' ),
+		'date'              => __( 'Date', 'easy-digital-downloads' )
 	);
 
 	return apply_filters( 'edd_download_columns', $download_columns );
@@ -49,13 +51,6 @@ add_filter( 'manage_edit-download_columns', 'edd_download_columns' );
  */
 function edd_render_download_columns( $column_name, $post_id ) {
 	if ( get_post_type( $post_id ) == 'download' ) {
-		global $edd_options;
-
-		$style 			= isset( $edd_options['button_style'] ) ? $edd_options['button_style'] : 'button';
-		$color 			= isset( $edd_options['checkout_color'] ) ? $edd_options['checkout_color'] : 'blue';
-		$color			= ( $color == 'inherit' ) ? '' : $color;
-		$purchase_text 	= ! empty( $edd_options['add_to_cart_text'] ) ? $edd_options['add_to_cart_text'] : __( 'Purchase', 'edd' );
-
 		switch ( $column_name ) {
 			case 'download_category':
 				echo get_the_term_list( $post_id, 'download_category', '', ', ', '');
@@ -88,9 +83,6 @@ function edd_render_download_columns( $column_name, $post_id ) {
 				} else {
 					echo '-';
 				}
-				break;
-			case 'shortcode':
-				echo '[purchase_link id="' . absint( $post_id ) . '" text="' . esc_html( $purchase_text ) . '" style="' . $style . '" color="' . esc_attr( $color ) . '"]';
 				break;
 		}
 	}
@@ -161,6 +153,38 @@ function edd_sort_downloads( $vars ) {
 }
 
 /**
+ * Sets restrictions on author of Downloads List Table
+ *
+ * @since  2.2
+ * @param  array $vars Array of all sort varialbes
+ * @return array       Array of all sort variables
+ */
+function edd_filter_downloads( $vars ) {
+	if ( isset( $vars['post_type'] ) && 'download' == $vars['post_type'] ) {
+
+		// If an author ID was passed, use it
+		if ( isset( $_REQUEST['author'] ) && ! current_user_can( 'view_shop_reports' ) ) {
+
+			$author_id = $_REQUEST['author'];
+			if ( (int) $author_id !== get_current_user_id() ) {
+				// Tried to view the products of another person, sorry
+				wp_die( __( 'You do not have permission to view this data.', 'easy-digital-downloads' ), __( 'Error', 'easy-digital-downloads' ), array( 'response' => 403 ) );
+			}
+			$vars = array_merge(
+				$vars,
+				array(
+					'author' => get_current_user_id()
+				)
+			);
+
+		}
+
+	}
+
+	return $vars;
+}
+
+/**
  * Download Load
  *
  * Sorts the downloads.
@@ -170,6 +194,7 @@ function edd_sort_downloads( $vars ) {
  */
 function edd_download_load() {
 	add_filter( 'request', 'edd_sort_downloads' );
+	add_filter( 'request', 'edd_filter_downloads' );
 }
 add_action( 'load-edit.php', 'edd_download_load', 9999 );
 
@@ -189,7 +214,8 @@ function edd_add_download_filters() {
 		$terms = get_terms( 'download_category' );
 		if ( count( $terms ) > 0 ) {
 			echo "<select name='download_category' id='download_category' class='postform'>";
-				echo "<option value=''>" . __( 'Show all categories', 'edd' ) . "</option>";
+				$category_labels = edd_get_taxonomy_labels( 'download_category' );
+				echo "<option value=''>" . sprintf( __( 'Show all %s', 'easy-digital-downloads' ), strtolower( $category_labels['name'] ) ) . "</option>";
 				foreach ( $terms as $term ) {
 					$selected = isset( $_GET['download_category'] ) && $_GET['download_category'] == $term->slug ? ' selected="selected"' : '';
 					echo '<option value="' . esc_attr( $term->slug ) . '"' . $selected . '>' . esc_html( $term->name ) .' (' . $term->count .')</option>';
@@ -200,12 +226,20 @@ function edd_add_download_filters() {
 		$terms = get_terms( 'download_tag' );
 		if ( count( $terms ) > 0) {
 			echo "<select name='download_tag' id='download_tag' class='postform'>";
-				echo "<option value=''>" . __( 'Show all tags', 'edd' ) . "</option>";
+				$tag_labels = edd_get_taxonomy_labels( 'download_tag' );
+				echo "<option value=''>" . sprintf( __( 'Show all %s', 'easy-digital-downloads' ), strtolower( $tag_labels['name'] ) ) . "</option>";
 				foreach ( $terms as $term ) {
 					$selected = isset( $_GET['download_tag']) && $_GET['download_tag'] == $term->slug ? ' selected="selected"' : '';
 					echo '<option value="' . esc_attr( $term->slug ) . '"' . $selected . '>' . esc_html( $term->name ) .' (' . $term->count .')</option>';
 				}
 			echo "</select>";
+		}
+
+		if ( isset( $_REQUEST['all_posts'] ) && '1' === $_REQUEST['all_posts'] ) {
+			echo '<input type="hidden" name="all_posts" value="1" />';
+		} else if ( ! current_user_can( 'view_shop_reports' ) ) {
+			$author_id = get_current_user_id();
+			echo '<input type="hidden" name="author" value="' . esc_attr( $author_id ) . '" />';
 		}
 	}
 
@@ -247,9 +281,9 @@ function edd_price_field_quick_edit( $column_name, $post_type ) {
 	?>
 	<fieldset class="inline-edit-col-left">
 		<div id="edd-download-data" class="inline-edit-col">
-			<h4><?php echo sprintf( __( '%s Configuration', 'edd' ), edd_get_label_singular() ); ?></h4>
+			<h4><?php echo sprintf( __( '%s Configuration', 'easy-digital-downloads' ), edd_get_label_singular() ); ?></h4>
 			<label>
-				<span class="title"><?php _e( 'Price', 'edd' ); ?></span>
+				<span class="title"><?php _e( 'Price', 'easy-digital-downloads' ); ?></span>
 				<span class="input-text-wrap">
 					<input type="text" name="_edd_regprice" class="text regprice" />
 				</span>
@@ -287,11 +321,17 @@ add_action( 'save_post', 'edd_price_save_quick_edit' );
  * @return void
  */
 function edd_save_bulk_edit() {
-	$post_ids = ( isset( $_POST[ 'post_ids' ] ) && ! empty( $_POST[ 'post_ids' ] ) ) ? $_POST[ 'post_ids' ] : array();
+
+	$post_ids = ( isset( $_POST['post_ids'] ) && ! empty( $_POST['post_ids'] ) ) ? $_POST['post_ids'] : array();
 
 	if ( ! empty( $post_ids ) && is_array( $post_ids ) ) {
 		$price = isset( $_POST['price'] ) ? strip_tags( stripslashes( $_POST['price'] ) ) : 0;
 		foreach ( $post_ids as $post_id ) {
+
+			if( ! current_user_can( 'edit_post', $post_id ) ) {
+				continue;
+			}
+
 			if ( ! empty( $price ) ) {
 				update_post_meta( $post_id, 'edd_price', edd_sanitize_amount( $price ) );
 			}

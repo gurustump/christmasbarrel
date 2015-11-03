@@ -6,7 +6,7 @@
  *
  * @package     EDD
  * @subpackage  Classes/Emails
- * @copyright   Copyright (c) 2014, Pippin Williamson
+ * @copyright   Copyright (c) 2015, Pippin Williamson
  * @license     http://opensource.org/licenses/gpl-2.1.php GNU Public License
  * @since       2.1
  */
@@ -158,8 +158,8 @@ class EDD_Emails {
 	 */
 	public function get_templates() {
 		$templates = array(
-			'default' => __( 'Default Template', 'edd' ),
-			'none'    => __( 'No template, plain text only', 'edd' )
+			'default' => __( 'Default Template', 'easy-digital-downloads' ),
+			'none'    => __( 'No template, plain text only', 'easy-digital-downloads' )
 		);
 
 		return apply_filters( 'edd_email_templates', $templates );
@@ -169,6 +169,8 @@ class EDD_Emails {
 	 * Get the enabled email template
 	 *
 	 * @since 2.1
+	 *
+	 * @return string|null
 	 */
 	public function get_template() {
 		if ( ! $this->template ) {
@@ -191,6 +193,7 @@ class EDD_Emails {
 	 * Parse email template tags
 	 *
 	 * @since 2.1
+	 * @param string $content
 	 */
 	public function parse_tags( $content ) {
 
@@ -204,6 +207,9 @@ class EDD_Emails {
 	 * Build the final email
 	 *
 	 * @since 2.1
+	 * @param string $message
+	 *
+	 * @return string
 	 */
 	public function build_email( $message ) {
 
@@ -217,18 +223,39 @@ class EDD_Emails {
 
 		edd_get_template_part( 'emails/header', $this->get_template(), true );
 
+		/**
+		 * Hooks into the email header
+		 *
+		 * @since 2.1
+		 */
 		do_action( 'edd_email_header', $this );
 
 		if ( has_action( 'edd_email_template_' . $this->get_template() ) ) {
+			/**
+			 * Hooks into the template of the email
+			 *
+			 * @param string $this->template Gets the enabled email template
+			 * @since 2.1
+			 */
 			do_action( 'edd_email_template_' . $this->get_template() );
 		} else {
 			edd_get_template_part( 'emails/body', $this->get_template(), true );
 		}
 
+		/**
+		 * Hooks into the body of the email
+		 *
+		 * @since 2.1
+		 */
 		do_action( 'edd_email_body', $this );
 
 		edd_get_template_part( 'emails/footer', $this->get_template(), true );
 
+		/**
+		 * Hooks into the footer of the email
+		 *
+		 * @since 2.1
+		 */
 		do_action( 'edd_email_footer', $this );
 
 		$body    = ob_get_clean();
@@ -248,10 +275,15 @@ class EDD_Emails {
 	public function send( $to, $subject, $message, $attachments = '' ) {
 
 		if ( ! did_action( 'init' ) && ! did_action( 'admin_init' ) ) {
-			_doing_it_wrong( __FUNCTION__, __( 'You cannot send email with EDD_Emails until init/admin_init has been reached', 'edd' ), null );
+			_doing_it_wrong( __FUNCTION__, __( 'You cannot send email with EDD_Emails until init/admin_init has been reached', 'easy-digital-downloads' ), null );
 			return false;
 		}
 
+		/**
+		 * Hooks before the email is sent
+		 *
+		 * @since 2.1
+		 */
 		do_action( 'edd_email_send_before', $this );
 
 		$subject = $this->parse_tags( $subject );
@@ -263,6 +295,26 @@ class EDD_Emails {
 
 		$sent = wp_mail( $to, $subject, $message, $this->get_headers(), $attachments );
 
+		if( ! $sent ) {
+			if ( is_array( $to ) ) {
+				$to = implode( ',', $to );
+			}
+
+			$log_message = sprintf(
+				__( "Email from Easy Digital Downloads failed to send.\nSend time: %s\nTo: %s\nSubject: %s\n\n", 'easy-digital-downloads' ),
+				date_i18n( 'F j Y H:i:s', current_time( 'timestamp' ) ),
+				$to,
+				$subject
+			);
+
+			error_log( $log_message );
+		}
+
+		/**
+		 * Hooks after the email is sent
+		 *
+		 * @since 2.1
+		 */
 		do_action( 'edd_email_send_after', $this );
 
 		return $sent;
